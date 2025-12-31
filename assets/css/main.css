@@ -1,0 +1,18 @@
+@import "primeicons/primeicons.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: Inter;
+    src: url('../../static/font/Inter/Inter.ttf');
+ }
+
+div, p, span, input, ul, li {
+    font-family: Inter, ui-sans-serif;
+}
+
+.p-tab-active {
+    border-color: #147ee0 !important;
+    color: #147ee0 !important;
+}
