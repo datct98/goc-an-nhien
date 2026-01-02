@@ -1,5 +1,5 @@
 <template>
-    <!-- Main body -->
+    <!-- Main body frame -->
     <div class="default-container">
         <div class="flex flex-col w-full justify-center items-center">
             <div class="on-the-table">
