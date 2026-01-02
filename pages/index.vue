@@ -29,11 +29,6 @@
         <div class="floor">
             <Image src="/floor.jpg" alt="floor" width="1920" />
         </div>
-
-        <!-- Audio -->
-        <audio autoplay muted loop ref="audio" controls>
-            <source src="/audio/nhacPhat.mp3" type="audio/mpeg" />Your browser does not support the audio element.
-        </audio>
     </div>
 
 

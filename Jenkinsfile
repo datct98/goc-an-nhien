@@ -4,6 +4,7 @@ pipeline{
         stage("Build"){
             steps{
                 echo "======== executing Build step ========"
+                sh "npm install"
                 sh "npm run build"
             }
             post{
