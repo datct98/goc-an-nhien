@@ -3,6 +3,10 @@ import Aura from '@primevue/themes/aura';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: false,
+  nitro: {
+    preset: 'static'
+  },
   modules: [
     '@primevue/nuxt-module',
     // '@pinia/nuxt'
