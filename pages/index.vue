@@ -2,8 +2,17 @@
     <!-- Main body frame -->
     <div class="default-container">
         <div class="flex flex-col w-full justify-center items-center">
+            <div class="bang-chao-mung">
+            </div>
             <div class="on-the-table">
-                <div class="left-side-altar"></div>
+                <div class="left-side-altar">
+                    <div class="binhHoa">
+                        <Image src="/binh_hoa_1.png" alt="binhhoa_1" width="150" height="150" />
+                    </div>
+                    <div class="radio">
+                        <Image src="/radio.png" alt="radio" width="80" height="80" />
+                    </div>
+                </div>
                 <div class="middle-side-altar">
                     <div class="phatContainer">
                         <Image class="phat" src="/phat.png" alt="phat" width="250" height="250" />
@@ -12,7 +21,11 @@
                         <Image class="bathuong" src="/bathuong.png" alt="bathuong" width="100" height="100" />
                     </div>
                 </div>
-                <div class="right-side-altar"></div>
+                <div class="right-side-altar">
+                    <div class="binhHoa">
+                        <Image src="/binh_hoa_2.png" alt="binhhoa_1" width="150" height="150" />
+                    </div>
+                </div>
             </div>
             <div class="altar-table">
                 <div class="left-side">
@@ -70,10 +83,11 @@
     justify-content: end;
 }
 
-/* .altar-table .left-side .homcongduc {
-    position: relative;
-    bottom: 0px;
-} */
+.bang-chao-mung {
+    border: 1px solid green;
+    width: 800px;
+    height: 100px;
+}
 
 .on-the-table {
     border: 1px solid #4b251fa6;
@@ -107,11 +121,42 @@
 .middle-side-altar {
     border: 1px solid #44ffbba6;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+.radio {
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+    bottom: -5px;
+}
+
+.binhHoa {
+    position: absolute;
+    bottom: 25px;
+}
+
+.left-side-altar .binhHoa {
+    left: 45px;
+}
+
+.right-side-altar .binhHoa {
+    right: 45px;
+}
+
+.radio:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
 }
 
 .left-side-altar,
 .right-side-altar {
     width: 25%;
+    height: 345px;
+    position: relative;
 }
 
 .middle-side-altar {
@@ -121,5 +166,5 @@
     justify-content: end;
 }
 
-.default-container {}
+
 </style>
