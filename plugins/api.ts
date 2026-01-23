@@ -18,15 +18,6 @@ export default defineNuxtPlugin({
       | null = null;
     const { $common } = useNuxtApp();
 
-    const defaultData = {
-      url: "",
-      header: {
-        "Content-Type": "application/json",
-        traceId: uuidv4(),
-        Authorization: `Bearer ${defaulToken}`,
-      },
-    };
-
     const validateAPI = (url: any) => {
       let check = true;
       let message = "";

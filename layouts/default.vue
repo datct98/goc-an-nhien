@@ -1,7 +1,7 @@
 <template>
   <div class="default-container">
     <!-- Body -->
-    <div class="w-full p-2">
+    <div class="w-full">
       <ClientOnly fallback-tag="span" fallback="Loading comments...">
         <slot></slot>
       </ClientOnly>
@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-  
+
 </script>
 
 <style scoped>

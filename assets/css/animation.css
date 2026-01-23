@@ -1,0 +1,99 @@
+.bounce-jump {
+    animation: bounceJump 0.6s ease;
+}
+
+.bounce {
+    animation: bounce 0.4s cubic-bezier(0.36, 0, 0.66, -0.56);
+}
+
+.shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+.float-enter-active {
+  animation: floatUp 1.5s ease-out forwards;
+}
+
+/* Defining the Bounce effect */
+@keyframes bounceJump {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-100px);
+        /* Move up */
+    }
+
+    50% {
+        transform: translateY(0);
+        /* Return */
+    }
+
+    70% {
+        transform: translateY(-30px);
+        /* Small second bounce */
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(0.9);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    70% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animation rung */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-4px);
+    }
+
+    40% {
+        transform: translateX(4px);
+    }
+
+    60% {
+        transform: translateX(-3px);
+    }
+
+    80% {
+        transform: translateX(3px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) translateX(var(--float-x, 0));
+    opacity: 0;
+  }
+}

@@ -31,7 +31,7 @@ export default defineNuxtPlugin({
       });
     };
     const isLogin = () => {
-    return Cookies.get("jwt");
+      return Cookies.get("jwt");
     };
     /**
      * Reset token cookies
@@ -42,7 +42,7 @@ export default defineNuxtPlugin({
       const one_minute = 60000;
       const now = new Date();
       const expired = new Date(now.getTime() + minute * one_minute);
-      console.log('expired : ',expired);
+      console.log('expired : ', expired);
       Cookies.set("jwt", token, { expires: expired });
     };
     const setAdmin = (isAdmin: string, minute: number) => {
@@ -63,6 +63,13 @@ export default defineNuxtPlugin({
     const getAdmin = () => {
       return Cookies.get("isAdmin");
     };
+    /**
+     * Generate random value 1 - 100
+     * @returns 
+     */
+    const generateRandomValue = () => {
+      return Math.floor(Math.random() * 100) + 1;
+    }
     return {
       provide: {
         common: {
@@ -75,7 +82,8 @@ export default defineNuxtPlugin({
           setAdmin,
           setRole,
           getRole,
-          getAdmin
+          getAdmin,
+          generateRandomValue
         },
       },
     };
