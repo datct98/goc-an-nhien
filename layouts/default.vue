@@ -1,5 +1,5 @@
 <template>
-  <div class="default-container">
+  <div>
     <!-- Body -->
     <div class="w-full">
       <ClientOnly fallback-tag="span" fallback="Loading comments...">
@@ -13,10 +13,4 @@
 
 </script>
 
-<style scoped>
-.default-container {
-  background: #edd5ad;
-  background-size: cover;
-  z-index: -999;
-}
-</style>
+<style scoped></style>

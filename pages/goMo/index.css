@@ -1,4 +1,5 @@
 .container {
+    width: 100vw;
     height: 100vh;
     background-color: #a17e5f;
     background-size: cover;
@@ -32,7 +33,7 @@
 }
 
 .caiMo {
-    bottom: 150px;
+    bottom: 21%;
     left: 45%;
     z-index: 10;
 }
@@ -44,26 +45,26 @@
 }
 
 .pillow {
-    bottom: 46px;
+    bottom: 7%;
     left: 39%;
     z-index: 1;
 }
 
 .caiBan {
-    bottom: 120px;
+    bottom: 18%;
     left: 30%;
     z-index: 1;
 }
 
 .tuongPhat {
-    bottom: 295px;
+    bottom: 43%;
     left: 40%;
     z-index: 2;
 }
 
 .caynen.left,
 .caynen.right {
-    bottom: 300px;
+    bottom: 43%;
     z-index: 3;
 }
 
@@ -76,33 +77,26 @@
 }
 
 .bathuong {
-    bottom: 300px;
+    bottom: 43%;
     left: 46%;
     z-index: 4;
 }
 
 .gayGoMo {
-    bottom: 40px;
+    bottom: 7%;
     right: 30%;
     z-index: 5;
     cursor: pointer;
 }
 
 .khayDungGay {
-    bottom: 20px;
+    bottom: 3%;
     right: 28%;
     z-index: 4;
 }
 
-.bong.left {
-    position: absolute;
-    bottom: 46px;
-    left: 39%;
-    z-index: 1;
-}
-
 .banCongDuc {
-    bottom: 130px;
+    bottom: 20%;
     right: 5%;
 }
 

@@ -45,21 +45,14 @@
 
 .user-btn {
     background: transparent;
-    /* Removed background */
     border: none;
-    /* Removed border */
     border-radius: 50%;
-    /* Keep circular */
     padding: 0;
-    /* Removed padding */
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: none;
-    /* Removed blur effect */
     width: 85px;
-    /* Increased from 70px */
     height: 85px;
-    /* Increased from 70px */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,14 +101,10 @@
 /* New cosmic user avatar image */
 .user-avatar-img {
     width: 85px;
-    /* Increased from 70px */
     height: 85px;
-    /* Increased from 70px */
     border-radius: 50%;
     object-fit: cover;
-    /* Crop to fill circle */
     transition: all 0.3s ease;
-
     /* Subtle glow effect */
     filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.4));
 }
@@ -137,8 +126,8 @@
 
 .feature-bubble {
     position: absolute;
-    width: 150px;
-    height: 150px;
+    width: 170px;
+    height: 170px;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -157,13 +146,10 @@
 
 /* Icon wrapper - circular container */
 .icon-wrapper {
-    width: 70px;
-    /* Increased from 50px */
-    height: 70px;
-    /* Increased from 50px */
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     overflow: visible;
-    /* Changed to visible for glow effects */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -177,18 +163,12 @@
 }
 
 .card-icon-img {
-    width: 70px;
-    /* Increased from 50px */
-    height: 70px;
-    /* Increased from 50px */
+    width: 100px;
+    height: 100px;
     object-fit: contain;
-
-    /* Enhanced filters for original icons */
     filter:
         brightness(1.2) contrast(1.1) saturate(1.3) drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
-
     transition: transform 0.3s ease, filter 0.3s ease;
-    /* Removed floating animation as per user request */
 }
 
 .feature-card:hover .card-icon-img {
@@ -207,6 +187,11 @@
     text-align: center;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
 
 /* Specific Card Positions - Matching Reference Image (No Scrolling) */
