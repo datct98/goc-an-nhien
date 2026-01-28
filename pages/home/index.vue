@@ -47,7 +47,7 @@
       </div>
 
       <!-- Bottom-Center-Left: Huyền Học -->
-      <div class="feature-bubble card-bottom-left" @click="navigateTo('/divination')"
+      <div class="feature-bubble card-bottom-left" @click="navigateTo('/huyenHoc')"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
           <Image src="/home/icon/huyenHoc.png" class="card-icon-img" alt="Huyền Học"></Image>
