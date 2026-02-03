@@ -19,6 +19,7 @@
     justify-content: center;
 }
 
+.bang,
 .pillow,
 .bong,
 .caiMo,
@@ -30,6 +31,19 @@
 .banCongDuc,
 .khayDungGay {
     position: absolute;
+}
+
+.bang {
+    width: 350px;
+    height: 210px;
+    background-image: url("../decor/bang.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 38%;
+    left: 6%;
+    z-index: 1;
+    padding: 50px 0px 15px 30px;
 }
 
 .caiMo {

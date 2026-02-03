@@ -7,3 +7,10 @@
     background-position: center;
     background-image: url("../../assets/tarotUp.jpg");
 }
+
+.left-task-bar {
+    width: 200px;
+    height: 90vh;
+    background-color: #a17e5f;
+    opacity: 0.5;
+}

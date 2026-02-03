@@ -1,5 +1,11 @@
 <template>
     <div class="container-goMo" id="container" ref="containerRef" :style="{ backgroundImage: `url(${bg})` }">
+        <div class="bang">
+            <p style="width: 280px; word-wrap: break-word; font-size: 14px; color: #73462d;">
+                - Click vào cái <b>gậy</b> và nhấn vào <b>chiếc mõ</b> hoặc nhấn <b>phím space</b> để tụng kinh <br>
+                - Mỗi lần tụng kinh sẽ được cộng điểm, giải nghiệp và xua tan đi ưu phiền
+            </p>
+        </div>
         <div class="tuongPhat">
             <Image src="tuong/duc_phat.png" alt="phat" width="300" />
         </div>
@@ -52,9 +58,8 @@ import { ref } from 'vue';
 import memeTexts from '~/constants/memeTexts.json';
 import regularTexts from '~/constants/regularTexts.json';
 import bg from '../../assets/bg.png';
-const { $common } = useNuxtApp();
 const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo, level, rateLimitMessage } = useGameStats();
-const { playGong } = useSoundManager();
+import { onMounted, onUnmounted } from 'vue'
 
 const audioRef = ref(null);
 const containerRef = ref(null);
@@ -63,23 +68,44 @@ const khayDungGayRef = ref(null);
 const floatingTexts = ref([]);
 let floatingTextId = 0;
 
+onMounted(() => {
+    window.addEventListener('keydown', handleKeydown)
+})
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', handleKeydown)
+})
+
+const handleKeydown = (e) => {
+    if (e.code === 'Space') {
+        e.preventDefault();
+        console.log('Space được nhấn');
+        moRungDong();
+    }
+}
+
 var isClicking = false;
 var isCamGay = false;
 const goMo = () => {
     if (isCamGay) {
-        createFloatingText();
-        if (audioRef.value) {
-            audioRef.value.currentTime = 0 // phát lại từ đầu
-            audioRef.value.play();
-            // playGong();
-        }
-        const object = document.getElementById('caiMo');
-        object.classList.add('shake');
-        setTimeout(() => {
-            object.classList.remove('shake');
-        }, 600);
+        moRungDong();
     }
 }
+
+const moRungDong = () => {
+    createFloatingText();
+    if (audioRef.value) {
+        audioRef.value.currentTime = 0 // phát lại từ đầu
+        audioRef.value.play();
+        // playGong();
+    }
+    const object = document.getElementById('caiMo');
+    object.classList.add('shake');
+    setTimeout(() => {
+        object.classList.remove('shake');
+    }, 600);
+}
+
 
 const createFloatingText = () => {
     // 5% chance for meme text
