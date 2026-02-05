@@ -25,7 +25,8 @@
             <Image src="decor/goi.png" alt="pillow" width="350" />
         </div>
         <div class="bathuong">
-            <Image src="decor/bat_huong.png" alt="bathuong" width="100" />
+            <SmokeUp />
+            <Image src="decor/bat_huong_2.png" alt="bathuong" width="80" />
         </div>
         <div class="gayGoMo" ref="gayGoMoRef" @click="camGayGoMo()">
             <Image src="decor/gay_go_mo.png " alt="gay_go_mo" width="100" />
@@ -60,6 +61,7 @@ import regularTexts from '~/constants/regularTexts.json';
 import bg from '../../assets/bg.png';
 const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo, level, rateLimitMessage } = useGameStats();
 import { onMounted, onUnmounted } from 'vue'
+import SmokeUp from '~/components/effects/SmokeUp.vue';
 
 const audioRef = ref(null);
 const containerRef = ref(null);
@@ -67,6 +69,7 @@ const gayGoMoRef = ref(null);
 const khayDungGayRef = ref(null);
 const floatingTexts = ref([]);
 let floatingTextId = 0;
+let isTeng = 0;
 
 onMounted(() => {
     window.addEventListener('keydown', handleKeydown)
@@ -94,16 +97,16 @@ const goMo = () => {
 
 const moRungDong = () => {
     createFloatingText();
-    if (audioRef.value) {
-        audioRef.value.currentTime = 0 // phát lại từ đầu
-        audioRef.value.play();
-        // playGong();
-    }
+    isTeng++
+
+    audioRef.value.currentTime = 0
+    audioRef.value.play();
+
     const object = document.getElementById('caiMo');
     object.classList.add('shake');
     setTimeout(() => {
         object.classList.remove('shake');
-    }, 600);
+    }, 300);
 }
 
 
