@@ -1,10 +1,11 @@
 <template>
     <div class="background">
-        <SmokeUp />
+        <Bubble />
     </div>
 </template>
 
 <script setup>
+import Bubble from '~/components/effects/Bubble.vue';
 import SmokeUp from '~/components/effects/SmokeUp.vue';
 
 </script>
@@ -17,5 +18,8 @@ import SmokeUp from '~/components/effects/SmokeUp.vue';
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

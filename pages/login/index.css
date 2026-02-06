@@ -7,3 +7,21 @@
     background-position: center;
     background-color: #d2c1b8;
 }
+
+.login-board {
+    width: 350px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.google {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+}

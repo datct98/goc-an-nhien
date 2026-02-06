@@ -6,6 +6,11 @@
         <div class="input-group">
             <input type="password" v-model="password" placeholder="Mật khẩu" class="custom-input" />
         </div>
+        <div class="button-group">
+            <button class="btn-secondary">Đăng ký</button>
+            <button class="btn-primary">Đăng nhập</button>
+            <button class="btn-secondary">Quên pass</button>
+        </div>
     </div>
 
 </template>
@@ -17,37 +22,23 @@ const password = ref('');
 </script>
 
 <style scoped>
-/* Bao quanh toàn bộ form để tạo nền giống giấy cũ */
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0e4d0;
-    /* Màu nền giả lập giấy */
-}
-
-.login-box {
-    background: #fdf5e6;
-    padding: 40px;
-    border-radius: 20px;
-    width: 400px;
-    text-align: center;
+* {
+    font-family: DancingScript;
+    font-style: italic;
 }
 
 /* Style cho các ô Input */
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .custom-input {
     width: 100%;
-    padding: 12px 25px;
-    border: 2px solid #e8d5b5;
+    padding: 5px 25px;
+    border: 2px solid #ccb593;
     border-radius: 50px;
-    /* Bo tròn cực đại giống hình */
     background-color: #fffaf0;
-    font-size: 18px;
+    font-size: 16px;
     font-style: italic;
     color: #5d4037;
     outline: none;
@@ -70,25 +61,41 @@ const password = ref('');
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
 }
 
 /* Nút Đăng nhập chính */
 .btn-primary {
-    background-color: #fff9eb;
-    border: 2px solid #d7c0a3;
-    border-radius: 30px;
-    padding: 10px 30px;
-    font-size: 20px;
-    color: #4e342e;
+    padding: 10px 26px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6b4b2a;
+
+    background: linear-gradient(to bottom,
+            #fff2cc,
+            #f2d59b);
+
+    border: 2px solid #c8a86a;
+    border-radius: 999px;
+
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.8),
+        0 3px 6px rgba(0, 0, 0, 0.15);
+
     cursor: pointer;
-    box-shadow: 0 4px 0 #e3d5c1;
-    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to bottom,
+            #ffe8b0,
+            #eac67a);
 }
 
 .btn-primary:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #e3d5c1;
+    transform: translateY(1px);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Nút Đăng ký và Quên mật khẩu */
