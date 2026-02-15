@@ -12,7 +12,7 @@ export const authService = {
      * @param {string} password 
      * @returns {Promise<string>} JWT token
      */
-    async login(email, password) {
+    async login(email: string, password: string): Promise<string> {
         const { data } = await authApi.post('/auth/login', { email, password });
         return data.token;
     },
@@ -24,7 +24,7 @@ export const authService = {
      * @param {string} password 
      * @returns {Promise<string>} JWT token
      */
-    async register(fullName, email, password) {
+    async register(fullName: string, email: string, password: string): Promise<string> {
         const { data } = await authApi.post('/auth/register', {
             fullName,
             email,
@@ -35,14 +35,25 @@ export const authService = {
     },
 
     /**
+     * Login with Google OAuth
+     * @param {string} idToken - Google ID token from Google Sign-In
+     * @returns {Promise<string>} JWT token
+     */
+    async loginWithGoogle(idToken: string): Promise<string> {
+        const { data } = await authApi.post('/auth/google', { idToken });
+        return data.token;
+    },
+
+    /**
      * Logout (stateless - just clears client token)
      */
-    async logout() {
+    async logout(): Promise<void> {
         try {
             await authApi.post('/auth/logout');
-        } catch (error) {
+        } catch (error: unknown) {
             // Ignore errors on logout
-            console.warn('Logout request failed:', error.message);
+            const message = error instanceof Error ? error.message : 'Unknown error';
+            console.warn('Logout request failed:', message);
         }
     }
 };
