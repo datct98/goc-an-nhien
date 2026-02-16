@@ -32,26 +32,26 @@ meritApi.interceptors.response.use(
 
 export const meritService = {
     /**
-     * Tap the wooden fish (+1 merit point)
-     * @returns {Promise<{message: string, totalPoints: number}>}
+     * Tap the wooden fish - gửi thông tin điểm từ FE xuống BE
+     * @param {Object} tapData - { pointType, merit, peace, karma, totalClicks }
+     * @returns {Promise<{type: string, displayText: string, icon: string, allStats: Object}>}
      * @throws {Error} If rate limited (429) or network error
      */
-    async tap() {
-        console.log('📡 Calling API: POST /merit/tap')
-        const { data } = await meritApi.post('/merit/tap');
+    async tap(tapData: { pointType: string; merit: number; peace: number; karma: number; totalClicks: number }) {
+        console.log('📡 Calling API: POST /merit/tap', tapData)
+        const { data } = await meritApi.post('/merit/tap', tapData);
         console.log('✅ API Response:', data)
         return data;
     },
 
     /**
-     * Get current user's total merit points
-     * @returns {Promise<number>}
+     * Get current user's all stats (công đức, tâm tịnh, nghiệp tiêu, tổng, level)
+     * @returns {Promise<{merit: number, peace: number, karma: number, totalPoints: number, level: number}>}
      */
-    async getPoints() {
+    async getMe() {
         console.log('📡 Calling API: GET /merit/me')
         const { data } = await meritApi.get('/merit/me');
         console.log('✅ API Response:', data)
-        return data.totalPoints || data;
+        return data;
     }
 };
-

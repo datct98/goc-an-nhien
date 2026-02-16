@@ -1,14 +1,17 @@
 <template>
     <div>
         <div class="input-group">
-            <input type="text" v-model="username" placeholder="Tên đăng nhập" class="custom-input" />
+            <input type="text" v-model="email" placeholder="Email" class="custom-input" @keyup.enter="handleLogin" />
         </div>
         <div class="input-group">
-            <input type="password" v-model="password" placeholder="Mật khẩu" class="custom-input" />
+            <input type="password" v-model="password" placeholder="Mật khẩu" class="custom-input" @keyup.enter="handleLogin" />
         </div>
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
         <div class="button-group">
             <button class="btn-secondary">Đăng ký</button>
-            <button class="btn-primary">Đăng nhập</button>
+            <button class="btn-primary" @click="handleLogin" :disabled="isLoading">
+                {{ isLoading ? 'Đang đăng nhập...' : 'Đăng nhập' }}
+            </button>
             <button class="btn-secondary">Quên pass</button>
         </div>
     </div>
@@ -17,8 +20,35 @@
 
 <script setup>
 import { ref } from 'vue';
-const username = ref('');
+import { useRouter } from 'vue-router';
+import { useAuth } from '~/composables/useAuth';
+
+const router = useRouter();
+const { login, isLoading } = useAuth();
+
+const email = ref('');
 const password = ref('');
+const errorMessage = ref('');
+
+const handleLogin = async () => {
+    // Validate
+    if (!email.value || !password.value) {
+        errorMessage.value = 'Vui lòng nhập email và mật khẩu';
+        return;
+    }
+
+    try {
+        errorMessage.value = '';
+        await login(email.value, password.value);
+        
+        console.log('✅ Đăng nhập thành công!');
+        // Redirect to home after login
+        router.push('/home');
+    } catch (err) {
+        console.error('❌ Login failed:', err);
+        errorMessage.value = err.response?.data?.message || 'Đăng nhập thất bại. Vui lòng kiểm tra email và mật khẩu.';
+    }
+};
 </script>
 
 <style scoped>
@@ -54,6 +84,15 @@ const password = ref('');
 .custom-input:focus {
     border-color: #cbad8d;
     box-shadow: 0 0 5px rgba(203, 173, 141, 0.5);
+}
+
+/* Error message */
+.error-message {
+    color: #c62828;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 5px;
+    font-style: normal;
 }
 
 /* Style cho nhóm nút bấm */
@@ -96,6 +135,11 @@ const password = ref('');
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.6),
         0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* Nút Đăng ký và Quên mật khẩu */

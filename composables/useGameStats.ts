@@ -1,11 +1,13 @@
 import { ref, computed, onMounted } from 'vue'
+import { meritService } from '~/services/meritService'
 
 export function useGameStats() {
     const stats = ref({
         merit: 0,
         peace: 0,
         karma: 0,
-        totalClicks: 0
+        totalClicks: 0,
+        level: 1
     })
 
     const isLoading = ref(false)
@@ -29,7 +31,7 @@ export function useGameStats() {
         }
     }
 
-    // Load merit points from API (source of truth)
+    // Load merit points from API (SOURCE OF TRUTH - gọi khi mount /goMo hoặc reload)
     const loadMeritPoints = async () => {
         if (isSyncing) return // Tránh gọi API nhiều lần
 
@@ -37,17 +39,25 @@ export function useGameStats() {
             isSyncing = true
             isLoading.value = true
 
-            console.log('🔄 Fetching merit points from API...')
-            // const data = await meritService.getPoints()
-            // Update stats from backend (source of truth)
-            // stats.value.merit = data.totalPoints || data
-            // stats.value.totalClicks = data.totalPoints || data
+            console.log('🔄 Fetching merit points from API /me...')
+            const data = await meritService.getMe()
 
-            // Save to localStorage as backup
+            // Update stats from backend (SOURCE OF TRUTH)
+            if (data) {
+                stats.value.merit = data.merit || 0
+                stats.value.peace = data.peace || 0
+                stats.value.karma = data.karma || 0
+                stats.value.totalClicks = data.totalClicks || 0
+                stats.value.level = data.level || 1
+                console.log('✅ Stats loaded from API (source of truth):', stats.value)
+            }
+
+            // Lưu vào localStorage làm backup
             saveLocalStats()
-        } catch (err) {
-            console.error('❌ Failed to load merit points from API:', err)
-            // Keep using localStorage data if API fails
+        } catch (err: any) {
+            console.error('❌ Failed to load from API, falling back to localStorage:', err)
+            // API fail → fallback dùng localStorage
+            loadLocalStats()
         } finally {
             isLoading.value = false
             isSyncing = false
@@ -60,59 +70,92 @@ export function useGameStats() {
         console.log('💾 Saved to localStorage:', stats.value)
     }
 
-    // Increment merit via API with optimistic update
-    const incrementMerit = () => {
+    // Gửi tap xuống BE (fire-and-forget trong background)
+    const sendTapToBackend = async (pointType: string) => {
         try {
-            error.value = null
-            rateLimitMessage.value = null
-
-            // OPTIMISTIC UPDATE: Cộng điểm ngay lập tức ở FE
-            stats.value.merit++
-            stats.value.totalClicks++
-            saveLocalStats()
-
-            console.log('🔔 Tapping wooden fish... (optimistic update)')
-
-            // Gọi API ở background
-            // const result = await meritService.tap()
-
-            // console.log('✅ Tap API response:', result)
-
-            // // Sync với backend (backend là source of truth)
-            // stats.value.merit = result.totalPoints
-            saveLocalStats()
-
-            return null
+            await meritService.tap({
+                pointType,
+                merit: stats.value.merit,
+                peace: stats.value.peace,
+                karma: stats.value.karma,
+                totalClicks: stats.value.totalClicks
+            })
         } catch (err: any) {
-            // Rollback optimistic update nếu API fail
-            stats.value.merit--
-            stats.value.totalClicks--
-            saveLocalStats()
+            if (err.response?.status === 429) {
+                rateLimitMessage.value = err.response?.data?.error || 'Gõ quá nhanh!'
+                console.warn('⚠️ Rate limited:', rateLimitMessage.value)
+            } else {
+                console.error('❌ Tap API failed:', err)
+            }
         }
     }
 
-    // Local-only increments (not synced to API)
-    const incrementPeace = () => {
-        stats.value.peace++
+    // Increment merit via API with optimistic update
+    const incrementMerit = () => {
+        error.value = null
+        rateLimitMessage.value = null
+
+        // OPTIMISTIC UPDATE: Cộng điểm ngay lập tức ở FE
+        stats.value.merit++
+        stats.value.totalClicks++
         saveLocalStats()
+
+        console.log('🔔 Tapping wooden fish... (optimistic: MERIT)')
+
+        // Gửi tap xuống BE (fire-and-forget)
+        sendTapToBackend('MERIT')
     }
 
-    const incrementKarma = () => {
-        stats.value.karma++
+    // Increment peace with optimistic update + API sync
+    const incrementPeace = () => {
+        error.value = null
+        rateLimitMessage.value = null
+
+        stats.value.peace++
+        stats.value.totalClicks++
         saveLocalStats()
+
+        console.log('🧘 Tapping wooden fish... (optimistic: PEACE)')
+
+        // Gửi tap xuống BE (fire-and-forget)
+        sendTapToBackend('PEACE')
+    }
+
+    // Increment karma with optimistic update + API sync
+    const incrementKarma = () => {
+        error.value = null
+        rateLimitMessage.value = null
+
+        stats.value.karma++
+        stats.value.totalClicks++
+        saveLocalStats()
+
+        console.log('✨ Tapping wooden fish... (optimistic: KARMA)')
+
+        // Gửi tap xuống BE (fire-and-forget)
+        sendTapToBackend('KARMA')
     }
 
     const bigGo = () => {
         let random = Math.floor(Math.random() * 100) + 1;
         let randomScore = Math.floor(Math.random() * 10) + 1;
+        let pointType = 'MERIT';
+
         if (random < 30) {
             stats.value.merit += randomScore;
+            pointType = 'MERIT';
         } else if (random > 30 && random < 60) {
             stats.value.peace += randomScore;
+            pointType = 'PEACE';
         } else {
             stats.value.karma += randomScore;
+            pointType = 'KARMA';
         }
+        stats.value.totalClicks++
         saveLocalStats()
+
+        // Gửi tap xuống BE (fire-and-forget)
+        sendTapToBackend(pointType)
     }
 
     // Reset stats
@@ -121,7 +164,8 @@ export function useGameStats() {
             merit: 0,
             peace: 0,
             karma: 0,
-            totalClicks: 0
+            totalClicks: 0,
+            level: 1
         }
         saveLocalStats()
     }
@@ -129,15 +173,14 @@ export function useGameStats() {
     // Computed values
     const level = computed(() => {
         // Mỗi 100 điểm = 1 cấp
-        return Math.floor(stats.value.merit / 100) + 1
+        const total = stats.value.merit + stats.value.peace + stats.value.karma
+        return Math.floor(total / 100) + 1
     })
 
-    // Initialize on mount
+    // Initialize on mount — API là source of truth, localStorage chỉ là fallback
     onMounted(() => {
-        // Load localStorage first for instant display
-        loadLocalStats()
-
-        // Then fetch from API to sync with backend
+        // Gọi API /me để lấy thông tin merit (source of truth)
+        // Nếu API fail → fallback dùng localStorage
         loadMeritPoints()
     })
 
