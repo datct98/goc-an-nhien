@@ -58,14 +58,13 @@ const handleCredential = async (idToken) => {
         console.log('Sending ID token to backend...');
         const token = await authService.loginWithGoogle(idToken);
         
-        // Store JWT token
-        localStorage.setItem('token', token);
+        // Store JWT token (dùng key 'jwt_token' thống nhất toàn app)
+        localStorage.setItem('jwt_token', token);
         
         // Clear the hash/params from URL
         window.history.replaceState({}, document.title, '/login/');
         
-        // Show success and redirect
-        alert('Đăng nhập thành công!');
+        // Redirect to home
         router.push('/home');
     } catch (error) {
         console.error('Google login failed:', error);
