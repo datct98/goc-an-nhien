@@ -2,6 +2,17 @@ import Aura from '@primevue/themes/aura';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      script: [
+        {
+          src: "https://accounts.google.com/gsi/client",
+          async: true,
+          defer: true
+        }
+      ]
+    }
+  },
   devtools: { enabled: true },
   ssr: false,
   nitro: {
@@ -15,6 +26,7 @@ export default defineNuxtConfig({
     public: {
       PAGE_SIZE: 5,
       PAGE_NUM: 0,
+      googleClientId: process.env.VITE_GOOGLE_CLIENT_ID
     }
   },
   primevue: {
@@ -26,7 +38,7 @@ export default defineNuxtConfig({
         'FloatLabel', 'IconField', 'InputIcon', 'InputGroup', 'InputGroupAddon', 'InputNumber', 'InputOtp', 'InputText',
         'Knob', 'Listbox', 'MultiSelect', 'Password', 'RadioButton', 'Rating', 'Select', 'SelectButton', 'Slider', 'Textarea',
         'ToggleButton', 'ToggleSwitch', 'SpeedDial', 'SplitButton', 'DataView', 'OrganizationChart', 'Paginator',
-        'Timeline', 'Tree', 
+        'Timeline', 'Tree',
         // panel
         'Accordion', 'AccordionPanel', 'AccordionHeader', 'AccordionContent',
         'Card', 'Divider', 'Fieldset', 'Panel', 'ScrollPanel', 'Splitter', 'Toolbar',
@@ -47,7 +59,7 @@ export default defineNuxtConfig({
         // media
         'Carousel', 'Galleria', 'Image',
         // misc
-        'AnimateOnScroll', 'Avatar', 'AvatarGroup', 'OverlayBadge', 'Badge', 'MeterGroup', 
+        'AnimateOnScroll', 'Avatar', 'AvatarGroup', 'OverlayBadge', 'Badge', 'MeterGroup',
         'ScrollTop', 'ProgressBar', 'ProgressSpinner', 'StyleClass', 'Tag', 'Ripple',
         // terminal
         'Terminal', 'TerminalService',
@@ -57,9 +69,9 @@ export default defineNuxtConfig({
     },
     options: {
       theme: {
-          preset: Aura,
-          darkModeSelector: 'system',
-          cssLayer: false
+        preset: Aura,
+        darkModeSelector: 'system',
+        cssLayer: false
       }
     }
   },

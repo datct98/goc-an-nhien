@@ -12,6 +12,11 @@
 </template>
 
 <script setup>
+
+definePageMeta({
+    layout: "login_layout"
+})
+
 import { onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import Bubble from '~/components/effects/Bubble.vue';
@@ -20,17 +25,27 @@ import { authService } from '~/services/authService';
 const router = useRouter();
 const route = useRoute();
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const { $common } = useNuxtApp();
+
 const REDIRECT_URI = window.location.origin + '/login/';
+
+const config = useRuntimeConfig()
+const GOOGLE_CLIENT_ID = config.public.googleClientId;
 
 // Check for Google OAuth callback on mount
 onMounted(async () => {
+
+    // check show warning
+    if (route.query.isWarning) {
+        $common.showWarning('🔒 Chưa đăng nhập, chuyển hướng về /login');
+    }
+
     // Check if this is a callback from Google (hash contains id_token or access_token)
     const hash = window.location.hash;
     if (hash && hash.includes('id_token=')) {
         await handleGoogleCallback(hash);
     }
-    
+
     // Also check for credential in URL params (for some OAuth flows)
     const params = new URLSearchParams(window.location.search);
     const credential = params.get('credential');
@@ -44,7 +59,7 @@ const handleGoogleCallback = async (hash) => {
         // Parse the hash to get id_token
         const params = new URLSearchParams(hash.substring(1));
         const idToken = params.get('id_token');
-        
+
         if (idToken) {
             await handleCredential(idToken);
         }
@@ -57,13 +72,13 @@ const handleCredential = async (idToken) => {
     try {
         console.log('Sending ID token to backend...');
         const token = await authService.loginWithGoogle(idToken);
-        
+
         // Store JWT token (dùng key 'jwt_token' thống nhất toàn app)
         localStorage.setItem('jwt_token', token);
-        
+
         // Clear the hash/params from URL
         window.history.replaceState({}, document.title, '/login/');
-        
+
         // Redirect to home
         router.push('/home');
     } catch (error) {
@@ -81,7 +96,7 @@ const loginWithGoogle = () => {
     authUrl.searchParams.set('scope', 'openid email profile');
     authUrl.searchParams.set('nonce', generateNonce());
     authUrl.searchParams.set('prompt', 'select_account');
-    
+
     // Redirect to Google OAuth
     window.location.href = authUrl.toString();
 };

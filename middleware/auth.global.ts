@@ -10,7 +10,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
         if (!token) {
             console.warn('🔒 Chưa đăng nhập, chuyển hướng về /login')
-            return navigateTo('/login')
+            return navigateTo('/login?isWarning=true')
         }
     }
 })

@@ -16,6 +16,10 @@
     font-style: normal;
 }
 
+:root {
+    --p-toast-warn-detail-color: yellow;
+}
+
 div,
 p,
 span,
@@ -28,4 +32,32 @@ li {
 .p-tab-active {
     border-color: #147ee0 !important;
     color: #147ee0 !important;
+}
+
+
+
+/* Override toast style */
+
+.p-toast-message-warn {
+    background-color: #f7f4d5 !important;
+}
+
+.p-toast-message-warn .p-toast-detail {
+    color: var(--p-toast-warn-color) !important;
+}
+
+.p-toast-message-success {
+    background-color: #ddf2d5 !important;
+}
+
+.p-toast-message-success .p-toast-detail {
+    color: var(--p-toast-success-color) !important;
+}
+
+.p-toast-message-error {
+    background-color: #edcac7 !important;
+}
+
+.p-toast-message-error .p-toast-detail {
+    color: var(--p-toast-error-color) !important;
 }
