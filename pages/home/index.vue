@@ -2,8 +2,10 @@
 
   <div class="home-page" :style="{ backgroundImage: `url(${backgroundImg})` }">
     <SakuraEffect />
+
     <!-- HEADER -->
     <header class="app-header">
+      <!-- Right: Avatar -->
       <button class="user-btn" @click="showUserMenu">
         <Image src="/home/cosmic_user_avatar.png" class="user-avatar-img" alt="User Profile"></Image>
       </button>
@@ -68,6 +70,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuth } from '../composables/useAuth';
 import backgroundImg from '../assets/phatNgoiHoaSenRes.png';
@@ -76,6 +79,7 @@ import SakuraEffect from '../components/effects/SakuraEffect.vue';
 
 const router = useRouter()
 const { getUserEmail } = useAuth()
+const sidebarOpen = ref(false)
 
 const navigateTo = (path) => {
   if (path === '/altar' || path === '/divination' || path === '/shop') {

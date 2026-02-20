@@ -63,6 +63,8 @@ const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo, level, rat
 import { onMounted, onUnmounted } from 'vue'
 import SmokeUp from '~/components/effects/SmokeUp.vue';
 
+const sidebarOpen = ref(false);
+
 const audioRef = ref(null);
 const containerRef = ref(null);
 const gayGoMoRef = ref(null);
