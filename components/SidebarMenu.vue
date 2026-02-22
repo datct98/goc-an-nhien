@@ -13,7 +13,7 @@
                     <button class="close-btn" @click="close">✕</button>
                 </div>
                 <nav class="sidebar-nav">
-                    <a class="nav-item" v-for="item in menuTabList" @click="goTo(item.path)"
+                    <a class="nav-item" v-for="item in menuTabList" @click="goTo(item.path, item.status)"
                         :class="{ active: item.active }">
                         <span class="nav-icon">{{ item.icon }}</span>
                         <span class="nav-label">{{ item.name }}</span>
@@ -47,8 +47,9 @@ const props = defineProps({
 // Event ----------------------------------
 const emit = defineEmits(['close'])
 const router = useRouter();
-const route = useRoute()
-let menuTabList = ref(menuList)
+const route = useRoute();
+let menuTabList = ref(menuList);
+const { $common } = useNuxtApp();
 
 onMounted(() => {
 })
@@ -74,11 +75,8 @@ const close = () => {
     emit('close')
 }
 
-const goTo = (path) => {
-    if (path != "") {
-        close()
-        router.push(path)
-    }
+const goTo = (path, status) => {
+    $common.navigateTo(path, status, router);
 }
 
 const handleLogout = () => {

@@ -4,6 +4,13 @@ import Aura from '@primevue/themes/aura';
 export default defineNuxtConfig({
   app: {
     head: {
+      link: [
+        {
+          rel: "icon",
+          type: "image/x-icon'",
+          href: "/icon.ico"
+        }
+      ],
       script: [
         {
           src: "https://accounts.google.com/gsi/client",

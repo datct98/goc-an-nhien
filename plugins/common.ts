@@ -22,10 +22,10 @@ export default defineNuxtPlugin({
         life: 3000,
       });
     };
-    const showWarning = (msg: string) => {
+    const showWarning = (msg: string, summary: string = "Cảnh báo") => {
       toast.add({
         severity: "warn",
-        summary: "Thất bại",
+        summary: summary,
         detail: msg,
         life: 3000,
       });
@@ -69,6 +69,19 @@ export default defineNuxtPlugin({
      */
     const generateRandomValue = () => {
       return Math.floor(Math.random() * 100) + 1;
+    };
+    /**
+     * 
+     * @param path navigate to page
+     * @param status 
+     * @param router 
+     */
+    const navigateTo = (path: string, status: string, router: any) => {
+      if (status === 'process') {
+        showWarning('Tính năng đang phát triển 🙏')
+      } else {
+        router.push(path)
+      }
     }
     return {
       provide: {
@@ -83,7 +96,8 @@ export default defineNuxtPlugin({
           setRole,
           getRole,
           getAdmin,
-          generateRandomValue
+          generateRandomValue,
+          navigateTo
         },
       },
     };

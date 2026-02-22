@@ -13,57 +13,57 @@
 
     <div class="feature-cards-container">
       <!-- Top-Left: Gõ Mõ -->
-      <div class="feature-bubble card-top-left" @click="navigateTo('/goMo')"
+      <div class="feature-bubble card-top-left" @click="navigateTo('/goMo', homeList.goMo.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
-          <Image src="/home/icon/goMo.png" class="card-icon-img" alt="Gõ Mõ"></Image>
+          <Image :src="homeList.goMo.image" class="card-icon-img" :alt="homeList.goMo.name"></Image>
         </div>
-        <div class="card-title">Gõ Mõ</div>
+        <div class="card-title">{{ homeList.goMo.name }}</div>
       </div>
 
       <!-- Mid-Left: Hũ Tâm Sự -->
-      <div class="feature-bubble card-mid-left" @click="navigateTo('/worry-jar')"
+      <div class="feature-bubble card-mid-left" @click="navigateTo('/worry-jar', homeList.hoTamSu.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
-          <Image src="/home/icon/hoTamSu.png" class="card-icon-img" alt="Hồ Tâm Sự"></Image>
+          <Image :src="homeList.hoTamSu.image" class="card-icon-img" :alt="homeList.hoTamSu.name"></Image>
         </div>
-        <div class="card-title">Hồ Tâm Sự</div>
+        <div class="card-title">{{ homeList.hoTamSu.name }}</div>
       </div>
 
       <!-- Top-Right: Phóng Đăng -->
-      <div class="feature-bubble card-top-right" @click="navigateTo('/altar')"
+      <div class="feature-bubble card-top-right" @click="navigateTo('/altar', homeList.phongDang.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
-          <Image src="/home/icon/phongDang.png" class="card-icon-img" alt="Phóng Đăng"></Image>
+          <Image :src="homeList.phongDang.image" class="card-icon-img" :alt="homeList.phongDang.name"></Image>
         </div>
-        <div class="card-title">Phóng Đăng</div>
+        <div class="card-title">{{ homeList.phongDang.name }}</div>
       </div>
 
       <!-- Mid-Right: Thắp Nhang -->
-      <div class="feature-bubble card-mid-right" @click="navigateTo('/altar')"
+      <div class="feature-bubble card-mid-right" @click="navigateTo('/altar', homeList.thapNhang.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
-          <Image src="/home/icon/thapNhang.png" class="card-icon-img" alt="Thắp Nhang"></Image>
+          <Image :src="homeList.thapNhang.image" class="card-icon-img" :alt="homeList.thapNhang.name"></Image>
         </div>
-        <div class="card-title">Thắp Nhang</div>
+        <div class="card-title">{{ homeList.thapNhang.name }}</div>
       </div>
 
       <!-- Bottom-Center-Left: Huyền Học -->
-      <div class="feature-bubble card-bottom-left" @click="navigateTo('/huyenHoc')"
+      <div class="feature-bubble card-bottom-left" @click="navigateTo('/huyenHoc', homeList.huyenHoc.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
-          <Image src="/home/icon/huyenHoc.png" class="card-icon-img" alt="Huyền Học"></Image>
+          <Image :src="homeList.huyenHoc.image" class="card-icon-img" :alt="homeList.huyenHoc.name"></Image>
         </div>
-        <div class="card-title">Huyền Học</div>
+        <div class="card-title">{{ homeList.huyenHoc.name }}</div>
       </div>
 
       <!-- Bottom-Center-Right: Linh Vật -->
-      <div class="feature-bubble card-bottom-right" @click="navigateTo('/shop')"
+      <div class="feature-bubble card-bottom-right" @click="navigateTo('/shop', homeList.linhVat.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
-          <Image src="/home/icon/linhVat.png" class="card-icon-img" alt="Linh Vật"></Image>
+          <Image :src="homeList.linhVat.image" class="card-icon-img" :alt="homeList.linhVat.name"></Image>
         </div>
-        <div class="card-title">Linh Vật</div>
+        <div class="card-title">{{ homeList.linhVat.name }}</div>
       </div>
     </div>
   </div>
@@ -76,18 +76,17 @@ import { useAuth } from '../composables/useAuth';
 import backgroundImg from '../assets/phatNgoiHoaSenRes.png';
 import bubbleImg from '../assets/bubble.png';
 import SakuraEffect from '../components/effects/SakuraEffect.vue';
+import { homeList } from '~/components/data/sideBar';
 
 const router = useRouter()
 const { getUserEmail } = useAuth()
 const sidebarOpen = ref(false)
+const { $common } = useNuxtApp()
 
-const navigateTo = (path) => {
-  if (path === '/altar' || path === '/divination' || path === '/shop') {
-    alert('Tính năng đang phát triển 🙏')
-  } else {
-    router.push(path)
-  }
+const navigateTo = (path, status) => {
+  $common.navigateTo(path, status, router);
 }
+
 
 const toggleMenu = () => {
   console.log('Menu toggled')

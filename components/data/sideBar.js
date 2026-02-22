@@ -1,51 +1,155 @@
+const data = {
+    home: {
+        icon: "🏠",
+        image: "/home/icon/goMo.png",
+        name: "Trang chủ",
+        path: "/home",
+        status: "done",
+    },
+    goMo: {
+        icon: "🔔",
+        image: "/home/icon/goMo.png",
+        name: "Gõ Mõ",
+        path: "/goMo",
+        status: "done",
+    },
+    thapNhang: {
+        icon: "🕯️",
+        image: "/home/icon/thapNhang.png",
+        name: "Thắp Nhang",
+        path: "/thapNhang",
+        status: "process",
+    },
+    phongDang: {
+        icon: "🏮",
+        image: "/home/icon/phongDang.png",
+        name: "Phóng Đăng",
+        path: "/phongDang",
+        status: "process",
+    },
+    hoTamSu: {
+        icon: "🏺",
+        image: "/home/icon/hoTamSu.png",
+        name: "Hồ Tâm Sự",
+        path: "/hoTamSu",
+        status: "process",
+    },
+    huyenHoc: {
+        icon: "🔮",
+        image: "/home/icon/huyenHoc.png",
+        name: "Huyền Học",
+        path: "/huyenHoc",
+        status: "process",
+    },
+    linhVat: {
+        icon: "🐉",
+        image: "/home/icon/linhVat.png",
+        name: "Linh Vật",
+        path: "/linhVat",
+        status: "process",
+    }
+}
+
 export const menuList = [
     {
-        path: "/home",
-        icon: "🏠",
-        name: "Trang chủ",
-        status: "done",
+        path: data.home.path,
+        icon: data.home.icon,
+        name: data.home.name,
+        status: data.home.status,
         active: false,
     },
     {
-        path: "/goMo",
-        icon: "🔔",
-        name: "Gõ Mõ",
-        status: "done",
+        path: data.goMo.path,
+        icon: data.goMo.icon,
+        name: data.goMo.name,
+        status: data.goMo.status,
         active: false,
     },
     {
-        path: "/thapHuong",
-        icon: "🕯️",
-        name: "Thắp Hương",
-        status: "process",
+        path: data.thapNhang.path,
+        icon: data.thapNhang.icon,
+        name: data.thapNhang.name,
+        status: data.thapNhang.status,
         active: false,
     },
     {
-        path: "/phongDang",
-        icon: "🏮",
-        name: "Phóng Đăng",
-        status: "process",
+        path: data.phongDang.path,
+        icon: data.phongDang.icon,
+        name: data.phongDang.name,
+        status: data.phongDang.status,
         active: false,
     },
     {
-        path: "/hoTamSu",
-        icon: "🏺",
-        name: "Hồ Tâm Sự",
-        status: "process",
+        path: data.hoTamSu.path,
+        icon: data.hoTamSu.icon,
+        name: data.hoTamSu.name,
+        status: data.hoTamSu.status,
         active: false,
     },
     {
-        path: "/huyenHoc",
-        icon: "🔮",
-        name: "Huyền Học",
-        status: "process",
+        path: data.huyenHoc.path,
+        icon: data.huyenHoc.icon,
+        name: data.huyenHoc.name,
+        status: data.huyenHoc.status,
         active: false,
     },
     {
-        path: "/linhVat",
-        icon: "🐉",
-        name: "Linh Vật",
-        status: "process",
+        path: data.linhVat.path,
+        icon: data.linhVat.icon,
+        name: data.linhVat.name,
+        status: data.linhVat.status,
         active: false,
     },
-]
+];
+
+
+export const homeList = {
+    goMo: {
+        path: data.goMo.path,
+        icon: data.goMo.icon,
+        name: data.goMo.name,
+        status: data.goMo.status,
+        active: false,
+        image: data.goMo.image
+    },
+    thapNhang: {
+        path: data.thapNhang.path,
+        icon: data.thapNhang.icon,
+        name: data.thapNhang.name,
+        status: data.thapNhang.status,
+        active: false,
+        image: data.thapNhang.image
+    },
+    phongDang: {
+        path: data.phongDang.path,
+        icon: data.phongDang.icon,
+        name: data.phongDang.name,
+        status: data.phongDang.status,
+        active: false,
+        image: data.phongDang.image
+    },
+    hoTamSu: {
+        path: data.hoTamSu.path,
+        icon: data.hoTamSu.icon,
+        name: data.hoTamSu.name,
+        status: data.hoTamSu.status,
+        active: false,
+        image: data.hoTamSu.image
+    },
+    huyenHoc: {
+        path: data.huyenHoc.path,
+        icon: data.huyenHoc.icon,
+        name: data.huyenHoc.name,
+        status: data.huyenHoc.status,
+        active: false,
+        image: data.huyenHoc.image
+    },
+    linhVat: {
+        path: data.linhVat.path,
+        icon: data.linhVat.icon,
+        name: data.linhVat.name,
+        status: data.linhVat.status,
+        active: false,
+        image: data.linhVat.image
+    },
+};
