@@ -4,7 +4,8 @@
             <input type="text" v-model="email" placeholder="Email" class="custom-input" @keyup.enter="handleLogin" />
         </div>
         <div class="input-group">
-            <input type="password" v-model="password" placeholder="Mật khẩu" class="custom-input" @keyup.enter="handleLogin" />
+            <input type="password" v-model="password" placeholder="Mật khẩu" class="custom-input"
+                @keyup.enter="handleLogin" />
         </div>
         <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
         <div class="button-group">
@@ -40,7 +41,7 @@ const handleLogin = async () => {
     try {
         errorMessage.value = '';
         await login(email.value, password.value);
-        
+
         console.log('✅ Đăng nhập thành công!');
         // Redirect to home after login
         router.push('/home');

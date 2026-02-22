@@ -1,0 +1,51 @@
+export const menuList = [
+    {
+        path: "/home",
+        icon: "🏠",
+        name: "Trang chủ",
+        status: "done",
+        active: false,
+    },
+    {
+        path: "/goMo",
+        icon: "🔔",
+        name: "Gõ Mõ",
+        status: "done",
+        active: false,
+    },
+    {
+        path: "/thapHuong",
+        icon: "🕯️",
+        name: "Thắp Hương",
+        status: "process",
+        active: false,
+    },
+    {
+        path: "/phongDang",
+        icon: "🏮",
+        name: "Phóng Đăng",
+        status: "process",
+        active: false,
+    },
+    {
+        path: "/hoTamSu",
+        icon: "🏺",
+        name: "Hồ Tâm Sự",
+        status: "process",
+        active: false,
+    },
+    {
+        path: "/huyenHoc",
+        icon: "🔮",
+        name: "Huyền Học",
+        status: "process",
+        active: false,
+    },
+    {
+        path: "/linhVat",
+        icon: "🐉",
+        name: "Linh Vật",
+        status: "process",
+        active: false,
+    },
+]

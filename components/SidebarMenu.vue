@@ -13,7 +13,8 @@
                     <button class="close-btn" @click="close">✕</button>
                 </div>
                 <nav class="sidebar-nav">
-                    <a class="nav-item" v-for="item in menuList" @click="goTo(item.path)">
+                    <a class="nav-item" v-for="item in menuTabList" @click="goTo(item.path)"
+                        :class="{ active: item.active }">
                         <span class="nav-icon">{{ item.icon }}</span>
                         <span class="nav-label">{{ item.name }}</span>
                         <span v-if="item.status != 'done'" class="nav-badge">Sắp ra mắt</span>
@@ -32,7 +33,10 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+import { menuList } from './data/sideBar';
+import { useRoute } from 'vue-router'
 
+// Input -----------------------------------
 const props = defineProps({
     isOpen: {
         type: Boolean,
@@ -40,54 +44,32 @@ const props = defineProps({
     }
 })
 
-const menuList = [
-    {
-        path: "/home",
-        icon: "🏠",
-        name: "Trang chủ",
-        status: "done",
-    },
-    {
-        path: "/goMo",
-        icon: "🔔",
-        name: "Gõ Mõ",
-        status: "done",
-    },
-    {
-        path: "",
-        icon: "🕯️",
-        name: "Thắp Hương",
-        status: "process",
-    },
-    {
-        path: "",
-        icon: "🏮",
-        name: "Phóng Đăng",
-        status: "process",
-    },
-    {
-        path: "",
-        icon: "🏺",
-        name: "Hồ Tâm Sự",
-        status: "process",
-    },
-    {
-        path: "",
-        icon: "🔮",
-        name: "Huyền Học",
-        status: "process",
-    },
-    {
-        path: "",
-        icon: "🐉",
-        name: "Linh Vật",
-        status: "process",
-    },
-]
-
+// Event ----------------------------------
 const emit = defineEmits(['close'])
 const router = useRouter();
+const route = useRoute()
+let menuTabList = ref(menuList)
 
+onMounted(() => {
+})
+
+// whenever route change
+watch(
+    () => route.fullPath,
+    (newPath, oldPath) => {
+        // console.log('Route changed from', oldPath, 'to', newPath)
+        menuTabList.value.forEach((item) => {
+            item.active = false
+            if (newPath.includes(item.path)) {
+                item.active = true
+            } else {
+                item.active = false
+            }
+        })
+    }
+)
+
+// Function  
 const close = () => {
     emit('close')
 }
