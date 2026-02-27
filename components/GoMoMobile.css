@@ -1,0 +1,162 @@
+/* ============================================
+   GoMo Mobile — v10 (BG Image + Overlay Fix)
+   Room image background, precise number overlay
+   ============================================ */
+
+/* === THE ROOM === */
+.gm-room {
+    position: relative;
+    width: 100%;
+    max-width: 448px;
+    height: 100dvh;
+    margin: 0 auto;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    background-image: url('/mobile/room_bg.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+
+/* =========================================================
+   MÕ — on the table surface
+   Table center is approximately at 56% from top
+   ========================================================= */
+.gm-mo {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.gm-mo :deep(img) {
+    width: 36vw;
+    max-width: 155px;
+    height: auto;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.55));
+}
+
+.gm-mo:active {
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+
+/* =========================================================
+   STATS NUMBERS OVERLAY
+   Background image has labels at bottom ~10% height:
+     Row1: 🪷 MERIT: ___    💮 PEACE: ___
+     Row2: 🌿 KARMA: ___    🪙 TOTAL: ___
+   We only render the dynamic numbers, aligned after labels.
+   ========================================================= */
+.gm-stats-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 9.5%;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    pointer-events: none;
+}
+
+/* Each number cell */
+.gm-num {
+    display: flex;
+    align-items: center;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: #f5c842;
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.9),
+        0 0 6px rgba(200, 160, 50, 0.3);
+    letter-spacing: 0.5px;
+}
+
+/*
+ * Position numbers AFTER the label text in background.
+ * Labels occupy roughly: icon(20px) + text(~65px) = ~85px from left edge of each cell.
+ * So numbers start at roughly padding-left that clears the label.
+ */
+.gm-merit {
+    /* Row1 Col1: after "🪷 MERIT:" */
+    padding-left: 42%;
+}
+
+.gm-peace {
+    /* Row1 Col2: after "💮 PEACE:" */
+    padding-left: 38%;
+}
+
+.gm-karma {
+    /* Row2 Col1: after "🌿 KARMA:" */
+    padding-left: 42%;
+}
+
+.gm-total {
+    /* Row2 Col2: after "🪙 TOTAL:" */
+    padding-left: 38%;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+.gm-mo.shake {
+    animation: mo-shake 0.3s ease-in-out;
+}
+
+@keyframes mo-shake {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    20% {
+        transform: translate(-50%, -50%) rotate(-10deg) scale(1.03);
+    }
+
+    40% {
+        transform: translate(-50%, -50%) rotate(8deg) scale(0.97);
+    }
+
+    60% {
+        transform: translate(-50%, -50%) rotate(-5deg);
+    }
+
+    80% {
+        transform: translate(-50%, -50%) rotate(3deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+
+/* =========================================================
+   FLOATING TEXTS
+   ========================================================= */
+.gm-floats {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+
+/* =========================================================
+   SAFE AREA
+   ========================================================= */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .gm-room {
+        padding-top: env(safe-area-inset-top);
+    }
+}
