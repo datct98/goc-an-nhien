@@ -1,5 +1,15 @@
 <template>
     <div class="gm-room">
+        <!-- LƯ HƯƠNG + KHÓI — positioned on the shelf area -->
+        <div class="gm-incense-area">
+            <div class="gm-smoke-wrap">
+                <SmokeUp />
+            </div>
+            <div class="gm-bat-huong">
+                <Image src="decor/bat_huong_2.png" alt="lư hương" />
+            </div>
+        </div>
+
         <!-- MÕ — on the table surface -->
         <div class="gm-mo" id="caiMoMobile" @click="goMo()">
             <Image src="decor/cai_mo.png" alt="cái mõ" />
@@ -26,6 +36,7 @@
 import { ref } from 'vue';
 import memeTexts from '~/constants/memeTexts.json';
 import regularTexts from '~/constants/regularTexts.json';
+import SmokeUp from '~/components/effects/SmokeUp.vue';
 
 const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo } = useGameStats();
 
