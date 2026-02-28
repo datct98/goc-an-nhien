@@ -1,5 +1,9 @@
 <template>
-    <div class="container-goMo" id="container" ref="containerRef" :style="{ backgroundImage: `url(${bg})` }">
+    <!-- MOBILE layout -->
+    <GoMoMobile v-if="isMobileView" />
+
+    <!-- DESKTOP layout (original) -->
+    <div v-else class="container-goMo" id="container" ref="containerRef" :style="{ backgroundImage: `url(${bg})` }">
         <div class="bang">
             <p style="width: 280px; word-wrap: break-word; font-size: 14px; color: #73462d;">
                 - Click vào cái <b>gậy</b> và nhấn vào <b>chiếc mõ</b> hoặc nhấn <b>phím space</b> để tụng kinh <br>
@@ -41,9 +45,6 @@
             <div class="nghiepTieuText">Nghiệp tiêu <br> {{ stats.karma }}</div>
             <div class="soLanText">Tổng số <br> {{ stats.totalClicks }}</div>
         </div>
-        <!-- <div class="bong left">
-            <Image src="/effect/bong.png" alt="bong" width="150" />
-        </div> -->
         <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
 
         <!-- Floating Texts -->
@@ -55,16 +56,43 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import memeTexts from '~/constants/memeTexts.json';
 import regularTexts from '~/constants/regularTexts.json';
 import bg from '../../assets/bg.png';
-const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo, level, rateLimitMessage } = useGameStats();
-import { onMounted, onUnmounted } from 'vue'
 import SmokeUp from '~/components/effects/SmokeUp.vue';
+import GoMoMobile from '~/components/GoMoMobile.vue';
 
+const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo, level, rateLimitMessage } = useGameStats();
+
+// ========== MOBILE DETECTION ==========
+const windowWidth = ref(800);
+
+const checkWidth = () => {
+    windowWidth.value = window.innerWidth;
+};
+
+const isMobileView = computed(() => {
+    return windowWidth.value <= 768;
+});
+
+onMounted(() => {
+    // Set initial width immediately
+    windowWidth.value = window.innerWidth;
+    window.addEventListener('resize', checkWidth);
+    // Also listen for keydown only on desktop
+    if (window.innerWidth > 768) {
+        window.addEventListener('keydown', handleKeydown);
+    }
+});
+
+onUnmounted(() => {
+    window.removeEventListener('resize', checkWidth);
+    window.removeEventListener('keydown', handleKeydown);
+});
+
+// ========== DESKTOP LOGIC ==========
 const sidebarOpen = ref(false);
-
 const audioRef = ref(null);
 const containerRef = ref(null);
 const gayGoMoRef = ref(null);
@@ -73,18 +101,9 @@ const floatingTexts = ref([]);
 let floatingTextId = 0;
 let isTeng = 0;
 
-onMounted(() => {
-    window.addEventListener('keydown', handleKeydown)
-})
-
-onUnmounted(() => {
-    window.removeEventListener('keydown', handleKeydown)
-})
-
 const handleKeydown = (e) => {
     if (e.code === 'Space') {
         e.preventDefault();
-        console.log('Space được nhấn');
         moRungDong();
     }
 }
@@ -111,20 +130,16 @@ const moRungDong = () => {
     }, 300);
 }
 
-
 const createFloatingText = () => {
-    // 5% chance for meme text
     const isMeme = Math.random() < 0.05
     const textArray = isMeme ? memeTexts : regularTexts;
     const textId = Math.floor(Math.random() * textArray.length);
     const text = textArray[textId]
 
-    // Get position (center of screen approximately where wooden fish is)
     const x = window.innerWidth / 2
     const y = window.innerHeight / 2
 
     if (!isMeme) {
-        console.log('textId : ', textId);
         if (textId == 0) {
             incrementMerit();
         } else if (textId == 1) {
@@ -146,7 +161,6 @@ const createFloatingText = () => {
 
     floatingTexts.value.push(newText)
 
-    // Remove after animation (1.5s)
     setTimeout(() => {
         const index = floatingTexts.value.findIndex(t => t.id === newText.id)
         if (index > -1) {
