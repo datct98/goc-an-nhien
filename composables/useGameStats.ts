@@ -55,9 +55,8 @@ export function useGameStats() {
             // Lưu vào localStorage làm backup
             saveLocalStats()
         } catch (err: any) {
-            console.error('❌ Failed to load from API, falling back to localStorage:', err)
-            // API fail → fallback dùng localStorage
-            loadLocalStats()
+            console.error('❌ Failed to load from API, showing zeros:', err)
+            // API fail → giữ nguyên giá trị 0 (không lấy từ localStorage)
         } finally {
             isLoading.value = false
             isSyncing = false

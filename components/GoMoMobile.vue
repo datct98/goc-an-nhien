@@ -6,13 +6,13 @@
                 <SmokeUp />
             </div>
             <div class="gm-bat-huong">
-                <Image src="decor/bat_huong_2.png" alt="lư hương" />
+                <Image src="decor/bat-huong-mobile.png" alt="lư hương" />
             </div>
         </div>
 
         <!-- MÕ — on the table surface -->
         <div class="gm-mo" id="caiMoMobile" @click="goMo()">
-            <Image src="decor/cai_mo.png" alt="cái mõ" />
+            <Image src="decor/cai_mo_mobile.png" alt="cái mõ" />
         </div>
 
         <!-- STATS NUMBERS — positioned after label text in bg -->

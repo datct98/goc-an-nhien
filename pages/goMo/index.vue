@@ -1,9 +1,17 @@
 <template>
+    <!-- LOADING SCREEN -->
+    <div v-if="!isReady" class="gm-loading">
+        <div class="gm-loading-inner">
+            <div class="gm-loading-lotus">🪷</div>
+            <p class="gm-loading-text">Đang tải bàn thờ...</p>
+        </div>
+    </div>
+
     <!-- MOBILE layout -->
-    <GoMoMobile v-if="isMobileView" />
+    <GoMoMobile v-if="isReady && isMobileView" />
 
     <!-- DESKTOP layout (original) -->
-    <div v-else class="container-goMo" id="container" ref="containerRef" :style="{ backgroundImage: `url(${bg})` }">
+    <div v-else-if="isReady" class="container-goMo" id="container" ref="containerRef" :style="{ backgroundImage: `url(${bg})` }">
         <div class="bang">
             <p style="width: 280px; word-wrap: break-word; font-size: 14px; color: #73462d;">
                 - Click vào cái <b>gậy</b> và nhấn vào <b>chiếc mõ</b> hoặc nhấn <b>phím space</b> để tụng kinh <br>
@@ -65,6 +73,49 @@ import GoMoMobile from '~/components/GoMoMobile.vue';
 
 const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo, level, rateLimitMessage } = useGameStats();
 
+// ========== IMAGE PRELOADER ==========
+const isReady = ref(false);
+
+const preloadImages = () => {
+    const imagePaths = [
+        '/mobile/room_bg.png',
+        '/tuong/duc_phat.png',
+        '/decor/nen.png',
+        '/decor/table.png',
+        '/decor/cai_mo.png',
+        '/decor/goi.png',
+        '/decor/bat_huong_2.png',
+        '/decor/gay_go_mo.png',
+        '/decor/khay.png',
+        '/ban_tho/ban_cong_duc.png',
+        bg
+    ];
+
+    let loaded = 0;
+    const total = imagePaths.length;
+
+    const onLoad = () => {
+        loaded++;
+        if (loaded >= total) {
+            isReady.value = true;
+        }
+    };
+
+    imagePaths.forEach(src => {
+        const img = new window.Image();
+        img.onload = onLoad;
+        img.onerror = onLoad; // Don't block on error
+        img.src = src;
+    });
+
+    // Fallback: show after 5s no matter what
+    setTimeout(() => {
+        if (!isReady.value) {
+            isReady.value = true;
+        }
+    }, 5000);
+};
+
 // ========== MOBILE DETECTION ==========
 const windowWidth = ref(800);
 
@@ -77,6 +128,9 @@ const isMobileView = computed(() => {
 });
 
 onMounted(() => {
+    // Start preloading images
+    preloadImages();
+
     // Set initial width immediately
     windowWidth.value = window.innerWidth;
     window.addEventListener('resize', checkWidth);
@@ -182,3 +236,44 @@ const camGayGoMo = () => {
 </script>
 
 <style scoped src="./index.css"></style>
+
+<style scoped>
+/* Loading screen */
+.gm-loading {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #1e0f06 0%, #3a2010 40%, #4a2e1b 100%);
+}
+
+.gm-loading-inner {
+    text-align: center;
+}
+
+.gm-loading-lotus {
+    font-size: 48px;
+    animation: lotus-spin 2s ease-in-out infinite;
+}
+
+.gm-loading-text {
+    margin-top: 16px;
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #d4a24e;
+    letter-spacing: 1px;
+    animation: pulse-text 1.5s ease-in-out infinite;
+}
+
+@keyframes lotus-spin {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.15) rotate(180deg); opacity: 0.7; }
+}
+
+@keyframes pulse-text {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+</style>
