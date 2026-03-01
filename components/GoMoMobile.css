@@ -54,13 +54,13 @@
 }
 
 .gm-bat-huong {
-    margin-top: -5px;
+    margin-top: 10%;
     margin-left: 25px;
 }
 
 .gm-bat-huong :deep(img) {
-    width: 80px !important;
-    max-width: 80px !important;
+    width: 90x !important;
+    max-width: 90px !important;
     height: auto !important;
     display: block;
     filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
@@ -79,6 +79,8 @@
     z-index: 20;
     cursor: pointer;
     transition: transform 0.1s ease;
+    margin-top: 20px;
+    margin-left: 2%;
 }
 
 .gm-mo :deep(img) {
