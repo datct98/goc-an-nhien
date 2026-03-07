@@ -1,0 +1,43 @@
+.shop-container {
+    background-color: #1f0c05;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
+.header {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    font-size: 10px;
+}
+
+.shop-content {
+    /* margin-top: 20px;
+    width: 100%;
+    height: calc(100% - 80px); */
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+
+    max-width: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+.glow-bar {
+    width: fit-content;
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: 2px solid #f4c45a;
+    background: rgba(40, 20, 0, 0.8);
+    color: #ffd36b;
+    box-shadow: 0 0 6px rgba(255, 210, 100, 0.8),
+        /* glow sát viền */
+        0 0 14px rgba(255, 200, 80, 0.6),
+        /* glow lớn hơn */
+        inset 0 0 8px rgba(255, 220, 120, 0.4);
+}
