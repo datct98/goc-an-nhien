@@ -18,23 +18,6 @@
                 <ItemCard rank="common" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
                 <ItemCard rank="rare" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
                 <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-                <ItemCard rank="legendary" icon="🪷" title="Lotus Lamp" subtitle="Đèn Sen Xá Lợi" price="50 Merit" />
-
             </div>
 
         </div>
