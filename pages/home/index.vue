@@ -58,12 +58,12 @@
       </div>
 
       <!-- Bottom-Center-Right: Linh Vật -->
-      <div class="feature-bubble card-bottom-right" @click="navigateTo('/shop', homeList.linhVat.status)"
+      <div class="feature-bubble card-bottom-right" @click="navigateTo('/shop', homeList.shop.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
-          <Image :src="homeList.linhVat.image" class="card-icon-img" :alt="homeList.linhVat.name"></Image>
+          <Image :src="homeList.shop.image" class="card-icon-img" :alt="homeList.shop.name"></Image>
         </div>
-        <div class="card-title">{{ homeList.linhVat.name }}</div>
+        <div class="card-title">{{ homeList.shop.name }}</div>
       </div>
     </div>
   </div>

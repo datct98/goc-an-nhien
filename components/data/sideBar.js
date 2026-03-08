@@ -47,6 +47,13 @@ const data = {
         name: "Linh Vật",
         path: "/linhVat",
         status: "process",
+    },
+    shop: {
+        icon: "🏪",
+        image: "/home/icon/store.png",
+        name: "Cửa hàng",
+        path: "/shop",
+        status: "done",
     }
 }
 
@@ -94,10 +101,10 @@ export const menuList = [
         active: false,
     },
     {
-        path: data.linhVat.path,
-        icon: data.linhVat.icon,
-        name: data.linhVat.name,
-        status: data.linhVat.status,
+        path: data.shop.path,
+        icon: data.shop.icon,
+        name: data.shop.name,
+        status: data.shop.status,
         active: false,
     },
 ];
@@ -144,12 +151,12 @@ export const homeList = {
         active: false,
         image: data.huyenHoc.image
     },
-    linhVat: {
-        path: data.linhVat.path,
-        icon: data.linhVat.icon,
-        name: data.linhVat.name,
-        status: data.linhVat.status,
+    shop: {
+        path: data.shop.path,
+        icon: data.shop.icon,
+        name: data.shop.name,
+        status: data.shop.status,
         active: false,
-        image: data.linhVat.image
+        image: data.shop.image
     },
 };
