@@ -18,6 +18,7 @@
     </template>
 
     <slot></slot>
+    <div style="width: 100vw; height: 70px;"></div>
   </ClientOnly>
 </template>
 
@@ -76,7 +77,7 @@ const sidebarOpen = ref(false);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap:5px;
+  gap: 5px;
 
   background: linear-gradient(to bottom,
       #4b2406,

@@ -1,6 +1,7 @@
 const data = {
     home: {
         icon: "🏠",
+        iconName: "home",
         image: "/home/icon/goMo.png",
         name: "Trang chủ",
         path: "/home",
@@ -8,6 +9,7 @@ const data = {
     },
     goMo: {
         icon: "🔔",
+        iconName: "bell",
         image: "/home/icon/goMo.png",
         name: "Gõ Mõ",
         path: "/goMo",
@@ -15,6 +17,7 @@ const data = {
     },
     thapNhang: {
         icon: "🕯️",
+        iconName: "star",
         image: "/home/icon/thapNhang.png",
         name: "Thắp Nhang",
         path: "/thapNhang",
@@ -22,6 +25,7 @@ const data = {
     },
     phongDang: {
         icon: "🏮",
+        iconName: "lightbulb",
         image: "/home/icon/phongDang.png",
         name: "Phóng Đăng",
         path: "/phongDang",
@@ -29,6 +33,7 @@ const data = {
     },
     hoTamSu: {
         icon: "🏺",
+        iconName: "trophy",
         image: "/home/icon/hoTamSu.png",
         name: "Hồ Tâm Sự",
         path: "/hoTamSu",
@@ -36,6 +41,7 @@ const data = {
     },
     huyenHoc: {
         icon: "🔮",
+        iconName: "sparkles",
         image: "/home/icon/huyenHoc.png",
         name: "Huyền Học",
         path: "/huyenHoc",
@@ -43,6 +49,7 @@ const data = {
     },
     linhVat: {
         icon: "🐉",
+        iconName: "prime",
         image: "/home/icon/linhVat.png",
         name: "Linh Vật",
         path: "/linhVat",
@@ -50,6 +57,7 @@ const data = {
     },
     shop: {
         icon: "🏪",
+        iconName: "shop",
         image: "/home/icon/store.png",
         name: "Cửa hàng",
         path: "/shop",
@@ -61,6 +69,7 @@ export const menuList = [
     {
         path: data.home.path,
         icon: data.home.icon,
+        iconName: 'pi pi-' + data.home.iconName,
         name: data.home.name,
         status: data.home.status,
         active: false,
@@ -68,6 +77,7 @@ export const menuList = [
     {
         path: data.goMo.path,
         icon: data.goMo.icon,
+        iconName: 'pi pi-' + data.goMo.iconName,
         name: data.goMo.name,
         status: data.goMo.status,
         active: false,
@@ -75,6 +85,7 @@ export const menuList = [
     {
         path: data.thapNhang.path,
         icon: data.thapNhang.icon,
+        iconName: 'pi pi-' + data.thapNhang.iconName,
         name: data.thapNhang.name,
         status: data.thapNhang.status,
         active: false,
@@ -82,6 +93,7 @@ export const menuList = [
     {
         path: data.phongDang.path,
         icon: data.phongDang.icon,
+        iconName: 'pi pi-' + data.phongDang.iconName,
         name: data.phongDang.name,
         status: data.phongDang.status,
         active: false,
@@ -89,6 +101,7 @@ export const menuList = [
     {
         path: data.hoTamSu.path,
         icon: data.hoTamSu.icon,
+        iconName: 'pi pi-' + data.hoTamSu.iconName,
         name: data.hoTamSu.name,
         status: data.hoTamSu.status,
         active: false,
@@ -96,6 +109,7 @@ export const menuList = [
     {
         path: data.huyenHoc.path,
         icon: data.huyenHoc.icon,
+        iconName: 'pi pi-' + data.huyenHoc.iconName,
         name: data.huyenHoc.name,
         status: data.huyenHoc.status,
         active: false,
@@ -103,6 +117,7 @@ export const menuList = [
     {
         path: data.shop.path,
         icon: data.shop.icon,
+        iconName: 'pi pi-' + data.shop.iconName,
         name: data.shop.name,
         status: data.shop.status,
         active: false,

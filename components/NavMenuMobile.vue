@@ -1,16 +1,11 @@
 <template>
-    <!-- <div class="menu-item" v-for="item in menuTabList" @click="goTo(item.path, item.status)"
-        :class="{ active: item.active }">
-        <span class="icon">{{ item.icon }}</span>
-        <span class="label">{{ item.name }}</span>
-    </div> -->
-
     <div id="insta" class="image-container" ref="imageContainer" @mousedown="startDrag" @mousemove="drag"
         @mouseup="endDrag" @mouseleave="endDrag">
         <div class="image-list">
             <div class="menu-item" v-for="item in menuTabList" @click="goTo(item.path, item.status)"
                 :class="{ active: item.active }">
-                <span class="icon">{{ item.icon }}</span>
+                <i :class="item.iconName" style="font-size: 20px; padding-bottom: 10px; color: #fff0b7;"></i>
+                <!-- <span class="icon">{{ item.icon }}</span>` -->
                 <span class="label">{{ item.name }}</span>
             </div>
             <div class="menu-item"></div>
@@ -52,15 +47,15 @@ const startDrag = (event) => {
     cancelAnimationFrame(animationFrameId);
 };
 const drag = (event) => {
-        if (isDragging) {
-            const delta = event.clientX - startPosition;
-            const currentTime = performance.now();
-            const timeDelta = currentTime - lastTime;
-            velocity = delta / timeDelta;
-            imageContainer.value.scrollLeft = currentScrollLeft - delta;
-            lastTime = currentTime;
-        }
-    };
+    if (isDragging) {
+        const delta = event.clientX - startPosition;
+        const currentTime = performance.now();
+        const timeDelta = currentTime - lastTime;
+        velocity = delta / timeDelta;
+        imageContainer.value.scrollLeft = currentScrollLeft - delta;
+        lastTime = currentTime;
+    }
+};
 const endDrag = () => {
     isDragging = false;
     animationFrameId = requestAnimationFrame(decelerate);
@@ -131,7 +126,7 @@ const endDrag = () => {
 
 .image-list {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     transform: translateX(0);
     transition: transform 0.3s ease-out;
 }

@@ -1,6 +1,10 @@
 <template>
 
-  <div class="home-page" :style="{ backgroundImage: `url(${backgroundImg})` }">
+  <div v-if="isMobileView" class="home-page-mobile" :style="{ backgroundImage: `url(${backgroundImg})` }">
+    <SakuraEffect />
+  </div>
+
+  <div v-else class="home-page" :style="{ backgroundImage: `url(${backgroundImg})` }">
     <SakuraEffect />
 
     <!-- HEADER -->
@@ -86,6 +90,8 @@ const { $common } = useNuxtApp()
 const navigateTo = (path, status) => {
   $common.navigateTo(path, status, router);
 }
+
+const { isMobileView } = useDevice()
 
 
 const toggleMenu = () => {
