@@ -41,7 +41,7 @@ const goTo = (path, status) => {
 const startDrag = (event) => {
     isDragging = true;
     startPosition = event.clientX;
-    currentScrollLeft = imageContainer.value.scrollLeft;
+    // currentScrollLeft = imageContainer.value.scrollLeft;
     velocity = 0;
     lastTime = performance.now();
     cancelAnimationFrame(animationFrameId);
@@ -52,13 +52,13 @@ const drag = (event) => {
         const currentTime = performance.now();
         const timeDelta = currentTime - lastTime;
         velocity = delta / timeDelta;
-        imageContainer.value.scrollLeft = currentScrollLeft - delta;
+        // imageContainer.value.scrollLeft = currentScrollLeft - delta;
         lastTime = currentTime;
     }
 };
 const endDrag = () => {
     isDragging = false;
-    animationFrameId = requestAnimationFrame(decelerate);
+    // animationFrameId = requestAnimationFrame(decelerate);
 };
 </script>
 
@@ -129,5 +129,7 @@ const endDrag = () => {
     gap: 20px;
     transform: translateX(0);
     transition: transform 0.3s ease-out;
+    justify-items: center;
+    justify-content: center;
 }
 </style>

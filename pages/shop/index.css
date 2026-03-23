@@ -3,6 +3,7 @@
     width: 100vw;
     height: 100vh;
     position: relative;
+    overflow: hidden;
 }
 
 .header {
@@ -42,4 +43,26 @@
         0 0 14px rgba(255, 200, 80, 0.6),
         /* glow lớn hơn */
         inset 0 0 8px rgba(255, 220, 120, 0.4);
+}
+
+.shop-tabs {
+    /* width: 100vw;
+    position: relative;
+    left: 0;
+    overflow: auto;
+    display: flex;
+    transform: translateX(0);
+    transition: transform 0.3s ease-out; */
+}
+
+.p-tabpanel {
+    max-width: 90vw;
+}
+
+.p-tabpanels {
+    max-width: 100vw;
+}
+
+.p-tablist-tab-list {
+    overflow-x: auto;
 }

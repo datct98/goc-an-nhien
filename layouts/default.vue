@@ -71,17 +71,23 @@ const sidebarOpen = ref(false);
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 70px;
-  overflow: auto;
+  height: 60px;
+  overflow-x: auto;
+  overflow-y: hidden;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 5px;
 
-  background: linear-gradient(to bottom,
+  padding-left: 20px;
+  padding-right: 20px;
+
+  /* background: linear-gradient(to bottom,
       #4b2406,
-      #2a1303);
+      #2a1303); */
+
+  background: linear-gradient(to bottom, rgba(100, 36, 6, 0.7), rgba(100, 19, 3, 0.5));
 
   border-top: 1px solid rgba(255, 200, 120, 0.2);
   z-index: 999;
