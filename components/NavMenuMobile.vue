@@ -131,5 +131,6 @@ const endDrag = () => {
     transition: transform 0.3s ease-out;
     justify-items: center;
     justify-content: center;
+    width: fit-content;
 }
 </style>
