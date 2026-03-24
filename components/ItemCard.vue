@@ -54,6 +54,8 @@ const props = defineProps({
   border: 2px solid rgba(255, 255, 255, 0.1);
 
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 /* rank label */
@@ -88,7 +90,7 @@ const props = defineProps({
 }
 
 .price {
-  margin-top: 12px;
+  margin-top: auto;
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 10px;

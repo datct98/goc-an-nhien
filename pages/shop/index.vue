@@ -26,36 +26,38 @@
                     <TabPanels>
                         <TabPanel value="0">
                             <div class="shop-content">
+                                <ItemCard :imagePath="trumpPhat" rank="legendary" title="Tượng vàng Trump ngồi thiền"
+                                    subtitle="Remix khi gõ mõ" price="50000" />
                                 <ItemCard :imagePath="goldenDonaldTrump" rank="legendary" title="Tượng vàng Trump"
-                                    subtitle="xoá mọi khẩu nghiệp" price="50000 Merit" />
+                                    subtitle="xoá mọi khẩu nghiệp" price="50000" />
                                 <ItemCard :imagePath="legendBell" rank="legendary" title="Chuông thần"
-                                    subtitle="tăng x2 điểm khi gõ mõ" price="50 Merit" />
+                                    subtitle="tăng x2 điểm khi gõ mõ" price="50" />
                                 <ItemCard :imagePath="lotus" rank="legendary" title="Hoa sen bảo vật"
-                                    subtitle="+2000 điểm tịnh tâm" price="50 Merit" />
+                                    subtitle="+2000 điểm tịnh tâm" price="50" />
                                 <ItemCard :imagePath="prayerBead" rank="legendary" title="Chàng hạt bồ đề"
-                                    subtitle="x2 trừ nghiệp khi gõ mõ" price="50 Merit" />
+                                    subtitle="x2 trừ nghiệp khi gõ mõ" price="50" />
                                 <ItemCard :imagePath="tamLinhSet" rank="legendary" title="Set đồ tâm linh"
-                                    subtitle="x2 Strike merit khi gõ mõ" price="50 Merit" />
+                                    subtitle="x2 Strike merit khi gõ mõ" price="50" />
                             </div>
                         </TabPanel>
                         <TabPanel value="1">
                             <div class="shop-content">
                                 <ItemCard :imagePath="jadeRing" rank="rare" title="Vòng ngọc lục bảo"
-                                    subtitle="+1500 điểm tịnh tâm" price="50 Merit" />
+                                    subtitle="+1500 điểm tịnh tâm" price="50" />
                                 <ItemCard :imagePath="tuongPhatBoTat" rank="rare" title="Tượng phật ngọc lục bảo"
-                                    subtitle="-5500 điểm khẩu nghiệp" price="50 Merit" />
+                                    subtitle="-5500 điểm khẩu nghiệp" price="50" />
                             </div>
                         </TabPanel>
                         <TabPanel value="2">
                             <div class="shop-content">
                                 <ItemCard :imagePath="diLacBarecet" rank="uncommon" title="Dây chuyền phật di lặc"
-                                    subtitle="+15% điểm tịnh tâm" price="50 Merit" />
+                                    subtitle="+15% điểm tịnh tâm" price="50" />
                             </div>
                         </TabPanel>
                         <TabPanel value="3">
                             <div class="shop-content">
                                 <ItemCard :imagePath="wheel" rank="common" title="Bánh xe" subtitle="+5% điểm tịnh tâm"
-                                    price="50 Merit" />
+                                    price="50" />
                             </div>
                         </TabPanel>
                     </TabPanels>
@@ -89,6 +91,7 @@ import wheel from '../../assets/icon/shop/wheel.png';
 import diLacBarecet from '../../assets/icon/shop/barecel.png';
 import tuongPhatBoTat from '../../assets/icon/shop/tuongPhatBoTat.png';
 import goldenDonaldTrump from '../../assets/icon/shop/goldenDonaldTrump.png';
+import trumpPhat from '../../assets/icon/shop/trumpPhat.png';
 
 
 </script>
