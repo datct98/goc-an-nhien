@@ -1,12 +1,13 @@
 <template>
     <div class="background">
-        <Bubble />
+        <CircleSymbol icon="heart-fill" text="Công đức" />
     </div>
 </template>
 
 <script setup>
 import Bubble from '~/components/effects/Bubble.vue';
 import SmokeUp from '~/components/effects/SmokeUp.vue';
+import CircleSymbol from '~/components/CircleSymbol.vue';
 
 </script>
 

@@ -6,7 +6,7 @@ export const useDevice = () => {
     }
 
     const isMobileView = computed(() => {
-        console.log("windowWidth.value : ", windowWidth.value);
+        // console.log("windowWidth.value : ", windowWidth.value);
         return windowWidth.value <= 850
     })
 

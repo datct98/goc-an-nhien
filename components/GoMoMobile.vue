@@ -1,5 +1,15 @@
 <template>
     <div class="gm-room">
+
+        <!-- Điểm số tích công đức giải nghiệp -->
+        <div class="p-4">
+            <CircleSymbol icon="heart-fill" text="Công đức" :score="stats.merit" />
+
+            <CircleSymbol icon="sparkles" text="Tâm tịnh" :score="stats.peace" />
+
+            <CircleSymbol icon="star-fill" text="Nghiệp tiêu" :score="stats.karma" />
+        </div>
+
         <!-- LƯ HƯƠNG + KHÓI — positioned on the shelf area -->
         <div class="gm-incense-area">
             <div class="gm-smoke-wrap">
@@ -16,12 +26,12 @@
         </div>
 
         <!-- STATS NUMBERS — positioned after label text in bg -->
-        <div class="gm-stats-overlay">
+        <!-- <div class="gm-stats-overlay">
             <div class="gm-num gm-merit">{{ stats.merit }}</div>
             <div class="gm-num gm-peace">{{ stats.peace }}%</div>
             <div class="gm-num gm-karma">+{{ stats.karma }}</div>
             <div class="gm-num gm-total">{{ stats.totalClicks.toLocaleString() }}</div>
-        </div>
+        </div> -->
 
         <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
 
@@ -37,6 +47,7 @@ import { ref } from 'vue';
 import memeTexts from '~/constants/memeTexts.json';
 import regularTexts from '~/constants/regularTexts.json';
 import SmokeUp from '~/components/effects/SmokeUp.vue';
+import CircleSymbol from './CircleSymbol.vue';
 
 const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo } = useGameStats();
 
@@ -45,11 +56,13 @@ const floatingTexts = ref([]);
 let fid = 0;
 
 const goMo = () => {
-    createFloatingText();
+    createFloatingText(); // tạo ra chữ nổi trên màn hình
+    // Phát âm thanh
     if (audioRef.value) {
         audioRef.value.currentTime = 0;
         audioRef.value.play();
     }
+    // Hiệu ứng động cho cái mõ
     const el = document.getElementById('caiMoMobile');
     if (el) {
         el.classList.add('shake');
