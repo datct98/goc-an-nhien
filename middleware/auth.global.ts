@@ -4,8 +4,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
         return
     }
 
-    return true;
-
     // Chỉ chạy ở client-side (localStorage không có trên server)
     if (import.meta.client) {
         const token = localStorage.getItem('jwt_token')
