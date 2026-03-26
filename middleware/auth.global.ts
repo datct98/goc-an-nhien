@@ -4,7 +4,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
         return
     }
 
-    return true;
+    // return true;
 
     // Chỉ chạy ở client-side (localStorage không có trên server)
     if (import.meta.client) {
