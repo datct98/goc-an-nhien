@@ -53,7 +53,7 @@ watch(
 
 <style scoped>
 .circle {
-    background: linear-gradient(to bottom, rgb(245 90 6 / 70%), rgb(59 54 50 / 50%));
+    background: linear-gradient(to bottom, rgb(245 90 6 / 50%), rgb(59 54 50 / 30%));
     border-radius: 50%;
     width: 80px;
     height: 80px;

@@ -118,6 +118,8 @@ const endDrag = () => {
     overflow-x: auto;
     white-space: nowrap;
     padding: 10px;
+    justify-content: center;
+    display: flex;
 }
 
 .image-container:active {
@@ -129,8 +131,8 @@ const endDrag = () => {
     gap: 20px;
     transform: translateX(0);
     transition: transform 0.3s ease-out;
-    justify-items: center;
+    width: 100%;
     justify-content: center;
-    width: fit-content;
+    flex-direction: column;
 }
 </style>

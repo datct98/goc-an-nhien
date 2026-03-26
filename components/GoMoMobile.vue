@@ -2,7 +2,7 @@
     <div class="gm-room">
 
         <!-- Điểm số tích công đức giải nghiệp -->
-        <div class="p-4">
+        <div class="p-4" style="position: absolute; right: 0px;">
             <CircleSymbol icon="heart-fill" text="Công đức" :score="stats.merit" />
 
             <CircleSymbol icon="sparkles" text="Tâm tịnh" :score="stats.peace" />
