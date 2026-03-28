@@ -13,8 +13,7 @@
 
     <template v-else>
       <button class="toggleButton" @click="toggleMenu()">
-        <i v-if="mobileSidebarOpen" class="pi pi-arrow-left"></i>
-        <i v-else class="pi pi-arrow-right"></i>
+        <i class="pi pi-bars"></i>
       </button>
       <div class="footer" :class="{ 'closed': mobileSidebarOpen }">
         <NavMenuMobile />
@@ -80,10 +79,11 @@ const toggleMenu = () => {
   height: 30px;
   position: absolute;
   top: 3%;
-  left: -5px;
+  left: -7px;
   background: #ce9155;
   border-radius: 5px;
   z-index: 9999;
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
 }
 
 /* .footer {

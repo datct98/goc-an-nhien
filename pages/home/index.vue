@@ -1,6 +1,6 @@
 <template>
 
-  <div v-if="isMobileView" class="home-page-mobile" :style="{ backgroundImage: `url(${backgroundImg})` }">
+  <div v-if="isMobileView" class="home-page-mobile" :style="{ backgroundImage: `url(${backgroundImgMobile})` }">
     <SakuraEffect />
   </div>
 
@@ -78,6 +78,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuth } from '../composables/useAuth';
 import backgroundImg from '../assets/phatNgoiHoaSenRes.png';
+import backgroundImgMobile from '../assets/PhatNgoiHoaSenMobile.png';
 import bubbleImg from '../assets/bubble.png';
 import SakuraEffect from '../components/effects/SakuraEffect.vue';
 import { homeList } from '~/components/data/sideBar';
