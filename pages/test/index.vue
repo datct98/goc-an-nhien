@@ -1,6 +1,6 @@
 <template>
     <div class="background">
-        <CircleSymbol icon="heart-fill" text="Công đức" />
+        <Coin />
     </div>
 </template>
 
@@ -8,6 +8,7 @@
 import Bubble from '~/components/effects/Bubble.vue';
 import SmokeUp from '~/components/effects/SmokeUp.vue';
 import CircleSymbol from '~/components/CircleSymbol.vue';
+import Coin from '~/components/Coin.vue';
 
 </script>
 
@@ -21,6 +22,7 @@ import CircleSymbol from '~/components/CircleSymbol.vue';
     background-position: center;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 </style>
