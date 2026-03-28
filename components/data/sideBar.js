@@ -21,7 +21,7 @@ const data = {
         image: "/home/icon/thapNhang.png",
         name: "Thắp Nhang",
         path: "/thapNhang",
-        status: "process",
+        status: "done",
     },
     phongDang: {
         icon: "🏮",
