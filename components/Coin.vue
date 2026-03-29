@@ -55,8 +55,8 @@ defineExpose({
 
 <style scoped>
 .coin-stage {
-    width: 100%;
-    perspective: 3000px;
+    /* width: 100%; */
+    perspective: 2000px;
 }
 
 .coin-renderer {
@@ -80,10 +80,8 @@ defineExpose({
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    /* border-radius: 50%; */
-    /* overflow: hidden; */
     /* Thêm hiệu ứng viền kim loại cho đẹp */
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3); */
 }
 
 .coin-front {

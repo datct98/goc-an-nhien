@@ -45,7 +45,7 @@ const data = {
         image: "/home/icon/huyenHoc.png",
         name: "Huyền Học",
         path: "/huyenHoc",
-        status: "process",
+        status: "done",
     },
     linhVat: {
         icon: "🐉",

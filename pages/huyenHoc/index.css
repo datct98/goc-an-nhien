@@ -8,9 +8,46 @@
     background-image: url("../../assets/tarotUp.jpg");
 }
 
+.container-huyenhoc-mobile {
+    width: 100vw;
+    height: 100vh;
+    background-color: #543854;
+}
+
 .left-task-bar {
     width: 200px;
     height: 90vh;
     background-color: #a17e5f;
     opacity: 0.5;
+}
+
+/* Mobile */
+
+.toggleButtonSetting {
+    width: 50px;
+    height: 30px;
+    position: absolute;
+    top: 7%;
+    left: -7px;
+    background: #427345;
+    border-radius: 5px;
+    z-index: 9999;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+
+.btnTossCoin {
+    background-color: #825c83;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.coinPage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
 }
