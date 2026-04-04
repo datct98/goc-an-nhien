@@ -47,13 +47,13 @@ const data = {
         path: "/huyenHoc",
         status: "done",
     },
-    linhVat: {
-        icon: "🐉",
-        iconName: "prime",
-        image: "/home/icon/linhVat.png",
-        name: "Linh Vật",
-        path: "/linhVat",
-        status: "process",
+    tuDo: {
+        con: "📦",
+        iconName: "box",
+        image: "/home/icon/tuDo.png",
+        name: "Túi đồ",
+        path: "/box",
+        status: "done",
     },
     shop: {
         icon: "🏪",
@@ -62,7 +62,7 @@ const data = {
         name: "Cửa hàng",
         path: "/shop",
         status: "done",
-    }
+    },
 }
 
 export const menuList = [
@@ -120,6 +120,14 @@ export const menuList = [
         iconName: 'pi pi-' + data.shop.iconName,
         name: data.shop.name,
         status: data.shop.status,
+        active: false,
+    },
+    {
+        path: data.tuDo.path,
+        icon: data.tuDo.icon,
+        iconName: 'pi pi-' + data.tuDo.iconName,
+        name: data.tuDo.name,
+        status: data.tuDo.status,
         active: false,
     },
 ];
