@@ -36,6 +36,7 @@ var showScrollButton = true;
 
 const goTo = (path, status) => {
     $common.navigateTo(path, status, router);
+    emit('close', true)
 }
 
 const startDrag = (event) => {

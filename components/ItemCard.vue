@@ -9,7 +9,11 @@ const props = defineProps({
   price: String,
   icon: String,
   imagePath: String,
-})
+});
+
+const buyItem = () => {
+
+}
 </script>
 
 <template>
@@ -36,8 +40,10 @@ const props = defineProps({
     </div>
 
     <div class="price">
-      {{ price }}
+      {{ price }} 🌼
     </div>
+
+    <button @click="buyItem()" class="buy-item" :class="rank">Quy đổi</button>
 
   </div>
 </template>
@@ -93,7 +99,7 @@ const props = defineProps({
   margin-top: auto;
   padding: 4px 10px;
   border-radius: 20px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 /* ================= */
@@ -167,5 +173,40 @@ const props = defineProps({
 
 .legendary .price {
   background: #5c3b0a;
+}
+
+/* ================= */
+/* BUTTON */
+/* ================= */
+
+.buy-item {
+  font-size: 12px;
+}
+
+.buy-item.legendary {
+  border-radius: 15px;
+  margin-top: 10px;
+  border: 1px #f3c55a solid;
+  box-shadow: 0 0 10px 2px #f3c55a;
+}
+
+.buy-item.rare {
+  border-radius: 15px;
+  margin-top: 10px;
+  border: 1px #7d5cff solid;
+  box-shadow: 0 0 10px 2px #7d5cff;
+}
+
+.buy-item.uncommon {
+  background-color: #251205;
+  border-radius: 15px;
+  margin-top: 10px;
+  border: 1px #2bdf3a solid;
+}
+
+.buy-item.common {
+  border-radius: 15px;
+  margin-top: 10px;
+  border: 1px #6d4a2f solid;
 }
 </style>

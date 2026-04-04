@@ -13,8 +13,8 @@
     display: flex;
     gap: 10px;
     font-size: 10px;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    justify-content: end;
 }
 
 .shop-content {
@@ -32,7 +32,7 @@
 }
 
 .glow-bar {
-    width: fit-content;
+    font-size: 16px;
     padding: 8px 18px;
     border-radius: 30px;
     border: 2px solid #f4c45a;

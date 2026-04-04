@@ -16,7 +16,7 @@
         <i class="pi pi-bars"></i>
       </button>
       <div class="footer" :class="{ 'closed': mobileSidebarOpen }">
-        <NavMenuMobile />
+        <NavMenuMobile @close="toggleMenu" />
       </div>
     </template>
 

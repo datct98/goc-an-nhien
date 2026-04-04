@@ -4,14 +4,14 @@
         <div v-if="isMobileView">
             <div class="header">
                 <div class="glow-bar">
-                    🌼 Merit: 108
+                    🌼 108
                 </div>
-                <div class="glow-bar">
+                <!-- <div class="glow-bar">
                     🛞 Karma: 108
                 </div>
                 <div class="glow-bar">
                     🧘‍♀️ Peace: 108
-                </div>
+                </div> -->
             </div>
 
             <!-- Tab for shopping -->
@@ -27,9 +27,9 @@
                         <TabPanel value="0">
                             <div class="shop-content">
                                 <ItemCard :imagePath="trumpPhat" rank="legendary" title="Tượng vàng Trump ngồi thiền"
-                                    subtitle="Remix khi gõ mõ" price="50000" />
+                                    subtitle="Remix khi gõ mõ" price="5000" />
                                 <ItemCard :imagePath="goldenDonaldTrump" rank="legendary" title="Tượng vàng Trump"
-                                    subtitle="xoá mọi khẩu nghiệp" price="50000" />
+                                    subtitle="xoá mọi khẩu nghiệp" price="5000" />
                                 <ItemCard :imagePath="legendBell" rank="legendary" title="Chuông thần"
                                     subtitle="tăng x2 điểm khi gõ mõ" price="50" />
                                 <ItemCard :imagePath="lotus" rank="legendary" title="Hoa sen bảo vật"
