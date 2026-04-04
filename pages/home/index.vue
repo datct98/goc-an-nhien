@@ -1,10 +1,10 @@
 <template>
 
-  <div v-if="isMobileView" class="home-page-mobile" :style="{ backgroundImage: `url(${backgroundImgMobile})` }">
+  <div v-if="isMobileView" class="home-page-mobile" :style="{ backgroundImage: `url(${mobileBackground})` }">
     <SakuraEffect />
   </div>
 
-  <div v-else class="home-page" :style="{ backgroundImage: `url(${backgroundImg})` }">
+  <div v-else class="home-page" :style="{ backgroundImage: `url(${desktopBackground})` }">
     <SakuraEffect />
 
     <!-- HEADER -->
@@ -74,25 +74,58 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuth } from '../composables/useAuth';
 import backgroundImg from '../assets/phatNgoiHoaSenRes.png';
+import phatNgoiHoaSenNightRes from '../assets/phatNgoiHoaSenNightRes.png';
 import backgroundImgMobile from '../assets/PhatNgoiHoaSenMobile.png';
+import backgroundImgMobileNight from '../assets/PhatNgoiHoaSenMobileNightRes.png'
 import bubbleImg from '../assets/bubble.png';
 import SakuraEffect from '../components/effects/SakuraEffect.vue';
 import { homeList } from '~/components/data/sideBar';
+
 
 const router = useRouter()
 const { getUserEmail } = useAuth()
 const sidebarOpen = ref(false)
 const { $common } = useNuxtApp()
-
 const navigateTo = (path, status) => {
   $common.navigateTo(path, status, router);
 }
+const desktopBackground = ref(null);
+const mobileBackground = ref(null);
 
 const { isMobileView } = useDevice()
+
+onMounted(() => {
+  updateUIByTimer();
+});
+
+const updateUIByTimer = () => {
+  // 1. Lấy thời gian hiện tại của hệ thống
+  const now = new Date();
+
+  // 2. Chuyển đổi sang múi giờ Việt Nam (ICT - UTC+7) 
+  // Cách này giúp đảm bảo độ chính xác dù server hoặc thiết bị ở múi giờ khác
+  const vnTime = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Ho_Chi_Minh',
+    hour: 'numeric',
+    hour12: false
+  });
+
+  const currentHour = parseInt(vnTime.format(now));
+
+  // 3. Logic kiểm tra thời gian
+  // Từ 6h sáng (6) đến trước 8h tối (20)
+  if (currentHour >= 6 && currentHour < 20) {
+    desktopBackground.value = backgroundImg;
+    mobileBackground.value = backgroundImgMobile;
+  } else {
+    desktopBackground.value = phatNgoiHoaSenNightRes;
+    mobileBackground.value = backgroundImgMobileNight;
+  }
+}
 
 
 const toggleMenu = () => {
