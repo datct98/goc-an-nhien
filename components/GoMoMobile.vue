@@ -1,6 +1,11 @@
 <template>
     <div class="gm-room">
 
+        <!-- Clickcount -->
+        <div class="clickCount" v-if="clickCount > 0">
+            <span> X{{ clickCount }}</span>
+        </div>
+
         <!-- Điểm số tích công đức giải nghiệp -->
         <div class="p-4" style="position: absolute; right: 0px;">
             <CircleSymbol icon="heart-fill" text="Công đức" :score="stats.merit" />
@@ -24,6 +29,18 @@
         <div class="gm-mo" id="caiMoMobile" @click="goMo()">
             <Image src="decor/cai_mo_mobile.png" alt="cái mõ" />
         </div>
+
+        <!-- Xin thí chủ hãy tịnh tâm -->
+        <div class="suQuyLay-container" v-if="isSpamming">
+            <div class="suQuyLay">
+                <Image src="mobile/gomo/nhaSuDapDau.png"></Image>
+            </div>
+            <div class="talkBox">
+                <span>Xin thí chủ hãy tịnh tâm !</span>
+            </div>
+        </div>
+
+        
 
         <!-- STATS NUMBERS — positioned after label text in bg -->
         <!-- <div class="gm-stats-overlay">
@@ -55,7 +72,40 @@ const audioRef = ref(null);
 const floatingTexts = ref([]);
 let fid = 0;
 
+
+const clickCount = ref(0);
+const lastClickTime = ref(0);
+const isSpamming = ref(false);
+let resetTimer = null; // Biến lưu trữ bộ đếm thời gian
+
 const goMo = () => {
+
+    // Nếu đang hiện cảnh báo thì không cho gõ
+    if (isSpamming.value) return;
+
+    const now = Date.now();
+    
+    // Nếu khoảng cách giữa 2 lần gõ quá ngắn (dưới 300ms)
+    if (now - lastClickTime.value < 300) {
+        clickCount.value++;
+    } else {
+        // Nếu gõ chậm lại, reset bộ đếm dần dần hoặc về 0
+        clickCount.value = Math.max(0, clickCount.value - 1);
+    }
+    lastClickTime.value = now;
+
+    // Thiết lập bộ đếm mới: Nếu sau 5 giây không gọi lại hàm goMo, clickCount = 0
+    resetTimer = setTimeout(() => {
+        clickCount.value = 0;
+        console.log("Đã reset clickCount do thí chủ quá lâu không gõ.");
+    }, 5000); // 5000ms = 5 giây (bạn có thể chỉnh tùy ý)
+
+    // Ngưỡng cảnh báo: ví dụ gõ liên tục quá 10 lần cực nhanh
+    if (clickCount.value > 10) {
+        showWarning();
+        return; // Dừng không cho gõ tiếp
+    }
+
     createFloatingText(); // tạo ra chữ nổi trên màn hình
     // Phát âm thanh
     if (audioRef.value) {
@@ -68,6 +118,16 @@ const goMo = () => {
         el.classList.add('shake');
         setTimeout(() => el.classList.remove('shake'), 300);
     }
+};
+
+const showWarning = () => {
+    isSpamming.value = true;
+    if (resetTimer) clearTimeout(resetTimer); // Dừng luôn bộ reset khi đang phạt
+    // Tự động đóng cảnh báo sau 3 giây và reset bộ đếm
+    setTimeout(() => {
+        isSpamming.value = false;
+        clickCount.value = 0;
+    }, 3000);
 };
 
 const createFloatingText = () => {

@@ -211,3 +211,51 @@
         padding-top: env(safe-area-inset-top);
     }
 }
+
+.suQuyLay-container {
+    position: absolute;
+    bottom: 7%;
+    width: 100%;
+    display: flex;
+}
+
+.suQuyLay {
+    width: 150px;
+    margin: auto;
+}
+
+.talkBox {
+    position: absolute;
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 20px;
+    width: 140px;
+    height: 60px;
+    right: 1%;
+    bottom: 50%;
+    display: flex;
+    padding: 5px;
+}
+
+.talkBox span {
+    margin: auto;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.clickCount {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    z-index: 999;
+}
+
+.clickCount span {
+    margin: auto;
+    font-size: 24px;
+}
