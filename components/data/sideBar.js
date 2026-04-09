@@ -39,14 +39,14 @@ const data = {
         image: "/home/icon/huyenHoc.png",
         name: "Huyền Học",
         path: "/huyenHoc",
-        status: "process",
+        status: "done",
     },
     linhVat: {
         icon: "🐉",
         image: "/home/icon/linhVat.png",
         name: "Linh Vật",
         path: "/linhVat",
-        status: "process",
+        status: "done",
     }
 }
 

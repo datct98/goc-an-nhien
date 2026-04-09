@@ -1,0 +1,657 @@
+/* === XEM TỬ VI SCREEN === */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap');
+
+.tuvi-page {
+    width: 100vw;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 30% 0%, #0a0228 0%, #060018 50%, #020010 100%);
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    padding-bottom: 40px;
+}
+
+/* Stars */
+.tuvi-stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.tuvi-star {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation: tw var(--d, 3s) ease-in-out infinite alternate;
+}
+
+@keyframes tw {
+    from {
+        opacity: 0.08;
+    }
+
+    to {
+        opacity: 0.9;
+    }
+}
+
+/* Nebula */
+.tuvi-nebula {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.tuvi-nebula.n1 {
+    width: 300px;
+    height: 300px;
+    top: -60px;
+    right: -60px;
+    background: radial-gradient(circle, rgba(80, 0, 160, 0.4) 0%, transparent 70%);
+}
+
+.tuvi-nebula.n2 {
+    width: 250px;
+    height: 250px;
+    bottom: 200px;
+    left: -50px;
+    background: radial-gradient(circle, rgba(30, 0, 100, 0.35) 0%, transparent 70%);
+}
+
+/* === HEADER === */
+.tuvi-header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 52px 24px 16px;
+}
+
+.tuvi-back {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.tuvi-back:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.tuvi-header-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #e8c87c 0%, #bb88ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tuvi-header-sub {
+    font-size: 12px;
+    color: rgba(190, 150, 255, 0.6);
+    letter-spacing: 0.5px;
+}
+
+/* === ZODIAC WHEEL === */
+.zodiac-wheel-wrapper {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0 8px;
+}
+
+.zodiac-wheel {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.zodiac-center-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 200, 124, 0.3) 0%, transparent 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    animation: pulse-center 3s ease-in-out infinite;
+}
+
+@keyframes pulse-center {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: drop-shadow(0 0 10px rgba(232, 200, 124, 0.5));
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        filter: drop-shadow(0 0 22px rgba(232, 200, 124, 0.9));
+    }
+}
+
+.zodiac-animal {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    transform-origin: 0 0;
+}
+
+.zodiac-animal:hover,
+.zodiac-animal.active-animal {
+    background: rgba(138, 43, 226, 0.3);
+    border-color: rgba(180, 100, 255, 0.6);
+    filter: drop-shadow(0 0 8px rgba(180, 100, 255, 0.8));
+    transform: var(--pos) scale(1.2) !important;
+}
+
+/* Outer ring decoration */
+.zodiac-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(180, 100, 255, 0.15);
+    animation: spin-slow 40s linear infinite;
+}
+
+.zodiac-ring.r1 {
+    width: 196px;
+    height: 196px;
+}
+
+.zodiac-ring.r2 {
+    width: 168px;
+    height: 168px;
+    animation-direction: reverse;
+    animation-duration: 60s;
+    border-color: rgba(232, 200, 124, 0.1);
+}
+
+@keyframes spin-slow {
+    from {
+        transform: translate(-50%, -50%) rotate(0);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* === FORM CARD === */
+.tuvi-form-card {
+    position: relative;
+    z-index: 5;
+    margin: 0 20px;
+    background: linear-gradient(145deg, rgba(40, 5, 80, 0.6) 0%, rgba(20, 2, 50, 0.7) 100%);
+    border: 1px solid rgba(180, 100, 255, 0.2);
+    border-radius: 28px;
+    padding: 24px 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 40px rgba(100, 0, 200, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.form-section-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(200, 160, 255, 0.5);
+    margin-bottom: 12px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-section-label:first-child {
+    margin-top: 0;
+}
+
+.form-section-label::before,
+.form-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(180, 100, 255, 0.3), transparent);
+}
+
+/* Date row */
+.date-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    gap: 10px;
+}
+
+.tuvi-select-wrap {
+    position: relative;
+}
+
+.tuvi-select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 12px 14px;
+    color: #e0d0ff;
+    font-size: 14px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.tuvi-select:focus {
+    border-color: rgba(180, 100, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.tuvi-select option {
+    background: #0d0030;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(200, 160, 255, 0.5);
+    font-size: 10px;
+    pointer-events: none;
+}
+
+/* Gender toggle */
+.gender-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.gender-btn {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(200, 170, 255, 0.6);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.gender-btn.active {
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(100, 0, 180, 0.4));
+    border-color: rgba(180, 100, 255, 0.5);
+    color: #ddb8ff;
+    box-shadow: 0 2px 12px rgba(138, 43, 226, 0.3);
+}
+
+/* Time input */
+.time-input-wrap {
+    position: relative;
+}
+
+.tuvi-time-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 12px 14px 12px 40px;
+    color: #e0d0ff;
+    font-size: 14px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.tuvi-time-input:focus {
+    border-color: rgba(180, 100, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.tuvi-time-input::-webkit-calendar-picker-indicator {
+    filter: invert(0.6) sepia(0.5) hue-rotate(240deg);
+}
+
+.time-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+/* === CTA BUTTON === */
+.tuvi-submit-btn {
+    width: 100%;
+    margin: 20px auto 0;
+    display: block;
+    background: linear-gradient(135deg, #d4a845 0%, #e8c87c 50%, #c4922a 100%);
+    border: none;
+    border-radius: 50px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a0533;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-shadow: 0 4px 24px rgba(232, 200, 124, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tuvi-submit-btn:active {
+    transform: scale(0.98);
+}
+
+.tuvi-submit-btn:hover {
+    box-shadow: 0 6px 32px rgba(232, 200, 124, 0.6);
+}
+
+/* === RESULT CARD === */
+.tuvi-result {
+    position: relative;
+    z-index: 5;
+    margin: 20px 20px 0;
+    background: linear-gradient(145deg, rgba(60, 0, 120, 0.55) 0%, rgba(20, 2, 60, 0.65) 100%);
+    border: 1px solid rgba(232, 200, 124, 0.25);
+    border-radius: 28px;
+    padding: 24px 20px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 40px rgba(232, 200, 124, 0.1);
+    animation: fadeUp 0.5s ease-out;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.result-zodiac-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(138, 43, 226, 0.4), rgba(60, 0, 120, 0.6));
+    border: 2px solid rgba(180, 100, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    box-shadow: 0 0 20px rgba(180, 100, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.result-zodiac-name {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #e8c87c;
+}
+
+.result-zodiac-year {
+    font-size: 13px;
+    color: rgba(200, 160, 255, 0.6);
+    margin-top: 2px;
+}
+
+.result-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(180, 100, 255, 0.3), transparent);
+    margin: 16px 0;
+}
+
+.result-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.result-stat {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 12px 14px;
+}
+
+.result-stat-label {
+    font-size: 11px;
+    color: rgba(200, 160, 255, 0.5);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.result-stat-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #e0d0ff;
+}
+
+.result-desc {
+    font-size: 14px;
+    color: rgba(210, 185, 255, 0.75);
+    line-height: 1.7;
+    margin-top: 12px;
+}
+
+/* === MODE TABS === */
+.tuvi-mode-tabs {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    gap: 6px;
+    margin: 8px 20px 12px;
+    padding: 4px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+.tuvi-mode-tab {
+    flex: 1;
+    padding: 10px 4px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: rgba(200,160,255,0.5);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+.tuvi-mode-tab.active {
+    background: linear-gradient(135deg, rgba(138,43,226,0.4), rgba(100,0,180,0.4));
+    color: #e8c87c;
+    box-shadow: 0 2px 12px rgba(138,43,226,0.3);
+}
+
+/* === DATE INPUT === */
+.tuvi-date-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 12px 14px;
+    color: #e0d0ff;
+    font-size: 14px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    outline: none;
+}
+.tuvi-date-input:focus { border-color: rgba(180,100,255,0.5); }
+.tuvi-date-input::-webkit-calendar-picker-indicator { filter: invert(0.6) sepia(0.5) hue-rotate(240deg); }
+
+/* === SPINNER === */
+.tuvi-spinner {
+    display: inline-block;
+    width: 20px; height: 20px;
+    border: 2px solid rgba(26,5,51,0.3);
+    border-top-color: #1a0533;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* === ERROR === */
+.tuvi-error {
+    color: #ff6b6b;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* === PALACES GRID === */
+.palaces-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+}
+.palace-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 10px;
+    text-align: center;
+}
+.palace-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #e8c87c;
+    margin-bottom: 4px;
+}
+.palace-stem {
+    font-size: 11px;
+    color: rgba(200,160,255,0.6);
+    margin-bottom: 6px;
+}
+.palace-stars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+.star-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+.star-tag.major {
+    background: rgba(232,200,124,0.15);
+    color: #e8c87c;
+    border: 1px solid rgba(232,200,124,0.25);
+}
+.star-tag.minor {
+    background: rgba(180,100,255,0.12);
+    color: #c8a0ff;
+    border: 1px solid rgba(180,100,255,0.2);
+}
+.palace-decadal {
+    font-size: 10px;
+    color: rgba(200,160,255,0.4);
+    margin-top: 4px;
+}
+
+/* === INTERPRETATION === */
+.result-interpretation {
+    font-size: 14px;
+    color: rgba(210,185,255,0.8);
+    line-height: 1.8;
+    margin-top: 12px;
+}
+.result-interpretation strong {
+    color: #e8c87c;
+    font-weight: 600;
+}
+
+/* === RESET BTN === */
+.tuvi-reset-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px;
+    color: rgba(200,160,255,0.7);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    transition: all 0.2s;
+}
+.tuvi-reset-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: #e0d0ff;
+}
+
+/* === DISABLED BTN === */
+.tuvi-submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
