@@ -71,6 +71,9 @@ const handleGoogleCallback = async (hash) => {
 
 const handleCredential = async (idToken) => {
     try {
+        // For dev only
+        router.push('/home');
+
         console.log('Sending ID token to backend...');
         const token = await authService.loginWithGoogle(idToken);
 

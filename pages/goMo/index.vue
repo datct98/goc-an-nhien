@@ -11,7 +11,8 @@
     <GoMoMobile v-if="isReady && isMobileView" />
 
     <!-- DESKTOP layout (original) -->
-    <div v-else-if="isReady" class="container-goMo" id="container" ref="containerRef" :style="{ backgroundImage: `url(${bg})` }">
+    <div v-else-if="isReady" class="container-goMo" id="container" ref="containerRef"
+        :style="{ backgroundImage: `url(${bg})` }">
         <div class="bang">
             <p style="width: 280px; word-wrap: break-word; font-size: 14px; color: #73462d;">
                 - Click vào cái <b>gậy</b> và nhấn vào <b>chiếc mõ</b> hoặc nhấn <b>phím space</b> để tụng kinh <br>
@@ -268,12 +269,28 @@ const camGayGoMo = () => {
 }
 
 @keyframes lotus-spin {
-    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
-    50% { transform: scale(1.15) rotate(180deg); opacity: 0.7; }
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.15) rotate(180deg);
+        opacity: 0.7;
+    }
 }
 
 @keyframes pulse-text {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 </style>

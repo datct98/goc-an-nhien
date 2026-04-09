@@ -2,20 +2,42 @@
   <!-- Body -->
   <ClientOnly fallback-tag="span" fallback="Loading comments...">
     <!-- SIDEBAR MENU -->
-    <SidebarMenu :isOpen="sidebarOpen" @close="sidebarOpen = false" />
-    <button class="goMo-menu-btn" @click="sidebarOpen = true">
-      <span class="goMo-menu-line"></span>
-      <span class="goMo-menu-line"></span>
-      <span class="goMo-menu-line"></span>
-    </button>
+    <template v-if="!isMobileView">
+      <SidebarMenu :isOpen="sidebarOpen" @close="sidebarOpen = false" />
+      <button class="goMo-menu-btn" @click="sidebarOpen = true">
+        <span class="goMo-menu-line"></span>
+        <span class="goMo-menu-line"></span>
+        <span class="goMo-menu-line"></span>
+      </button>
+    </template>
+
+    <template v-else>
+      <button class="toggleButton" @click="toggleMenu()">
+        <i class="pi pi-bars"></i>
+      </button>
+      <div class="footer" :class="{ 'closed': mobileSidebarOpen }">
+        <NavMenuMobile @close="toggleMenu" />
+      </div>
+    </template>
+
     <slot></slot>
+    <!-- <div style="width: 100vw; height: 70px;"></div> -->
   </ClientOnly>
 </template>
 
 <script setup>
 import SidebarMenu from '~/components/SidebarMenu.vue';
+import NavMenuMobile from '~/components/NavMenuMobile.vue';
+const { isMobileView } = useDevice()
+
+console.log('Is mobile view:', isMobileView.value);
 
 const sidebarOpen = ref(false);
+const mobileSidebarOpen = ref(true);
+
+const toggleMenu = () => {
+  mobileSidebarOpen.value = !mobileSidebarOpen.value;
+}
 
 </script>
 
@@ -49,5 +71,63 @@ const sidebarOpen = ref(false);
   height: 2px;
   background: #d4af37;
   border-radius: 2px;
+}
+
+/* Mobile Only  */
+.toggleButton {
+  width: 50px;
+  height: 30px;
+  position: absolute;
+  top: 3%;
+  left: -7px;
+  background: #ce9155;
+  border-radius: 5px;
+  z-index: 9999;
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+
+/* .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+
+  background: linear-gradient(to bottom, rgba(100, 36, 6, 0.7), rgba(100, 19, 3, 0.5));
+
+  border-top: 1px solid rgba(255, 200, 120, 0.2);
+  z-index: 999;
+} */
+
+.footer {
+  position: fixed;
+  top: 7%;
+  left: 0;
+  width: 5rem;
+  height: fit-content;
+  /* overflow-x: auto; */
+  /* overflow-y: hidden; */
+  display: flex;
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  /* gap: 5px; */
+  /* background: linear-gradient(to bottom,
+      #4b2406,
+      #2a1303); */
+  background: linear-gradient(to bottom, rgba(100, 36, 6, 0.7), rgba(100, 19, 3, 0.5));
+  border-top: 1px solid rgba(255, 200, 120, 0.2);
+  z-index: 999;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer.closed {
+  transform: translateX(-100%);
 }
 </style>

@@ -1,0 +1,40 @@
+.box-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-image: url("../../public/mobile/phong_tu_do.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.the-phan-loai-container {
+    width: 100%;
+    position: absolute;
+    top: 9%;
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.the-phan-loai {
+    width: 60px;
+}
+
+.the-phan-loai.active {
+    /* Tạo ánh sáng vàng bao quanh đường viền tấm gỗ */
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 165, 0, 0.5));
+
+    /* Thêm một chút hiệu ứng phóng to nhẹ khi active */
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.category-name {
+    position: absolute;
+    bottom: 10px;
+    font-size: 15px;
+    text-align: center;
+    width: 60px;
+}

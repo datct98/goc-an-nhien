@@ -1,6 +1,7 @@
 const data = {
     home: {
         icon: "🏠",
+        iconName: "home",
         image: "/home/icon/goMo.png",
         name: "Trang chủ",
         path: "/home",
@@ -8,6 +9,7 @@ const data = {
     },
     goMo: {
         icon: "🔔",
+        iconName: "bell",
         image: "/home/icon/goMo.png",
         name: "Gõ Mõ",
         path: "/goMo",
@@ -15,13 +17,15 @@ const data = {
     },
     thapNhang: {
         icon: "🕯️",
+        iconName: "star",
         image: "/home/icon/thapNhang.png",
         name: "Thắp Nhang",
         path: "/thapNhang",
-        status: "process",
+        status: "done",
     },
     phongDang: {
         icon: "🏮",
+        iconName: "lightbulb",
         image: "/home/icon/phongDang.png",
         name: "Phóng Đăng",
         path: "/phongDang",
@@ -29,6 +33,7 @@ const data = {
     },
     hoTamSu: {
         icon: "🏺",
+        iconName: "trophy",
         image: "/home/icon/hoTamSu.png",
         name: "Hồ Tâm Sự",
         path: "/hoTamSu",
@@ -36,9 +41,11 @@ const data = {
     },
     huyenHoc: {
         icon: "🔮",
+        iconName: "sparkles",
         image: "/home/icon/huyenHoc.png",
         name: "Huyền Học",
         path: "/huyenHoc",
+        status: "done",
         status: "done",
     },
     linhVat: {
@@ -54,6 +61,7 @@ export const menuList = [
     {
         path: data.home.path,
         icon: data.home.icon,
+        iconName: 'pi pi-' + data.home.iconName,
         name: data.home.name,
         status: data.home.status,
         active: false,
@@ -61,6 +69,7 @@ export const menuList = [
     {
         path: data.goMo.path,
         icon: data.goMo.icon,
+        iconName: 'pi pi-' + data.goMo.iconName,
         name: data.goMo.name,
         status: data.goMo.status,
         active: false,
@@ -68,6 +77,7 @@ export const menuList = [
     {
         path: data.thapNhang.path,
         icon: data.thapNhang.icon,
+        iconName: 'pi pi-' + data.thapNhang.iconName,
         name: data.thapNhang.name,
         status: data.thapNhang.status,
         active: false,
@@ -75,6 +85,7 @@ export const menuList = [
     {
         path: data.phongDang.path,
         icon: data.phongDang.icon,
+        iconName: 'pi pi-' + data.phongDang.iconName,
         name: data.phongDang.name,
         status: data.phongDang.status,
         active: false,
@@ -82,6 +93,7 @@ export const menuList = [
     {
         path: data.hoTamSu.path,
         icon: data.hoTamSu.icon,
+        iconName: 'pi pi-' + data.hoTamSu.iconName,
         name: data.hoTamSu.name,
         status: data.hoTamSu.status,
         active: false,
@@ -89,15 +101,25 @@ export const menuList = [
     {
         path: data.huyenHoc.path,
         icon: data.huyenHoc.icon,
+        iconName: 'pi pi-' + data.huyenHoc.iconName,
         name: data.huyenHoc.name,
         status: data.huyenHoc.status,
         active: false,
     },
     {
-        path: data.linhVat.path,
-        icon: data.linhVat.icon,
-        name: data.linhVat.name,
-        status: data.linhVat.status,
+        path: data.shop.path,
+        icon: data.shop.icon,
+        iconName: 'pi pi-' + data.shop.iconName,
+        name: data.shop.name,
+        status: data.shop.status,
+        active: false,
+    },
+    {
+        path: data.tuDo.path,
+        icon: data.tuDo.icon,
+        iconName: 'pi pi-' + data.tuDo.iconName,
+        name: data.tuDo.name,
+        status: data.tuDo.status,
         active: false,
     },
 ];
@@ -144,12 +166,12 @@ export const homeList = {
         active: false,
         image: data.huyenHoc.image
     },
-    linhVat: {
-        path: data.linhVat.path,
-        icon: data.linhVat.icon,
-        name: data.linhVat.name,
-        status: data.linhVat.status,
+    shop: {
+        path: data.shop.path,
+        icon: data.shop.icon,
+        name: data.shop.name,
+        status: data.shop.status,
         active: false,
-        image: data.linhVat.image
+        image: data.shop.image
     },
 };

@@ -1,12 +1,14 @@
 <template>
     <div class="background">
-        <Bubble />
+        <Coin />
     </div>
 </template>
 
 <script setup>
 import Bubble from '~/components/effects/Bubble.vue';
 import SmokeUp from '~/components/effects/SmokeUp.vue';
+import CircleSymbol from '~/components/CircleSymbol.vue';
+import Coin from '~/components/Coin.vue';
 
 </script>
 
@@ -20,6 +22,7 @@ import SmokeUp from '~/components/effects/SmokeUp.vue';
     background-position: center;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 </style>

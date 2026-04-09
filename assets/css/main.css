@@ -30,10 +30,21 @@ li {
 }
 
 .p-tab-active {
-    border-color: #147ee0 !important;
-    color: #147ee0 !important;
+    border-color: #fdedb5 !important;
+    color: #fdedb5 !important;
 }
 
+.p-tablist-tab-list {
+    overflow-x: auto !important;
+}
+
+/* Override root color */
+:root {
+    --p-tabs-tab-active-background: transparent !important;
+    --p-tabs-tab-background: transparent !important;
+    --p-tabs-tablist-background: transparent !important;
+    --p-tabs-tabpanel-background: transparent !important;
+}
 
 
 /* Override toast style */
