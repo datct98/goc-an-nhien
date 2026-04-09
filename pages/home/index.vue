@@ -17,58 +17,58 @@
 
     <div class="feature-cards-container">
       <!-- Top-Left: Gõ Mõ -->
-      <div class="feature-bubble card-top-left" @click="navigateTo('/goMo', homeList.goMo.status)"
+      <!-- <div class="feature-bubble card-top-left" @click="navigateTo('/goMo', homeList.goMo.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
           <Image :src="homeList.goMo.image" class="card-icon-img" :alt="homeList.goMo.name"></Image>
         </div>
         <div class="card-title">{{ homeList.goMo.name }}</div>
-      </div>
+      </div> -->
 
       <!-- Mid-Left: Hũ Tâm Sự -->
-      <div class="feature-bubble card-mid-left" @click="navigateTo('/worry-jar', homeList.hoTamSu.status)"
+      <!-- <div class="feature-bubble card-mid-left" @click="navigateTo('/worry-jar', homeList.hoTamSu.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
           <Image :src="homeList.hoTamSu.image" class="card-icon-img" :alt="homeList.hoTamSu.name"></Image>
         </div>
         <div class="card-title">{{ homeList.hoTamSu.name }}</div>
-      </div>
+      </div> -->
 
       <!-- Top-Right: Phóng Đăng -->
-      <div class="feature-bubble card-top-right" @click="navigateTo('/altar', homeList.phongDang.status)"
+      <!-- <div class="feature-bubble card-top-right" @click="navigateTo('/altar', homeList.phongDang.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
           <Image :src="homeList.phongDang.image" class="card-icon-img" :alt="homeList.phongDang.name"></Image>
         </div>
         <div class="card-title">{{ homeList.phongDang.name }}</div>
-      </div>
+      </div> -->
 
       <!-- Mid-Right: Thắp Nhang -->
-      <div class="feature-bubble card-mid-right" @click="navigateTo('/altar', homeList.thapNhang.status)"
+      <!-- <div class="feature-bubble card-mid-right" @click="navigateTo('/thapNhang', homeList.thapNhang.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
           <Image :src="homeList.thapNhang.image" class="card-icon-img" :alt="homeList.thapNhang.name"></Image>
         </div>
         <div class="card-title">{{ homeList.thapNhang.name }}</div>
-      </div>
+      </div> -->
 
       <!-- Bottom-Center-Left: Huyền Học -->
-      <div class="feature-bubble card-bottom-left" @click="navigateTo('/huyenHoc', homeList.huyenHoc.status)"
+      <!-- <div class="feature-bubble card-bottom-left" @click="navigateTo('/huyenHoc', homeList.huyenHoc.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
           <Image :src="homeList.huyenHoc.image" class="card-icon-img" :alt="homeList.huyenHoc.name"></Image>
         </div>
         <div class="card-title">{{ homeList.huyenHoc.name }}</div>
-      </div>
+      </div> -->
 
       <!-- Bottom-Center-Right: Linh Vật -->
-      <div class="feature-bubble card-bottom-right" @click="navigateTo('/shop', homeList.shop.status)"
+      <!-- <div class="feature-bubble card-bottom-right" @click="navigateTo('/shop', homeList.shop.status)"
         :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
         <div class="icon-wrapper">
           <Image :src="homeList.shop.image" class="card-icon-img" :alt="homeList.shop.name"></Image>
         </div>
         <div class="card-title">{{ homeList.shop.name }}</div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

@@ -28,9 +28,7 @@
 <script setup>
 import SidebarMenu from '~/components/SidebarMenu.vue';
 import NavMenuMobile from '~/components/NavMenuMobile.vue';
-const { isMobileView } = useDevice()
-
-console.log('Is mobile view:', isMobileView.value);
+const { isMobileView } = useDevice();
 
 const sidebarOpen = ref(false);
 const mobileSidebarOpen = ref(true);

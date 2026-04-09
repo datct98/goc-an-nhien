@@ -41,7 +41,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 
 
-const isMobileView = useDevice();
+const { isMobileView } = useDevice()
 
 const firstCoinRef = ref(null);
 

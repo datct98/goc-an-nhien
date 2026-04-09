@@ -19,7 +19,7 @@
 <script setup>
 import { tuDoCategory } from './tuDoCategory';
 
-const isMobileView = useDevice();
+const { isMobileView } = useDevice()
 const activeCategoryId = ref(0);
 
 const setActiveCategory = (id) => {
