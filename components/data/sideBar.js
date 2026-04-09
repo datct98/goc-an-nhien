@@ -46,23 +46,15 @@ const data = {
         name: "Huyền Học",
         path: "/huyenHoc",
         status: "done",
-    },
-    tuDo: {
-        con: "📦",
-        iconName: "box",
-        image: "/home/icon/tuDo.png",
-        name: "Túi đồ",
-        path: "/box",
         status: "done",
     },
-    shop: {
-        icon: "🏪",
-        iconName: "shop",
-        image: "/home/icon/store.png",
-        name: "Cửa hàng",
-        path: "/shop",
+    linhVat: {
+        icon: "🐉",
+        image: "/home/icon/linhVat.png",
+        name: "Linh Vật",
+        path: "/linhVat",
         status: "done",
-    },
+    }
 }
 
 export const menuList = [
