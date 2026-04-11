@@ -2,7 +2,7 @@
     <div id="insta" class="image-container" ref="imageContainer" @mousedown="startDrag" @mousemove="drag"
         @mouseup="endDrag" @mouseleave="endDrag">
         <div class="image-list">
-            <div class="menu-item" v-for="item in menuTabList" @click="goTo(item.path, item.status)"
+            <div class="menu-item" v-for="(item,index) in menuTabList" :key="index" @click="goTo(item.path, item.status)"
                 :class="{ active: item.active }">
                 <i :class="item.iconName" style="font-size: 20px; padding-bottom: 10px; color: #fff0b7;"></i>
                 <!-- <span class="icon">{{ item.icon }}</span>` -->
