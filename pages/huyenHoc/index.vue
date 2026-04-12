@@ -16,38 +16,49 @@
                 alt="Vong bat quai"
               />
             </div>
+            <!-- Tử vi phần xử lý chính chính -->
             <div class="spiritual-card">
-              <p class="small-title">Nhập thông tin ngày sinh</p>
-              <div class="date-container">
-                <InputText type="date" class="date-input" aria-placeholder="" />
-              </div>
-              <div class="gender-container">
-                <div
-                  class="male"
-                  :class="{ active: gender == 1 }"
-                  @click="updateGender(1)"
-                >
-                  Nam
+              <template v-if="!showLuanGiaiTuVi">
+                <p class="small-title">Nhập thông tin ngày sinh</p>
+                <div class="date-container">
+                  <InputText
+                    type="date"
+                    class="date-input"
+                    placeholder="Nhập thông tin ngày sinh"
+                  />
                 </div>
-                <div
-                  class="female"
-                  :class="{ active: gender == 0 }"
-                  @click="updateGender(0)"
-                >
-                  Nữ
+                <div class="gender-container">
+                  <div
+                    class="male"
+                    :class="{ active: gender == 1 }"
+                    @click="updateGender(1)"
+                  >
+                    Nam
+                  </div>
+                  <div
+                    class="female"
+                    :class="{ active: gender == 0 }"
+                    @click="updateGender(0)"
+                  >
+                    Nữ
+                  </div>
                 </div>
-              </div>
-              <p class="small-title pt-5">Giờ sinh</p>
-              <Select
-                v-model="selectedTimeIndice"
-                class="born-date-input"
-                overlayClass="born-date-overlay-input"
-                checkmark
-                :highlightOnSelect="false"
-                :options="timeIndices"
-                optionLabel="name"
-                placeholder="Chọn giờ sinh..."
-              ></Select>
+                <p class="small-title pt-5">Giờ sinh</p>
+                <Select
+                  v-model="selectedTimeIndice"
+                  class="born-date-input"
+                  overlayClass="born-date-overlay-input"
+                  checkmark
+                  :highlightOnSelect="false"
+                  :options="timeIndices"
+                  optionLabel="name"
+                  placeholder="Chọn giờ sinh..."
+                ></Select>
+              </template>
+              <!-- Kết quả luận giải tử vi -->
+              <template v-else>
+                <Image :src="xuNu"  />
+              </template>
             </div>
             <div>
               <button class="btn-tuvi">Luận Giải Tử Vi</button>
@@ -96,8 +107,11 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 // import Swiper and modules styles
 import "swiper/css";
 // import image
-import vongBatQuaiImg from "../../public/huyenHoc/vongBatQuai.png";
-import { timeIndices } from "./data";
+import vongBatQuaiImg from "../../public/huyenHoc/vongBatQuai2.png";
+import { timeIndices, zodiacMapping , mockData } from "./data";
+// import zodiac
+import xuNu from '../../assets/zodiac/xuNu.png';
+
 
 const { isMobileView } = useDevice();
 const firstCoinRef = ref(null);
@@ -118,11 +132,11 @@ const tossCoin = () => {
   }
 };
 
-
 const isFormValid = computed(() => dateOfBirth && selectedTimeIndice !== null);
-const loading = ref(false)
-const error = ref(null)
-const resultData = ref(null)
+const loading = ref(false);
+const error = ref(null);
+const resultData = ref(null);
+const showLuanGiaiTuVi = ref(true);
 // Luân giải tư vi trọn đơì
 const calculate = async () => {
   if (!isFormValid.value) return;
@@ -136,14 +150,14 @@ const calculate = async () => {
       gender: gender,
       fixLeap: true,
     };
-    console.log('baseBody : ', baseBody)
+    console.log("baseBody : ", baseBody);
     let data;
-    const res = await $api.sendPostApi('horoscope', baseBody)
+    const res = await $api.sendPostApi("horoscope", baseBody);
     data = res.data;
     // if (mode.value === "trondoi") {
-      
+
     // } else {
-      
+
     // }
     resultData.value = data;
   } catch (err) {
