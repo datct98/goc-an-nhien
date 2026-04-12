@@ -57,7 +57,22 @@
               </template>
               <!-- Kết quả luận giải tử vi -->
               <template v-else>
-                <Image :src="xuNu"  />
+                <div class="result-header">
+                  <div class="zodiac">
+                    <div>
+                      <Image :src="xuNu" alt="zodiac" />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small-title-result">
+                      {{ mockData.zodiac }} · {{ mockData.sign }}
+                    </div>
+                    <div class="small-title-result-sub">
+                      {{ mockData.lunarDate }}
+                    </div>
+                  </div>
+                </div>
+                <div class="result-divider"></div>
               </template>
             </div>
             <div>
@@ -108,10 +123,9 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 // import image
 import vongBatQuaiImg from "../../public/huyenHoc/vongBatQuai2.png";
-import { timeIndices, zodiacMapping , mockData } from "./data";
+import { timeIndices, zodiacMapping, mockData } from "./data";
 // import zodiac
-import xuNu from '../../assets/zodiac/xuNu.png';
-
+import xuNu from "../../assets/zodiac/xuNu.png";
 
 const { isMobileView } = useDevice();
 const firstCoinRef = ref(null);
