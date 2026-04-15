@@ -234,10 +234,10 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 // import Swiper and modules styles
 import "swiper/css";
 // import image
-import vongBatQuaiImg from "../../assets/vongBatQuai2.png";
+import vongBatQuaiImg from "~/assets/vongBatQuai2.png";
 import { timeIndices, zodiacMapping, mockData } from "./data";
 // import zodiac
-import xuNu from "../../assets/zodiac/xuNu.png";
+import xuNu from "~/assets/zodiac/xuNu.png";
 
 const { isMobileView } = useDevice();
 const firstCoinRef = ref(null);
