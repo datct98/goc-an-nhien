@@ -73,8 +73,120 @@
                   </div>
                 </div>
                 <div class="result-divider"></div>
+                <div class="luan-giai-tu-vi">
+                  <!-- First Row -->
+                  <div class="tu-vi-row">
+                    <div v-for="n in 4" :key="n" class="tu-vi-card">
+                      <div class="tu-vi-header">
+                        <span>M.Ngọ</span>
+                        <span>Mệnh</span>
+                        <span>116</span>
+                      </div>
+                      <div class="tu-vi-body">
+                        <div class="tu-vi-title">Thái Dương (M)</div>
+                        <div class="tu-vi-content">
+                          <div class="tu-vi-list">
+                            <span v-for="i in 4" :key="i">test</span>
+                          </div>
+                          <div class="tu-vi-list">
+                            <span v-for="e in 4" :key="e">test</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tu-vi-footer">
+                        <span>Ngọ</span>
+                        <span>Bệnh</span>
+                        <span>T5</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Second and Third row  -->
+                  <div class="tu-vi-row">
+                    <div class="tu-vi-col" style="flex: 1">
+                      <div v-for="n in 2" :key="n" class="tu-vi-card">
+                        <div class="tu-vi-header">
+                          <span>M.Ngọ</span>
+                          <span>Mệnh</span>
+                          <span>116</span>
+                        </div>
+                        <div class="tu-vi-body">
+                          <div class="tu-vi-title">Thái Dương (M)</div>
+                          <div class="tu-vi-content">
+                            <div class="tu-vi-list">
+                              <span v-for="i in 4" :key="i">test</span>
+                            </div>
+                            <div class="tu-vi-list">
+                              <span v-for="e in 4" :key="e">test</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tu-vi-footer">
+                          <span>Ngọ</span>
+                          <span>Bệnh</span>
+                          <span>T5</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Luan giai chinh -->
+                    <div class="tu-vi-main" style="flex: 2">
+
+                    </div>
+                    <div class="tu-vi-col" style="flex: 1">
+                      <div v-for="n in 2" :key="n" class="tu-vi-card">
+                        <div class="tu-vi-header">
+                          <span>M.Ngọ</span>
+                          <span>Mệnh</span>
+                          <span>116</span>
+                        </div>
+                        <div class="tu-vi-body">
+                          <div class="tu-vi-title">Thái Dương (M)</div>
+                          <div class="tu-vi-content">
+                            <div class="tu-vi-list">
+                              <span v-for="i in 4" :key="i">test</span>
+                            </div>
+                            <div class="tu-vi-list">
+                              <span v-for="e in 4" :key="e">test</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tu-vi-footer">
+                          <span>Ngọ</span>
+                          <span>Bệnh</span>
+                          <span>T5</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Last Row -->
+                  <div class="tu-vi-row">
+                    <div v-for="n in 4" :key="n" class="tu-vi-card">
+                      <div class="tu-vi-header">
+                        <span>M.Ngọ</span>
+                        <span>Mệnh</span>
+                        <span>116</span>
+                      </div>
+                      <div class="tu-vi-body">
+                        <div class="tu-vi-title">Thái Dương (M)</div>
+                        <div class="tu-vi-content">
+                          <div class="tu-vi-list">
+                            <span v-for="i in 4" :key="i">test</span>
+                          </div>
+                          <div class="tu-vi-list">
+                            <span v-for="e in 4" :key="e">test</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tu-vi-footer">
+                        <span>Ngọ</span>
+                        <span>Bệnh</span>
+                        <span>T5</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </template>
             </div>
+            <!-- Button thao tác -->
             <div>
               <button class="btn-tuvi">Luận Giải Tử Vi</button>
             </div>
