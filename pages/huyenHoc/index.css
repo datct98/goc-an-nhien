@@ -349,7 +349,7 @@
 
 .tu-vi-card {
   border: 1px #7d779d solid;
-  font-size: 10px;
+  font-size: 8px;
   font-family: 'Courier New', Courier, monospace;
   width: 100%;
   padding: 5px;
@@ -375,4 +375,42 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
+  max-width: 50%;
+  align-items: start;
+  text-align: start;
+}
+
+.tu-vi-main {
+  font-size: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.tu-vi-main-title {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #e6ca77;
+}
+
+.info-row {
+  display: flex;
+  margin-left: 15px;
+  margin-bottom: 4px;
+}
+
+.label {
+  width: 80px; /* Bắt buộc phải có chiều rộng cố định để thẳng hàng */
+  flex-shrink: 0; /* Không cho phép tiêu đề bị co lại */
+  font-weight: 900;
+  text-align: start;
+}
+
+.tiny-text {
+  font-size: 6px;
 }

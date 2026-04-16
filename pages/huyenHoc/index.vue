@@ -76,20 +76,34 @@
                 <div class="luan-giai-tu-vi">
                   <!-- First Row -->
                   <div class="tu-vi-row">
-                    <div v-for="n in 4" :key="n" class="tu-vi-card">
+                    <div v-for="n in [0,1,2,3]" :key="n" class="tu-vi-card">
                       <div class="tu-vi-header">
-                        <span>M.Ngọ</span>
-                        <span>Mệnh</span>
-                        <span>116</span>
+                        <span class="tiny-text">M.Ngọ</span>
+                        <span>{{ mockData.palaces[n].name }}</span>
+                        <span class="tiny-text">116</span>
                       </div>
                       <div class="tu-vi-body">
                         <div class="tu-vi-title">Thái Dương (M)</div>
                         <div class="tu-vi-content">
                           <div class="tu-vi-list">
-                            <span v-for="i in 4" :key="i">test</span>
+                            <span
+                              class="tiny-text"
+                              v-for="(star, i) in mockData.palaces[n]
+                                .majorStars"
+                              :key="i"
+                            >
+                              {{ star }}
+                            </span>
                           </div>
                           <div class="tu-vi-list">
-                            <span v-for="e in 4" :key="e">test</span>
+                            <span
+                              class="tiny-text"
+                              v-for="(star, i) in mockData.palaces[n]
+                                .minorStars"
+                              :key="i"
+                            >
+                              {{ star }}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -103,20 +117,34 @@
                   <!-- Second and Third row  -->
                   <div class="tu-vi-row">
                     <div class="tu-vi-col" style="flex: 1">
-                      <div v-for="n in 2" :key="n" class="tu-vi-card">
+                      <div v-for="n in [4, 5]" :key="n" class="tu-vi-card">
                         <div class="tu-vi-header">
-                          <span>M.Ngọ</span>
-                          <span>Mệnh</span>
-                          <span>116</span>
+                          <span class="tiny-text">M.Ngọ</span>
+                          <span>{{ mockData.palaces[n].name }}</span>
+                          <span class="tiny-text">116</span>
                         </div>
                         <div class="tu-vi-body">
                           <div class="tu-vi-title">Thái Dương (M)</div>
                           <div class="tu-vi-content">
                             <div class="tu-vi-list">
-                              <span v-for="i in 4" :key="i">test</span>
+                              <span
+                                class="tiny-text"
+                                v-for="(star, i) in mockData.palaces[n]
+                                  .majorStars"
+                                :key="i"
+                              >
+                                {{ star }}
+                              </span>
                             </div>
                             <div class="tu-vi-list">
-                              <span v-for="e in 4" :key="e">test</span>
+                              <span
+                                class="tiny-text"
+                                v-for="(star, i) in mockData.palaces[n]
+                                  .minorStars"
+                                :key="i"
+                              >
+                                {{ star }}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -129,23 +157,99 @@
                     </div>
                     <!-- Luan giai chinh -->
                     <div class="tu-vi-main" style="flex: 2">
-
+                      <div class="tu-vi-main-title">Lá số tử vi</div>
+                      <div class="info-row">
+                        <span class="label">Họ tên:</span>
+                        <span class="value">{{ mockData.name }}</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Năm sinh:</span>
+                        <span class="value">{{
+                          mockData.birthDate.split("-")[0]
+                        }}</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Tháng sinh:</span>
+                        <span class="value">{{
+                          mockData.birthDate.split("-")[1]
+                        }}</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Ngày sinh:</span>
+                        <span class="value">{{
+                          mockData.birthDate.split("-")[2]
+                        }}</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Giờ sinh:</span>
+                        <span class="value">Bổ sung</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Âm dương:</span>
+                        <span class="value">Test</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Bán mệnh:</span>
+                        <span class="value">Test</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Cục mệnh:</span>
+                        <span class="value">Test</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Chủ mệnh:</span>
+                        <span class="value">Test</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Chủ thân:</span>
+                        <span class="value">Test</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Cân lượng:</span>
+                        <span class="value">Test</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Lai nhân:</span>
+                        <span class="value">Test</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Năm xem:</span>
+                        <span class="value">Test</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="label">Tháng xem:</span>
+                        <span class="value">Test</span>
+                      </div>
                     </div>
                     <div class="tu-vi-col" style="flex: 1">
-                      <div v-for="n in 2" :key="n" class="tu-vi-card">
+                      <div v-for="n in [6, 7]" :key="n" class="tu-vi-card">
                         <div class="tu-vi-header">
-                          <span>M.Ngọ</span>
-                          <span>Mệnh</span>
-                          <span>116</span>
+                          <span class="tiny-text">M.Ngọ</span>
+                          <span>{{ mockData.palaces[n].name }}</span>
+                          <span class="tiny-text">116</span>
                         </div>
                         <div class="tu-vi-body">
                           <div class="tu-vi-title">Thái Dương (M)</div>
                           <div class="tu-vi-content">
                             <div class="tu-vi-list">
-                              <span v-for="i in 4" :key="i">test</span>
+                              <span
+                                class="tiny-text"
+                                v-for="(star, i) in mockData.palaces[n]
+                                  .majorStars"
+                                :key="i"
+                              >
+                                {{ star }}
+                              </span>
                             </div>
                             <div class="tu-vi-list">
-                              <span v-for="e in 4" :key="e">test</span>
+                              <span
+                                class="tiny-text"
+                                v-for="(star, i) in mockData.palaces[n]
+                                  .minorStars"
+                                :key="i"
+                              >
+                                {{ star }}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -159,28 +263,42 @@
                   </div>
                   <!-- Last Row -->
                   <div class="tu-vi-row">
-                    <div v-for="n in 4" :key="n" class="tu-vi-card">
+                    <div v-for="n in [8, 9, 10, 11]" :key="n" class="tu-vi-card">
                       <div class="tu-vi-header">
-                        <span>M.Ngọ</span>
-                        <span>Mệnh</span>
-                        <span>116</span>
-                      </div>
-                      <div class="tu-vi-body">
-                        <div class="tu-vi-title">Thái Dương (M)</div>
-                        <div class="tu-vi-content">
-                          <div class="tu-vi-list">
-                            <span v-for="i in 4" :key="i">test</span>
-                          </div>
-                          <div class="tu-vi-list">
-                            <span v-for="e in 4" :key="e">test</span>
+                          <span class="tiny-text">M.Ngọ</span>
+                          <span>{{ mockData.palaces[n].name }}</span>
+                          <span class="tiny-text">116</span>
+                        </div>
+                        <div class="tu-vi-body">
+                          <div class="tu-vi-title">Thái Dương (M)</div>
+                          <div class="tu-vi-content">
+                            <div class="tu-vi-list">
+                              <span
+                                class="tiny-text"
+                                v-for="(star, i) in mockData.palaces[n]
+                                  .majorStars"
+                                :key="i"
+                              >
+                                {{ star }}
+                              </span>
+                            </div>
+                            <div class="tu-vi-list">
+                              <span
+                                class="tiny-text"
+                                v-for="(star, i) in mockData.palaces[n]
+                                  .minorStars"
+                                :key="i"
+                              >
+                                {{ star }}
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="tu-vi-footer">
-                        <span>Ngọ</span>
-                        <span>Bệnh</span>
-                        <span>T5</span>
-                      </div>
+                        <div class="tu-vi-footer">
+                          <span>Ngọ</span>
+                          <span>Bệnh</span>
+                          <span>T5</span>
+                        </div>
                     </div>
                   </div>
                 </div>
