@@ -144,13 +144,13 @@
   padding: 20px 10px 10px 10px;
 }
 
-.date-container {
+.input-container {
   display: flex;
   gap: 5px;
   margin: 10px 0px 10px 0px;
 }
 
-.date-input {
+.input {
   width: 100%;
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -160,14 +160,14 @@
   color: white;
 }
 
-.date-input::-webkit-calendar-picker-indicator {
+.input::-webkit-calendar-picker-indicator {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%);
   /* filter: invert(93%) sepia(21%) saturate(913%) hue-rotate(345deg) brightness(97%) contrast(92%); */
   cursor: pointer;
   /* display: none; */
 }
 
-.date-container > div {
+.input-container > div {
   flex: 1;
   min-width: 0;
 }
@@ -273,6 +273,25 @@
   box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.5),
     inset 0 2px 2px rgba(255, 255, 255, 0.6), 0 0 25px rgba(201, 163, 94, 0.6),
     /* Sáng hơn */ 0 0 35px rgba(108, 65, 209, 0.4); /* Sáng hơn */
+}
+
+.btn-tuvi:disabled,
+.btn-tuvi.disabled {
+  /* Chuyển sang tông màu xám/tối để tạo cảm giác "lì" */
+  background: #333333; 
+  color: #777777;
+  border-color: #555555;
+  
+  /* Loại bỏ hiệu ứng đổ bóng phát sáng (glow) */
+  box-shadow: none;
+  
+  /* Đổi con trỏ chuột và chặn tương tác */
+  cursor: not-allowed;
+  opacity: 0.6;
+  filter: grayscale(1); /* Chuyển toàn bộ về mức xám nếu cần */
+  
+  /* Chặn hiệu ứng hover và active */
+  pointer-events: none;
 }
 
 .glow-effect {

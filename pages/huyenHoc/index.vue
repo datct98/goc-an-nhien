@@ -19,11 +19,20 @@
             <!-- Tử vi phần xử lý chính chính -->
             <div class="spiritual-card">
               <template v-if="!showLuanGiaiTuVi">
-                <p class="small-title">Nhập thông tin ngày sinh</p>
-                <div class="date-container">
+                <p class="small-title">Nhập thông tin</p>
+                <div class="input-container">
                   <InputText
+                    v-model="username"
+                    type="text"
+                    class="input"
+                    placeholder="Nhập tên của bạn"
+                  />
+                </div>
+                <div class="input-container">
+                  <InputText
+                    v-model="dateOfBirth"
                     type="date"
-                    class="date-input"
+                    class="input"
                     placeholder="Nhập thông tin ngày sinh"
                   />
                 </div>
@@ -73,12 +82,14 @@
                   </div>
                 </div>
                 <div class="result-divider"></div>
-                <LuanGiaiTuVi :data="mockData"/>
+                <LuanGiaiTuVi :data="resultData" />
               </template>
             </div>
             <!-- Button thao tác -->
             <div>
-              <button class="btn-tuvi">Luận Giải Tử Vi</button>
+              <button class="btn-tuvi" @click="luanGiaiTuVi()" :disabled="luanGiaiTuViDisable">
+                Luận Giải Tử Vi
+              </button>
             </div>
           </div>
         </swiper-slide>
@@ -120,7 +131,7 @@
 
 <script setup>
 import Coin from "~/components/Coin.vue";
-import LuanGiaiTuVi from "~/components/LuanGiaiTuVi.vue"
+import LuanGiaiTuVi from "~/components/LuanGiaiTuVi.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 // import Swiper and modules styles
 import "swiper/css";
@@ -130,11 +141,14 @@ import { timeIndices, zodiacMapping, mockData } from "./data";
 // import zodiac
 import xuNu from "~/assets/zodiac/xuNu.png";
 
+const { $common } = useNuxtApp();
+
 const { isMobileView } = useDevice();
 const firstCoinRef = ref(null);
 const toggleSetting = () => {};
 const dateOfBirth = ref();
 
+const username = ref();
 const gender = ref(null);
 const selectedTimeIndice = ref();
 const { $api } = useNuxtApp();
@@ -149,34 +163,41 @@ const tossCoin = () => {
   }
 };
 
-const isFormValid = computed(() => dateOfBirth && selectedTimeIndice !== null);
+const isFormValid = computed(() => dateOfBirth.value && selectedTimeIndice.value && username.value !== null);
 const loading = ref(false);
 const error = ref(null);
 const resultData = ref(null);
-const showLuanGiaiTuVi = ref(true);
+const showLuanGiaiTuVi = ref(false);
+const luanGiaiTuViDisable = ref(false);
+
 // Luân giải tư vi trọn đơì
-const calculate = async () => {
-  if (!isFormValid.value) return;
+const luanGiaiTuVi = async () => {
+  console.log("validate : ", isFormValid.value);
+  luanGiaiTuViDisable.value = true;
+  if (!isFormValid.value) {
+    $common.showWarning("Bạn chưa nhập đủ thông tin cần thiết")
+    return;
+  };
   loading.value = true;
   error.value = null;
   try {
     const baseBody = {
-      name: "user",
-      birthDate: dateOfBirth,
-      timeIndex: selectedTimeIndice,
-      gender: gender,
+      name: username.value,
+      birthDate: dateOfBirth.value,
+      timeIndex: selectedTimeIndice.value.index,
+      gender: gender.value,
       fixLeap: true,
     };
     console.log("baseBody : ", baseBody);
-    let data;
     const res = await $api.sendPostApi("horoscope", baseBody);
-    data = res.data;
+    resultData.value = res.data;
+    luanGiaiTuViDisable.value = false;
+    showLuanGiaiTuVi.value = true;
     // if (mode.value === "trondoi") {
 
     // } else {
 
     // }
-    resultData.value = data;
   } catch (err) {
     console.error("Horoscope API error:", err);
     error.value =

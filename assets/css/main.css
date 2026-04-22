@@ -70,3 +70,7 @@
 .p-toast-message-error .p-toast-detail {
     color: var(--p-toast-error-color) !important;
 }
+
+.p-toast {
+    @apply w-[calc(100vw-80px)] sm:w-[calc(100vw-90px)] md:w-[25rem];
+  }
