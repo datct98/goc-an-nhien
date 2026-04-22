@@ -141,7 +141,7 @@
       rgba(255, 255, 255, 0.2);
 
   position: relative;
-  padding: 10px;
+  padding: 20px 10px 10px 10px;
 }
 
 .date-container {
