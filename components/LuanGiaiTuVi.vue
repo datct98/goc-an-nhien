@@ -261,7 +261,7 @@ const props = defineProps({
   font-family: Lora;
   width: 100%;
   padding: 5px;
-  height: 200px;
+  height: 215px;
   background-image: url("../assets/zodiac/tuvi-border-lotus.png");
   background-size: cover;
   border-radius: 5px;
