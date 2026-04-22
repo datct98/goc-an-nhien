@@ -257,12 +257,14 @@ const props = defineProps({
 }
 
 .tu-vi-card {
-  border: 1px #7d779d solid;
   font-size: 10px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: Lora;
   width: 100%;
   padding: 5px;
   height: 200px;
+  background-image: url("../assets/zodiac/tuvi-border-lotus.png");
+  background-size: cover;
+  border-radius: 5px;
 }
 
 .tu-vi-header,
@@ -295,11 +297,14 @@ const props = defineProps({
 
 .tu-vi-main {
   font-size: 10px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: Lora;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  background-image: url("../assets/zodiac/main-border.png");
+  background-size: cover;
+  border-radius: 5px;
 }
 
 .tu-vi-main-title {
