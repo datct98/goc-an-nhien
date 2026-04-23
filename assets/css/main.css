@@ -27,15 +27,6 @@
     --p-select-color: white;
 }
 
-.p-tab-active {
-    border-color: #fdedb5 !important;
-    color: #fdedb5 !important;
-}
-
-.p-tablist-tab-list {
-    overflow-x: auto !important;
-}
-
 /* Override root color */
 :root {
     --p-tabs-tab-active-background: transparent !important;

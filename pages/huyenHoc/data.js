@@ -13,12 +13,46 @@ export const timeIndices = [
   { index: 11, name: "Hợi 21:00-23:00", time: "21:00-23:00" },
 ];
 
-const zodiacFolder = '../../assets/zodiac/';
-
+// /assets/zodiac/songTu.png
+// const basePath = "/assets/zodiac/";
+const basePath = ""
 export const zodiacMapping = {
-  "Cung Xử Nữ" : {
-    path: zodiacFolder + 'xuNu.PNG'
-  }
+    "Cung Bạch Dương": {
+        path: basePath +"bachDuong",
+    },
+    "Cung Kim Ngưu": {
+        path: basePath +"kimNguu",
+    },
+    "Cung Song Tử": {
+        path: basePath + "songTu",
+    },
+    "Cung Cự Giải": {
+        path: basePath + "cuGiai",
+    },
+    "Cung Sư Tử": {
+        path: basePath + "suTu",
+    },
+    "Cung Xử Nữ": {
+        path: basePath + "xuNu",
+    },
+    "Cung Thiên Bình": {
+        path: basePath + "thienBinh",
+    },
+    "Cung Bọ Cạp": {
+        path: basePath + "boCap",
+    },
+    "Cung Nhân Mã": {
+        path: basePath + "nhanMa",
+    },
+    "Cung Ma Kết": {
+        path: basePath + "maKet",
+    },
+    "Cung Bảo Bình": {
+        path: basePath + "baoBinh",
+    },
+    "Cung Song Ngư": {
+        path: basePath + "songNgu",
+    },
 }
 
 export const mockData = {

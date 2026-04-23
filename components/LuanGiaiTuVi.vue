@@ -261,10 +261,11 @@ const props = defineProps({
   font-family: Lora;
   width: 100%;
   padding: 5px;
-  height: 215px;
+  height: 225px;
   background-image: url("../assets/zodiac/tuvi-border-lotus.png");
   background-size: cover;
   border-radius: 5px;
+  background-repeat: no-repeat;
 }
 
 .tu-vi-header,
@@ -305,6 +306,7 @@ const props = defineProps({
   background-image: url("../assets/zodiac/main-border.png");
   background-size: cover;
   border-radius: 5px;
+  background-repeat: no-repeat;
 }
 
 .tu-vi-main-title {

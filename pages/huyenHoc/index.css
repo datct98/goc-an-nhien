@@ -128,30 +128,42 @@
 .spiritual-card {
   width: 100%;
   /* 1. Nền mờ ảo (Glassmorphism) */
-  background: rgba(15, 23, 42, 0.5); /* Màu xanh đen trong suốt */
+  background: rgba(15, 23, 42, 0.5);
+  /* Màu xanh đen trong suốt */
   /* backdrop-filter: blur(5px); */
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
-      /* Viền sáng bên ngoài (tạo độ dày cho kính) */ 0 0 0 2px
-      rgba(255, 255, 255, 0.05),
-    /* Ánh sáng xanh le lói ở cạnh (giống trong ảnh) */ inset 0 0 15px
-      rgba(56, 189, 248, 0.2),
-    /* Viền sáng trắng mảnh ở mép trong */ inset 0 0 1px 1px
-      rgba(255, 255, 255, 0.2);
+  box-shadow:
+    /* Viền sáng bên ngoài (tạo độ dày cho kính) */
+    0 0 0 2px rgba(255, 255, 255, 0.05),
+    /* Ánh sáng xanh le lói ở cạnh (giống trong ảnh) */
+    inset 0 0 15px rgba(56, 189, 248, 0.2),
+    /* Viền sáng trắng mảnh ở mép trong */
+    inset 0 0 1px 1px rgba(255, 255, 255, 0.2);
 
   position: relative;
-  padding: 20px 10px 10px 10px;
+  padding: 25px 5px 5px 5px;
 }
 
 .input-container {
+  width: 100%;
   display: flex;
+  flex-direction: column;
   gap: 5px;
   margin: 10px 0px 10px 0px;
 }
 
 .input {
   width: 100%;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-sizing: border-box;
+  /* color: #edd78f; */
+  color: white;
+}
+
+.input-small {
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
@@ -167,7 +179,7 @@
   /* display: none; */
 }
 
-.input-container > div {
+.input-container>div {
   flex: 1;
   min-width: 0;
 }
@@ -185,7 +197,7 @@
 .female {
   border-radius: 15px;
   width: 100%;
-  height: 30px;
+  height: 40px;
   color: white;
   display: flex;
   justify-content: center;
@@ -222,6 +234,7 @@
   border-radius: 12px;
   box-sizing: border-box;
   color: white;
+  margin-bottom: 15px;
 }
 
 .born-date-overlay-input {
@@ -229,7 +242,8 @@
 }
 
 :deep(.p-select-label) {
-  color: white !important; /* Thay bằng màu bạn muốn */
+  color: white !important;
+  /* Thay bằng màu bạn muốn */
 }
 
 /* Thay đổi màu chữ placeholder (khi chưa chọn) */
@@ -244,6 +258,15 @@
 
 :deep(.p-select-focus-border-color) {
   color: #2c3e50;
+}
+
+:deep(.p-tablist-content) {
+  display: flex;
+  justify-content: center;
+}
+
+:deep(.p-accordionheader) {
+  background-color: transparent !important;
 }
 
 /* ----- ĐÂY LÀ PHẦN CSS CHÍNH ----- */
@@ -272,26 +295,48 @@
   /* Tăng cường hiệu ứng Glow bên ngoài */
   box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.5),
     inset 0 2px 2px rgba(255, 255, 255, 0.6), 0 0 25px rgba(201, 163, 94, 0.6),
-    /* Sáng hơn */ 0 0 35px rgba(108, 65, 209, 0.4); /* Sáng hơn */
+    /* Sáng hơn */
+    0 0 35px rgba(108, 65, 209, 0.4);
+  /* Sáng hơn */
 }
 
 .btn-tuvi:disabled,
 .btn-tuvi.disabled {
   /* Chuyển sang tông màu xám/tối để tạo cảm giác "lì" */
-  background: #333333; 
+  background: #333333;
   color: #777777;
   border-color: #555555;
-  
+
   /* Loại bỏ hiệu ứng đổ bóng phát sáng (glow) */
   box-shadow: none;
-  
+
   /* Đổi con trỏ chuột và chặn tương tác */
   cursor: not-allowed;
   opacity: 0.6;
-  filter: grayscale(1); /* Chuyển toàn bộ về mức xám nếu cần */
-  
+  filter: grayscale(1);
+  /* Chuyển toàn bộ về mức xám nếu cần */
+
   /* Chặn hiệu ứng hover và active */
   pointer-events: none;
+}
+
+.btn-return {
+  padding: 8px 50px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Lora;
+  text-transform: capitalize;
+  color: #ffe2c8;
+  background: linear-gradient(180deg, #94ff89 0%, #419c56 50%, #3e5e44 100%);
+  border-radius: 50px;
+  border: 1px solid #c9a35e;
+  box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.5),
+    inset 0 2px 2px rgba(255, 255, 255, 0.6), 0 0 15px rgba(201, 163, 94, 0.4),
+    0 0 25px rgba(108, 65, 209, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .glow-effect {
@@ -344,4 +389,25 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(180, 100, 255, 0.3), transparent);
   margin: 16px 0;
+}
+
+/* .p-tab-active {
+    border-color: #5a48d1 !important;
+    color: #5a48d1 !important;
+} */
+
+.summary-title {
+  color: #e6ca77;
+  font-size: 18px;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+  font-family: Lora;
+  text-transform: uppercase;
+}
+
+.summary {
+  text-align: start;
+  padding: 5px;
+  color: #fff8c2;
 }
