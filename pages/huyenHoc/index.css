@@ -156,7 +156,7 @@
 .input {
   width: 100%;
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid #edc1fd;
   border-radius: 12px;
   box-sizing: border-box;
   /* color: #edd78f; */
@@ -165,7 +165,7 @@
 
 .input-small {
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid #edc1fd;
   border-radius: 12px;
   box-sizing: border-box;
   /* color: #edd78f; */
@@ -230,7 +230,7 @@
 .born-date-input {
   width: 100%;
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid #edc1fd;
   border-radius: 12px;
   box-sizing: border-box;
   color: white;

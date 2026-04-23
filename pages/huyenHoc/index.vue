@@ -27,16 +27,16 @@
                       <div class="input-container">
                         <InputText v-model="username" type="text" class="input" placeholder="Nhập tên của bạn" />
                       </div>
-                      <div class="input-container">
+                      <div class="input-container pt-5">
                         <div class="flex justify-between w-full">
                           <div class="w-1/3 text-center">Ngày</div>
                           <div class="w-1/3 text-center">Tháng</div>
                           <div class="w-1/3 text-center">Năm</div>
                         </div>
                         <div class="flex flex-wrap justify-between w-full">
-                          <InputText class="w-1/3 input-small" v-model="day" type="number" />
-                          <InputText class="w-1/3 input-small" v-model="month" type="number" />
-                          <InputText class="w-1/3 input-small" v-model="year" type="number" />
+                          <InputText placeholder="01" class="w-1/3 input-small" v-model="day" type="number" />
+                          <InputText placeholder="01" class="w-1/3 input-small" v-model="month" type="number" />
+                          <InputText placeholder="2000" class="w-1/3 input-small" v-model="year" type="number" />
                         </div>
                       </div>
                       <p class="small-title pt-5 pb-5">Nhập giới tính</p>
@@ -102,7 +102,7 @@
               </template>
             </div>
             <!-- Button thao tác -->
-            <div>
+            <div class="pb-10">
               <button class="btn-tuvi" v-if="!showLuanGiaiTuVi" @click="luanGiaiTuVi()" :disabled="luanGiaiTuViDisable">
                 Luận Giải Tử Vi
               </button>
