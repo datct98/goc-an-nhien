@@ -4,26 +4,29 @@
     <div class="tu-vi-row">
       <div v-for="n in [0, 1, 2, 3]" :key="n" class="tu-vi-card">
         <div class="tu-vi-header">
-          <span class="tiny-text">{{data.palaces[n].heavenlyStem}} {{data.palaces[n].earthlyBranch}}</span>
-          <span class="tiny-text">{{data.palaces[n].decadal.range[0]}}</span>
+          <span class="tiny-text"
+            >{{ data.palaces[n].heavenlyStem }}
+            {{ data.palaces[n].earthlyBranch }}</span
+          >
+          <span class="tiny-text">{{ data.palaces[n].decadal.range[0] }}</span>
         </div>
-        <div>
+        <div class="cungChuc">
           <span>{{ data.palaces[n].name }}</span>
         </div>
         <div class="tu-vi-body">
           <!-- <div class="tu-vi-title">Thái Dương (M)</div> -->
           <div class="tu-vi-content">
             <div class="tu-vi-list">
-              <p class="text-yellow-500">Chính tinh:</p>
               <p
-                class="tiny-text"
                 v-for="(star, i) in data.palaces[n].majorStars"
                 :key="i"
+                class="majorStar"
+                :style="`color: ${getColor(star)}`"
               >
                 {{ star }}
               </p>
               <br />
-              <p class="text-yellow-500">Phụ tinh:</p>
+              <p>★</p>
               <p
                 class="tiny-text"
                 v-for="(star, i) in data.palaces[n].minorStars"
@@ -46,26 +49,31 @@
       <div class="tu-vi-col" style="flex: 1">
         <div v-for="n in [4, 5]" :key="n" class="tu-vi-card">
           <div class="tu-vi-header">
-            <span class="tiny-text">{{data.palaces[n].heavenlyStem}} {{data.palaces[n].earthlyBranch}}</span>
-            <span class="tiny-text">{{data.palaces[n].decadal.range[0]}}</span>
+            <span class="tiny-text"
+              >{{ data.palaces[n].heavenlyStem }}
+              {{ data.palaces[n].earthlyBranch }}</span
+            >
+            <span class="tiny-text">{{
+              data.palaces[n].decadal.range[0]
+            }}</span>
           </div>
-          <div>
+          <div class="cungChuc">
             <span>{{ data.palaces[n].name }}</span>
           </div>
           <div class="tu-vi-body">
             <!-- <div class="tu-vi-title">Thái Dương (M)</div> -->
             <div class="tu-vi-content">
               <div class="tu-vi-list">
-                <p class="text-yellow-500">Chính tinh:</p>
                 <p
-                  class="tiny-text"
                   v-for="(star, i) in data.palaces[n].majorStars"
                   :key="i"
+                  class="majorStar"
+                  :style="`color: ${getColor(star)}`"
                 >
                   {{ star }}
                 </p>
                 <br />
-                <p class="text-yellow-500">Phụ tinh:</p>
+                <p>★</p>
                 <p
                   class="tiny-text"
                   v-for="(star, i) in data.palaces[n].minorStars"
@@ -146,26 +154,31 @@
       <div class="tu-vi-col" style="flex: 1">
         <div v-for="n in [6, 7]" :key="n" class="tu-vi-card">
           <div class="tu-vi-header">
-            <span class="tiny-text">{{data.palaces[n].heavenlyStem}} {{data.palaces[n].earthlyBranch}}</span>
-            <span class="tiny-text">{{data.palaces[n].decadal.range[0]}}</span>
+            <span class="tiny-text"
+              >{{ data.palaces[n].heavenlyStem }}
+              {{ data.palaces[n].earthlyBranch }}</span
+            >
+            <span class="tiny-text">{{
+              data.palaces[n].decadal.range[0]
+            }}</span>
           </div>
-          <div>
+          <div class="cungChuc">
             <span>{{ data.palaces[n].name }}</span>
           </div>
           <div class="tu-vi-body">
             <!-- <div class="tu-vi-title">Thái Dương (M)</div> -->
             <div class="tu-vi-content">
               <div class="tu-vi-list">
-                <p class="text-yellow-500">Chính tinh:</p>
                 <p
-                  class="tiny-text"
                   v-for="(star, i) in data.palaces[n].majorStars"
                   :key="i"
+                  class="majorStar"
+                  :style="`color: ${getColor(star)}`"
                 >
                   {{ star }}
                 </p>
                 <br />
-                <p class="text-yellow-500">Phụ tinh:</p>
+                <p>★</p>
                 <p
                   class="tiny-text"
                   v-for="(star, i) in data.palaces[n].minorStars"
@@ -188,26 +201,29 @@
     <div class="tu-vi-row">
       <div v-for="n in [8, 9, 10, 11]" :key="n" class="tu-vi-card">
         <div class="tu-vi-header">
-          <span class="tiny-text">{{data.palaces[n].heavenlyStem}} {{data.palaces[n].earthlyBranch}}</span>
-          <span class="tiny-text">{{data.palaces[n].decadal.range[0]}}</span>
+          <span class="tiny-text"
+            >{{ data.palaces[n].heavenlyStem }}
+            {{ data.palaces[n].earthlyBranch }}</span
+          >
+          <span class="tiny-text">{{ data.palaces[n].decadal.range[0] }}</span>
         </div>
-        <div>
+        <div class="cungChuc">
           <span>{{ data.palaces[n].name }}</span>
         </div>
         <div class="tu-vi-body">
           <!-- <div class="tu-vi-title">Thái Dương (M)</div> -->
           <div class="tu-vi-content">
             <div class="tu-vi-list">
-              <p class="text-yellow-500">Chính tinh:</p>
               <p
-                class="tiny-text"
                 v-for="(star, i) in data.palaces[n].majorStars"
                 :key="i"
+                class="majorStar"
+                :style="`color: ${getColor(star)}`"
               >
                 {{ star }}
               </p>
               <br />
-              <p class="text-yellow-500">Phụ tinh:</p>
+              <p>★</p>
               <p
                 class="tiny-text"
                 v-for="(star, i) in data.palaces[n].minorStars"
@@ -229,6 +245,42 @@
 </template>
 
 <script setup>
+const majorStarColorMapping = {
+  yellow: ["Tử Vi", "Thiên Phủ"],
+  red: ["Liêm Trinh", "Thái Dương"],
+  gray: ["Vũ Khúc", "Thất Sát"],
+  green: ["Thiên Cơ", "Thiên Lương"],
+  black: [
+    "Thiên Đồng",
+    "Thái Âm",
+    "Tham Lang",
+    "Cự Môn",
+    "Thiên Tướng",
+    "Phá Quân",
+  ],
+};
+
+const getColor = (color) => {
+  let result = color.replace(/\(.*\)/, "").trim();
+  console.log("result : ", result);
+  if (majorStarColorMapping.yellow.includes(result)) {
+    return "yellow";
+  }
+  if (majorStarColorMapping.red.includes(result)) {
+    return "red";
+  }
+  if (majorStarColorMapping.gray.includes(result)) {
+    return "lightgray";
+  }
+  if (majorStarColorMapping.green.includes(result)) {
+    return "lightgreen";
+  }
+  if (majorStarColorMapping.black.includes(result)) {
+    return "black";
+  }
+  return "lightgray";
+};
+
 const props = defineProps({
   data: {
     type: Object,
@@ -266,6 +318,7 @@ const props = defineProps({
   background-size: cover;
   border-radius: 5px;
   background-repeat: no-repeat;
+  background-color: #bfb98d8c;
 }
 
 .tu-vi-header,
@@ -297,7 +350,7 @@ const props = defineProps({
 }
 
 .tu-vi-main {
-  font-size: 10px;
+  font-size: 12px;
   font-family: Lora;
   display: flex;
   flex-direction: column;
@@ -307,6 +360,8 @@ const props = defineProps({
   background-size: cover;
   border-radius: 5px;
   background-repeat: no-repeat;
+  background-color: #bac7998c;
+  padding-left: 10px;
 }
 
 .tu-vi-main-title {
@@ -332,6 +387,16 @@ const props = defineProps({
 }
 
 .tiny-text {
-  font-size: 8px;
+  font-size: 10px;
+}
+
+.majorStar {
+  font-size: 11px;
+  width: 100%;
+  text-align: center;
+}
+
+.cungChuc {
+  color: #eed2ff;
 }
 </style>

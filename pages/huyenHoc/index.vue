@@ -17,9 +17,10 @@
               <template v-if="!showLuanGiaiTuVi">
                 <Tabs value="0">
                   <TabList class="center-tabs">
-                    <Tab value="0">Xem trọn đời</Tab>
-                    <Tab value="1">Xem năm</Tab>
-                    <Tab value="2">Xem ngày</Tab>
+                    <Tab value="0">Trọn Đời</Tab>
+                    <Tab value="1">Lưu Niên</Tab>
+                    <Tab value="2">Lưu Nguyệt</Tab>
+                    <Tab value="3">Lưu Nhật</Tab>
                   </TabList>
                   <TabPanels>
                     <TabPanel value="0">
@@ -29,9 +30,9 @@
                       </div>
                       <div class="input-container pt-5">
                         <div class="flex justify-between w-full">
-                          <div class="w-1/3 text-center">Ngày</div>
-                          <div class="w-1/3 text-center">Tháng</div>
-                          <div class="w-1/3 text-center">Năm</div>
+                          <div class="w-1/3 text-center text-white">Ngày</div>
+                          <div class="w-1/3 text-center text-white">Tháng</div>
+                          <div class="w-1/3 text-center text-white">Năm</div>
                         </div>
                         <div class="flex flex-wrap justify-between w-full">
                           <InputText placeholder="01" class="w-1/3 input-small" v-model="day" type="number" />
@@ -88,7 +89,7 @@
                 <div class="interpretation">
                   <Accordion>
                     <AccordionPanel value="0">
-                      <AccordionHeader>Luận giải chi tiết</AccordionHeader>
+                      <AccordionHeader style="color:#e6ca77">Luận giải chi tiết</AccordionHeader>
                       <AccordionContent>
                         <p class="summary">
                           {{ resultData.interpretation }}
@@ -212,10 +213,11 @@ const luanGiaiTuVi = async () => {
       fixLeap: true,
     };
     console.log("baseBody : ", baseBody);
-    // const res = await $api.sendPostApi("horoscope", baseBody);
-    // resultData.value = res.data;
+    const res = await $api.sendPostApi("horoscope", baseBody);
+    resultData.value = res.data;
 
-    resultData.value = mockData;
+    // resultData.value = mockData;
+
     showLuanGiaiTuVi.value = true;
     let imageZodiacPath = zodiacMapping[resultData.value.sign].path;
     if (imageZodiacPath) {
