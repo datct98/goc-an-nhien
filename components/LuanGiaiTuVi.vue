@@ -265,9 +265,9 @@ const getColor = (color) => {
   console.log("result : ", result);
   if (majorStarColorMapping.yellow.includes(result)) {
     return "yellow";
-  }
+  } 
   if (majorStarColorMapping.red.includes(result)) {
-    return "red";
+    return "coral";
   }
   if (majorStarColorMapping.gray.includes(result)) {
     return "lightgray";
