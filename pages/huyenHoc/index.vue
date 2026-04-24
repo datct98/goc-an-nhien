@@ -216,8 +216,6 @@ const luanGiaiTuVi = async () => {
     const res = await $api.sendPostApi("horoscope", baseBody);
     resultData.value = res.data;
 
-    // resultData.value = mockData;
-
     showLuanGiaiTuVi.value = true;
     let imageZodiacPath = zodiacMapping[resultData.value.sign].path;
     if (imageZodiacPath) {

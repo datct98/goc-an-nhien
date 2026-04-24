@@ -5,11 +5,10 @@ export default defineNuxtPlugin({
   name: "api",
   setup() {
     const defaulToken = "";
-    const loginUrl = "https://g-center.site:8888/";
-    const baseUrl = "http://42.96.4.184:8084/api/";
-    // const loginUrl = "https://apiv2.g-center.io.vn:8888/";
-    // const baseUrl = "https://apiv2.g-center.io.vn:9999/";
-    // const baseUrl = "https://apiv1.g-center.io.vn:8082/";
+    const loginUrl = "";
+    // const baseUrl = "http://42.96.4.184:8084/api/";
+    const baseUrl = "http://localhost:8084/api/";
+
 
     const debug = true;
     let respData:
