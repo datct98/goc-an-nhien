@@ -197,13 +197,13 @@ const year = ref();
 
 // Luân giải tư vi trọn đơì
 const luanGiaiTuVi = async () => {
-  luanGiaiTuViDisable.value = true;
   if (!isFormValid.value) {
     $common.showWarning("Bạn chưa nhập đủ thông tin cần thiết")
     return;
   };
   loading.value = true;
   error.value = null;
+  luanGiaiTuViDisable.value = true;
   try {
     const baseBody = {
       name: username.value,
