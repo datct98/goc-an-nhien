@@ -225,8 +225,7 @@ const luanGiaiTuVi = async () => {
     }
   } catch (err) {
     console.error("Horoscope API error:", err);
-    error.value =
-      err.response?.data?.error || "Có lỗi xảy ra, vui lòng thử lại";
+    $common.showError("Có lỗi xảy ra khi luận giải tử vi. Vui lòng thử lại sau." + err.message);
   } finally {
     loading.value = false;
     luanGiaiTuViDisable.value = false;
