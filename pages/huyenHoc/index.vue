@@ -10,7 +10,11 @@
               <span>Xem tử vi</span>
             </p>
             <div class="vongBatQuai">
-              <Image style="width: 80%" :src="vongBatQuaiImg" alt="Vong bat quai" />
+              <Image
+                style="width: 80%"
+                :src="vongBatQuaiImg"
+                alt="Vong bat quai"
+              />
             </div>
             <!-- Tử vi phần xử lý chính chính -->
             <div class="spiritual-card">
@@ -26,7 +30,12 @@
                     <TabPanel value="0">
                       <p class="small-title pt-5">Nhập thông tin</p>
                       <div class="input-container">
-                        <InputText v-model="username" type="text" class="input" placeholder="Nhập tên của bạn" />
+                        <InputText
+                          v-model="username"
+                          type="text"
+                          class="input"
+                          placeholder="Nhập tên của bạn"
+                        />
                       </div>
                       <div class="input-container pt-5">
                         <div class="flex justify-between w-full">
@@ -35,29 +44,57 @@
                           <div class="w-1/3 text-center text-white">Năm</div>
                         </div>
                         <div class="flex flex-wrap justify-between w-full">
-                          <InputText placeholder="01" class="w-1/3 input-small" v-model="day" type="number" />
-                          <InputText placeholder="01" class="w-1/3 input-small" v-model="month" type="number" />
-                          <InputText placeholder="2000" class="w-1/3 input-small" v-model="year" type="number" />
+                          <InputText
+                            placeholder="01"
+                            class="w-1/3 input-small"
+                            v-model="day"
+                            type="number"
+                          />
+                          <InputText
+                            placeholder="01"
+                            class="w-1/3 input-small"
+                            v-model="month"
+                            type="number"
+                          />
+                          <InputText
+                            placeholder="2000"
+                            class="w-1/3 input-small"
+                            v-model="year"
+                            type="number"
+                          />
                         </div>
                       </div>
                       <p class="small-title pt-5 pb-5">Nhập giới tính</p>
                       <div class="gender-container">
-                        <div class="male" :class="{ active: gender == 1 }" @click="updateGender(1)">
+                        <div
+                          class="male"
+                          :class="{ active: gender == 1 }"
+                          @click="updateGender(1)"
+                        >
                           Nam
                         </div>
-                        <div class="female" :class="{ active: gender == 0 }" @click="updateGender(0)">
+                        <div
+                          class="female"
+                          :class="{ active: gender == 0 }"
+                          @click="updateGender(0)"
+                        >
                           Nữ
                         </div>
                       </div>
                       <p class="small-title pt-5">Giờ sinh</p>
-                      <Select v-model="selectedTimeIndice" class="born-date-input"
-                        overlayClass="born-date-overlay-input" checkmark :highlightOnSelect="false"
-                        :options="timeIndices" optionLabel="name" placeholder="Chọn giờ sinh..."></Select>
+                      <Select
+                        v-model="selectedTimeIndice"
+                        class="born-date-input"
+                        overlayClass="born-date-overlay-input"
+                        checkmark
+                        :highlightOnSelect="false"
+                        :options="timeIndices"
+                        optionLabel="name"
+                        placeholder="Chọn giờ sinh..."
+                      ></Select>
                     </TabPanel>
-                    <TabPanel value="1">
-                    </TabPanel>
-                    <TabPanel value="2">
-                    </TabPanel>
+                    <TabPanel value="1"> </TabPanel>
+                    <TabPanel value="2"> </TabPanel>
                   </TabPanels>
                 </Tabs>
               </template>
@@ -80,34 +117,84 @@
                 </div>
                 <div class="result-divider"></div>
                 <div class="summary-container">
+                  <!-- Chân dung bản mệnh -->
                   <p class="summary-title">Chân dung bản mệnh</p>
-                  <p class="summary">
-                    👉{{ resultData.summary }}
-                  </p>
-                </div>
-                <div class="result-divider"></div>
-                <div class="interpretation">
                   <Accordion>
                     <AccordionPanel value="0">
-                      <AccordionHeader style="color:#e6ca77">Luận giải chi tiết</AccordionHeader>
+                      <AccordionHeader style="color: #e6ca77"
+                        >Xem phân tích lá số tử vi</AccordionHeader
+                      >
                       <AccordionContent>
                         <p class="summary">
-                          {{ resultData.interpretation }}
+                          <span
+                            class="summary-content"
+                            v-for="(item, index) in resultData.summary"
+                            :key="index"
+                          >
+                            <span
+                              ><b> 👉 {{ item.name }} : </b></span
+                            >
+                            <span>{{ item.description }}</span>
+                          </span>
+                        </p>
+                      </AccordionContent>
+                    </AccordionPanel>
+                  </Accordion>
+                  <!-- Lời khuyên -->
+                  <p class="summary-title pt-5">Lời khuyên</p>
+                  <Accordion>
+                    <AccordionPanel value="0">
+                      <AccordionHeader style="color: #e6ca77"
+                        >Xem lời khuyên</AccordionHeader
+                      >
+                      <AccordionContent>
+                        <p class="summary">
+                          <span class="summary-content">{{
+                            resultData.advice
+                          }}</span>
+                        </p>
+                      </AccordionContent>
+                    </AccordionPanel>
+                  </Accordion>
+                </div>
+                <div class="interpretation pt-5">
+                  <!-- Luận giải chi tiết -->
+                  <p class="summary-title">Chi tiết</p>
+                  <Accordion>
+                    <AccordionPanel value="0">
+                      <AccordionHeader style="color: #e6ca77"
+                        >Luận giải chi tiết</AccordionHeader
+                      >
+                      <AccordionContent>
+                        <p class="summary">
+                          <span class="summary-content">{{
+                            resultData.interpretation
+                          }}</span>
                         </p>
                       </AccordionContent>
                     </AccordionPanel>
                   </Accordion>
                 </div>
                 <div class="result-divider"></div>
+                <p class="summary-title">Lá số tử vi</p>
                 <LuanGiaiTuVi :data="resultData" />
               </template>
             </div>
             <!-- Button thao tác -->
             <div class="pb-10">
-              <button class="btn-tuvi" v-if="!showLuanGiaiTuVi" @click="luanGiaiTuVi()" :disabled="luanGiaiTuViDisable">
+              <button
+                class="btn-tuvi"
+                v-if="!showLuanGiaiTuVi"
+                @click="luanGiaiTuVi()"
+                :disabled="luanGiaiTuViDisable"
+              >
                 Luận Giải Tử Vi
               </button>
-              <button class="btn-return" v-else @click="showLuanGiaiTuVi = false">
+              <button
+                class="btn-return"
+                v-else
+                @click="showLuanGiaiTuVi = false"
+              >
                 Quay trở lại
               </button>
             </div>
@@ -167,12 +254,12 @@ const username = ref();
 const gender = ref(null);
 const selectedTimeIndice = ref();
 const { $api } = useNuxtApp();
-const images = import.meta.glob('~/assets/zodiac/*.png', { eager: true });
+const images = import.meta.glob("~/assets/zodiac/*.png", { eager: true });
 
 // 2. Hàm lấy đường dẫn ảnh
 const getZodiacImage = (path) => {
   const mod = images[path];
-  return mod ? mod.default : '';
+  return mod ? mod.default : "";
 };
 
 const updateGender = (value) => {
@@ -185,7 +272,14 @@ const tossCoin = () => {
   }
 };
 
-const isFormValid = computed(() => day.value && month.value && year.value && selectedTimeIndice.value && username.value !== null);
+const isFormValid = computed(
+  () =>
+    day.value &&
+    month.value &&
+    year.value &&
+    selectedTimeIndice.value &&
+    username.value !== null
+);
 const loading = ref(false);
 const error = ref(null);
 const resultData = ref(null);
@@ -198,9 +292,9 @@ const year = ref();
 // Luân giải tư vi trọn đơì
 const luanGiaiTuVi = async () => {
   if (!isFormValid.value) {
-    $common.showWarning("Bạn chưa nhập đủ thông tin cần thiết")
+    $common.showWarning("Bạn chưa nhập đủ thông tin cần thiết");
     return;
-  };
+  }
   loading.value = true;
   error.value = null;
   luanGiaiTuViDisable.value = true;
@@ -219,11 +313,15 @@ const luanGiaiTuVi = async () => {
     showLuanGiaiTuVi.value = true;
     let imageZodiacPath = zodiacMapping[resultData.value.sign].path;
     if (imageZodiacPath) {
-      resultData.value.zodiacImage = getZodiacImage(`/assets/zodiac/${imageZodiacPath}.png`);
+      resultData.value.zodiacImage = getZodiacImage(
+        `/assets/zodiac/${imageZodiacPath}.png`
+      );
     }
   } catch (err) {
     console.error("Horoscope API error:", err);
-    $common.showError("Có lỗi xảy ra khi luận giải tử vi. Vui lòng thử lại sau." + err.message);
+    $common.showError(
+      "Có lỗi xảy ra khi luận giải tử vi. Vui lòng thử lại sau." + err.message
+    );
   } finally {
     loading.value = false;
     luanGiaiTuViDisable.value = false;
