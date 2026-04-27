@@ -8,7 +8,7 @@ export default defineNuxtPlugin({
     const loginUrl = "";
     // const baseUrl = "http://42.96.4.184:8084/api/";
     // const baseUrl = "http://localhost:8084/api/";
-    const baseUrl = "http://api-horescope.goc-an-nhien.site/api/"
+    const baseUrl = "https://api-horescope.goc-an-nhien.site/api/"
 
 
     const debug = true;
