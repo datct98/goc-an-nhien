@@ -114,7 +114,7 @@
                     </AccordionPanel>
                   </Accordion>
                   <!-- Lời khuyên -->
-                  <p class="summary-title">Lời khuyên</p>
+                  <p class="summary-title pt-5">Lời khuyên</p>
                   <Accordion>
                     <AccordionPanel value="0">
                       <AccordionHeader style="color: #e6ca77">Xem lời khuyên</AccordionHeader>
