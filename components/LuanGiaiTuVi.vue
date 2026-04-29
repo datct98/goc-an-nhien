@@ -361,7 +361,7 @@ const props = defineProps({
   border-radius: 5px;
   background-repeat: no-repeat;
   background-color: #bac7998c;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .tu-vi-main-title {

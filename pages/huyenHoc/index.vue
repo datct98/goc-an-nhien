@@ -9,33 +9,23 @@
             <p class="title">
               <span>Xem tử vi</span>
             </p>
-            <div class="vongBatQuai">
-              <Image
-                style="width: 80%"
-                :src="vongBatQuaiImg"
-                alt="Vong bat quai"
-              />
+            <div class="vongBatQuai" :class="{ rotating: showLoadingAnimation }">
+              <Image style="width: 80%" :src="vongBatQuaiImg" alt="Vong bat quai" />
             </div>
             <!-- Tử vi phần xử lý chính chính -->
-            <div class="spiritual-card">
+            <div class="spiritual-card" v-if="!showLoadingAnimation">
               <template v-if="!showLuanGiaiTuVi">
                 <Tabs value="0">
                   <TabList class="center-tabs">
                     <Tab value="0">Trọn Đời</Tab>
                     <Tab value="1">Lưu Niên</Tab>
-                    <Tab value="2">Lưu Nguyệt</Tab>
-                    <Tab value="3">Lưu Nhật</Tab>
+                    <Tab value="2">Lưu Nhật</Tab>
                   </TabList>
                   <TabPanels>
                     <TabPanel value="0">
                       <p class="small-title pt-5">Nhập thông tin</p>
                       <div class="input-container">
-                        <InputText
-                          v-model="username"
-                          type="text"
-                          class="input"
-                          placeholder="Nhập tên của bạn"
-                        />
+                        <InputText v-model="username" type="text" class="input" placeholder="Nhập tên của bạn" />
                       </div>
                       <div class="input-container pt-5">
                         <div class="flex justify-between w-full">
@@ -44,54 +34,24 @@
                           <div class="w-1/3 text-center text-white">Năm</div>
                         </div>
                         <div class="flex flex-wrap justify-between w-full">
-                          <InputText
-                            placeholder="01"
-                            class="w-1/3 input-small"
-                            v-model="day"
-                            type="number"
-                          />
-                          <InputText
-                            placeholder="01"
-                            class="w-1/3 input-small"
-                            v-model="month"
-                            type="number"
-                          />
-                          <InputText
-                            placeholder="2000"
-                            class="w-1/3 input-small"
-                            v-model="year"
-                            type="number"
-                          />
+                          <InputText placeholder="01" class="w-1/3 input-small" v-model="day" type="number" />
+                          <InputText placeholder="01" class="w-1/3 input-small" v-model="month" type="number" />
+                          <InputText placeholder="2000" class="w-1/3 input-small" v-model="year" type="number" />
                         </div>
                       </div>
                       <p class="small-title pt-5 pb-5">Nhập giới tính</p>
                       <div class="gender-container">
-                        <div
-                          class="male"
-                          :class="{ active: gender == 1 }"
-                          @click="updateGender(1)"
-                        >
+                        <div class="male" :class="{ active: gender == 1 }" @click="updateGender(1)">
                           Nam
                         </div>
-                        <div
-                          class="female"
-                          :class="{ active: gender == 0 }"
-                          @click="updateGender(0)"
-                        >
+                        <div class="female" :class="{ active: gender == 0 }" @click="updateGender(0)">
                           Nữ
                         </div>
                       </div>
                       <p class="small-title pt-5">Giờ sinh</p>
-                      <Select
-                        v-model="selectedTimeIndice"
-                        class="born-date-input"
-                        overlayClass="born-date-overlay-input"
-                        checkmark
-                        :highlightOnSelect="false"
-                        :options="timeIndices"
-                        optionLabel="name"
-                        placeholder="Chọn giờ sinh..."
-                      ></Select>
+                      <Select v-model="selectedTimeIndice" class="born-date-input"
+                        overlayClass="born-date-overlay-input" checkmark :highlightOnSelect="false"
+                        :options="timeIndices" optionLabel="name" placeholder="Chọn giờ sinh..."></Select>
                     </TabPanel>
                     <TabPanel value="1"> </TabPanel>
                     <TabPanel value="2"> </TabPanel>
@@ -116,24 +76,21 @@
                   </div>
                 </div>
                 <div class="result-divider"></div>
+                <div>
+                  <p class="summary-title">Lá số tử vi</p>
+                  <LuanGiaiTuVi :data="resultData" />
+                  <div class="result-divider"></div>
+                </div>
                 <div class="summary-container">
                   <!-- Chân dung bản mệnh -->
                   <p class="summary-title">Chân dung bản mệnh</p>
                   <Accordion>
                     <AccordionPanel value="0">
-                      <AccordionHeader style="color: #e6ca77"
-                        >Xem phân tích lá số tử vi</AccordionHeader
-                      >
+                      <AccordionHeader style="color: #e6ca77">Xem phân tích lá số tử vi</AccordionHeader>
                       <AccordionContent>
                         <p class="summary">
-                          <span
-                            class="summary-content"
-                            v-for="(item, index) in resultData.summary"
-                            :key="index"
-                          >
-                            <span
-                              ><b> 👉 {{ item.name }} : </b></span
-                            >
+                          <span class="summary-content" v-for="(item, index) in resultData.summary" :key="index">
+                            <span><b> 👉 {{ item.name }} : </b></span>
                             <span>{{ item.description }}</span>
                           </span>
                         </p>
@@ -144,9 +101,7 @@
                   <p class="summary-title pt-5">Lời khuyên</p>
                   <Accordion>
                     <AccordionPanel value="0">
-                      <AccordionHeader style="color: #e6ca77"
-                        >Xem lời khuyên</AccordionHeader
-                      >
+                      <AccordionHeader style="color: #e6ca77">Xem lời khuyên</AccordionHeader>
                       <AccordionContent>
                         <p class="summary">
                           <span class="summary-content">{{
@@ -162,9 +117,7 @@
                   <p class="summary-title">Chi tiết</p>
                   <Accordion>
                     <AccordionPanel value="0">
-                      <AccordionHeader style="color: #e6ca77"
-                        >Luận giải chi tiết</AccordionHeader
-                      >
+                      <AccordionHeader style="color: #e6ca77">Luận giải chi tiết</AccordionHeader>
                       <AccordionContent>
                         <p class="summary">
                           <span class="summary-content">{{
@@ -175,26 +128,14 @@
                     </AccordionPanel>
                   </Accordion>
                 </div>
-                <div class="result-divider"></div>
-                <p class="summary-title">Lá số tử vi</p>
-                <LuanGiaiTuVi :data="resultData" />
               </template>
             </div>
             <!-- Button thao tác -->
             <div class="pb-10">
-              <button
-                class="btn-tuvi"
-                v-if="!showLuanGiaiTuVi"
-                @click="luanGiaiTuVi()"
-                :disabled="luanGiaiTuViDisable"
-              >
+              <button class="btn-tuvi" v-if="!showLuanGiaiTuVi" @click="luanGiaiTuVi()" :disabled="luanGiaiTuViDisable">
                 Luận Giải Tử Vi
               </button>
-              <button
-                class="btn-return"
-                v-else
-                @click="showLuanGiaiTuVi = false"
-              >
+              <button class="btn-return" v-else @click="showLuanGiaiTuVi = false">
                 Quay trở lại
               </button>
             </div>
@@ -280,11 +221,12 @@ const isFormValid = computed(
     selectedTimeIndice.value &&
     username.value !== null
 );
-const loading = ref(false);
 const error = ref(null);
 const resultData = ref(null);
 const showLuanGiaiTuVi = ref(false);
+const showLoadingAnimation = ref(false);
 const luanGiaiTuViDisable = ref(false);
+const loadingAnimationTimer = ref(null);
 const day = ref();
 const month = ref();
 const year = ref();
@@ -295,9 +237,16 @@ const luanGiaiTuVi = async () => {
     $common.showWarning("Bạn chưa nhập đủ thông tin cần thiết");
     return;
   }
-  loading.value = true;
   error.value = null;
   luanGiaiTuViDisable.value = true;
+  showLoadingAnimation.value = false;
+  if (loadingAnimationTimer.value) {
+    clearTimeout(loadingAnimationTimer.value);
+    loadingAnimationTimer.value = null;
+  }
+
+  showLoadingAnimation.value = true;
+
   try {
     const baseBody = {
       name: username.value,
@@ -323,8 +272,12 @@ const luanGiaiTuVi = async () => {
       "Có lỗi xảy ra khi luận giải tử vi. Vui lòng thử lại sau." + err.message
     );
   } finally {
-    loading.value = false;
     luanGiaiTuViDisable.value = false;
+    showLoadingAnimation.value = false;
+    if (loadingAnimationTimer.value) {
+      clearTimeout(loadingAnimationTimer.value);
+      loadingAnimationTimer.value = null;
+    }
   }
 };
 </script>
