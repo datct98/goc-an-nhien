@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 Concept Warm Earth - Chia Tiền</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(180deg, #1c1208 0%, #2d2016 100%);
+      min-height: 100vh;
+      color: #fef3c7;
+      font-family: 'Inter', sans-serif;
+      padding: 40px 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 6px;
+      color: #f59e0b;
+    }
+    .subtitle {
+      text-align: center;
+      color: #a08060;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+    .note {
+      text-align: center;
+      color: #c2703e;
+      margin-bottom: 40px;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .concepts {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .concept-block {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(194,112,62,0.2);
+      border-radius: 20px;
+      padding: 28px;
+      transition: all 0.3s ease;
+    }
+    .concept-block:hover {
+      border-color: #f59e0b;
+      background: rgba(245,158,11,0.04);
+      box-shadow: 0 8px 40px rgba(245,158,11,0.08);
+    }
+    .concept-block.reverse { flex-direction: row-reverse; }
+
+    .concept-img-wrap {
+      flex-shrink: 0;
+      width: 360px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
+    }
+    .concept-img-wrap:hover {
+      transform: scale(1.02);
+    }
+    .concept-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .concept-info {
+      flex: 1;
+      padding-top: 10px;
+    }
+    .concept-number {
+      font-size: 0.8rem;
+      color: #c2703e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .concept-info h2 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #fef3c7;
+    }
+    .concept-info p {
+      color: #a08060;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .ux-points {
+      list-style: none;
+      padding: 0;
+    }
+    .ux-points li {
+      padding: 6px 0;
+      font-size: 0.9rem;
+      color: #d4a574;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .ux-points li::before {
+      content: "✦";
+      color: #f59e0b;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .tag {
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      background: rgba(245,158,11,0.12);
+      color: #f59e0b;
+      border: 1px solid rgba(245,158,11,0.25);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.93);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+      backdrop-filter: blur(8px);
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 16px;
+      box-shadow: 0 0 80px rgba(245,158,11,0.15);
+    }
+
+    @media (max-width: 800px) {
+      .concept-block, .concept-block.reverse {
+        flex-direction: column;
+      }
+      .concept-img-wrap { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>☕ 5 Concept Warm Earth — Chia Tiền</h1>
+  <p class="subtitle">Mỗi concept tập trung vào một hướng UX khác nhau</p>
+  <p class="note">Click vào ảnh để phóng to • Chọn concept bạn thích nhất hoặc kết hợp</p>
+
+  <div class="concepts">
+
+    <!-- V1: Wizard -->
+    <div class="concept-block">
+      <div class="concept-img-wrap" onclick="openLightbox(this)">
+        <img src="/warm_v1.png" alt="Concept V1 - Wizard">
+      </div>
+      <div class="concept-info">
+        <div class="concept-number">Concept V1</div>
+        <h2>🧭 Step-by-Step Wizard</h2>
+        <p>Chia form thành 3 bước rõ ràng: Thông tin → Khoản chi → Kết quả. Người dùng chỉ tập trung 1 việc tại một thời điểm.</p>
+        <ul class="ux-points">
+          <li>Giảm cognitive load — không bị overwhelm bởi quá nhiều input</li>
+          <li>Progress bar cho biết đang ở đâu trong flow</li>
+          <li>Mỗi bước có validation riêng trước khi tiếp tục</li>
+          <li>Phù hợp cho lần đầu sử dụng</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Dễ sử dụng</span>
+          <span class="tag">Step-by-step</span>
+          <span class="tag">Beginner-friendly</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- V2: Receipt -->
+    <div class="concept-block reverse">
+      <div class="concept-img-wrap" onclick="openLightbox(this)">
+        <img src="/warm_v2.png" alt="Concept V2 - Receipt">
+      </div>
+      <div class="concept-info">
+        <div class="concept-number">Concept V2</div>
+        <h2>🧾 Receipt / Hóa đơn</h2>
+        <p>Kết quả hiển thị dạng hóa đơn thực tế — mép răng cưa, font monospace, dòng chấm. Quen thuộc và dễ chụp chia sẻ.</p>
+        <ul class="ux-points">
+          <li>Metaphor quen thuộc — ai cũng biết đọc hóa đơn</li>
+          <li>Dễ screenshot và gửi nhóm chat</li>
+          <li>Layout compact, hiển thị nhiều thông tin trên 1 màn hình</li>
+          <li>Cảm giác "chính thức" — mọi người tin tưởng kết quả hơn</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Shareable</span>
+          <span class="tag">Compact</span>
+          <span class="tag">Nostalgic</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- V3: Tabs -->
+    <div class="concept-block">
+      <div class="concept-img-wrap" onclick="openLightbox(this)">
+        <img src="/warm_v3.png" alt="Concept V3 - Tabs">
+      </div>
+      <div class="concept-info">
+        <div class="concept-number">Concept V3</div>
+        <h2>📑 Tab Nhập liệu / Kết quả</h2>
+        <p>2 tab chính: "Nhập liệu" và "Kết quả". Chuyển đổi nhanh, có tổng tạm tính real-time ở bottom bar.</p>
+        <ul class="ux-points">
+          <li>Nhanh chóng switch giữa nhập liệu và xem kết quả</li>
+          <li>Running total bar — feedback tức thì khi thêm khoản</li>
+          <li>FAB button (+) cho thao tác thêm nhanh</li>
+          <li>Phù hợp khi cần chỉnh sửa nhiều lần</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Real-time</span>
+          <span class="tag">Quick switch</span>
+          <span class="tag">Power user</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- V4: Accordion -->
+    <div class="concept-block reverse">
+      <div class="concept-img-wrap" onclick="openLightbox(this)">
+        <img src="/warm_v4.png" alt="Concept V4 - Accordion">
+      </div>
+      <div class="concept-info">
+        <div class="concept-number">Concept V4</div>
+        <h2>📊 All-in-One + Bar Chart</h2>
+        <p>Tất cả trên 1 trang với accordion có thể mở/đóng. Bar chart ngang giúp so sánh trực quan ai trả nhiều nhất.</p>
+        <ul class="ux-points">
+          <li>Tổng quan nhanh — header hiện stats chính: khoản, người, tổng tiền</li>
+          <li>Bar chart giúp nhìn thấy ai trả nhiều/ít ngay lập tức</li>
+          <li>Accordion giữ trang gọn — mở section cần xem</li>
+          <li>Compact rows thay vì cards — hiển thị nhiều khoản hơn</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Data-rich</span>
+          <span class="tag">Visual comparison</span>
+          <span class="tag">All-in-one</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- V5: Expandable Person Cards -->
+    <div class="concept-block">
+      <div class="concept-img-wrap" onclick="openLightbox(this)">
+        <img src="/warm_v5.png" alt="Concept V5 - Expandable Cards">
+      </div>
+      <div class="concept-info">
+        <div class="concept-number">Concept V5</div>
+        <h2>👤 Person-Centric (Xem theo người)</h2>
+        <p>Lấy NGƯỜI làm trung tâm thay vì khoản chi. Tap vào tên để xem chi tiết breakdown từng khoản của người đó.</p>
+        <ul class="ux-points">
+          <li>Trả lời câu hỏi chính: "Tao phải trả bao nhiêu?" — ngay lập tức</li>
+          <li>Expand card xem breakdown chi tiết từng khoản</li>
+          <li>Mini pie chart cho tỷ lệ chi tiêu</li>
+          <li>Toggle "Xem theo khoản chi" để chuyển góc nhìn</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Person-first</span>
+          <span class="tag">Interactive</span>
+          <span class="tag">Most intuitive</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Preview">
+  </div>
+
+  <script>
+    function openLightbox(wrap) {
+      const img = wrap.querySelector('img');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>

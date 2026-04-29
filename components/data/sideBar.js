@@ -63,6 +63,14 @@ const data = {
         path: "/shop",
         status: "done",
     },
+    tienIch: {
+        icon: "🧰",
+        iconName: "wrench",
+        image: "/home/icon/tienIch.png",
+        name: "Tiện ích",
+        path: "/tien-ich",
+        status: "done",
+    },
 }
 
 export const menuList = [
@@ -128,6 +136,14 @@ export const menuList = [
         iconName: 'pi pi-' + data.tuDo.iconName,
         name: data.tuDo.name,
         status: data.tuDo.status,
+        active: false,
+    },
+    {
+        path: data.tienIch.path,
+        icon: data.tienIch.icon,
+        iconName: 'pi pi-' + data.tienIch.iconName,
+        name: data.tienIch.name,
+        status: data.tienIch.status,
         active: false,
     },
 ];
