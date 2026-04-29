@@ -106,9 +106,7 @@
                       <AccordionHeader style="color: #e6ca77">Luận giải chi tiết</AccordionHeader>
                       <AccordionContent>
                         <p class="summary">
-                          <span class="summary-content">{{
-                            resultData.interpretation
-                          }}</span>
+                          <span class="summary-content" v-html="formatContent(resultData.interpretation)"></span>
                         </p>
                       </AccordionContent>
                     </AccordionPanel>
@@ -202,6 +200,14 @@ const getZodiacImage = (path) => {
   const mod = images[path];
   return mod ? mod.default : "";
 };
+
+const formatContent = (rawString) => {
+  return rawString
+    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') 
+    .replace(/^###\s+(.*)$/gm, '<h3>$1</h3>')
+    .replace(/^---$/gm, '<hr>')
+    .replace(/\n/g, '<br>');               
+}
 
 const updateGender = (value) => {
   gender.value = value;

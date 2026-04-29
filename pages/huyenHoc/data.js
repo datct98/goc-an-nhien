@@ -53,6 +53,9 @@ export const zodiacMapping = {
   "Cung Thuỷ Bình": {
     path: basePath + "baoBinh",
   },
+  "Cung Thủy Bình": {
+    path: basePath + "baoBinh",
+  },
   "Cung Bảo Bình": {
     path: basePath + "baoBinh",
   },
