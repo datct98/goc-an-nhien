@@ -433,7 +433,7 @@
 }
 
 .vongBatQuai.rotating {
-  animation: spin-rotation 1s linear infinite;
+  animation: spin-rotation 5s linear infinite;
 }
 
 @keyframes spin-rotation {
