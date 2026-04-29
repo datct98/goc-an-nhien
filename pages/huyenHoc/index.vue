@@ -97,24 +97,10 @@
                       </AccordionContent>
                     </AccordionPanel>
                   </Accordion>
-                  <!-- Lời khuyên -->
-                  <p class="summary-title pt-5">Lời khuyên</p>
-                  <Accordion>
-                    <AccordionPanel value="0">
-                      <AccordionHeader style="color: #e6ca77">Xem lời khuyên</AccordionHeader>
-                      <AccordionContent>
-                        <p class="summary">
-                          <span class="summary-content">{{
-                            resultData.advice
-                          }}</span>
-                        </p>
-                      </AccordionContent>
-                    </AccordionPanel>
-                  </Accordion>
                 </div>
                 <div class="interpretation pt-5">
                   <!-- Luận giải chi tiết -->
-                  <p class="summary-title">Chi tiết</p>
+                  <p class="summary-title pt-5">Chi tiết</p>
                   <Accordion>
                     <AccordionPanel value="0">
                       <AccordionHeader style="color: #e6ca77">Luận giải chi tiết</AccordionHeader>
@@ -122,6 +108,20 @@
                         <p class="summary">
                           <span class="summary-content">{{
                             resultData.interpretation
+                          }}</span>
+                        </p>
+                      </AccordionContent>
+                    </AccordionPanel>
+                  </Accordion>
+                  <!-- Lời khuyên -->
+                  <p class="summary-title">Lời khuyên</p>
+                  <Accordion>
+                    <AccordionPanel value="0">
+                      <AccordionHeader style="color: #e6ca77">Xem lời khuyên</AccordionHeader>
+                      <AccordionContent>
+                        <p class="summary">
+                          <span class="summary-content">{{
+                            resultData.advice
                           }}</span>
                         </p>
                       </AccordionContent>
