@@ -262,7 +262,7 @@ const luanGiaiTuVi = async () => {
       fixLeap: true,
     };
     console.log("baseBody : ", baseBody);
-    const res = await $api.sendPostApi("horoscope", baseBody);
+    const res = await $api.sendPostApi("horoscope", baseBody, "default");
     resultData.value = res.data;
 
     showLuanGiaiTuVi.value = true;
