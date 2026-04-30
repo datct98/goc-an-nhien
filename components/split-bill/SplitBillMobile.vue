@@ -219,21 +219,21 @@ const handleBack = () => {
 };
 
 const shareResult = () => {
-  // let text = `💰 ${title.value}\n\n`;
-  // calculatedResults.value.forEach((r) => {
-  //   text += `• ${r.name}: ${formatCurrency(r.amount)}\n`;
-  // });
-  // text += `\nTổng: ${formatCurrency(totalAmount.value)}`;
-  // if (navigator.clipboard) {
-  //   navigator.clipboard.writeText(text);
-  // }
-  // // Try native share
-  // if (navigator.share) {
-  //   navigator.share({
-  //     title: `Chia tiền: ${title.value}`,
-  //     text: text,
-  //   });
-  // }
+  let text = `💰 ${title.value}\n\n`;
+  finalResult.value.forEach((r) => {
+    text += `• ${r.name}: ${formatCurrency(r.amount)}\n`;
+  });
+  text += `\nTổng: ${formatCurrency(totalAmount.value)}`;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text);
+  }
+  // Try native share
+  if (navigator.share) {
+    navigator.share({
+      title: `Chia tiền: ${title.value}`,
+      text: text,
+    });
+  }
 };
 
 const resetAll = () => {
