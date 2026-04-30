@@ -7,8 +7,9 @@ export default defineNuxtPlugin({
     const defaulToken = "";
     const loginUrl = "";
     // const baseUrl = "http://42.96.4.184:8084/api/";
-    // const baseUrl = "http://localhost:8084/api/";
     const baseUrl = "https://api-horescope.goc-an-nhien.site/api/"
+    // const benefitUrl = "http://42.96.4.184:8085/api/";
+    const benefitUrl = "https://api-extensions.goc-an-nhien.site/api/";
 
 
     const debug = true;
@@ -33,10 +34,20 @@ export default defineNuxtPlugin({
       };
     };
 
-    const checkJwT = (url: string, isBaseUrl = true, isAuthorized = true) => {
+    /**
+     * Kiểm tra
+     * @param url 
+     * @param isBaseUrl 
+     * @param isAuthorized 
+     * @returns 
+     */
+    const checkJwT = (url: string, isBaseUrl = true, isAuthorized = true, api = "default") => {
       const jwt = localStorage.getItem("jwt");
       var data = null;
-      var prefixUrl = baseUrl;
+
+      var prefixUrl = "";
+      if(api === "default") prefixUrl = baseUrl;
+      else if(api === "benefit") prefixUrl = benefitUrl;
 
       if (!isBaseUrl) prefixUrl = loginUrl;
 
@@ -197,9 +208,9 @@ export default defineNuxtPlugin({
      * @param {*} url
      * @returns
      */
-    const sendGetApi = async (url: string) => {
+    const sendGetApi = async (url: string, api = "default") => {
       const test = validateAPI(url);
-      let dataAuthen = checkJwT(url, true);
+      let dataAuthen = checkJwT(url, true, true, api);
       // send api
       if (test.check) {
         try {
@@ -242,9 +253,9 @@ export default defineNuxtPlugin({
      * @param {*} url
      * @returns
      */
-    const sendPostApi = async function (url: string, data: any) {
+    const sendPostApi = async function (url: string, data: any, api = "default") {
       const test = validateAPI(url);
-      let dataAuthen = checkJwT(url, true);
+      let dataAuthen = checkJwT(url, true, true, api);
       if (test.check) {
         try {
           await axios({
@@ -285,9 +296,9 @@ export default defineNuxtPlugin({
      * @param {*} url
      * @returns
      */
-    const sendPutApi = async function (url: string, data: any) {
+    const sendPutApi = async function (url: string, data: any, api = "default") {
       const test = validateAPI(url);
-      let dataAuthen = checkJwT(url, true);
+      let dataAuthen = checkJwT(url, true, true, api);
       if (test.check) {
         try {
           await axios({
@@ -327,9 +338,9 @@ export default defineNuxtPlugin({
      * @param {*} url
      * @returns
      */
-    const sendDeleteApi = async function (url: string) {
+    const sendDeleteApi = async function (url: string, api = "default") {
       const test = validateAPI(url);
-      let dataAuthen = checkJwT(url, true);
+      let dataAuthen = checkJwT(url, true, true, api);
       if (test.check) {
         try {
           await axios({
