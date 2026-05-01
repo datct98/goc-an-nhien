@@ -14,5 +14,8 @@ import SplitBillMobile from '~/components/split-bill/SplitBillMobile.vue';
     max-width: 448px;
     margin: 0 auto;
     min-height: 100dvh;
+    background-color: #0d0705;
+    overflow: hidden;
+    overscroll-behavior: none;
 }
 </style>

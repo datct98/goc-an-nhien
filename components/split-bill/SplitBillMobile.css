@@ -18,6 +18,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     transition: background-image 0.4s ease;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .sb-container.sb-step-1 {
