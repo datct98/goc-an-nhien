@@ -45,6 +45,7 @@
 .sb-container .sb-steps {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0;
     margin-bottom: 24px;
     padding-top: 4px;
@@ -91,12 +92,14 @@
     margin: 0 0 4px 0;
     letter-spacing: 0.5px;
     text-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    text-align: center;
 }
 
 .sb-container .sb-header-sub {
     font-size: 0.88rem;
     color: rgba(255, 255, 255, 0.4);
     margin: 0 0 24px 0;
+    text-align: center;
 }
 
 /* === FORM ELEMENTS === */
