@@ -8,7 +8,8 @@
 .sb-container {
     position: relative;
     width: 100%;
-    min-height: 100dvh;
+    max-width: 448px;
+    height: 100dvh;
     background-color: #0d0705;
     background-size: cover;
     background-position: center;
@@ -38,7 +39,7 @@
     position: relative;
     z-index: 2;
     padding: 20px 20px 110px 20px;
-    min-height: 100dvh;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
 }
