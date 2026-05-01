@@ -3,6 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent white flash on iOS overscroll bounce */
+html {
+    background-color: #0d0705;
+}
+
+body {
+    background-color: #0d0705;
+    overscroll-behavior: none;
+}
+
 @font-face {
     font-family: Inter;
     src: url('../../static/font/Inter/Inter.ttf');

@@ -5,7 +5,10 @@
 
 /* === THE ROOM === */
 .gm-room {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     max-width: 448px;
     height: 100dvh;
@@ -18,6 +21,7 @@
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
+    overscroll-behavior: none;
 }
 
 
