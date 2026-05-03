@@ -4,12 +4,11 @@ import { v4 as uuidv4 } from "uuid";
 export default defineNuxtPlugin({
   name: "api",
   setup() {
+    const config = useRuntimeConfig();
     const defaulToken = "";
     const loginUrl = "";
-    // const baseUrl = "http://42.96.4.184:8084/api/";
-    const baseUrl = "https://api-horescope.goc-an-nhien.site/api/"
-    // const benefitUrl = "http://42.96.4.184:8085/api/";
-    const benefitUrl = "https://api-extensions.goc-an-nhien.site/api/";
+    const baseUrl = config.public.horoscopeApiUrl as string || "https://api-horescope.goc-an-nhien.site/api/";
+    const benefitUrl = config.public.extensionsApiUrl as string || "https://api-extensions.goc-an-nhien.site/api/";
 
 
     const debug = true;
