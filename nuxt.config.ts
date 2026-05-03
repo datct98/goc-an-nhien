@@ -84,7 +84,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  css: ['~/assets/css/main.css', '~/assets/css/animation.css'],
+  css: ['~/assets/css/main.css', '~/assets/css/animation.css', '@fortawesome/fontawesome-svg-core/styles.css'],
   plugins: ["~/plugins/common.ts"],
   postcss: {
     plugins: {

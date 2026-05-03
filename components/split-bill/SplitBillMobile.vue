@@ -1,22 +1,17 @@
 <template>
-  <div class="sb-container" :class="'sb-step-' + currentStep">
+  <div class="sb-container">
+    <StarOverlay />
     <div class="sb-inner">
       <!-- Back Button -->
-      <button class="sb-back-btn" @click="handleBack">
+      <!-- <button class="sb-back-btn" @click="handleBack">
         <i class="pi pi-arrow-left"></i>
-      </button>
+      </button> -->
 
       <!-- Step Indicator -->
-      <div class="sb-steps">
-        <div
-          class="sb-step-dot"
-          :class="{ active: currentStep === 1, completed: currentStep > 1 }"
-        ></div>
+      <div class="sb-steps mt-10">
+        <div class="sb-step-dot" :class="{ active: currentStep === 1, completed: currentStep > 1 }"></div>
         <div class="sb-step-line" :class="{ active: currentStep > 1 }"></div>
-        <div
-          class="sb-step-dot"
-          :class="{ active: currentStep === 2, completed: currentStep > 2 }"
-        ></div>
+        <div class="sb-step-dot" :class="{ active: currentStep === 2, completed: currentStep > 2 }"></div>
         <div class="sb-step-line" :class="{ active: currentStep > 2 }"></div>
         <div class="sb-step-dot" :class="{ active: currentStep === 3 }"></div>
       </div>
@@ -24,55 +19,25 @@
       <!-- Step Content -->
       <div class="sb-content">
         <Transition name="sb-fade" mode="out-in">
-          <StepInfo
-            v-if="currentStep === 1"
-            key="step1"
-            :title="title"
-            :participants="participants"
-            @update:title="title = $event"
-            @add-participant="addParticipant"
-            @remove-participant="removeParticipant"
-          />
-          <StepExpenses
-            v-else-if="currentStep === 2"
-            key="step2"
-            :expenses="expenses"
-            :participants="participants"
-            @add-expense="addExpense"
-            @remove-expense="removeExpense"
-            @update-expense="updateExpense"
-            @toggle-participant="toggleExpenseParticipant"
-            @toggle-all="toggleAllParticipants"
-          />
-          <StepResult
-            v-else
-            key="step3"
-            :results="finalResult"
-            :total="totalAmount"
-            :title="title"
-            :participants="participants"
-            :summary="summary"
-          />
+          <StepInfo v-if="currentStep === 1" key="step1" :title="title" :participants="participants"
+            @update:title="title = $event" @add-participant="addParticipant" @remove-participant="removeParticipant" />
+          <StepExpenses v-else-if="currentStep === 2" key="step2" :expenses="expenses" :participants="participants"
+            @add-expense="addExpense" @remove-expense="removeExpense" @update-expense="updateExpense"
+            @toggle-participant="toggleExpenseParticipant" @toggle-all="toggleAllParticipants" />
+          <StepResult v-else key="step3" :results="finalResult" :total="totalAmount" :title="title"
+            :participants="participants" :summary="summary" />
         </Transition>
       </div>
 
       <!-- Bottom Actions -->
       <div class="sb-bottom">
         <template v-if="currentStep === 1">
-          <button
-            class="sb-btn-primary"
-            @click="goToStep(2)"
-            :disabled="!canProceedStep1"
-          >
+          <button class="sb-btn-primary" @click="goToStep(2)" :disabled="!canProceedStep1">
             Tiếp tục →
           </button>
         </template>
         <template v-else-if="currentStep === 2">
-          <button
-            class="sb-btn-primary"
-            @click="goToStep(3)"
-            :disabled="!canProceedStep2"
-          >
+          <button class="sb-btn-primary" @click="goToStep(3)" :disabled="!canProceedStep2">
             Xem kết quả →
           </button>
         </template>
@@ -91,6 +56,7 @@ import { useRouter } from "vue-router";
 import StepInfo from "./StepInfo.vue";
 import StepExpenses from "./StepExpenses.vue";
 import StepResult from "./StepResult.vue";
+import StarOverlay from "../effects/StarOverlay.vue";
 
 const router = useRouter();
 
