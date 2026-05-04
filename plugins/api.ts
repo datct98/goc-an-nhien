@@ -7,8 +7,8 @@ export default defineNuxtPlugin({
     const config = useRuntimeConfig();
     const defaulToken = "";
     const loginUrl = "";
-    const baseUrl = config.public.horoscopeApiUrl as string || "https://api-horescope.goc-an-nhien.site/api/";
-    const benefitUrl = config.public.extensionsApiUrl as string || "https://api-extensions.goc-an-nhien.site/api/";
+    const baseUrl = config.public.horoscopeApiUrl as string || "http://localhost:8084/api/";
+    const benefitUrl = config.public.extensionsApiUrl as string || "http://localhost:8085/api/";
 
 
     const debug = true;
