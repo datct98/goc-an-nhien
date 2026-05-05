@@ -3,18 +3,12 @@
     <StarOverlay />
     <div class="sb-inner">
       <!-- Back Button -->
-      <!-- <button class="sb-back-btn" @click="handleBack">
+      <button class="sb-back-btn" @click="handleBack">
         <i class="pi pi-arrow-left"></i>
-      </button> -->
+      </button>
 
       <!-- Step Indicator -->
-      <div class="sb-steps mt-10">
-        <div class="sb-step-dot" :class="{ active: currentStep === 1, completed: currentStep > 1 }"></div>
-        <div class="sb-step-line" :class="{ active: currentStep > 1 }"></div>
-        <div class="sb-step-dot" :class="{ active: currentStep === 2, completed: currentStep > 2 }"></div>
-        <div class="sb-step-line" :class="{ active: currentStep > 2 }"></div>
-        <div class="sb-step-dot" :class="{ active: currentStep === 3 }"></div>
-      </div>
+      <StepByStep :currentStep="currentStep" />
 
       <!-- Step Content -->
       <div class="sb-content">
