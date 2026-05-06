@@ -4,6 +4,7 @@ export interface PalmLine {
   name: string
   chineseName: string
   color: string
+  position?: string
   description: string
   analysis: string
   warning: string
@@ -11,10 +12,39 @@ export interface PalmLine {
   points?: Array<[number, number]>
 }
 
+export interface MountDetail {
+  name: string
+  chineseName?: string
+  position?: string
+  description: string
+  meaning?: string
+}
+
 export interface SpecialMark {
   name: string
+  position?: string
   description: string
   meaning: string
+}
+
+export interface CareerAnalysis {
+  summary: string
+  peakAge?: string
+  suitableFields?: string[]
+  advice?: string
+}
+
+export interface LoveAnalysis {
+  summary: string
+  personality?: string
+  idealPartner?: string
+  advice?: string
+}
+
+export interface HealthAnalysis {
+  summary: string
+  risks?: string[]
+  advice?: string
 }
 
 export interface PalmistryResult {
@@ -22,12 +52,15 @@ export interface PalmistryResult {
   handShapeElement: string
   handShapeDescription: string
   lines: PalmLine[]
-  mounts: string
+  mounts: MountDetail[] | null
   specialMarks: SpecialMark[]
   overall: string
   strengths: string[]
   warnings: string[]
   advice: string
+  career?: CareerAnalysis
+  love?: LoveAnalysis
+  health?: HealthAnalysis
 }
 
 const result = ref<PalmistryResult | null>(null)
