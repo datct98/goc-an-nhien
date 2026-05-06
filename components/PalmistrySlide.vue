@@ -69,9 +69,16 @@
       </div>
 
       <!-- Mounts -->
-      <div v-if="result.mounts" class="palmistry-card">
+      <div v-if="result.mounts?.length" class="palmistry-card">
         <p class="palmistry-section-title">⛰️ Cửu Cung Bàn Tay</p>
-        <p class="palmistry-text">{{ result.mounts }}</p>
+        <div v-for="(mount, i) in result.mounts" :key="i" class="palmistry-mount">
+          <p class="palmistry-text">
+            <b>{{ mount.name }}<span v-if="mount.chineseName"> ({{ mount.chineseName }})</span>:</b>
+            <span v-if="mount.position" class="palmistry-mount-position"> {{ mount.position }} —</span>
+            {{ mount.description }}
+          </p>
+          <p v-if="mount.meaning" class="palmistry-text palmistry-mount-meaning">{{ mount.meaning }}</p>
+        </div>
       </div>
 
       <!-- Special marks -->
@@ -80,6 +87,47 @@
         <div v-for="(mark, i) in result.specialMarks" :key="i" class="palmistry-mark">
           <p class="palmistry-text"><b>{{ mark.name }}:</b> {{ mark.description }}</p>
           <p class="palmistry-text palmistry-mark-meaning">{{ mark.meaning }}</p>
+        </div>
+      </div>
+
+      <!-- Career / Love / Health analysis -->
+      <div v-if="result.career || result.love || result.health" class="palmistry-card">
+        <p class="palmistry-section-title">📊 Phân Tích Theo Chủ Đề</p>
+
+        <!-- Career -->
+        <div v-if="result.career" class="palmistry-theme-block">
+          <p class="palmistry-sub-title">💼 Sự Nghiệp & Công Danh</p>
+          <p class="palmistry-text">{{ result.career.summary }}</p>
+          <p v-if="result.career.peakAge" class="palmistry-text"><b>Giai đoạn đỉnh cao:</b> {{ result.career.peakAge }}</p>
+          <div v-if="result.career.suitableFields?.length" class="palmistry-fields">
+            <b>Lĩnh vực phù hợp:</b>
+            <ul class="palmistry-list">
+              <li v-for="(field, i) in result.career.suitableFields" :key="i">{{ field }}</li>
+            </ul>
+          </div>
+          <p v-if="result.career.advice" class="palmistry-text palmistry-theme-advice">💡 {{ result.career.advice }}</p>
+        </div>
+
+        <!-- Love -->
+        <div v-if="result.love" class="palmistry-theme-block">
+          <p class="palmistry-sub-title">💕 Tình Duyên & Gia Đạo</p>
+          <p class="palmistry-text">{{ result.love.summary }}</p>
+          <p v-if="result.love.personality" class="palmistry-text"><b>Tính cách trong tình yêu:</b> {{ result.love.personality }}</p>
+          <p v-if="result.love.idealPartner" class="palmistry-text"><b>Mẫu người phù hợp:</b> {{ result.love.idealPartner }}</p>
+          <p v-if="result.love.advice" class="palmistry-text palmistry-theme-advice">💡 {{ result.love.advice }}</p>
+        </div>
+
+        <!-- Health -->
+        <div v-if="result.health" class="palmistry-theme-block">
+          <p class="palmistry-sub-title">🏥 Sức Khỏe</p>
+          <p class="palmistry-text">{{ result.health.summary }}</p>
+          <div v-if="result.health.risks?.length" class="palmistry-fields">
+            <b>Nguy cơ cần lưu ý:</b>
+            <ul class="palmistry-list">
+              <li v-for="(risk, i) in result.health.risks" :key="i">{{ risk }}</li>
+            </ul>
+          </div>
+          <p v-if="result.health.advice" class="palmistry-text palmistry-theme-advice">💡 {{ result.health.advice }}</p>
         </div>
       </div>
 
@@ -352,6 +400,17 @@ onUnmounted(() => {
 .palmistry-mark { padding: 8px 0; border-bottom: 1px solid rgba(212,175,55,0.07); }
 .palmistry-mark:last-child { border-bottom: none; }
 .palmistry-mark-meaning { color: rgba(212,175,55,0.55); font-style: italic; }
+
+.palmistry-mount { padding: 8px 0; border-bottom: 1px solid rgba(212,175,55,0.07); }
+.palmistry-mount:last-child { border-bottom: none; }
+.palmistry-mount-position { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
+.palmistry-mount-meaning { color: rgba(212,175,55,0.55); font-style: italic; margin-top: 2px; }
+
+.palmistry-theme-block { padding: 12px 0; border-bottom: 1px solid rgba(212,175,55,0.07); }
+.palmistry-theme-block:last-child { border-bottom: none; }
+.palmistry-theme-advice { color: rgba(130,220,160,0.85); font-style: italic; margin-top: 4px; }
+.palmistry-fields { margin: 6px 0; }
+.palmistry-fields b { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
 
 .palmistry-overall-text { margin-bottom: 12px; }
 .palmistry-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 4px; }
