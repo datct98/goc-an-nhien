@@ -15,24 +15,14 @@
     background-position: center;
     background-repeat: no-repeat;
     font-family: Lora;
-    color: #e8d5a3;
     overflow-y: auto;
     overflow-x: hidden;
-    transition: background-image 0.4s ease;
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
-}
-
-.sb-container.sb-step-1 {
-    background-image: url('/mobile/split-bill/bg-step1.png');
-}
-
-.sb-container.sb-step-2 {
-    background-image: url('/mobile/split-bill/bg-step2.png');
-}
-
-.sb-container.sb-step-3 {
-    background-image: url('/mobile/split-bill/bg-step3.png');
+    /* Gradient nền tối sâu thẳm */
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    border-radius: 20px;
+    color: white;
 }
 
 .sb-container .sb-inner {
@@ -44,82 +34,36 @@
     flex-direction: column;
 }
 
-/* === STEP INDICATOR === */
-.sb-container .sb-steps {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    margin-bottom: 24px;
-    padding-top: 4px;
-}
-
-.sb-container .sb-step-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1.5px solid rgba(255, 255, 255, 0.18);
-    transition: all 0.35s ease;
-    flex-shrink: 0;
-}
-
-.sb-container .sb-step-dot.active {
-    background: #d4af37;
-    border-color: #d4af37;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
-}
-
-.sb-container .sb-step-dot.completed {
-    background: #d4af37;
-    border-color: #d4af37;
-}
-
-.sb-container .sb-step-line {
-    height: 2px;
-    width: 36px;
-    background: rgba(255, 255, 255, 0.1);
-    transition: background 0.35s ease;
-    flex-shrink: 0;
-}
-
-.sb-container .sb-step-line.active {
-    background: linear-gradient(90deg, #d4af37, #c9a84c);
-}
 
 /* === HEADER === */
 .sb-container .sb-header-title {
     font-size: 2rem;
     font-weight: 700;
-    color: #d4af37;
     margin: 0 0 4px 0;
     letter-spacing: 0.5px;
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
     text-align: center;
 }
 
 .sb-container .sb-header-sub {
     font-size: 0.88rem;
-    color: rgba(255, 255, 255, 0.4);
     margin: 0 0 24px 0;
     text-align: center;
 }
 
 /* === FORM ELEMENTS === */
 .sb-container .sb-label {
-    font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.55);
+    font-size: 16px;
     margin-bottom: 8px;
     display: block;
+    text-align: center;
 }
 
 .sb-container .sb-input {
     width: 100%;
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 12px;
     padding: 12px 16px;
-    color: #e8d5a3;
     font-size: 0.95rem;
     outline: none;
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
@@ -127,8 +71,7 @@
 }
 
 .sb-container .sb-input:focus {
-    border-color: #d4af37;
-    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
 }
 
 .sb-container .sb-input::placeholder {
@@ -136,11 +79,11 @@
 }
 
 .sb-container .sb-form-group {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(212, 175, 55, 0.22);
+    border: 1px solid rgb(255 255 255 / 22%);
     border-radius: 16px;
     padding: 20px 16px;
     margin-bottom: 16px;
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
 }
 
@@ -156,12 +99,11 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(212, 175, 55, 0.14);
-    border: 1px solid rgba(212, 175, 55, 0.35);
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 20px;
     padding: 6px 14px;
     font-size: 0.85rem;
-    color: #e8d5a3;
     cursor: default;
     transition: all 0.2s ease;
 }
@@ -183,24 +125,23 @@
     align-items: center;
     gap: 4px;
     background: transparent;
-    border: 1px dashed rgba(212, 175, 55, 0.35);
+    border: 1px dashed rgba(255, 255, 255, 0.35);
     border-radius: 20px;
     padding: 6px 14px;
     font-size: 0.85rem;
-    color: rgba(212, 175, 55, 0.7);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .sb-container .sb-tag-add:hover {
-    border-color: rgba(212, 175, 55, 0.6);
-    background: rgba(212, 175, 55, 0.06);
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 /* === EXPENSE CARD === */
 .sb-container .sb-expense-card {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(212, 175, 55, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 16px;
     padding: 16px;
     margin-bottom: 14px;
@@ -227,7 +168,6 @@
     min-width: 0;
     background: transparent;
     border: none;
-    color: #e8d5a3;
     font-size: 0.95rem;
     font-weight: 600;
     outline: none;
@@ -241,14 +181,13 @@
 .sb-container .sb-expense-divider {
     width: 1.5px;
     height: 22px;
-    background: rgba(212, 175, 55, 0.4);
+    background: rgba(255, 255, 255, 0.4);
     flex-shrink: 0;
 }
 
 .sb-container .sb-expense-amount {
     background: transparent;
     border: none;
-    color: #d4af37;
     font-size: 1rem;
     font-weight: 700;
     text-align: right;
@@ -259,7 +198,7 @@
 }
 
 .sb-container .sb-expense-amount::placeholder {
-    color: rgba(212, 175, 55, 0.25);
+    color: rgba(255, 255, 255, 0.25);
 }
 
 /* Hide number input spinners */
@@ -283,46 +222,44 @@
 .sb-container .sb-expense-tag {
     display: inline-flex;
     align-items: center;
-    background: rgba(212, 175, 55, 0.08);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 14px;
     padding: 4px 12px;
     font-size: 0.78rem;
-    color: rgba(201, 168, 76, 0.7);
+    color: rgba(255, 255, 255, 0.7);
     cursor: pointer;
     transition: all 0.2s ease;
     user-select: none;
 }
 
 .sb-container .sb-expense-tag.selected {
-    background: rgba(212, 175, 55, 0.22);
-    border-color: rgba(212, 175, 55, 0.5);
-    color: #e8d5a3;
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .sb-container .sb-expense-tag-all {
     display: inline-flex;
     align-items: center;
-    background: rgba(212, 175, 55, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 14px;
     padding: 4px 12px;
     font-size: 0.78rem;
-    color: rgba(212, 175, 55, 0.5);
+    color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     transition: all 0.2s ease;
     user-select: none;
 }
 
 .sb-container .sb-expense-tag-all.selected {
-    background: rgba(212, 175, 55, 0.22);
-    border-color: rgba(212, 175, 55, 0.5);
-    color: #e8d5a3;
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .sb-container .sb-expense-avg {
     font-size: 0.78rem;
-    color: rgba(212, 175, 55, 0.55);
+    color: rgba(255, 255, 255, 0.55);
     text-align: right;
     font-style: italic;
 }
@@ -346,11 +283,11 @@
 
 /* === ADD EXPENSE BUTTON === */
 .sb-container .sb-add-expense {
-    border: 1.5px dashed rgba(212, 175, 55, 0.25);
+    border: 1.5px dashed rgba(255, 255, 255, 0.25);
     border-radius: 16px;
     padding: 18px;
     text-align: center;
-    color: rgba(212, 175, 55, 0.55);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -359,8 +296,8 @@
 }
 
 .sb-container .sb-add-expense:hover {
-    border-color: rgba(212, 175, 55, 0.45);
-    background: rgba(212, 175, 55, 0.04);
+    border-color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 /* === RESULT === */
@@ -372,14 +309,13 @@
 .sb-container .sb-result-total-amount {
     font-size: 2.6rem;
     font-weight: 700;
-    color: #d4af37;
     letter-spacing: 0.5px;
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 .sb-container .sb-result-list {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(212, 175, 55, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 16px;
     padding: 8px 16px;
     margin-bottom: 16px;
@@ -416,19 +352,17 @@
 
 .sb-container .sb-result-name {
     font-size: 0.95rem;
-    color: #e8d5a3;
 }
 
 .sb-container .sb-result-amount {
     font-size: 0.95rem;
-    color: #d4af37;
 }
 
 .sb-container .sb-result-summary {
     display: flex;
     justify-content: flex-end;
     padding: 14px 4px 6px 4px;
-    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     margin-top: 4px;
 }
 
@@ -439,7 +373,6 @@
 
 .sb-container .sb-result-summary-amount {
     font-weight: 600;
-    color: #d4af37;
 }
 
 /* === BOTTOM ACTIONS === */
@@ -456,15 +389,12 @@
     justify-content: center;
     gap: 12px;
     z-index: 10;
-    background: linear-gradient(180deg, transparent 0%, rgba(13, 7, 5, 0.9) 40%);
 }
 
 .sb-container .sb-btn-primary {
-    background: rgba(212, 175, 55, 0.1);
-    border: 1.5px solid #d4af37;
+    background: rgb(255 255 255 / 10%);
     border-radius: 28px;
     padding: 13px 32px;
-    color: #d4af37;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
@@ -473,8 +403,8 @@
 }
 
 .sb-container .sb-btn-primary:hover {
-    background: rgba(212, 175, 55, 0.2);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 .sb-container .sb-btn-primary:active {
@@ -508,9 +438,8 @@
 
 /* === BACK BUTTON === */
 .sb-container .sb-back-btn {
-    background: rgba(212, 175, 55, 0.06);
-    border: 1px solid rgba(212, 175, 55, 0.18);
-    color: #d4af37;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     width: 36px;
     height: 36px;
     border-radius: 10px;
@@ -522,10 +451,11 @@
     margin-bottom: 12px;
     transition: all 0.2s ease;
     flex-shrink: 0;
+    right: 0;
 }
 
 .sb-container .sb-back-btn:hover {
-    background: rgba(212, 175, 55, 0.12);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 /* === ADD NAME INPUT === */
@@ -538,16 +468,10 @@
 .sb-container .sb-add-name-input {
     flex: 1;
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 20px;
     padding: 8px 14px;
-    color: #e8d5a3;
     font-size: 0.85rem;
     outline: none;
-}
-
-.sb-container .sb-add-name-input:focus {
-    border-color: #d4af37;
 }
 
 .sb-container .sb-add-name-input::placeholder {
@@ -555,19 +479,18 @@
 }
 
 .sb-container .sb-add-name-btn {
-    background: rgba(212, 175, 55, 0.12);
-    border: 1px solid rgba(212, 175, 55, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 20px;
     padding: 8px 18px;
-    color: #d4af37;
-    font-size: 0.85rem;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
 }
 
 .sb-container .sb-add-name-btn:hover {
-    background: rgba(212, 175, 55, 0.22);
+    background: rgba(255, 255, 255, 0.22);
 }
 
 /* === SCROLLABLE CONTENT === */

@@ -9,7 +9,7 @@
 
     <!-- Results List -->
     <div class="sb-result-list">
-      <h3 class="text-2xl text-center" style="color: rgb(255 247 141)">
+      <h3 class="text-2xl text-center">
         Hoá đơn chia tiền
       </h3>
       <template v-for="(item, index) in results" :key="index">
@@ -42,7 +42,7 @@
 
       <!-- Total Summary -->
       <div class="pb-5">
-        <h3 class="text-xl text-center pb-5" style="color: rgb(255 247 141)">
+        <h3 class="text-xl text-center pb-5">
           Tổng số tiền mỗi người phải đóng
         </h3>
         <div v-for="(amount, name) in summary" :key="name" class="pl-5">

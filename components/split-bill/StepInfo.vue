@@ -26,7 +26,7 @@
                     </span>
                     <span
                         v-if="!showAddInput"
-                        class="sb-tag-add"
+                        class="sb-tag-add w-full"
                         @click="showAddInput = true"
                     >
                         + Thêm
@@ -43,7 +43,7 @@
                         v-model="newName"
                         @keyup.enter="handleAddName"
                     />
-                    <button class="sb-add-name-btn" @click="handleAddName">Thêm</button>
+                    <button class="sb-add-name-btn" @click="handleAddName"><font-awesome-icon icon="fa-solid fa-person-circle-plus" /></button>
                 </div>
             </div>
         </div>
