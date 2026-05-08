@@ -35,6 +35,8 @@ export default defineNuxtConfig({
       PAGE_NUM: 0,
       googleClientId: process.env.VITE_GOOGLE_CLIENT_ID,
       identityApiUrl: process.env.VITE_IDENTITY_API_URL,
+      horoscopeApiUrl: process.env.VITE_HOROSCOPE_API_URL,
+      extensionsApiUrl: process.env.VITE_EXTENSIONS_API_URL,
       redirectUri: process.env.VITE_REDIRECT_URI
     }
   },
