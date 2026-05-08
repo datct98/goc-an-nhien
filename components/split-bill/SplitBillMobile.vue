@@ -3,9 +3,11 @@
     <StarOverlay />
     <div class="sb-inner">
       <!-- Back Button -->
-      <button class="sb-back-btn" @click="handleBack">
-        <i class="pi pi-arrow-left"></i>
-      </button>
+      <div class="w-full flex justify-end">
+        <button class="sb-back-btn" @click="handleBack">
+          <i class="pi pi-arrow-left"></i>
+        </button>
+      </div>
 
       <!-- Step Indicator -->
       <StepByStep :currentStep="currentStep" />
@@ -13,25 +15,55 @@
       <!-- Step Content -->
       <div class="sb-content">
         <Transition name="sb-fade" mode="out-in">
-          <StepInfo v-if="currentStep === 1" key="step1" :title="title" :participants="participants"
-            @update:title="title = $event" @add-participant="addParticipant" @remove-participant="removeParticipant" />
-          <StepExpenses v-else-if="currentStep === 2" key="step2" :expenses="expenses" :participants="participants"
-            @add-expense="addExpense" @remove-expense="removeExpense" @update-expense="updateExpense"
-            @toggle-participant="toggleExpenseParticipant" @toggle-all="toggleAllParticipants" />
-          <StepResult v-else key="step3" :results="finalResult" :total="totalAmount" :title="title"
-            :participants="participants" :summary="summary" />
+          <StepInfo
+            v-if="currentStep === 1"
+            key="step1"
+            :title="title"
+            :participants="participants"
+            @update:title="title = $event"
+            @add-participant="addParticipant"
+            @remove-participant="removeParticipant"
+          />
+          <StepExpenses
+            v-else-if="currentStep === 2"
+            key="step2"
+            :expenses="expenses"
+            :participants="participants"
+            @add-expense="addExpense"
+            @remove-expense="removeExpense"
+            @update-expense="updateExpense"
+            @toggle-participant="toggleExpenseParticipant"
+            @toggle-all="toggleAllParticipants"
+          />
+          <StepResult
+            v-else
+            key="step3"
+            :results="finalResult"
+            :total="totalAmount"
+            :title="title"
+            :participants="participants"
+            :summary="summary"
+          />
         </Transition>
       </div>
 
       <!-- Bottom Actions -->
       <div class="sb-bottom">
         <template v-if="currentStep === 1">
-          <button class="sb-btn-primary" @click="goToStep(2)" :disabled="!canProceedStep1">
+          <button
+            class="sb-btn-primary"
+            @click="goToStep(2)"
+            :disabled="!canProceedStep1"
+          >
             Tiếp tục →
           </button>
         </template>
         <template v-else-if="currentStep === 2">
-          <button class="sb-btn-primary" @click="goToStep(3)" :disabled="!canProceedStep2">
+          <button
+            class="sb-btn-primary"
+            @click="goToStep(3)"
+            :disabled="!canProceedStep2"
+          >
             Xem kết quả →
           </button>
         </template>

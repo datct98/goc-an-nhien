@@ -1,12 +1,31 @@
 <template>
     <div class="stars-container">
         <div v-for="n in starCount" :key="n" class="star" :style="generateStarStyle()"></div>
+
+        <!-- Các ngôi sao băng -->
+        <div v-for="n in shootingStarCount" :key="'shooting-' + n" class="shooting-star" :style="generateShootingStarStyle()"></div>
     </div>
 </template>
 
 <script setup>
 // Bạn có thể tùy chỉnh số lượng hạt tùy theo hiệu năng mong muốn
 const starCount = 150;
+const shootingStarCount = 10; // Số lượng vệt sao băng xuất hiện trong một chu kỳ
+
+// Style cho sao băng
+const generateShootingStarStyle = () => {
+    const top = Math.random() * 50; // Xuất hiện ở nửa trên màn hình
+    const left = Math.random() * 80 + 20; // Xuất hiện lệch phải để bay sang trái
+    const duration = Math.random() * 3 + 4; // Tốc độ bay
+    const delay = Math.random() * 10; // Thời gian chờ ngẫu nhiên để không rơi cùng lúc
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        animationDuration: `${duration}s`,
+        animationDelay: `${delay}s`
+    };
+};
 
 const generateStarStyle = () => {
     const x = Math.random() * 100;
@@ -39,6 +58,7 @@ const generateStarStyle = () => {
     z-index: 0;
 }
 
+/* Sao tĩnh */
 .star {
     position: absolute;
     background-color: #fff;
@@ -58,6 +78,44 @@ const generateStarStyle = () => {
     50% {
         opacity: 1;
         transform: scale(1.2);
+    }
+}
+
+/* Sao băng */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(-45deg, #fff, rgba(0, 0, 255, 0));
+    border-radius: 999px;
+    filter: drop-shadow(0 0 6px #fff);
+    animation: shoot infinite linear;
+    opacity: 0;
+}
+
+/* Hiệu ứng vệt sáng bằng giả lập pseudo-element */
+.shooting-star::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px; /* Độ dài vệt sáng */
+    height: 1px;
+    background: linear-gradient(90deg, #fff, transparent);
+}
+
+@keyframes shoot {
+    0% {
+        transform: rotate(-45deg) translateX(0);
+        opacity: 1;
+    }
+    20% {
+        transform: rotate(-45deg) translateX(-500px);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(-45deg) translateX(-500px);
+        opacity: 0;
     }
 }
 </style>
