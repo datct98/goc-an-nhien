@@ -87,7 +87,7 @@
                     </AccordionPanel>
                   </Accordion>
                 </div>
-                <div class="interpretation pt-5">
+                <div class="interpretation">
                   <p class="summary-title pt-5">Chi tiết</p>
                   <Accordion>
                     <AccordionPanel value="0">

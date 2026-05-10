@@ -10,6 +10,9 @@ export default defineNuxtPlugin({
     const baseUrl = config.public.horoscopeApiUrl as string || "http://localhost:8084/api/";
     const benefitUrl = config.public.extensionsApiUrl as string || "http://localhost:8085/api/";
 
+    console.log("baseUrl : ", baseUrl);
+    console.log("baseUrl : ", benefitUrl);
+
 
     const debug = true;
     let respData:
