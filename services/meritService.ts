@@ -5,6 +5,10 @@ const meritApi = axios.create({
     timeout: 10000
 });
 
+console.log("meritApi : ", meritApi);
+const baseURL = import.meta.env.VITE_MERIT_API_URL;
+console.log("baseURL : ", baseURL);
+
 // Automatically attach JWT token to all requests
 meritApi.interceptors.request.use(
     config => {
