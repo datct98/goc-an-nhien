@@ -136,12 +136,12 @@
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
-    /* Viền sáng bên ngoài (tạo độ dày cho kính) */ 0 0 0 2px
-      rgba(255, 255, 255, 0.05),
-    /* Ánh sáng xanh le lói ở cạnh (giống trong ảnh) */ inset 0 0 15px
-      rgba(56, 189, 248, 0.2),
-    /* Viền sáng trắng mảnh ở mép trong */ inset 0 0 1px 1px
-      rgba(255, 255, 255, 0.2);
+    /* Viền sáng bên ngoài (tạo độ dày cho kính) */
+    0 0 0 2px rgba(255, 255, 255, 0.05),
+    /* Ánh sáng xanh le lói ở cạnh (giống trong ảnh) */
+    inset 0 0 15px rgba(56, 189, 248, 0.2),
+    /* Viền sáng trắng mảnh ở mép trong */
+    inset 0 0 1px 1px rgba(255, 255, 255, 0.2);
 
   position: relative;
   padding: 25px 5px 5px 5px;
@@ -181,7 +181,7 @@
   /* display: none; */
 }
 
-.input-container > div {
+.input-container>div {
   flex: 1;
   min-width: 0;
 }
@@ -236,10 +236,6 @@
   box-sizing: border-box;
   color: white;
   margin-bottom: 15px;
-}
-
-.born-date-overlay-input {
-  background-color: red;
 }
 
 :deep(.p-select-label) {
@@ -303,7 +299,8 @@
   /* Tăng cường hiệu ứng Glow bên ngoài */
   box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.5),
     inset 0 2px 2px rgba(255, 255, 255, 0.6), 0 0 25px rgba(201, 163, 94, 0.6),
-    /* Sáng hơn */ 0 0 35px rgba(108, 65, 209, 0.4);
+    /* Sáng hơn */
+    0 0 35px rgba(108, 65, 209, 0.4);
   /* Sáng hơn */
 }
 
@@ -392,12 +389,10 @@
 
 .result-divider {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(180, 100, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(180, 100, 255, 0.3),
+      transparent);
   margin: 16px 0;
 }
 
@@ -440,6 +435,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

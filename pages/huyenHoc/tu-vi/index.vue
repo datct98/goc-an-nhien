@@ -24,33 +24,11 @@
                   </TabList>
                   <TabPanels>
                     <TabPanel value="0">
-                      <p class="small-title pt-5">Nhập thông tin</p>
-                      <div class="input-container">
-                        <InputText v-model="username" type="text" class="input" placeholder="Nhập tên của bạn" />
-                      </div>
-                      <div class="input-container pt-5">
-                        <div class="flex justify-between w-full">
-                          <div class="w-1/3 text-center text-white">Ngày</div>
-                          <div class="w-1/3 text-center text-white">Tháng</div>
-                          <div class="w-1/3 text-center text-white">Năm</div>
-                        </div>
-                        <div class="flex flex-wrap justify-between w-full">
-                          <InputText placeholder="01" class="w-1/3 input-small" v-model="day" type="number" />
-                          <InputText placeholder="01" class="w-1/3 input-small" v-model="month" type="number" />
-                          <InputText placeholder="2000" class="w-1/3 input-small" v-model="year" type="number" />
-                        </div>
-                      </div>
-                      <p class="small-title pt-5 pb-5">Nhập giới tính</p>
-                      <div class="gender-container">
-                        <div class="male" :class="{ active: gender == 1 }" @click="updateGender(1)">Nam</div>
-                        <div class="female" :class="{ active: gender == 0 }" @click="updateGender(0)">Nữ</div>
-                      </div>
-                      <p class="small-title pt-5">Giờ sinh</p>
-                      <Select v-model="selectedTimeIndice" class="born-date-input"
-                        overlayClass="born-date-overlay-input" checkmark :highlightOnSelect="false"
-                        :options="timeIndices" optionLabel="name" placeholder="Chọn giờ sinh..."></Select>
+                      <TuViForm :data="tuViData" />
                     </TabPanel>
-                    <TabPanel value="1"> </TabPanel>
+                    <TabPanel value="1">
+
+                    </TabPanel>
                     <TabPanel value="2"> </TabPanel>
                   </TabPanels>
                 </Tabs>
@@ -58,7 +36,9 @@
               <template v-else>
                 <div class="result-header">
                   <div class="zodiac">
-                    <div><Image :src="resultData.zodiacImage" alt="zodiac" /></div>
+                    <div>
+                      <Image :src="resultData.zodiacImage" alt="zodiac" />
+                    </div>
                   </div>
                   <div>
                     <div class="small-title-result">{{ resultData.zodiac }} · {{ resultData.sign }}</div>
@@ -133,12 +113,16 @@
 
         <!-- Xem tarot -->
         <swiper-slide>
-          <div class="tarotPage"><p class="title">Xem tarot</p></div>
+          <div class="tarotPage">
+            <p class="title">Xem tarot</p>
+          </div>
         </swiper-slide>
 
         <!-- Xem cung hoàng đạo -->
         <swiper-slide>
-          <div class="cunghoangdaoPage"><p class="title">Xem Cung Hoàng Đạo</p></div>
+          <div class="cunghoangdaoPage">
+            <p class="title">Xem Cung Hoàng Đạo</p>
+          </div>
         </swiper-slide>
       </swiper>
     </div>
@@ -151,6 +135,7 @@
 <script setup>
 import Coin from "~/components/Coin.vue";
 import LuanGiaiTuVi from "~/components/LuanGiaiTuVi.vue";
+import TuViForm from "~/components/huyen-hoc/TuViForm.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import vongBatQuaiImg from "~/assets/vongBatQuai.png";
@@ -168,6 +153,15 @@ const { $api } = useNuxtApp();
 const images = import.meta.glob("~/assets/zodiac/*.png", { eager: true });
 
 const goBack = () => router.push('/huyenHoc');
+
+const tuViData = ref({
+  username: "",
+  day: 1,
+  month: 1,
+  year: 2000,
+  gender: 1,
+  selectedTimeIndice: null
+})
 
 const getZodiacImage = (path) => {
   const mod = images[path];
@@ -197,6 +191,9 @@ const month = ref();
 const year = ref();
 
 const luanGiaiTuVi = async () => {
+  console.log("tuViData : ", tuViData.value);
+  return;
+
   if (!isFormValid.value) { $common.showWarning("Bạn chưa nhập đủ thông tin cần thiết"); return; }
   error.value = null;
   luanGiaiTuViDisable.value = true;
@@ -232,9 +229,19 @@ const luanGiaiTuVi = async () => {
 <style scoped src="../index.css"></style>
 <style scoped>
 .btn-back-huyenhoc {
-  position: absolute; top: 16px; left: 16px; z-index: 10;
-  background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.3);
-  color: #d4af37; width: 36px; height: 36px; border-radius: 10px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #d4af37;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
