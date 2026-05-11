@@ -4,8 +4,8 @@ GOOGLE_GEMINI_API_KEY=AIzaSyBKiAXjXQGQVMqhUo4MxANAJ04D71aywU0
 NUXT_PUBLIC_API_BASE=https://api-horescope.goc-an-nhien.site/api/
 VITE_HOROSCOPE_API_URL=https://api-horescope.goc-an-nhien.site/api/
 VITE_EXTENSIONS_API_URL=https://api-extensions.goc-an-nhien.site/api/
-VITE_MERIT_API_URL=https://api-woodenfish.goc-an-nhien.site/api/v1/merit/tap
-# VITE_IDENTITY_API_URL=
+VITE_MERIT_API_URL=https://api-woodenfish.goc-an-nhien.site/api/v1
+VITE_IDENTITY_API_URL=https://api-identity.goc-an-nhien.site/auth/login
 # VITE_REDIRECT_URI=
 
 #dev
@@ -14,6 +14,6 @@ GOOGLE_GEMINI_API_KEY=AIzaSyBKiAXjXQGQVMqhUo4MxANAJ04D71aywU0
 NUXT_PUBLIC_API_BASE=http://42.96.4.184
 VITE_HOROSCOPE_API_URL=http://42.96.4.184:8084/api/
 VITE_EXTENSIONS_API_URL=http://42.96.4.184:8085/api/
-VITE_MERIT_API_URL=https://api-woodenfish.goc-an-nhien.site/api/v1/merit/tap
-# VITE_IDENTITY_API_URL=
+VITE_MERIT_API_URL=http://42.96.4.184:8082/api/v1
+VITE_IDENTITY_API_URL=https://http://42.96.4.184:8080/auth/login
 # VITE_REDIRECT_URI=

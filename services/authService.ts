@@ -8,6 +8,9 @@ const authApi = axios.create({
     timeout: 10000
 });
 
+const authBaseURL = config.public.identityApiUrl;
+console.log("authBaseURL : ", authBaseURL);
+
 export const authService = {
     /**
      * Login user

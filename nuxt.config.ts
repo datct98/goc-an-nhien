@@ -37,7 +37,6 @@ export default defineNuxtConfig({
       identityApiUrl: process.env.VITE_IDENTITY_API_URL,
       horoscopeApiUrl: process.env.VITE_HOROSCOPE_API_URL,
       extensionsApiUrl: process.env.VITE_EXTENSIONS_API_URL,
-      redirectUri: process.env.VITE_REDIRECT_URI
     }
   },
   primevue: {
