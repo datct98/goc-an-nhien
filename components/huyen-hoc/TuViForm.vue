@@ -95,18 +95,18 @@ const updateGender = (value) => { data.gender = value; };
 
 .input {
   width: 100%;
-  background-color: transparent;
-  border: 1px solid #edc1fd;
-  border-radius: 12px;
+  background-color: transparent !important;
+  border: 1px solid #edc1fd !important;
+  border-radius: 12px !important;
   box-sizing: border-box;
   /* color: #edd78f; */
   color: white;
 }
 
 .input-small {
-  background-color: transparent;
-  border: 1px solid #edc1fd;
-  border-radius: 12px;
+  background-color: transparent !important;
+  border: 1px solid #edc1fd !important;
+  border-radius: 12px !important;
   box-sizing: border-box;
   /* color: #edd78f; */
   color: white;
@@ -176,9 +176,9 @@ const updateGender = (value) => { data.gender = value; };
 
 .born-date-input {
   width: 100%;
-  background-color: transparent;
-  border: 1px solid #edc1fd;
-  border-radius: 12px;
+  background-color: transparent !important;
+  border: 1px solid #edc1fd !important;
+  border-radius: 12px !important;
   box-sizing: border-box;
   color: white;
   margin-bottom: 15px;
