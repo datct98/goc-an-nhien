@@ -18,18 +18,20 @@
               <template v-if="!showLuanGiaiTuVi">
                 <Tabs value="0">
                   <TabList class="center-tabs">
-                    <Tab value="0">Trọn Đời</Tab>
-                    <Tab value="1">Lưu Niên</Tab>
-                    <Tab value="2">Lưu Nhật</Tab>
+                    <Tab value="0" @click="setModeLuanGiai(0)">Trọn Đời</Tab>
+                    <Tab value="1" @click="setModeLuanGiai(1)">Lưu Niên</Tab>
+                    <Tab value="2" @click="setModeLuanGiai(2)">Lưu Nhật</Tab>
                   </TabList>
                   <TabPanels>
                     <TabPanel value="0">
                       <TuViForm :data="tuViData" />
                     </TabPanel>
                     <TabPanel value="1">
-
+                      <TuViForm :data="tuViDataYearly" />
                     </TabPanel>
-                    <TabPanel value="2"> </TabPanel>
+                    <TabPanel value="2">
+                      <TuViForm :data="tuViDataMonthLy" />
+                    </TabPanel>
                   </TabPanels>
                 </Tabs>
               </template>
@@ -139,20 +141,22 @@ import TuViForm from "~/components/huyen-hoc/TuViForm.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import vongBatQuaiImg from "~/assets/vongBatQuai.png";
-import { timeIndices, zodiacMapping, mockData } from "../data";
+import { zodiacMapping } from "../data";
 
 const router = useRouter();
 const { $common } = useNuxtApp();
 const { isMobileView } = useDevice();
 
 const firstCoinRef = ref(null);
-const username = ref();
 const gender = ref(null);
-const selectedTimeIndice = ref();
 const { $api } = useNuxtApp();
 const images = import.meta.glob("~/assets/zodiac/*.png", { eager: true });
-
 const goBack = () => router.push('/huyenHoc');
+
+const modeLuanGiai = ref(0);
+const setModeLuanGiai = (value) => {
+  modeLuanGiai.value = value;
+}
 
 const tuViData = ref({
   username: "",
@@ -160,7 +164,33 @@ const tuViData = ref({
   month: 1,
   year: 2000,
   gender: 1,
-  selectedTimeIndice: null
+  mode: 'tronDoi',
+  selectedTimeIndice: null,
+  fixLeap: true
+})
+
+const tuViDataYearly = ref({
+  username: "",
+  day: 1,
+  month: 1,
+  year: 2000,
+  gender: 1,
+  selectedTimeIndice: null,
+  mode: 'yearly',
+  selectYear: 2000,
+  fixLeap: true
+})
+
+const tuViDataMonthLy = ref({
+  username: "",
+  day: 1,
+  month: 1,
+  year: 2000,
+  gender: 1,
+  selectedTimeIndice: null,
+  mode: 'monthly',
+  selectMonth: 2,
+  fixLeap: true
 })
 
 const getZodiacImage = (path) => {
@@ -175,26 +205,18 @@ const formatContent = (rawString) => {
     .replace(/^---$/gm, '<hr>')
     .replace(/\n/g, '<br>');
 }
-
-const updateGender = (value) => { gender.value = value; };
 const tossCoin = () => { if (firstCoinRef.value) firstCoinRef.value.tossCoin(); };
 
-const isFormValid = computed(() => day.value && month.value && year.value && selectedTimeIndice.value && username.value !== null);
 const error = ref(null);
 const resultData = ref(null);
 const showLuanGiaiTuVi = ref(false);
 const showLoadingAnimation = ref(false);
 const luanGiaiTuViDisable = ref(false);
 const loadingAnimationTimer = ref(null);
-const day = ref();
-const month = ref();
-const year = ref();
 
 const luanGiaiTuVi = async () => {
-  console.log("tuViData : ", tuViData.value);
-  return;
 
-  if (!isFormValid.value) { $common.showWarning("Bạn chưa nhập đủ thông tin cần thiết"); return; }
+  // if (!isFormValid.value) { $common.showWarning("Bạn chưa nhập đủ thông tin cần thiết"); return; }
   error.value = null;
   luanGiaiTuViDisable.value = true;
   showLoadingAnimation.value = false;
@@ -202,20 +224,58 @@ const luanGiaiTuVi = async () => {
   showLoadingAnimation.value = true;
 
   try {
-    const baseBody = {
-      name: username.value,
-      birthDate: `${year.value}-${month.value}-${day.value}`,
-      timeIndex: selectedTimeIndice.value.index,
-      gender: gender.value,
-      fixLeap: true,
-    };
-    const res = await $api.sendPostApi("horoscope", baseBody, "default");
-    resultData.value = res.data;
-    showLuanGiaiTuVi.value = true;
-    let imageZodiacPath = zodiacMapping[resultData.value.sign].path;
-    if (imageZodiacPath) {
-      resultData.value.zodiacImage = getZodiacImage(`/assets/zodiac/${imageZodiacPath}.png`);
+    console.log("modeLuanGiai : ", modeLuanGiai.value);
+    if (modeLuanGiai.value == 0) {
+      const baseBody = {
+        name: tuViData.value.username,
+        birthDate: `${tuViData.value.year}-${tuViData.value.month}-${tuViData.value.day}`,
+        timeIndex: tuViData.value.selectedTimeIndice.index,
+        gender: tuViData.value.gender,
+        fixLeap: true,
+      };
+      const res = await $api.sendPostApi("horoscope", baseBody, "default");
+      resultData.value = res.data;
+      showLuanGiaiTuVi.value = true;
+      let imageZodiacPath = zodiacMapping[resultData.value.sign].path;
+      if (imageZodiacPath) {
+        resultData.value.zodiacImage = getZodiacImage(`/assets/zodiac/${imageZodiacPath}.png`);
+      }
+    } else if (modeLuanGiai.value === 1) {
+      const baseBody = {
+        name: tuViDataYearly.value.username,
+        birthDate: `${tuViDataYearly.value.year}-${tuViDataYearly.value.month}-${tuViDataYearly.value.day}`,
+        timeIndex: tuViDataYearly.value.selectedTimeIndice.index,
+        gender: tuViDataYearly.value.gender,
+        year: tuViDataYearly.value.selectYear,
+        type: "yearly",
+        fixLeap: true,
+      };
+      const res = await $api.sendPostApi("horoscope/forecast", baseBody, "default");
+      resultData.value = res.data;
+      showLuanGiaiTuVi.value = true;
+      let imageZodiacPath = zodiacMapping[resultData.value.sign].path;
+      if (imageZodiacPath) {
+        resultData.value.zodiacImage = getZodiacImage(`/assets/zodiac/${imageZodiacPath}.png`);
+      }
+    } else if (modeLuanGiai.value === 2) {
+      const baseBody = {
+        name: tuViDataMonthLy.value.username,
+        birthDate: `${tuViDataMonthLy.value.year}-${tuViDataMonthLy.value.month}-${tuViDataMonthLy.value.day}`,
+        timeIndex: tuViDataMonthLy.value.selectedTimeIndice.index,
+        gender: tuViDataMonthLy.value.gender,
+        month: tuViDataMonthLy.value.selectMonth,
+        type: tuViDataMonthLy.value.mode,
+        fixLeap: true,
+      };
+      const res = await $api.sendPostApi("horoscope/forecast", baseBody, "default");
+      resultData.value = res.data;
+      showLuanGiaiTuVi.value = true;
+      let imageZodiacPath = zodiacMapping[resultData.value.sign].path;
+      if (imageZodiacPath) {
+        resultData.value.zodiacImage = getZodiacImage(`/assets/zodiac/${imageZodiacPath}.png`);
+      }
     }
+
   } catch (err) {
     console.error("Horoscope API error:", err);
     $common.showError("Có lỗi xảy ra khi luận giải tử vi. Vui lòng thử lại sau." + err.message);

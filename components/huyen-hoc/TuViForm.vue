@@ -27,7 +27,22 @@
     </div>
     <p class="small-title pt-5">Giờ sinh</p>
     <Select v-model="data.selectedTimeIndice" class="born-date-input" overlayClass="born-date-overlay-input" checkmark
-      :highlightOnSelect="false" :options="timeIndices" optionLabel="name" placeholder="Chọn giờ sinh..."></Select>
+      :highlightOnSelect="false" :options="timeIndices" optionLabel="name" placeholder="Chọn giờ sinh...">
+    </Select>
+    <!-- Lưu niên -->
+    <div v-if="data.mode === 'yearly'">
+      <p class="small-title pt-5">Năm xem</p>
+      <div class="input-container">
+        <InputText v-model="data.selectYear" type="text" class="input" placeholder="Nhập năm xem" />
+      </div>
+    </div>
+    <!-- Lưu nhật -->
+    <div v-if="data.mode === 'monthly'">
+      <p class="small-title pt-5">Tháng xem</p>
+      <div class="input-container">
+        <InputText v-model="data.selectMonth" type="text" class="input" placeholder="Nhập tháng xem" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,7 +50,18 @@
 const props = defineProps({
   data: {
     type: Object,
-    required: true
+    required: true,
+    default: {
+      username: "",
+      day: 1,
+      month: 1,
+      year: 2000,
+      gender: 1,
+      selectedTimeIndice: null,
+      mode: '',
+      selectYear: 2000,
+      selectMonth: 2
+    }
   }
 });
 
