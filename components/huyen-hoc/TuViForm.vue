@@ -16,7 +16,7 @@
         <InputText placeholder="2000" class="w-1/3 input-small" v-model="data.year" type="number" />
       </div>
     </div>
-    <p class="small-title pt-5 pb-5">Nhập giới tính</p>
+    <p class="small-title pt-5">Nhập giới tính</p>
     <div class="gender-container">
       <div class="male" :class="{ active: data.gender == 1 }" @click="updateGender(1)">
         Nam
@@ -30,7 +30,7 @@
       :highlightOnSelect="false" :options="timeIndices" optionLabel="name" placeholder="Chọn giờ sinh...">
     </Select>
     <!-- Lưu niên -->
-    <div v-if="data.mode === 'yearly'">
+    <div v-if="data.mode === 'yearly' || data.mode === 'monthly'">
       <p class="small-title pt-5">Năm xem</p>
       <div class="input-container">
         <InputText v-model="data.selectYear" type="text" class="input" placeholder="Nhập năm xem" />
@@ -80,7 +80,7 @@ const timeIndices = [
   { index: 11, name: "Hợi 21:00-23:00", time: "21:00-23:00" },
 ];
 
-const updateGender = (value) => { data.gender = value; };
+const updateGender = (value) => { data.gender = value };
 
 </script>
 

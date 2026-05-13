@@ -189,6 +189,7 @@ const tuViDataMonthLy = ref({
   gender: 1,
   selectedTimeIndice: null,
   mode: 'monthly',
+  selectYear: 2000,
   selectMonth: 2,
   fixLeap: true
 })
@@ -264,6 +265,7 @@ const luanGiaiTuVi = async () => {
         timeIndex: tuViDataMonthLy.value.selectedTimeIndice.index,
         gender: tuViDataMonthLy.value.gender,
         month: tuViDataMonthLy.value.selectMonth,
+        year: tuViDataMonthLy.value.selectYear,
         type: tuViDataMonthLy.value.mode,
         fixLeap: true,
       };
