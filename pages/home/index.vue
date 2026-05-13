@@ -1,144 +1,232 @@
 <template>
-
+  <!-- MOBILE: Giữ nguyên background cũ -->
   <div v-if="isMobileView" class="home-page-mobile" :style="{ backgroundImage: `url(${mobileBackground})` }">
     <SakuraEffect />
   </div>
 
-  <div v-else class="home-page" :style="{ backgroundImage: `url(${desktopBackground})` }">
-    <SakuraEffect />
+  <!-- DESKTOP: SVG Image Map + Hotspot -->
+  <div v-else class="map-home">
+    <div class="map-wrapper" ref="mapContainer">
+      <!-- Background map image -->
+      <img
+        :src="mapImage"
+        alt="Bản đồ Góc An Nhiên"
+        class="map-background"
+        @load="onImageLoaded"
+        draggable="false"
+      />
 
-    <!-- HEADER -->
-    <header class="app-header">
-      <!-- Right: Avatar -->
-      <button class="user-btn" @click="showUserMenu">
-        <Image src="/home/cosmic_user_avatar.png" class="user-avatar-img" alt="User Profile"></Image>
-      </button>
-    </header>
+      <!-- SVG Hotspot Overlay
+           viewBox="0 0 1845 1038" khớp với kích thước ảnh gốc
+           → tọa độ px luôn chính xác, tự responsive theo mọi màn hình -->
+      <svg
+        v-if="imageLoaded"
+        class="map-svg"
+        viewBox="0 0 1845 1038"
+        preserveAspectRatio="xMidYMid meet"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Bản đồ điều hướng Góc An Nhiên"
+      >
+        <g
+          v-for="loc in locations"
+          :key="loc.id"
+          class="hotspot-group"
+          :class="{ 'debug-mode': debugMode }"
+          @click="handleNavigate(loc)"
+          @mouseenter="hoveredId = loc.id"
+          @mouseleave="hoveredId = null"
+          style="cursor: pointer"
+          :aria-label="loc.name"
+          role="button"
+        >
+          <!-- Vùng click trong suốt -->
+          <rect
+            :x="loc.x"
+            :y="loc.y"
+            :width="loc.w"
+            :height="loc.h"
+            class="hotspot-rect"
+            :class="{ hovered: hoveredId === loc.id }"
+            rx="14"
+          />
 
-    <div class="feature-cards-container">
-      <!-- Top-Left: Gõ Mõ -->
-      <!-- <div class="feature-bubble card-top-left" @click="navigateTo('/goMo', homeList.goMo.status)"
-        :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
-        <div class="icon-wrapper">
-          <Image :src="homeList.goMo.image" class="card-icon-img" :alt="homeList.goMo.name"></Image>
-        </div>
-        <div class="card-title">{{ homeList.goMo.name }}</div>
-      </div> -->
+          <!-- Pulse dot - ẩn khi hover -->
+          <circle
+            :cx="loc.x + loc.w / 2"
+            :cy="loc.y + loc.h / 2"
+            r="8"
+            class="hotspot-pulse"
+            :class="{ paused: hoveredId === loc.id }"
+          />
 
-      <!-- Mid-Left: Hũ Tâm Sự -->
-      <!-- <div class="feature-bubble card-mid-left" @click="navigateTo('/worry-jar', homeList.hoTamSu.status)"
-        :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
-        <div class="icon-wrapper">
-          <Image :src="homeList.hoTamSu.image" class="card-icon-img" :alt="homeList.hoTamSu.name"></Image>
-        </div>
-        <div class="card-title">{{ homeList.hoTamSu.name }}</div>
-      </div> -->
+          <!-- Label tooltip khi hover -->
+          <g v-if="hoveredId === loc.id" class="hotspot-tooltip">
+            <rect
+              :x="loc.x + loc.w / 2 - 110"
+              :y="loc.y + loc.h / 2 - 62"
+              width="220"
+              height="36"
+              rx="10"
+              class="tooltip-bg"
+            />
+            <text
+              :x="loc.x + loc.w / 2"
+              :y="loc.y + loc.h / 2 - 38"
+              text-anchor="middle"
+              class="tooltip-text"
+            >{{ loc.name }}</text>
+          </g>
+        </g>
+      </svg>
 
-      <!-- Top-Right: Phóng Đăng -->
-      <!-- <div class="feature-bubble card-top-right" @click="navigateTo('/altar', homeList.phongDang.status)"
-        :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
-        <div class="icon-wrapper">
-          <Image :src="homeList.phongDang.image" class="card-icon-img" :alt="homeList.phongDang.name"></Image>
-        </div>
-        <div class="card-title">{{ homeList.phongDang.name }}</div>
-      </div> -->
+      <!-- Debug badge -->
+      <div v-if="debugMode" class="debug-badge">🔧 Debug (Ctrl+Shift+H)</div>
 
-      <!-- Mid-Right: Thắp Nhang -->
-      <!-- <div class="feature-bubble card-mid-right" @click="navigateTo('/thapNhang', homeList.thapNhang.status)"
-        :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
-        <div class="icon-wrapper">
-          <Image :src="homeList.thapNhang.image" class="card-icon-img" :alt="homeList.thapNhang.name"></Image>
-        </div>
-        <div class="card-title">{{ homeList.thapNhang.name }}</div>
-      </div> -->
-
-      <!-- Bottom-Center-Left: Huyền Học -->
-      <!-- <div class="feature-bubble card-bottom-left" @click="navigateTo('/huyenHoc', homeList.huyenHoc.status)"
-        :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
-        <div class="icon-wrapper">
-          <Image :src="homeList.huyenHoc.image" class="card-icon-img" :alt="homeList.huyenHoc.name"></Image>
-        </div>
-        <div class="card-title">{{ homeList.huyenHoc.name }}</div>
-      </div> -->
-
-      <!-- Bottom-Center-Right: Linh Vật -->
-      <!-- <div class="feature-bubble card-bottom-right" @click="navigateTo('/shop', homeList.shop.status)"
-        :style="{ backgroundImage: `url(${bubbleImg})`, backgroundSize: 'cover' }">
-        <div class="icon-wrapper">
-          <Image :src="homeList.shop.image" class="card-icon-img" :alt="homeList.shop.name"></Image>
-        </div>
-        <div class="card-title">{{ homeList.shop.name }}</div>
-      </div> -->
+      <!-- Header overlay -->
+      <header class="map-header">
+        <button class="user-btn" @click="showUserMenu">
+          <img src="/home/cosmic_user_avatar.png" class="user-avatar-img" alt="User Profile" />
+        </button>
+      </header>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { useAuth } from '../composables/useAuth';
-import backgroundImg from '../assets/phatNgoiHoaSenRes.png';
-import phatNgoiHoaSenNightRes from '../assets/phatNgoiHoaSenNightRes.png';
-import backgroundImgMobile from '../assets/PhatNgoiHoaSenMobile.png';
-import backgroundImgMobileNight from '../assets/PhatNgoiHoaSenMobileNightRes.png'
-import bubbleImg from '../assets/bubble.png';
-import SakuraEffect from '../components/effects/SakuraEffect.vue';
-import { homeList } from '~/components/data/sideBar';
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
+import backgroundImgMobile from '~/assets/PhatNgoiHoaSenMobile.png'
+import backgroundImgMobileNight from '~/assets/PhatNgoiHoaSenMobileNightRes.png'
+import SakuraEffect from '~/components/effects/SakuraEffect.vue'
 
+interface MapLocation {
+  id: string
+  name: string
+  route: string
+  status: string
+  x: number
+  y: number
+  w: number
+  h: number
+}
 
 const router = useRouter()
-const { getUserEmail } = useAuth()
-const sidebarOpen = ref(false)
 const { $common } = useNuxtApp()
-const navigateTo = (path, status) => {
-  $common.navigateTo(path, status, router);
-}
-const desktopBackground = ref(null);
-const mobileBackground = ref(null);
-
 const { isMobileView } = useDevice()
+const imageLoaded = ref(false)
+const mapContainer = ref<HTMLElement | null>(null)
+const mobileBackground = ref<string | null>(null)
+const hoveredId = ref<string | null>(null)
+const debugMode = ref(false)
 
-onMounted(() => {
-  updateUIByTimer();
-});
+const mapImage = '/home/map-home.png'
 
-const updateUIByTimer = () => {
-  // 1. Lấy thời gian hiện tại của hệ thống
-  const now = new Date();
+/**
+ * Tọa độ tính bằng px tuyệt đối theo ảnh gốc 1845×1038.
+ * SVG viewBox="0 0 1845 1038" đảm bảo scale tự động trên mọi viewport.
+ *
+ * Công thức convert từ % cũ:
+ *   x_px = x_pct * 1845 / 100
+ *   y_px = y_pct * 1038 / 100
+ *   w_px = w_pct * 1845 / 100
+ *   h_px = h_pct * 1038 / 100
+ */
+const locations: MapLocation[] = [
+  {
+    id: 'goMo',
+    name: 'Gõ Mõ',
+    route: '/goMo',
+    status: 'done',
+    x: 1071, y: 21, w: 369, h: 332,
+  },
+  {
+    id: 'hoTinhTam',
+    name: 'Hồ Tĩnh Tâm',
+    route: '/worry-jar',
+    status: 'process',
+    x: 498, y: 83, w: 517, h: 332,
+  },
+  {
+    id: 'thuVienVuTru',
+    name: 'Thư Viện Vũ Trụ',
+    route: '/huyenHoc',
+    status: 'done',
+    x: 1365, y: 187, w: 480, h: 415,
+  },
+  {
+    id: 'phienChoTamLinh',
+    name: 'Phiên Chợ Tâm Linh',
+    route: '/shop',
+    status: 'done',
+    x: 609, y: 467, w: 517, h: 291,
+  },
+  {
+    id: 'leHoiHoaDang',
+    name: 'Lễ Hội Hoa Đăng',
+    route: '/box',
+    status: 'done',
+    x: 0, y: 467, w: 554, h: 467,
+  },
+  {
+    id: 'hangTienIch',
+    name: 'Hang Tiện Ích',
+    route: '/tien-ich',
+    status: 'done',
+    x: 1163, y: 644, w: 498, h: 363,
+  },
+  {
+    id: 'lauThien',
+    name: 'Lầu Thiền',
+    route: '/thapNhang',
+    status: 'done',
+    x: 0, y: 104, w: 461, h: 363,
+  },
+]
 
-  // 2. Chuyển đổi sang múi giờ Việt Nam (ICT - UTC+7) 
-  // Cách này giúp đảm bảo độ chính xác dù server hoặc thiết bị ở múi giờ khác
-  const vnTime = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Asia/Ho_Chi_Minh',
-    hour: 'numeric',
-    hour12: false
-  });
-
-  const currentHour = parseInt(vnTime.format(now));
-
-  // 3. Logic kiểm tra thời gian
-  // Từ 6h sáng (6) đến trước 8h tối (20)
-  if (currentHour >= 6 && currentHour < 20) {
-    desktopBackground.value = backgroundImg;
-    mobileBackground.value = backgroundImgMobile;
-  } else {
-    desktopBackground.value = phatNgoiHoaSenNightRes;
-    mobileBackground.value = backgroundImgMobileNight;
+const handleDebugToggle = (e: KeyboardEvent) => {
+  if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+    debugMode.value = !debugMode.value
   }
 }
 
+onMounted(() => {
+  updateMobileBackground()
+  window.addEventListener('keydown', handleDebugToggle)
+  const urlParams = new URLSearchParams(window.location.search)
+  if (urlParams.get('debug') === 'hotspot') {
+    debugMode.value = true
+  }
+})
 
-const toggleMenu = () => {
-  console.log('Menu toggled')
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleDebugToggle)
+})
+
+const updateMobileBackground = () => {
+  const now = new Date()
+  const vnTime = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Ho_Chi_Minh',
+    hour: 'numeric',
+    hour12: false,
+  })
+  const currentHour = parseInt(vnTime.format(now))
+  if (currentHour >= 6 && currentHour < 20) {
+    mobileBackground.value = backgroundImgMobile
+  } else {
+    mobileBackground.value = backgroundImgMobileNight
+  }
+}
+
+const onImageLoaded = () => {
+  imageLoaded.value = true
+}
+
+const handleNavigate = (location: MapLocation) => {
+  $common.navigateTo(location.route, location.status, router)
 }
 
 const showUserMenu = () => {
   console.log('User menu')
-}
-
-const getUserInitial = () => {
-  const email = getUserEmail()
-  return email ? email.charAt(0).toUpperCase() : 'U'
 }
 </script>
 
