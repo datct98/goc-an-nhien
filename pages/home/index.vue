@@ -4,9 +4,9 @@
     <SakuraEffect />
   </div>
 
-  <!-- DESKTOP: SVG Image Map + Hotspot -->
+  <!-- DESKTOP: SVG Polygon Hotspot Map -->
   <div v-else class="map-home">
-    <div class="map-wrapper" ref="mapContainer">
+    <div class="map-wrapper">
       <!-- Background map image -->
       <img
         :src="mapImage"
@@ -16,14 +16,14 @@
         draggable="false"
       />
 
-      <!-- SVG Hotspot Overlay
-           viewBox="0 0 1845 1038" khớp với kích thước ảnh gốc
-           → tọa độ px luôn chính xác, tự responsive theo mọi màn hình -->
+      <!-- SVG Overlay — viewBox 0 0 100 100 = normalized % coordinates
+           SVG fills wrapper 100%, wrapper keeps aspect-ratio of image
+           → polygon points in % always align with image pixels -->
       <svg
         v-if="imageLoaded"
         class="map-svg"
-        viewBox="0 0 1845 1038"
-        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-label="Bản đồ điều hướng Góc An Nhiên"
       >
@@ -31,7 +31,7 @@
           v-for="loc in locations"
           :key="loc.id"
           class="hotspot-group"
-          :class="{ 'debug-mode': debugMode }"
+          :class="{ 'debug-visible': debugMode }"
           @click="handleNavigate(loc)"
           @mouseenter="hoveredId = loc.id"
           @mouseleave="hoveredId = null"
@@ -39,48 +39,26 @@
           :aria-label="loc.name"
           role="button"
         >
-          <!-- Vùng click trong suốt -->
-          <rect
-            :x="loc.x"
-            :y="loc.y"
-            :width="loc.w"
-            :height="loc.h"
-            class="hotspot-rect"
+          <!-- Polygon hotspot — follows island silhouette -->
+          <polygon
+            :points="loc.points"
+            class="hotspot-polygon"
             :class="{ hovered: hoveredId === loc.id }"
-            rx="14"
           />
 
-          <!-- Pulse dot - ẩn khi hover -->
+          <!-- Pulse dot at centroid -->
           <circle
-            :cx="loc.x + loc.w / 2"
-            :cy="loc.y + loc.h / 2"
-            r="8"
+            :cx="loc.cx"
+            :cy="loc.cy"
+            r="1.2"
             class="hotspot-pulse"
-            :class="{ paused: hoveredId === loc.id }"
+            :class="{ hidden: hoveredId === loc.id }"
           />
-
-          <!-- Label tooltip khi hover -->
-          <g v-if="hoveredId === loc.id" class="hotspot-tooltip">
-            <rect
-              :x="loc.x + loc.w / 2 - 110"
-              :y="loc.y + loc.h / 2 - 62"
-              width="220"
-              height="36"
-              rx="10"
-              class="tooltip-bg"
-            />
-            <text
-              :x="loc.x + loc.w / 2"
-              :y="loc.y + loc.h / 2 - 38"
-              text-anchor="middle"
-              class="tooltip-text"
-            >{{ loc.name }}</text>
-          </g>
         </g>
       </svg>
 
       <!-- Debug badge -->
-      <div v-if="debugMode" class="debug-badge">🔧 Debug (Ctrl+Shift+H)</div>
+      <div v-if="debugMode" class="debug-badge">🔧 Debug Mode (Ctrl+Shift+H)</div>
 
       <!-- Header overlay -->
       <header class="map-header">
@@ -104,17 +82,15 @@ interface MapLocation {
   name: string
   route: string
   status: string
-  x: number
-  y: number
-  w: number
-  h: number
+  points: string   // SVG polygon points (normalized 0-100)
+  cx: number       // centroid x (for pulse dot + tooltip)
+  cy: number       // centroid y
 }
 
 const router = useRouter()
 const { $common } = useNuxtApp()
 const { isMobileView } = useDevice()
 const imageLoaded = ref(false)
-const mapContainer = ref<HTMLElement | null>(null)
 const mobileBackground = ref<string | null>(null)
 const hoveredId = ref<string | null>(null)
 const debugMode = ref(false)
@@ -122,64 +98,81 @@ const debugMode = ref(false)
 const mapImage = '/home/map-home.png'
 
 /**
- * Tọa độ tính bằng px tuyệt đối theo ảnh gốc 1845×1038.
- * SVG viewBox="0 0 1845 1038" đảm bảo scale tự động trên mọi viewport.
+ * Polygon hotspots — all coordinates in normalized % (0-100).
+ * viewBox="0 0 100 100" + preserveAspectRatio="none" + wrapper keeps aspect-ratio
+ * → polygons always align with image regardless of screen size.
  *
- * Công thức convert từ % cũ:
- *   x_px = x_pct * 1845 / 100
- *   y_px = y_pct * 1038 / 100
- *   w_px = w_pct * 1845 / 100
- *   h_px = h_pct * 1038 / 100
+ * Each polygon tightly follows the island/object silhouette.
+ * No overlap between adjacent regions.
+ */
+/**
+ * FINAL POLYGON HOTSPOTS — from external polygon mapper.
+ * Coordinates: normalized % (0-100), clockwise order.
+ * viewBox="0 0 100 100" + preserveAspectRatio="none"
  */
 const locations: MapLocation[] = [
   {
-    id: 'goMo',
-    name: 'Gõ Mõ',
-    route: '/goMo',
+    id: 'chuaThien',
+    name: 'Chùa Thiền',
+    route: '/thapNhang',
     status: 'done',
-    x: 1071, y: 21, w: 369, h: 332,
-  },
-  {
-    id: 'hoTinhTam',
-    name: 'Hồ Tĩnh Tâm',
-    route: '/worry-jar',
-    status: 'process',
-    x: 498, y: 83, w: 517, h: 332,
-  },
-  {
-    id: 'thuVienVuTru',
-    name: 'Thư Viện Vũ Trụ',
-    route: '/huyenHoc',
-    status: 'done',
-    x: 1365, y: 187, w: 480, h: 415,
-  },
-  {
-    id: 'phienChoTamLinh',
-    name: 'Phiên Chợ Tâm Linh',
-    route: '/shop',
-    status: 'done',
-    x: 609, y: 467, w: 517, h: 291,
+    points: '2,6.5 31,6.5 31,51.5 2,51.5',
+    cx: 16.5,
+    cy: 29,
   },
   {
     id: 'leHoiHoaDang',
     name: 'Lễ Hội Hoa Đăng',
     route: '/box',
     status: 'done',
-    x: 0, y: 467, w: 554, h: 467,
+    points: '2.5,66 46,66 46,96.5 2.5,96.5',
+    cx: 24,
+    cy: 81,
+  },
+  {
+    id: 'hoTinhTam',
+    name: 'Hồ Tịnh Tâm',
+    route: '/worry-jar',
+    status: 'process',
+    points: '51,38.5 66.5,38.5 66.5,50 51,50',
+    cx: 58.8,
+    cy: 44.2,
+  },
+  {
+    id: 'phienChoTamLinh',
+    name: 'Phiên Chợ Tâm Linh',
+    route: '/shop',
+    status: 'done',
+    points: '50.5,53 73.5,53 73.5,77 50.5,77',
+    cx: 62,
+    cy: 65,
+  },
+  {
+    id: 'goMo',
+    name: 'Gõ Mõ',
+    route: '/goMo',
+    status: 'done',
+    points: '68,13 83.5,13 83.5,52 68,52',
+    cx: 75.8,
+    cy: 32.5,
+  },
+  {
+    id: 'thuVienVuTru',
+    name: 'Thư Viện Vũ Trụ',
+    route: '/huyenHoc',
+    status: 'done',
+    points: '84.5,30.5 99,30.5 99,72 84.5,72',
+    cx: 91.8,
+    cy: 51.2,
   },
   {
     id: 'hangTienIch',
     name: 'Hang Tiện Ích',
     route: '/tien-ich',
     status: 'done',
-    x: 1163, y: 644, w: 498, h: 363,
-  },
-  {
-    id: 'lauThien',
-    name: 'Lầu Thiền',
-    route: '/thapNhang',
-    status: 'done',
-    x: 0, y: 104, w: 461, h: 363,
+    points: '77,75 94,75 94,99 77,99',
+    cx: 85.5,
+    cy: 87,
   },
 ]
 
@@ -192,9 +185,11 @@ const handleDebugToggle = (e: KeyboardEvent) => {
 onMounted(() => {
   updateMobileBackground()
   window.addEventListener('keydown', handleDebugToggle)
-  const urlParams = new URLSearchParams(window.location.search)
-  if (urlParams.get('debug') === 'hotspot') {
-    debugMode.value = true
+  if (import.meta.client) {
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('debug') === 'hotspot') {
+      debugMode.value = true
+    }
   }
 })
 
