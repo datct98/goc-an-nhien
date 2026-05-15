@@ -1,6 +1,6 @@
 <template>
     <div class="background">
-        <Coin />
+        <NumberPicker v-model="myNumber" :min="0" :max="100" />
     </div>
 </template>
 
@@ -9,6 +9,9 @@ import Bubble from '~/components/effects/Bubble.vue';
 import SmokeUp from '~/components/effects/SmokeUp.vue';
 import CircleSymbol from '~/components/CircleSymbol.vue';
 import Coin from '~/components/Coin.vue';
+import NumberPicker from '~/components/NumberPicker.vue';
+
+const myNumber = ref(25)
 
 </script>
 
