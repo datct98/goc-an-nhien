@@ -4,8 +4,9 @@
     <div class="input-container">
       <InputText v-model="data.username" type="text" class="input" placeholder="Nhập tên của bạn" />
     </div>
-    <div class="input-container pt-5">
-      <div class="flex justify-between w-full">
+    <div>
+      <!-- Date cũ -->
+      <!-- <div class="flex justify-between w-full">
         <div class="w-1/3 text-center text-white">Ngày</div>
         <div class="w-1/3 text-center text-white">Tháng</div>
         <div class="w-1/3 text-center text-white">Năm</div>
@@ -14,9 +15,11 @@
         <InputText placeholder="01" class="w-1/3 input-small" v-model="data.day" type="number" />
         <InputText placeholder="01" class="w-1/3 input-small" v-model="data.month" type="number" />
         <InputText placeholder="2000" class="w-1/3 input-small" v-model="data.year" type="number" />
-      </div>
+      </div> -->
+      <!-- Date mới -->
+      <DateMonthYearPicker v-model="inputDate" />
     </div>
-    <p class="small-title pt-5">Nhập giới tính</p>
+    <p class="small-title">Nhập giới tính</p>
     <div class="gender-container">
       <div class="male" :class="{ active: data.gender == 1 }" @click="updateGender(1)">
         Nam
@@ -53,8 +56,8 @@ const props = defineProps({
     required: true,
     default: {
       username: "",
-      day: 1,
-      month: 1,
+      day: 12,
+      month: 12,
       year: 2000,
       gender: 1,
       selectedTimeIndice: null,
@@ -63,6 +66,12 @@ const props = defineProps({
       selectMonth: 2
     }
   }
+});
+
+const inputDate = ref({
+  day: props.data.day,
+  month: props.data.month,
+  year: props.data.year
 });
 
 const timeIndices = [
@@ -80,7 +89,7 @@ const timeIndices = [
   { index: 11, name: "Hợi 21:00-23:00", time: "21:00-23:00" },
 ];
 
-const updateGender = (value) => { data.gender = value };
+const updateGender = (value) => { props.data.gender = value };
 
 </script>
 
@@ -160,8 +169,9 @@ const updateGender = (value) => { data.gender = value };
 }
 
 .male.active {
-  background-color: #396a9d;
-  box-shadow: 0 0 6px rgba(0, 140, 255, 0.6), 0 0 12px rgba(0, 140, 255, 0.4);
+  background-color: #6d9ccd;
+  ;
+  /* box-shadow: 0 0 6px rgba(0, 140, 255, 0.6), 0 0 12px rgba(0, 140, 255, 0.4); */
 }
 
 .female {
@@ -171,7 +181,7 @@ const updateGender = (value) => { data.gender = value };
 
 .female.active {
   background-color: #cb5194;
-  box-shadow: 0 0 6px rgb(192 0 255 / 60%), 0 0 12px rgb(255 0 239 / 40%);
+  /* box-shadow: 0 0 6px rgb(192 0 255 / 60%), 0 0 12px rgb(255 0 239 / 40%); */
 }
 
 .born-date-input {
