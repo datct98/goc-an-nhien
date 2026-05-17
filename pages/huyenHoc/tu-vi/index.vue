@@ -160,8 +160,8 @@ const setModeLuanGiai = (value) => {
 
 const tuViData = ref({
   username: "",
-  day: 1,
-  month: 1,
+  day: 10,
+  month: 10,
   year: 2000,
   gender: 1,
   mode: 'tronDoi',
@@ -171,8 +171,8 @@ const tuViData = ref({
 
 const tuViDataYearly = ref({
   username: "",
-  day: 1,
-  month: 1,
+  day: 10,
+  month: 10,
   year: 2000,
   gender: 1,
   selectedTimeIndice: null,
@@ -183,8 +183,8 @@ const tuViDataYearly = ref({
 
 const tuViDataMonthLy = ref({
   username: "",
-  day: 1,
-  month: 1,
+  day: 10,
+  month: 10,
   year: 2000,
   gender: 1,
   selectedTimeIndice: null,

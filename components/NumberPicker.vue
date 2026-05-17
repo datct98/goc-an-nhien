@@ -4,7 +4,8 @@ import { ref, computed } from 'vue'
 const props = defineProps({
     min: { type: Number, default: 0 },
     max: { type: Number, default: 100 },
-    modelValue: { type: Number, default: 0 }
+    modelValue: { type: Number, default: 0 },
+    debug: { type: String, default: "" }
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -21,14 +22,14 @@ const visibleNumbers = computed(() => {
     const current = props.modelValue
     const nums = []
 
-    if (current - 2 >= props.min) nums.push(current - 2)
+    // if (current - 2 >= props.min) nums.push(current - 2)
     if (current - 1 >= props.min) nums.push(current - 1)
-    
+
     // Luôn luôn có số hiện tại
     nums.push(current)
 
     if (current + 1 <= props.max) nums.push(current + 1)
-    if (current + 2 <= props.max) nums.push(current + 2)
+    // if (current + 2 <= props.max) nums.push(current + 2)
 
     return nums
 })
@@ -47,9 +48,9 @@ const initAudio = () => {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)()
         }
         if (audioCtx.state === 'suspended') {
-            audioCtx.resume().catch(() => {})
+            audioCtx.resume().catch(() => { })
         }
-    } catch (e) {}
+    } catch (e) { }
 }
 
 const playTickSound = () => {
@@ -92,11 +93,6 @@ const onStart = (e) => {
     isDragging.value = true
     startY = e.touches ? e.touches[0].clientY : e.clientY
     lastScrollY = props.modelValue
-
-    window.addEventListener('mousemove', onMove)
-    window.addEventListener('mouseup', onEnd)
-    window.addEventListener('touchmove', onMove, { passive: false })
-    window.addEventListener('touchend', onEnd)
 }
 
 const onMove = (e) => {
@@ -117,10 +113,6 @@ const onMove = (e) => {
 
 const onEnd = () => {
     isDragging.value = false
-    window.removeEventListener('mousemove', onMove)
-    window.removeEventListener('mouseup', onEnd)
-    window.removeEventListener('touchmove', onMove)
-    window.removeEventListener('touchend', onEnd)
 }
 
 const onWheel = (e) => {
@@ -131,7 +123,8 @@ const onWheel = (e) => {
 </script>
 
 <template>
-    <div class="picker-viewport" @mousedown="onStart" @touchstart="onStart" @wheel="onWheel">
+    <div class="picker-viewport" @mousedown="onStart" @touchstart="onStart" @mousemove="onMove"
+        @touchmove.prevent="onMove" @mouseup="onEnd" @touchend="onEnd" @mouseleave="onEnd" @wheel.prevent="onWheel">
         <!-- Khung căn chỉnh highlight ở chính giữa -->
         <div class="picker-highlight-box"></div>
 
@@ -152,9 +145,11 @@ const onWheel = (e) => {
 
 <style scoped>
 .picker-viewport {
+    touch-action: none;
+    /* Chặn trình duyệt cuộn trang khi vuốt trong khu vực này */
     position: relative;
-    width: 70px;
-    height: 200px;
+    width: 100%;
+    height: 120px;
     /* Tăng chiều cao để hiển thị 5 số */
     background: transparent;
     perspective: 1200px;
@@ -213,8 +208,6 @@ const onWheel = (e) => {
 /* Style đặc biệt cho số đang nằm ở chính giữa */
 .picker-item.is-active {
     opacity: 1;
-    scale: 1.15;
-    /* Phóng to nhẹ tạo điểm nhấn */
     font-weight: 700;
 }
 </style>

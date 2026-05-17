@@ -54,23 +54,19 @@ const year = ref(props.modelValue.year || new Date().getFullYear())
                 <!-- Cột Ngày -->
                 <div class="picker-column">
                     <span class="picker-label">Ngày</span>
-                    <NumberPicker v-model="day" :min="1" :max="31" />
+                    <NumberPicker :modelValue="day" @update:modelValue="(e) => day = e" :min="1" :max="31" />
                 </div>
-
-                <div class="picker-separator">/</div>
 
                 <!-- Cột Tháng -->
                 <div class="picker-column">
                     <span class="picker-label">Tháng</span>
-                    <NumberPicker v-model="month" :min="1" :max="12" />
+                    <NumberPicker :modelValue="month" @update:modelValue="(e) => month = e" :min="1" :max="12" />
                 </div>
-
-                <div class="picker-separator">/</div>
 
                 <!-- Cột Năm -->
                 <div class="picker-column year-column">
                     <span class="picker-label">Năm</span>
-                    <NumberPicker v-model="year" :min="1970" :max="2100" />
+                    <NumberPicker :modelValue="year" @update:modelValue="(e) => year = e" :min="1970" :max="2100" />
                 </div>
             </div>
 
@@ -83,18 +79,12 @@ const year = ref(props.modelValue.year || new Date().getFullYear())
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
 }
 
 .dmy-picker-glass {
-    background: rgba(20, 20, 22, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 28px;
-    padding: 30px 40px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    width: 100%;
+    background: transparent;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,7 +99,7 @@ const year = ref(props.modelValue.year || new Date().getFullYear())
 .dmy-header h3 {
     margin: 0;
     color: #ffffff;
-    font-size: 1.4rem;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
@@ -117,52 +107,37 @@ const year = ref(props.modelValue.year || new Date().getFullYear())
 .dmy-header p {
     margin: 4px 0 0;
     color: #888;
-    font-size: 0.85rem;
+    font-size: 14px;
 }
 
 .picker-group {
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     gap: 15px;
     position: relative;
 }
 
-/* Thêm hiệu ứng vệt sáng ngang làm nền nổi bật khu vực đang chọn */
-.picker-group::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 42px;
-    /* Đồng bộ với height của picker-highlight-box trong NumberPicker */
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0) 100%);
-    border-radius: 8px;
-    pointer-events: none;
-    z-index: 0;
-}
-
 .picker-column {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
     z-index: 1;
 }
 
 .picker-label {
-    color: #a0a0a0;
-    font-size: 0.75rem;
+    color: white;
+    font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .picker-separator {
     color: rgba(255, 255, 255, 0.15);
-    font-size: 2.5rem;
+    font-size: 14px;
     font-weight: 200;
     margin-top: 25px;
     /* Để dấu gạch chéo căn giữa theo số thay vì nhãn */
@@ -171,6 +146,6 @@ const year = ref(props.modelValue.year || new Date().getFullYear())
 
 /* Nới rộng một chút cho cột năm (vì hiển thị 4 chữ số 1970-2100) */
 .year-column :deep(.picker-viewport) {
-    width: 85px;
+    min-width: 100px;
 }
 </style>
