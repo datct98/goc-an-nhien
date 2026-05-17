@@ -38,13 +38,57 @@ const rotationAngle = computed(() => {
     return props.modelValue * -ROTATE_DEGREE
 })
 
+// Khởi tạo AudioContext cho âm thanh vòng quay
+let audioCtx = null
+
+const initAudio = () => {
+    try {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume().catch(() => {})
+        }
+    } catch (e) {}
+}
+
+const playTickSound = () => {
+    try {
+        if (!audioCtx || audioCtx.state === 'suspended') {
+            return
+        }
+        const oscillator = audioCtx.createOscillator()
+        const gainNode = audioCtx.createGain()
+
+        oscillator.connect(gainNode)
+        gainNode.connect(audioCtx.destination)
+
+        // Âm thanh "tick" nhẹ
+        oscillator.type = 'sine'
+        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime)
+        oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.05)
+
+        gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime)
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05)
+
+        oscillator.start(audioCtx.currentTime)
+        oscillator.stop(audioCtx.currentTime + 0.05)
+    } catch (error) {
+        // Bỏ qua lỗi
+    }
+}
+
 const updateValue = (val) => {
     const clamped = Math.max(props.min, Math.min(props.max, val))
-    emit('update:modelValue', clamped)
+    if (clamped !== props.modelValue) {
+        playTickSound()
+        emit('update:modelValue', clamped)
+    }
 }
 
 // Xử lý vuốt và kéo chuột
 const onStart = (e) => {
+    initAudio()
     isDragging.value = true
     startY = e.touches ? e.touches[0].clientY : e.clientY
     lastScrollY = props.modelValue
@@ -80,6 +124,7 @@ const onEnd = () => {
 }
 
 const onWheel = (e) => {
+    initAudio()
     e.preventDefault()
     updateValue(e.deltaY > 0 ? props.modelValue + 1 : props.modelValue - 1)
 }
