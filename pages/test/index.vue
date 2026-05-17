@@ -1,17 +1,16 @@
 <template>
     <div class="background">
-        <NumberPicker v-model="myNumber" :min="0" :max="100" />
+        <DateMonthYearPicker v-model="myDate" />
     </div>
 </template>
 
 <script setup>
-import Bubble from '~/components/effects/Bubble.vue';
-import SmokeUp from '~/components/effects/SmokeUp.vue';
-import CircleSymbol from '~/components/CircleSymbol.vue';
-import Coin from '~/components/Coin.vue';
-import NumberPicker from '~/components/NumberPicker.vue';
-
-const myNumber = ref(25)
+const myNumber = ref(25);
+const myDate = ref({
+    day: 15,
+    month: 8,
+    year: 1998
+});
 
 </script>
 
