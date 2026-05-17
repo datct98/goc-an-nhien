@@ -16,19 +16,19 @@ let lastScrollY = 0
 // Góc xoay giữa các số (30 độ là lý tưởng cho giao diện 3 số)
 const ROTATE_DEGREE = 30
 
-// CHỈ LỌC RA 3 SỐ: Số trước, số hiện tại, và số sau
+// CHỈ LỌC RA 5 SỐ: 2 số trước, số hiện tại, và 2 số sau
 const visibleNumbers = computed(() => {
     const current = props.modelValue
     const nums = []
 
-    // Thêm số phía trước (nếu không vượt quá min)
-    if (current > props.min) nums.push(current - 1)
-
+    if (current - 2 >= props.min) nums.push(current - 2)
+    if (current - 1 >= props.min) nums.push(current - 1)
+    
     // Luôn luôn có số hiện tại
     nums.push(current)
 
-    // Thêm số phía sau (nếu không vượt quá max)
-    if (current < props.max) nums.push(current + 1)
+    if (current + 1 <= props.max) nums.push(current + 1)
+    if (current + 2 <= props.max) nums.push(current + 2)
 
     return nums
 })
@@ -154,8 +154,8 @@ const onWheel = (e) => {
 .picker-viewport {
     position: relative;
     width: 70px;
-    height: 130px;
-    /* Thu gọn chiều cao lại vì chỉ hiển thị 3 số */
+    height: 200px;
+    /* Tăng chiều cao để hiển thị 5 số */
     background: transparent;
     perspective: 1200px;
     /* Tăng perspective để hiệu ứng 3D sâu và rõ nét hơn */
