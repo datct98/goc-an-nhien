@@ -18,27 +18,10 @@ const day = ref(props.modelValue.day || new Date().getDate())
 const month = ref(props.modelValue.month || (new Date().getMonth() + 1))
 const year = ref(props.modelValue.year || new Date().getFullYear())
 
-// Tính số ngày tối đa trong tháng để tự động điều chỉnh ngày hợp lệ
-// Ví dụ: Đang ở 31/01 mà chuyển sang tháng 02 thì ngày tự lùi về 28 hoặc 29.
-// const maxDaysInMonth = computed(() => {
-//     return new Date(year.value, month.value, 0).getDate()
-// })
-
-// Lắng nghe thay đổi tháng/năm để điều chỉnh ngày nếu vượt quá số ngày của tháng
-// watch([month, year], () => {
-//     if (day.value > maxDaysInMonth.value) {
-//         day.value = maxDaysInMonth.value
-//     }
-//     emitUpdate()
-// })
-
-// watch(day, () => {
-//     emitUpdate()
-// })
-
-// const emitUpdate = () => {
-//     emit('update:modelValue', { day: day.value, month: month.value, year: year.value })
-// }
+// Lắng nghe sự thay đổi của ngày, tháng, năm để báo lên cho component cha (TuViForm)
+watch([day, month, year], () => {
+    emit('update:modelValue', { day: day.value, month: month.value, year: year.value })
+})
 </script>
 
 <template>
