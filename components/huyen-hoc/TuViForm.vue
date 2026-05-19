@@ -17,7 +17,7 @@
         <InputText placeholder="2000" class="w-1/3 input-small" v-model="data.year" type="number" />
       </div> -->
       <!-- Date mới -->
-      <DateMonthYearPicker v-model="inputDate" />
+      <DateMonthYearPicker :modelValue="data" @update:modelValue="onDateChange" />
     </div>
     <p class="small-title">Nhập giới tính</p>
     <div class="gender-container">
@@ -68,11 +68,11 @@ const props = defineProps({
   }
 });
 
-const inputDate = ref({
-  day: props.data.day,
-  month: props.data.month,
-  year: props.data.year
-});
+const onDateChange = (newDate) => {
+  props.data.day = newDate.day;
+  props.data.month = newDate.month;
+  props.data.year = newDate.year;
+};
 
 const timeIndices = [
   { index: 0, name: "Tý 23:00-01:00", time: "23:00-01:00" },
