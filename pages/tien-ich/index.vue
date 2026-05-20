@@ -19,13 +19,8 @@
     </div>
 
     <div class="tien-ich-grid">
-      <div
-        v-for="item in utilities"
-        :key="item.id"
-        class="tien-ich-card"
-        :class="{ 'coming-soon': item.status !== 'done' }"
-        @click="navigateTo(item)"
-      >
+      <div v-for="item in utilities" :key="item.id" class="tien-ich-card"
+        :class="{ 'coming-soon': item.status !== 'done' }" @click="navigateTo(item)">
         <font-awesome-icon class="tien-ich-card-icon" :icon="item.icon" />
         <span class="tien-ich-card-name">{{ item.name }}</span>
         <span class="tien-ich-card-desc">{{ item.description }}</span>
@@ -55,8 +50,8 @@ const utilities = ref([
     icon: "fa-solid fa-gavel",
     name: "Vị thần của những quyết định",
     description: "Hãy để vị thần đưa ra quyết định cho bạn",
-    path: "/tien-ich/vi-than-cua-nhung-quyet-dinh",
-    status: "process",
+    path: "/tien-ich/vi-than-quyet-dinh",
+    status: "done",
   },
   {
     id: "xem-ngay-di-cat-toc",
@@ -151,8 +146,10 @@ const navigateTo = (item) => {
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  border: 1px solid transparent; /* Chuẩn bị viền sẵn để không bị nhảy layout */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Chỉnh lại shadow cho tự nhiên */
+  border: 1px solid transparent;
+  /* Chuẩn bị viền sẵn để không bị nhảy layout */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  /* Chỉnh lại shadow cho tự nhiên */
 }
 
 .tien-ich-card.coming-soon {
