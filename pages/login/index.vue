@@ -1,5 +1,5 @@
 <template>
-    <div class="login-container">
+    <div class="login-container" :style="{ backgroundImage: `url(${loginBackground})` }">
         <div class="google">
             <Bubble @click="loginWithGoogle">
                 <Image src="/logo/gg.png" alt="google" width="50" />
@@ -17,7 +17,7 @@ definePageMeta({
     layout: "login_layout"
 })
 
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import Bubble from '~/components/effects/Bubble.vue';
 import { authService } from '~/services/authService';
@@ -32,8 +32,26 @@ const REDIRECT_URI = window.location.origin + '/login/';
 const config = useRuntimeConfig()
 const GOOGLE_CLIENT_ID = config.public.googleClientId;
 
+const loginBackground = ref('/login/login_v2.png');
+
+const updateBackground = () => {
+    const now = new Date();
+    const vnTime = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Ho_Chi_Minh',
+        hour: 'numeric',
+        hour12: false,
+    });
+    const currentHour = parseInt(vnTime.format(now));
+    if (currentHour >= 6 && currentHour < 20) {
+        loginBackground.value = '/login/login_v2.png';
+    } else {
+        loginBackground.value = '/login/login_v2_night.png';
+    }
+};
+
 // Check for Google OAuth callback on mount
 onMounted(async () => {
+    updateBackground();
 
     // check show warning
     if (route.query.isWarning) {
