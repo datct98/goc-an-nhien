@@ -1,8 +1,9 @@
 <template>
+  <!-- MOBILE -->
   <div v-if="isMobileView" class="container-huyenhoc-mobile">
     <div class="bg-filter">
       <div class="huyenhoc-menu-page">
-        <button class="btn-back-home" @click="goHome">
+        <button class="btn-back-home" aria-label="Quay lại trang chủ" @click="goHome">
           <i class="pi pi-arrow-left"></i>
         </button>
 
@@ -15,7 +16,13 @@
             :key="item.id"
             class="huyenhoc-card"
             :class="{ 'coming-soon': item.status !== 'done' }"
+            role="button"
+            :aria-label="item.name"
+            :aria-disabled="item.status !== 'done'"
+            tabindex="0"
             @click="navigateTo(item)"
+            @keydown.enter="navigateTo(item)"
+            @keydown.space.prevent="navigateTo(item)"
           >
             <span class="huyenhoc-card-icon">{{ item.icon }}</span>
             <span class="huyenhoc-card-name">{{ item.name }}</span>
@@ -26,8 +33,43 @@
       </div>
     </div>
   </div>
-  <div v-else class="container-huyenHoc">
-    <div class="left-task-bar"></div>
+
+  <!-- DESKTOP -->
+  <div v-else class="container-huyenhoc-desktop">
+    <div class="bg-filter">
+      <div class="huyenhoc-desktop-shell">
+        <button class="btn-back-desktop" aria-label="Quay lại trang chủ" @click="goHome">
+          <i class="pi pi-arrow-left"></i>
+          <span>Trang chủ</span>
+        </button>
+
+        <header class="huyenhoc-desktop-header">
+          <p class="huyenhoc-desktop-title"><span>🔮 Huyền Học</span></p>
+          <p class="huyenhoc-desktop-subtitle">Khám phá vận mệnh qua các bộ môn huyền học</p>
+        </header>
+
+        <div class="huyenhoc-desktop-grid">
+          <div
+            v-for="item in disciplines"
+            :key="item.id"
+            class="huyenhoc-desktop-card"
+            :class="{ 'coming-soon': item.status !== 'done' }"
+            role="button"
+            :aria-label="item.name"
+            :aria-disabled="item.status !== 'done'"
+            tabindex="0"
+            @click="navigateTo(item)"
+            @keydown.enter="navigateTo(item)"
+            @keydown.space.prevent="navigateTo(item)"
+          >
+            <span class="huyenhoc-desktop-card-icon">{{ item.icon }}</span>
+            <span class="huyenhoc-desktop-card-name">{{ item.name }}</span>
+            <span class="huyenhoc-desktop-card-desc">{{ item.description }}</span>
+            <span v-if="item.status !== 'done'" class="huyenhoc-desktop-card-badge">Sắp ra mắt</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -80,6 +122,7 @@ const navigateTo = (item) => {
 </script>
 <style scoped src="./index.css"></style>
 <style scoped>
+/* ========= MOBILE ========= */
 .huyenhoc-menu-page {
   width: 100%;
   height: 100%;
@@ -127,15 +170,15 @@ const navigateTo = (item) => {
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
   position: relative;
 }
 
-.huyenhoc-card:hover:not(.coming-soon) {
-  background: rgba(15, 23, 42, 0.7);
-  border-color: rgba(212, 175, 55, 0.45);
+.huyenhoc-card:hover:not(.coming-soon),
+.huyenhoc-card:focus-visible:not(.coming-soon) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.45);
 }
 
 .huyenhoc-card.coming-soon {
@@ -170,6 +213,143 @@ const navigateTo = (item) => {
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========= DESKTOP ========= */
+.container-huyenhoc-desktop {
+  width: 100vw;
+  min-height: 100dvh;
+  background-image: url("../../public/huyenHoc/cucQuang.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.huyenhoc-desktop-shell {
+  width: 100%;
+  min-height: 100dvh;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Pad-left to clear the global hamburger button (top:1rem,left:1rem) */
+  padding: 6rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-back-desktop {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #d4af37;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+.btn-back-desktop:hover,
+.btn-back-desktop:focus-visible {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.6);
+  transform: translateX(-2px);
+}
+
+.huyenhoc-desktop-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.huyenhoc-desktop-title {
+  color: #e6ca77;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  text-balance: balance;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.huyenhoc-desktop-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.05rem;
+  margin: 0;
+  font-style: italic;
+  text-pretty: pretty;
+}
+
+.huyenhoc-desktop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.huyenhoc-desktop-card {
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  text-align: center;
+  min-height: 240px;
+  justify-content: center;
+}
+
+.huyenhoc-desktop-card:hover:not(.coming-soon),
+.huyenhoc-desktop-card:focus-visible:not(.coming-soon) {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.6);
+  transform: translateY(-4px);
+}
+
+.huyenhoc-desktop-card.coming-soon {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.huyenhoc-desktop-card-icon {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.huyenhoc-desktop-card-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #e6ca77;
+  letter-spacing: 0.5px;
+}
+
+.huyenhoc-desktop-card-desc {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+  text-pretty: pretty;
+}
+
+.huyenhoc-desktop-card-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 </style>

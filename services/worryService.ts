@@ -36,7 +36,7 @@ export const worryService = {
      * @param {string} effectType - "BURN" hoặc "DISSOLVE"
      * @param {string} visualType - "JAR" hoặc "VOID"
      */
-    async release(characterCount, effectType, visualType) {
+    async release(characterCount: number, effectType: string, visualType: string) {
         console.log('🌌 Releasing worry:', { characterCount, effectType, visualType });
         const { data } = await worryApi.post('/worries/release', {
             characterCount,
