@@ -35,7 +35,7 @@ export const prayerService = {
      * @param {Object} prayerData - { content, type }
      * @returns {Promise<Object>} Created prayer
      */
-    async createPrayer(prayerData) {
+    async createPrayer(prayerData: { content: string; type: string }) {
         console.log('📡 Calling API: POST /prayers', prayerData);
         const { data } = await prayerApi.post('/prayers', prayerData);
         console.log('✅ Prayer created:', data);
@@ -47,7 +47,7 @@ export const prayerService = {
      * @param {string} prayerId
      * @returns {Promise<Object>} Updated prayer
      */
-    async sendHeart(prayerId) {
+    async sendHeart(prayerId: string) {
         console.log(`📡 Calling API: POST /prayers/${prayerId}/heart`);
         const { data } = await prayerApi.post(`/prayers/${prayerId}/heart`);
         console.log('✅ Heart sent:', data);
