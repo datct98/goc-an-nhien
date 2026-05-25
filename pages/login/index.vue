@@ -1,12 +1,20 @@
 <template>
     <div class="login-container" :style="{ backgroundImage: `url(${loginBackground})` }">
-        <div class="google">
+        <div class="google" v-if="!isMobileView">
             <Bubble @click="loginWithGoogle">
                 <Image src="/logo/gg.png" alt="google" width="50" />
             </Bubble>
         </div>
         <div class="login-board">
-            <InputComponent />
+            <div class="login-content">
+                <InputComponent />
+                <div v-if="isMobileView" class="mobile-google-login">
+                    <button @click="loginWithGoogle" class="btn-google-mobile">
+                        <img src="/logo/gg.png" alt="google" width="20" class="google-icon" />
+                        <span>Đăng nhập bằng Google</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -28,6 +36,8 @@ const route = useRoute();
 const { $common } = useNuxtApp();
 
 const REDIRECT_URI = window.location.origin + '/login/';
+
+const { isMobileView } = useDevice();
 
 const config = useRuntimeConfig()
 const GOOGLE_CLIENT_ID = config.public.googleClientId;
