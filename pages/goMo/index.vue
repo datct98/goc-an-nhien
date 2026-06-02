@@ -20,34 +20,16 @@
         - Mỗi lần tụng kinh sẽ được cộng điểm, giải nghiệp và xua tan đi ưu phiền
       </p>
     </div>
-    <div class="tuongPhat">
-      <Image src="tuong/duc_phat.png" alt="phat" width="300" />
-    </div>
-    <div class="caynen left">
-      <Image src="decor/nen.png" alt="caynen" width="50" />
-    </div>
-    <div class="caynen right">
-      <Image src="decor/nen.png" alt="caynen" width="50" />
-    </div>
-    <div class="caiBan">
-      <Image src="decor/table.png" alt="cai_ban" width="600" />
-    </div>
-    <div class="caiMo" id="caiMo" @click="goMo()">
-      <Image src="decor/cai_mo.png" alt="cai_mo" width="100" />
-    </div>
-    <div class="pillow">
-      <Image src="decor/goi.png" alt="pillow" width="200" />
-    </div>
-    <div class="bathuong">
-      <SmokeUp />
-      <Image src="decor/bat_huong_2.png" alt="bathuong" width="80" />
-    </div>
-    <div class="gayGoMo" ref="gayGoMoRef" @click="camGayGoMo()">
-      <Image src="decor/gay_go_mo.png " alt="gay_go_mo" width="70" />
-    </div>
-    <div class="khayDungGay" ref="khayDungGayRef" @click="camGayGoMo()">
-      <Image src="decor/khay.png" alt="khay_dung_gay" width="120" />
-    </div>
+    <Decor className="tuongPhat" src="tuong/duc_phat.png" width="300" :isEdit="isEdit" />
+    <Decor className="caynen left" src="decor/nen.png" width="50" :isEdit="isEdit" />
+    <Decor className="caynen right" src="decor/nen.png" width="50" :isEdit="isEdit" />
+    <Decor className="caiBan" src="decor/table.png" width="600" :isEdit="isEdit" />
+    <Decor className="caiMo" src="decor/cai_mo.png" width="100" :isEdit="isEdit" @click="goMo()" />
+    <Decor className="pillow" src="decor/goi.png" width="200" :isEdit="isEdit" />
+    <Decor className="bathuong" src="decor/bat_huong_2.png" width="80" :isEdit="isEdit" :isSmokeUp="isEdit" />
+    <Decor className="gayGoMo" src="decor/gay_go_mo.png" width="70" :isEdit="isEdit" @click="camGayGoMo()" />
+    <Decor className="khayDungGay" ref="khayDungGayRef" src="decor/khay.png" width="120" :isEdit="isEdit"
+      @click="camGayGoMo()" />
     <div class="banCongDuc">
       <Image src="ban_tho/ban_cong_duc.png" alt="ban_cong_duc" width="350" />
       <div class="congDucText">
@@ -82,8 +64,8 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 import memeTexts from "~/constants/memeTexts.json";
 import regularTexts from "~/constants/regularTexts.json";
 import bg from "../../assets/goMo/bg_night.png";
-import SmokeUp from "~/components/effects/SmokeUp.vue";
 import GoMoMobile from "~/components/GoMoMobile.vue";
+import Decor from "~/components/goMo/Decor.vue";
 
 const {
   stats,
@@ -97,6 +79,7 @@ const {
 
 // ========== IMAGE PRELOADER ==========
 const isReady = ref(false);
+const isEdit = ref(false);
 
 const preloadImages = () => {
   const imagePaths = [
