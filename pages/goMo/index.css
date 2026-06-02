@@ -10,7 +10,7 @@
 }
 
 .camGayGoMo {
-    cursor: url("../cursor/go_mo.png") 64 78, pointer;
+    cursor: url("../cursor/go_mo.png") 32 39, pointer;
 }
 
 .goMo {
@@ -49,8 +49,8 @@
 }
 
 .caiMo {
-    bottom: 21%;
-    left: 45%;
+    bottom: calc(18vh - 50px);
+    left: calc((100vw - 100px) / 2);
     z-index: 10;
 }
 
@@ -61,53 +61,53 @@
 }
 
 .pillow {
-    bottom: 7%;
-    left: 39%;
+    bottom: calc(18vh - 100px);
+    left: calc((100vw - 200px) / 2);
     z-index: 1;
 }
 
 .caiBan {
-    bottom: 18%;
-    left: 30%;
+    bottom: 18vh;
+    left: calc((100vw - 600px) / 2);
     z-index: 1;
 }
 
 .tuongPhat {
-    bottom: 43%;
-    left: 40%;
+    bottom: calc(18vh + 170px);
+    left: calc((100vw - 300px) / 2);
     z-index: 2;
 }
 
 .caynen.left,
 .caynen.right {
-    bottom: 43%;
+    bottom: calc(18vh + 170px);
     z-index: 3;
 }
 
 .caynen.left {
-    left: 34%;
+    left: calc((100vw - 450px) / 2);
 }
 
 .caynen.right {
-    left: 62%;
+    left: calc((100vw + 350px) / 2);
 }
 
 .bathuong {
-    bottom: 44%;
-    left: 47%;
+    bottom: calc(18vh + 180px);
+    left: calc((100vw - 80px) / 2);
     z-index: 4;
 }
 
 .gayGoMo {
-    bottom: 7%;
-    right: 30%;
+    bottom: calc((18vh - 130px));
+    left: calc((100vw + 50px) / 2);
     z-index: 5;
     cursor: pointer;
 }
 
 .khayDungGay {
-    bottom: 3%;
-    right: 28%;
+    bottom: calc((18vh - 140px) / 2);
+    left: calc((100vw + 10px) / 2);
     z-index: 4;
 }
 

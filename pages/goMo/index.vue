@@ -11,13 +11,8 @@
   <GoMoMobile v-if="isReady && isMobileView" />
 
   <!-- DESKTOP layout (original) -->
-  <div
-    v-else-if="isReady"
-    class="container-goMo"
-    id="container"
-    ref="containerRef"
-    :style="{ backgroundImage: `url(${bg})` }"
-  >
+  <div v-else-if="isReady" class="container-goMo" id="container" ref="containerRef"
+    :style="{ backgroundImage: `url(${bg})` }">
     <div class="bang">
       <p style="width: 280px; word-wrap: break-word; font-size: 14px; color: #73462d">
         - Click vào cái <b>gậy</b> và nhấn vào <b>chiếc mõ</b> hoặc nhấn
@@ -38,20 +33,20 @@
       <Image src="decor/table.png" alt="cai_ban" width="600" />
     </div>
     <div class="caiMo" id="caiMo" @click="goMo()">
-      <Image src="decor/cai_mo.png" alt="cai_mo" width="150" />
+      <Image src="decor/cai_mo.png" alt="cai_mo" width="100" />
     </div>
     <div class="pillow">
-      <Image src="decor/goi.png" alt="pillow" width="350" />
+      <Image src="decor/goi.png" alt="pillow" width="200" />
     </div>
     <div class="bathuong">
       <SmokeUp />
       <Image src="decor/bat_huong_2.png" alt="bathuong" width="80" />
     </div>
     <div class="gayGoMo" ref="gayGoMoRef" @click="camGayGoMo()">
-      <Image src="decor/gay_go_mo.png " alt="gay_go_mo" width="100" />
+      <Image src="decor/gay_go_mo.png " alt="gay_go_mo" width="70" />
     </div>
     <div class="khayDungGay" ref="khayDungGayRef" @click="camGayGoMo()">
-      <Image src="decor/khay.png" alt="khay_dung_gay" width="150" />
+      <Image src="decor/khay.png" alt="khay_dung_gay" width="120" />
     </div>
     <div class="banCongDuc">
       <Image src="ban_tho/ban_cong_duc.png" alt="ban_cong_duc" width="350" />
@@ -76,14 +71,8 @@
 
     <!-- Floating Texts -->
     <div class="floating-texts-container">
-      <FloatingText
-        v-for="text in floatingTexts"
-        :key="text.id"
-        :text="text.text"
-        :x="text.x"
-        :y="text.y"
-        :is-meme="text.isMeme"
-      />
+      <FloatingText v-for="text in floatingTexts" :key="text.id" :text="text.text" :x="text.x" :y="text.y"
+        :is-meme="text.isMeme" />
     </div>
   </div>
 </template>
@@ -92,7 +81,7 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import memeTexts from "~/constants/memeTexts.json";
 import regularTexts from "~/constants/regularTexts.json";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/goMo/bg_night.png";
 import SmokeUp from "~/components/effects/SmokeUp.vue";
 import GoMoMobile from "~/components/GoMoMobile.vue";
 
@@ -301,6 +290,7 @@ const camGayGoMo = () => {
 }
 
 @keyframes lotus-spin {
+
   0%,
   100% {
     transform: scale(1) rotate(0deg);
@@ -314,6 +304,7 @@ const camGayGoMo = () => {
 }
 
 @keyframes pulse-text {
+
   0%,
   100% {
     opacity: 1;
