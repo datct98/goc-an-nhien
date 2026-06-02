@@ -27,7 +27,8 @@
     <Decor className="caiMo" src="decor/cai_mo.png" width="100" :isEdit="isEdit" @click="goMo()" />
     <Decor className="pillow" src="decor/goi.png" width="200" :isEdit="isEdit" />
     <Decor className="bathuong" src="decor/bat_huong_2.png" width="80" :isEdit="isEdit" :isSmokeUp="isEdit" />
-    <Decor className="gayGoMo" src="decor/gay_go_mo.png" width="70" :isEdit="isEdit" @click="camGayGoMo()" />
+    <Decor className="gayGoMo" ref="gayGoMoRef" src="decor/gay_go_mo.png" width="70" :isEdit="isEdit"
+      :isShowImage="isShowGayGoMo" @click="camGayGoMo()" />
     <Decor className="khayDungGay" ref="khayDungGayRef" src="decor/khay.png" width="120" :isEdit="isEdit"
       @click="camGayGoMo()" />
     <div class="banCongDuc">
@@ -51,11 +52,16 @@
     </div>
     <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
 
-    <!-- Floating Texts -->
     <div class="floating-texts-container">
       <FloatingText v-for="text in floatingTexts" :key="text.id" :text="text.text" :x="text.x" :y="text.y"
         :is-meme="text.isMeme" />
     </div>
+
+    <!-- Edit Toggle Button -->
+    <button class="btn-toggle-edit" @click="isEdit = !isEdit">
+      <font-awesome-icon :icon="isEdit ? 'fa-solid fa-check' : 'fa-solid fa-pen-to-square'" />
+      {{ isEdit ? 'Xong' : 'Sửa' }}
+    </button>
   </div>
 </template>
 
@@ -80,6 +86,7 @@ const {
 // ========== IMAGE PRELOADER ==========
 const isReady = ref(false);
 const isEdit = ref(false);
+const isShowGayGoMo = ref(true);
 
 const preloadImages = () => {
   const imagePaths = [
@@ -232,10 +239,10 @@ const camGayGoMo = () => {
   isCamGay = !isCamGay;
   if (isCamGay) {
     containerRef.value.classList.add("camGayGoMo");
-    gayGoMoRef.value.classList.add("hidden");
+    isShowGayGoMo.value = false;
   } else {
     containerRef.value.classList.remove("camGayGoMo");
-    gayGoMoRef.value.classList.remove("hidden");
+    isShowGayGoMo.value = true;
   }
 };
 </script>
@@ -296,5 +303,35 @@ const camGayGoMo = () => {
   50% {
     opacity: 0.5;
   }
+}
+
+.btn-toggle-edit {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: rgba(115, 70, 45, 0.8);
+  color: #fff;
+  border: 2px solid #d4a24e;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-toggle-edit:hover {
+  background-color: #73462d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-toggle-edit:active {
+  transform: translateY(0);
 }
 </style>

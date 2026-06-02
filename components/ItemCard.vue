@@ -9,6 +9,10 @@ const props = defineProps({
   price: String,
   icon: String,
   imagePath: String,
+  isBuy: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const buyItem = () => {
@@ -27,23 +31,23 @@ const buyItem = () => {
       {{ icon }}
     </div> -->
 
-    <div class="image">
-      <Image :src="imagePath" alt="Item" />
+    <div class="image flex">
+      <Image class="m-auto" :src="imagePath" alt="Item" />
     </div>
 
-    <div class="title">
+    <div class="title" v-if="title">
       {{ title }}
     </div>
 
-    <div class="subtitle">
+    <div class="subtitle" v-if="subtitle">
       {{ subtitle }}
     </div>
 
-    <div class="price">
+    <div class="price" v-if="price">
       {{ price }} 🌼
     </div>
 
-    <button @click="buyItem()" class="buy-item" :class="rank">Quy đổi</button>
+    <button v-if="isBuy" @click="buyItem()" class="buy-item" :class="rank">Quy đổi</button>
 
   </div>
 </template>
