@@ -6,67 +6,7 @@
 
   <!-- DESKTOP: SVG Polygon Hotspot Map -->
   <div v-else class="map-home">
-    <div class="map-wrapper">
-      <!-- Background map image -->
-      <img
-        :src="mapImage"
-        alt="Bản đồ Góc An Nhiên"
-        class="map-background"
-        @load="onImageLoaded"
-        draggable="false"
-      />
 
-      <!-- SVG Overlay — viewBox 0 0 100 100 = normalized % coordinates
-           SVG fills wrapper 100%, wrapper keeps aspect-ratio of image
-           → polygon points in % always align with image pixels -->
-      <svg
-        v-if="imageLoaded"
-        class="map-svg"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="Bản đồ điều hướng Góc An Nhiên"
-      >
-        <g
-          v-for="loc in locations"
-          :key="loc.id"
-          class="hotspot-group"
-          :class="{ 'debug-visible': debugMode }"
-          @click="handleNavigate(loc)"
-          @mouseenter="hoveredId = loc.id"
-          @mouseleave="hoveredId = null"
-          style="cursor: pointer"
-          :aria-label="loc.name"
-          role="button"
-        >
-          <!-- Polygon hotspot — follows island silhouette -->
-          <polygon
-            :points="loc.points"
-            class="hotspot-polygon"
-            :class="{ hovered: hoveredId === loc.id }"
-          />
-
-          <!-- Pulse dot at centroid -->
-          <circle
-            :cx="loc.cx"
-            :cy="loc.cy"
-            r="1.2"
-            class="hotspot-pulse"
-            :class="{ hidden: hoveredId === loc.id }"
-          />
-        </g>
-      </svg>
-
-      <!-- Debug badge -->
-      <div v-if="debugMode" class="debug-badge">🔧 Debug Mode (Ctrl+Shift+H)</div>
-
-      <!-- Header overlay -->
-      <header class="map-header">
-        <button class="user-btn" @click="showUserMenu">
-          <img src="/home/cosmic_user_avatar.png" class="user-avatar-img" alt="User Profile" />
-        </button>
-      </header>
-    </div>
   </div>
 </template>
 
@@ -87,29 +27,6 @@ interface MapLocation {
   cy: number       // centroid y
 }
 
-const router = useRouter()
-const { $common } = useNuxtApp()
-const { isMobileView } = useDevice()
-const imageLoaded = ref(false)
-const mobileBackground = ref<string | null>(null)
-const hoveredId = ref<string | null>(null)
-const debugMode = ref(false)
-
-const mapImage = '/home/map-home.png'
-
-/**
- * Polygon hotspots — all coordinates in normalized % (0-100).
- * viewBox="0 0 100 100" + preserveAspectRatio="none" + wrapper keeps aspect-ratio
- * → polygons always align with image regardless of screen size.
- *
- * Each polygon tightly follows the island/object silhouette.
- * No overlap between adjacent regions.
- */
-/**
- * FINAL POLYGON HOTSPOTS — from external polygon mapper.
- * Coordinates: normalized % (0-100), clockwise order.
- * viewBox="0 0 100 100" + preserveAspectRatio="none"
- */
 const locations: MapLocation[] = [
   {
     id: 'chuaThien',
@@ -175,26 +92,15 @@ const locations: MapLocation[] = [
     cy: 87,
   },
 ]
-
-const handleDebugToggle = (e: KeyboardEvent) => {
-  if (e.ctrlKey && e.shiftKey && e.key === 'H') {
-    debugMode.value = !debugMode.value
-  }
-}
+const router = useRouter()
+const { $common } = useNuxtApp()
+const { isMobileView } = useDevice()
+const mobileBackground = ref<string | null>(null)
 
 onMounted(() => {
   updateMobileBackground()
-  window.addEventListener('keydown', handleDebugToggle)
   if (import.meta.client) {
-    const urlParams = new URLSearchParams(window.location.search)
-    if (urlParams.get('debug') === 'hotspot') {
-      debugMode.value = true
-    }
   }
-})
-
-onUnmounted(() => {
-  window.removeEventListener('keydown', handleDebugToggle)
 })
 
 const updateMobileBackground = () => {
@@ -210,18 +116,6 @@ const updateMobileBackground = () => {
   } else {
     mobileBackground.value = backgroundImgMobileNight
   }
-}
-
-const onImageLoaded = () => {
-  imageLoaded.value = true
-}
-
-const handleNavigate = (location: MapLocation) => {
-  $common.navigateTo(location.route, location.status, router)
-}
-
-const showUserMenu = () => {
-  console.log('User menu')
 }
 </script>
 
