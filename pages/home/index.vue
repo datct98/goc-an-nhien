@@ -6,16 +6,29 @@
 
   <!-- DESKTOP: SVG Polygon Hotspot Map -->
   <div v-else class="map-home">
+    <div class="sky-layer"></div>
 
+    <!-- Cloud layers for parallax effect -->
+    <div class="clouds-container">
+      <div class="cloud cloud-slow"></div>
+      <div class="cloud cloud-medium"></div>
+      <div class="cloud cloud-fast"></div>
+    </div>
+
+    <Decor className="chuaGoMo" src="/home/chua_go_mo.png" width="600" :isEdit="false"></Decor>
+
+
+    <div class="land-layer"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
-import backgroundImgMobile from '~/assets/PhatNgoiHoaSenMobile.png'
-import backgroundImgMobileNight from '~/assets/PhatNgoiHoaSenMobileNightRes.png'
-import SakuraEffect from '~/components/effects/SakuraEffect.vue'
+import { ref, onMounted, onUnmounted } from 'vue';
+import { useRouter } from 'vue-router';
+import backgroundImgMobile from '~/assets/PhatNgoiHoaSenMobile.png';
+import backgroundImgMobileNight from '~/assets/PhatNgoiHoaSenMobileNightRes.png';
+import SakuraEffect from '~/components/effects/SakuraEffect.vue';
+import Decor from '~/components/goMo/Decor.vue';
 
 interface MapLocation {
   id: string
