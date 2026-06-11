@@ -15,7 +15,7 @@
       <div class="cloud cloud-fast"></div>
     </div>
 
-    <Decor className="chuaGoMo" src="/home/chua_go_mo.png" width="600" :isEdit="false"></Decor>
+    <ImgAnimation className="chuaGoMo" :images="gomoAnim" :width="300" :height="300" :interval="200" />
 
 
     <div class="land-layer"></div>
@@ -29,6 +29,13 @@ import backgroundImgMobile from '~/assets/PhatNgoiHoaSenMobile.png';
 import backgroundImgMobileNight from '~/assets/PhatNgoiHoaSenMobileNightRes.png';
 import SakuraEffect from '~/components/effects/SakuraEffect.vue';
 import Decor from '~/components/goMo/Decor.vue';
+
+const gomoAnim = ref([
+  '/home/anim/gomo/image_1.jpg',
+  '/home/anim/gomo/image_2.jpg',
+  '/home/anim/gomo/image_3.jpg',
+  '/home/anim/gomo/image_4.jpg',
+])
 
 interface MapLocation {
   id: string

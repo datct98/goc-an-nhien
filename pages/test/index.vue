@@ -1,30 +1,27 @@
 <template>
-    <div class="background">
-        <DateMonthYearPicker v-model="myDate" />
+    <div class="wrapper">
+        <h1>Demo Hiệu Ứng Chạy Ảnh Liên Tục</h1>
+
+        <ImgAnimation :images="myImages" :width="300" :height="300" :interval="200" />
     </div>
 </template>
 
 <script setup>
-const myNumber = ref(25);
-const myDate = ref({
-    day: 15,
-    month: 8,
-    year: 1998
-});
+import { ref } from 'vue'
 
+// Khai báo danh sách đường dẫn ảnh của bạn
+// Lưu ý: Nếu để trong thư mục public, bạn có thể viết đường dẫn trực tiếp từ "/"
+const myImages = ref([
+    '/home/anim/gomo/image_1.jpg',
+    '/home/anim/gomo/image_2.jpg',
+    '/home/anim/gomo/image_3.jpg',
+    '/home/anim/gomo/image_4.jpg',
+])
 </script>
 
-<style>
-.background {
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+<style scoped>
+.wrapper {
+    padding: 20px;
+    text-align: center;
 }
 </style>
