@@ -15,7 +15,9 @@
       <div class="cloud cloud-fast"></div>
     </div>
 
-    <ImgAnimation className="chuaGoMo" :images="gomoAnim" :width="300" :height="300" :interval="200" />
+    <ImgAnimation className="chuaGoMo" :images="gomoAnim" :width="300" :height="300" :interval="1000" />
+
+    <!-- <ImgAnimation className="huyenHoc" :images="huyenHocAnim" :width="200" :height="200" :interval="2000" /> -->
 
 
     <div class="land-layer"></div>
@@ -35,7 +37,14 @@ const gomoAnim = ref([
   '/home/anim/gomo/image_2.jpg',
   '/home/anim/gomo/image_3.jpg',
   '/home/anim/gomo/image_4.jpg',
-])
+]);
+
+const huyenHocAnim = ref([
+  '/home/anim/huyenHoc/image_1.jpg',
+  '/home/anim/huyenHoc/image_2.jpg',
+  '/home/anim/huyenHoc/image_3.jpg',
+]);
+
 
 interface MapLocation {
   id: string

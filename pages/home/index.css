@@ -99,8 +99,16 @@
 .chuaGoMo {
   position: absolute;
   z-index: 999;
-  left: calc((100vw - 300px) / 2);
-  top: 15vh;
+  left: calc((100vw - 250px) / 2);
+  top: 18vh;
+  pointer-events: none;
+}
+
+.huyenHoc {
+  position: absolute;
+  z-index: 999;
+  left: calc((160vw - 300px) / 2);
+  top: 22vh;
 }
 
 @keyframes floatCloud {
