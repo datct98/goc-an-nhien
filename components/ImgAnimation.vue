@@ -24,15 +24,15 @@ const props = defineProps({
         type: [String, Number],
         default: '300px' // Bạn có thể truyền: 300, "300px", "100%"...
     },
-    // Thêm prop chỉnh chiều cao
-    height: {
-        type: [String, Number],
-        default: '300px'
-    },
     // Thêm prop chỉnh cách hiển thị ảnh (cover, contain, fill...)
     objectFit: {
         type: String,
         default: 'cover'
+    },
+    // Thêm prop delay khi quay lại index 0
+    delay: {
+        type: Number,
+        default: 0
     }
 })
 
@@ -42,10 +42,9 @@ let timer = null
 // Tính toán Style cho Container
 const containerStyle = computed(() => {
     const w = typeof props.width === 'number' ? `${props.width}px` : props.width
-    const h = typeof props.height === 'number' ? `${props.height}px` : props.height
     return {
         width: w,
-        height: h
+        height: 'auto'
     }
 })
 
@@ -61,13 +60,28 @@ const imageStyle = computed(() => {
 const startAnimation = () => {
     stopAnimation()
     if (props.images.length <= 1) return
-    timer = setInterval(() => {
-        activeIndex.value = (activeIndex.value + 1) % props.images.length
-    }, props.interval)
+
+    const run = () => {
+        const nextIndex = (activeIndex.value + 1) % props.images.length
+        let wait = props.interval
+
+        // Nếu quay lại index 0 và có delay thì cộng thêm vào wait
+        if (nextIndex === 0 && props.delay > 0) {
+            wait += props.delay
+        }
+
+        activeIndex.value = nextIndex
+        timer = setTimeout(run, wait)
+    }
+
+    timer = setTimeout(run, props.interval)
 }
 
 const stopAnimation = () => {
-    if (timer) clearInterval(timer)
+    if (timer) {
+        clearTimeout(timer)
+        timer = null
+    }
 }
 
 onMounted(() => startAnimation())

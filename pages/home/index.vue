@@ -15,13 +15,18 @@
       <div class="cloud cloud-fast"></div>
     </div>
 
-    <ImgAnimation className="chuaGoMo" :images="gomoAnim" :width="270" :height="270" :interval="500" />
+    <div class="chuaGoMo">
+      <ImgAnimation :images="gomoAnim" :width="500" :interval="300" :delay="500" />
+    </div>
 
-    <!-- <ImgAnimation className="huyenHoc" :images="huyenHocAnim" :width="200" :height="200" :interval="2000" /> -->
+    <div class="huyenHoc">
+      <ImgAnimation :images="huyenHocAnim" :width="200" :interval="300" :delay="2000" />
+    </div>
 
-    <ImgAnimation className="tienIch" :images="tienIchAnim" :width="300" :height="200" :interval="500" />
 
-
+    <div class="tienIch">
+      <ImgAnimation :images="tienIchAnim" :width="350" :interval="300" :delay="1000" />
+    </div>
 
     <div class="land-layer"></div>
   </div>
@@ -58,6 +63,13 @@ const huyenHocAnim = ref([
   '/home/anim/huyenHoc/image_1.jpg',
   '/home/anim/huyenHoc/image_2.jpg',
   '/home/anim/huyenHoc/image_3.jpg',
+  '/home/anim/huyenHoc/image_4.jpg',
+  '/home/anim/huyenHoc/image_5.jpg',
+  '/home/anim/huyenHoc/image_6.jpg',
+  '/home/anim/huyenHoc/image_7.jpg',
+  '/home/anim/huyenHoc/image_8.jpg',
+  '/home/anim/huyenHoc/image_9.jpg',
+  '/home/anim/huyenHoc/image_10.jpg',
 ]);
 
 
