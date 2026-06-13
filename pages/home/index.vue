@@ -15,9 +15,12 @@
       <div class="cloud cloud-fast"></div>
     </div>
 
-    <ImgAnimation className="chuaGoMo" :images="gomoAnim" :width="300" :height="300" :interval="1000" />
+    <ImgAnimation className="chuaGoMo" :images="gomoAnim" :width="270" :height="270" :interval="500" />
 
     <!-- <ImgAnimation className="huyenHoc" :images="huyenHocAnim" :width="200" :height="200" :interval="2000" /> -->
+
+    <ImgAnimation className="tienIch" :images="tienIchAnim" :width="300" :height="200" :interval="500" />
+
 
 
     <div class="land-layer"></div>
@@ -37,6 +40,18 @@ const gomoAnim = ref([
   '/home/anim/gomo/image_2.jpg',
   '/home/anim/gomo/image_3.jpg',
   '/home/anim/gomo/image_4.jpg',
+]);
+
+
+const tienIchAnim = ref([
+  '/home/anim/tienIch/image_13.jpg',
+  '/home/anim/tienIch/image_14.jpg',
+  '/home/anim/tienIch/image_15.jpg',
+  '/home/anim/tienIch/image_16.jpg',
+  '/home/anim/tienIch/image_17.jpg',
+  '/home/anim/tienIch/image_18.jpg',
+  '/home/anim/tienIch/image_19.jpg',
+  '/home/anim/tienIch/image_20.jpg',
 ]);
 
 const huyenHocAnim = ref([
