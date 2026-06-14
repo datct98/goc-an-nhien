@@ -498,12 +498,12 @@
 }
 
 .huyen-hoc-card:hover:not(.coming-soon) .huyen-hoc-card-icon {
-  color: rgba(232, 216, 253, 0.5);
+  color: rgb(219, 200, 247);
   transform: scale(1.1);
 }
 
 .huyen-hoc-card:hover:not(.coming-soon) .huyen-hoc-card-name {
-  color: rgba(232, 216, 253, 0.5);
+  color: rgb(219, 200, 247);
 }
 
 .huyen-hoc-card-name {
