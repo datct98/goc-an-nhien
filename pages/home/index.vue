@@ -70,16 +70,16 @@ const tienIchAnim = ref([
 ]);
 
 const huyenHocAnim = ref([
-  '/home/anim/huyenHoc/image_1.jpg',
-  '/home/anim/huyenHoc/image_2.jpg',
-  '/home/anim/huyenHoc/image_3.jpg',
-  '/home/anim/huyenHoc/image_4.jpg',
-  '/home/anim/huyenHoc/image_5.jpg',
-  '/home/anim/huyenHoc/image_6.jpg',
-  '/home/anim/huyenHoc/image_7.jpg',
-  '/home/anim/huyenHoc/image_8.jpg',
-  '/home/anim/huyenHoc/image_9.jpg',
-  '/home/anim/huyenHoc/image_10.jpg',
+  '/home/anim/maThuat/image_1.jpg',
+  '/home/anim/maThuat/image_2.jpg',
+  '/home/anim/maThuat/image_3.jpg',
+  '/home/anim/maThuat/image_4.jpg',
+  '/home/anim/maThuat/image_5.jpg',
+  '/home/anim/maThuat/image_6.jpg',
+  '/home/anim/maThuat/image_7.jpg',
+  '/home/anim/maThuat/image_8.jpg',
+  '/home/anim/maThuat/image_9.jpg',
+  '/home/anim/maThuat/image_10.jpg',
 ]);
 
 
