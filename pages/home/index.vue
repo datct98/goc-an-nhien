@@ -49,7 +49,6 @@ import { useRouter } from 'vue-router';
 import backgroundImgMobile from '~/assets/PhatNgoiHoaSenMobile.png';
 import backgroundImgMobileNight from '~/assets/PhatNgoiHoaSenMobileNightRes.png';
 import SakuraEffect from '~/components/effects/SakuraEffect.vue';
-import Decor from '~/components/goMo/Decor.vue';
 
 const gomoAnim = ref([
   '/home/anim/gomo/image_1.jpg',
