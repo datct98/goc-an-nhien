@@ -101,7 +101,8 @@
   z-index: 999;
   left: calc((100vw - 800px) / 2);
   top: 44vh;
-  pointer-events: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .huyenHoc {
@@ -109,6 +110,8 @@
   z-index: 999;
   left: calc((50vw - 500px) / 2);
   top: 25vh;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .tienIch {
@@ -116,7 +119,40 @@
   z-index: 999;
   left: calc((155vw - 300px) / 2);
   top: 22vh;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
+
+.chuaGoMo:hover,
+.huyenHoc:hover,
+.tienIch:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px rgba(238, 232, 149, 0.6)) brightness(1.1);
+}
+
+.hoTamSu {
+  position: absolute;
+  z-index: 9;
+  left: calc((50vw - 500px) / 2);
+  top: 67vh;
+}
+
+.bushes_1,
+.tree_1 {
+  position: absolute;
+  z-index: 10;
+}
+
+.tree_1 {
+  left: calc((100vw - 760px) / 2);
+  top: 70vh;
+}
+
+.bushes_1 {
+  left: 23vw;
+  top: 80vh;
+}
+
 
 @keyframes floatCloud {
   from {

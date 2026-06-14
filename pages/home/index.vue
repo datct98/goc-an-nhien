@@ -15,7 +15,7 @@
       <div class="cloud cloud-fast"></div>
     </div>
 
-    <div class="chuaGoMo">
+    <div class="chuaGoMo" @click="router.push('/goMo')">
       <ImgAnimation :images="gomoAnim" :width="500" :interval="300" :delay="500" />
     </div>
 
@@ -26,6 +26,17 @@
 
     <div class="tienIch">
       <ImgAnimation :images="tienIchAnim" :width="350" :interval="300" :delay="1000" />
+    </div>
+
+    <div class="hoTamSu">
+      <Image src="/home/anim/hoTamSu/lake.png" alt="lake" :width="600" />
+    </div>
+    <div class="tree_1">
+      <Image src="/home/anim/hoTamSu/tree.png" alt="tree" :width="350" />
+    </div>
+
+    <div class="bushes_1">
+      <Image src="/home/anim/hoTamSu/bushes.png" alt="bushes" :width="210" />
     </div>
 
     <div class="land-layer"></div>

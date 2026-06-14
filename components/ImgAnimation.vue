@@ -1,6 +1,6 @@
 <template>
     <div class="image-animation-container" :class="className" :style="containerStyle">
-        <img v-if="images.length > 0" :src="images[activeIndex]" :alt="`Animation frame ${activeIndex}`"
+        <Image v-if="images.length > 0" :src="images[activeIndex]" :alt="`Animation frame ${activeIndex}`"
             :style="imageStyle" class="animation-frame" />
         <div v-else class="empty-state">Không có ảnh</div>
     </div>
