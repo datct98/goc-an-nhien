@@ -10,13 +10,8 @@
         <p class="huyenhoc-subtitle">Khám phá vận mệnh qua các bộ môn huyền học</p>
 
         <div class="huyenhoc-grid">
-          <div
-            v-for="item in disciplines"
-            :key="item.id"
-            class="huyenhoc-card"
-            :class="{ 'coming-soon': item.status !== 'done' }"
-            @click="navigateTo(item)"
-          >
+          <div v-for="item in disciplines" :key="item.id" class="huyenhoc-card"
+            :class="{ 'coming-soon': item.status !== 'done' }" @click="navigateTo(item)">
             <span class="huyenhoc-card-icon">{{ item.icon }}</span>
             <span class="huyenhoc-card-name">{{ item.name }}</span>
             <span class="huyenhoc-card-desc">{{ item.description }}</span>
@@ -26,19 +21,49 @@
       </div>
     </div>
   </div>
+
+  <!-- DESKTOP ============================================> -->
   <div v-else class="container-huyenHoc">
-    <div class="left-task-bar"></div>
+    <!-- Lớp hiệu ứng (nằm dưới) -->
+    <StarOverlay />
+
+    <div class="huyen-hoc-header mt-10">
+      <h1 class="huyen-hoc-title text-center">
+        <font-awesome-icon icon="fa-solid fa-star" /> &nbsp;
+      </h1>
+      <h1 class="huyen-hoc-title text-center">
+        <span>Huyền học</span>
+      </h1>
+      <p class="huyen-hoc-subtitle text-center">
+        Khám phá những bí ẩn của vận mệnh và sự hòa hợp giữa con người với vũ trụ qua tinh hoa các bộ môn huyền học.
+      </p>
+    </div>
+
+    <div class="flex">
+      <div class="huyen-hoc-grid m-auto">
+        <div v-for="item in disciplines" :key="item.id" class="huyen-hoc-card"
+          :class="{ 'coming-soon': item.status !== 'done' }" @click="navigateTo(item)">
+          <font-awesome-icon class="huyen-hoc-card-icon" :icon="item.icon" />
+          <span class="huyen-hoc-card-name">{{ item.name }}</span>
+          <span class="huyen-hoc-card-desc">{{ item.description }}</span>
+          <span v-if="item.status !== 'done'" class="huyen-hoc-card-badge">Sắp ra mắt</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
+import StarOverlay from "~/components/effects/StarOverlay.vue";
+
 const router = useRouter();
 const { isMobileView } = useDevice();
+
 
 const disciplines = ref([
   {
     id: 'tu-vi',
-    icon: '🌟',
+    icon: 'fa-solid fa-dharmachakra',
     name: 'Xem Tử Vi',
     description: 'Luận giải lá số tử vi đẩu số',
     path: '/huyenHoc/tu-vi',
@@ -46,7 +71,7 @@ const disciplines = ref([
   },
   {
     id: 'xem-chi-tay',
-    icon: '🤚',
+    icon: 'fa-regular fa-hand',
     name: 'Xem Chỉ Tay',
     description: 'Luận giải vận mệnh qua chỉ tay',
     path: '/huyenHoc/xem-chi-tay',
@@ -54,7 +79,7 @@ const disciplines = ref([
   },
   {
     id: 'tarot',
-    icon: '🃏',
+    icon: 'fa-solid fa-hat-wizard',
     name: 'Xem Tarot',
     description: 'Bói bài Tarot',
     path: '/huyenHoc/tarot',
@@ -62,7 +87,7 @@ const disciplines = ref([
   },
   {
     id: 'cung-hoang-dao',
-    icon: '♈',
+    icon: 'fa-solid fa-scale-balanced',
     name: 'Cung Hoàng Đạo',
     description: 'Xem cung hoàng đạo',
     path: '/huyenHoc/cung-hoang-dao',
@@ -78,17 +103,10 @@ const navigateTo = (item) => {
   }
 };
 </script>
+
+
 <style scoped src="./index.css"></style>
 <style scoped>
-.huyenhoc-menu-page {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  padding: 24px 20px 40px;
-  max-width: 448px;
-  margin: 0 auto;
-}
-
 .btn-back-home {
   background: rgba(212, 175, 55, 0.15);
   border: 1px solid rgba(212, 175, 55, 0.3);

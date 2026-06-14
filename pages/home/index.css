@@ -98,7 +98,7 @@
 
 .chuaGoMo {
   position: absolute;
-  z-index: 999;
+  z-index: 9;
   left: calc((100vw - 800px) / 2);
   top: 44vh;
   cursor: pointer;
@@ -107,7 +107,7 @@
 
 .huyenHoc {
   position: absolute;
-  z-index: 999;
+  z-index: 9;
   left: calc((50vw - 500px) / 2);
   top: 25vh;
   cursor: pointer;
@@ -116,7 +116,7 @@
 
 .tienIch {
   position: absolute;
-  z-index: 999;
+  z-index: 9;
   left: calc((155vw - 300px) / 2);
   top: 22vh;
   cursor: pointer;

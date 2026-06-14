@@ -19,12 +19,12 @@
       <ImgAnimation :images="gomoAnim" :width="500" :interval="300" :delay="500" />
     </div>
 
-    <div class="huyenHoc">
+    <div class="huyenHoc" @click="router.push('/huyenHoc')">
       <ImgAnimation :images="huyenHocAnim" :width="200" :interval="300" :delay="2000" />
     </div>
 
 
-    <div class="tienIch">
+    <div class="tienIch" @click="router.push('/tien-ich')">
       <ImgAnimation :images="tienIchAnim" :width="350" :interval="300" :delay="1000" />
     </div>
 
