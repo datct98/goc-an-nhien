@@ -26,18 +26,8 @@
   <div v-else class="container-huyenHoc">
     <!-- Lớp hiệu ứng (nằm dưới) -->
     <StarOverlay />
-
-    <div class="huyen-hoc-header mt-10">
-      <h1 class="huyen-hoc-title text-center">
-        <font-awesome-icon icon="fa-solid fa-star" /> &nbsp;
-      </h1>
-      <h1 class="huyen-hoc-title text-center">
-        <span>Huyền học</span>
-      </h1>
-      <p class="huyen-hoc-subtitle text-center">
-        Khám phá những bí ẩn của vận mệnh và sự hòa hợp giữa con người với vũ trụ qua tinh hoa các bộ môn huyền học.
-      </p>
-    </div>
+    <DesktopTitle title="Huyền học"
+      sub="Khám phá những bí ẩn của vận mệnh và sự hòa hợp giữa con người với vũ trụ qua tinh hoa các bộ môn huyền học." />
 
     <div class="flex">
       <div class="huyen-hoc-grid m-auto">

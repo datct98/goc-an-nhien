@@ -1,4 +1,5 @@
 <template>
+  <!-- Mobile -->
   <div v-if="isMobileView" class="container-huyenhoc-mobile">
     <div class="bg-filter">
       <swiper class="mySwiper">
@@ -130,7 +131,13 @@
     </div>
   </div>
   <div v-else class="container-huyenHoc">
-    <div class="left-task-bar"></div>
+    <!-- Lớp hiệu ứng (nằm dưới) -->
+    <StarOverlay />
+
+    <DesktopTitle title="Từ vi" sub="Thấu hiểu bản thân qua dòng chảy của số mệnh" />
+
+    <TuViCard />
+
   </div>
 </template>
 
@@ -142,6 +149,8 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import vongBatQuaiImg from "~/assets/vongBatQuai.png";
 import { zodiacMapping } from "../data";
+import StarOverlay from "~/components/effects/StarOverlay.vue";
+import TuViCard from "~/components/huyen-hoc/TuViCard.vue";
 
 const router = useRouter();
 const { $common } = useNuxtApp();
@@ -288,7 +297,7 @@ const luanGiaiTuVi = async () => {
   }
 };
 </script>
-<style scoped src="../index.css"></style>
+
 <style scoped>
 .btn-back-huyenhoc {
   position: absolute;
@@ -305,5 +314,19 @@ const luanGiaiTuVi = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*FOR DESKTOP =========================================================================>*/
+.container-huyenHoc {
+  width: 100%;
+  height: 100%;
+  min-height: 448px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  position: relative;
+  /* Gradient nền tối sâu thẳm */
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  border-radius: 20px;
+  color: white;
 }
 </style>
