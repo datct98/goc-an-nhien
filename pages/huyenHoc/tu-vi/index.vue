@@ -134,10 +134,18 @@
     <!-- Lớp hiệu ứng (nằm dưới) -->
     <StarOverlay />
 
-    <DesktopTitle title="Từ vi" sub="Thấu hiểu bản thân qua dòng chảy của số mệnh" />
+    <DesktopTitle title="Tử vi" sub="Thấu hiểu bản thân qua dòng chảy của số mệnh" />
 
-    <TuViCard />
+    <div class="wizard flex justify-center items-center">
+      <div>
+        <Image src="/huyenHoc/wizard.png" width="500" />
+      </div>
+      <div class="main-content">
+        <TuViCard />
+      </div>
+    </div>
 
+    <!--  -->
   </div>
 </template>
 
@@ -320,13 +328,19 @@ const luanGiaiTuVi = async () => {
 .container-huyenHoc {
   width: 100%;
   height: 100%;
-  min-height: 448px;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 24px 20px;
   position: relative;
   /* Gradient nền tối sâu thẳm */
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  border-radius: 20px;
   color: white;
+}
+
+.main-content {
+  background: none;
+  width: 100%;
+  height: fit-content;
+  border-radius: 15px;
 }
 </style>

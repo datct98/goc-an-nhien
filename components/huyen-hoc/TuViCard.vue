@@ -1,9 +1,11 @@
 <template>
     <div class="dashboard-container">
         <header class="main-header">
-            <div class="line short"></div>
-            <div class="line medium"></div>
-            <div class="line long"></div>
+            <!-- <div class="line short"></div>
+            <div class="line medium"></div> -->
+            <div class="text-4xl">Báo cáo phân tích vận mệnh</div>
+            <div class="header-subtitle">NHÂN TƯỚNG &nbsp; • &nbsp; BÁT TỰ &nbsp; • &nbsp; KINH DỊCH &nbsp; • &nbsp;
+                PHONG THỦY</div>
         </header>
 
         <div class="main-layout">
@@ -138,10 +140,8 @@
     padding: 0;
 }
 
-body {
-    font-family: sans-serif;
-    background-color: #ffffff;
-    padding: 20px;
+* {
+    font-family: Lora;
 }
 
 /* --- PLACEHOLDER GENERICS --- */
@@ -189,12 +189,17 @@ body {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+    background: rgba(83, 70, 70, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
 }
 
 .main-header {
-    border: 2px dashed #b0b0b0;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
