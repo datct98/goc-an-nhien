@@ -137,9 +137,6 @@
     <DesktopTitle title="Tử vi" sub="Thấu hiểu bản thân qua dòng chảy của số mệnh" />
 
     <div class="wizard flex justify-center items-center">
-      <div>
-        <Image src="/huyenHoc/wizard.png" width="500" />
-      </div>
       <div class="main-content">
         <TuViCard />
       </div>

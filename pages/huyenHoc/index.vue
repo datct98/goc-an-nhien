@@ -29,6 +29,11 @@
     <DesktopTitle title="Huyền học"
       sub="Khám phá những bí ẩn của vận mệnh và sự hòa hợp giữa con người với vũ trụ qua tinh hoa các bộ môn huyền học." />
 
+    <div class="wizard flex justify-center items-center">
+      <div>
+        <Image src="/huyenHoc/wizard.png" width="300" />
+      </div>
+    </div>
     <div class="flex">
       <div class="huyen-hoc-grid m-auto">
         <div v-for="item in disciplines" :key="item.id" class="huyen-hoc-card"

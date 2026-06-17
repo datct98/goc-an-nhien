@@ -1,8 +1,6 @@
 <template>
     <div class="dashboard-container">
         <header class="main-header">
-            <!-- <div class="line short"></div>
-            <div class="line medium"></div> -->
             <div class="text-4xl">Báo cáo phân tích vận mệnh</div>
             <div class="header-subtitle">NHÂN TƯỚNG &nbsp; • &nbsp; BÁT TỰ &nbsp; • &nbsp; KINH DỊCH &nbsp; • &nbsp;
                 PHONG THỦY</div>
@@ -11,12 +9,15 @@
         <div class="main-layout">
 
             <aside class="sidebar">
-                <div class="placeholder-image profile-pic"></div>
+                <div class="profile-pic">
+                    <Image src="/huyenHoc/avatar.png" width="250" />
+                </div>
                 <div class="info-group">
-                    <div class="line long"></div>
-                    <div class="line medium"></div>
-                    <div class="line short"></div>
-                    <div class="line long"></div>
+                    <FieldSetCustom label="Thông tin cá nhân">
+                        <div class="">Họ và tên: Hoàng Anh</div>
+                        <div class="">Ngày sinh: 12/12/2000</div>
+                        <div class="">Giới tính: Nam</div>
+                    </FieldSetCustom>
                 </div>
                 <div class="placeholder-image decorative-illustration"></div>
             </aside>
@@ -132,6 +133,11 @@
     </div>
 </template>
 
+<script setup>
+import FieldSetCustom from './FieldSetCustom.vue'
+</script>
+
+
 <style scoped>
 /* --- RESET & BASE STYLES --- */
 * {
@@ -191,8 +197,6 @@
     flex-direction: column;
     gap: 10px;
     background: rgba(83, 70, 70, 0.05);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 20px;
@@ -214,16 +218,20 @@
 
 /* --- SIDEBAR STYLE --- */
 .sidebar {
-    border: 2px dashed #b0b0b0;
-    padding: 15px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile-pic {
     width: 100%;
     height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .decorative-illustration {
@@ -322,6 +330,14 @@
 
 .hex-icon {
     height: 80px;
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 /* --- RESPONSIVE BREAKPOINTS --- */
