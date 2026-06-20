@@ -12,129 +12,134 @@
                 <div class="profile-pic">
                     <Image src="/huyenHoc/avatar.png" width="250" />
                 </div>
-                <div class="info-group">
+                <div class="info-group text-sm">
                     <FieldSetCustom label="Thông tin cá nhân">
                         <div class="info-item">
                             <span class="info-label">Họ và tên:</span>
                             <span class="info-value">Hoàng Anh</span>
                         </div>
                         <div class="info-item">
+                            <span class="info-label">Giới tính:</span>
+                            <span class="info-value">Nam</span>
+                        </div>
+                        <div class="info-item">
                             <span class="info-label">Ngày sinh:</span>
                             <span class="info-value">04/10/2025</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Giới tính:</span>
-                            <span class="info-value">Nam</span>
+                            <span class="info-label">Giờ sinh</span>
+                            <span class="info-value">06:00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Nơi sinh</span>
+                            <span class="info-value">Hà Nội</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tuổi</span>
+                            <span class="info-value">Nhâm thân</span>
                         </div>
                     </FieldSetCustom>
                 </div>
-                <div class="placeholder-image decorative-illustration"></div>
             </aside>
 
             <main class="content-grid">
 
-                <section class="card span-2">
-                    <div class="card-header"></div>
-                    <div class="card-body-split">
-                        <div class="sub-block">
-                            <div class="line short"></div>
-                            <div class="line long"></div>
+                <section class="span-2">
+                    <FieldSetCustom label="Tổng quan vận mệnh">
+                        <div class="card-body-split text-sm">
+                            <div class="sub-block">
+                                <div class="w-full text-center font-bold text-green-500">Điểm mạnh</div>
+                                <div class="long">
+                                    <ul>
+                                        <li class="flex justify-center content-center items-center p-2"
+                                            v-for="item in 4">
+                                            <font-awesome-icon icon="fa-solid fa-circle-check" class="text-green-500" />
+                                            <div>Thông minh, nhanh nhẹn</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sub-block">
+                                <div class="w-full text-center font-bold text-red-500">Điểm yếu</div>
+                                <div class="long">
+                                    <ul>
+                                        <li class="flex justify-center content-center items-center p-2"
+                                            v-for="item in 4">
+                                            <font-awesome-icon icon="fa-solid fa-circle-xmark" class="text-red-500" />
+                                            <div>Thông minh, nhanh nhẹn</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="sub-block">
-                            <div class="line short"></div>
-                            <div class="line long"></div>
+                        <div class="card-footer">
+                            <div class="w-full">
+                                <FieldSetCustom label="Tổng quan">
+                                    <div class="text-center text-sm">Là người có ý chí mạnh mẽ abczyz</div>
+                                </FieldSetCustom>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="line long"></div>
-                    </div>
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card">
-                    <div class="card-header"></div>
-                    <div class="placeholder-table"></div>
+                <section>
+                    <FieldSetCustom label="2. Bát tự/ Tứ trụ">
+
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card">
-                    <div class="card-header"></div>
-                    <div class="placeholder-chart"></div>
+                <section>
+                    <FieldSetCustom label="3. Ngũ hành cân bằng">
+
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card">
-                    <div class="card-header"></div>
-                    <div class="face-analysis-layout">
-                        <div class="placeholder-image face-box"></div>
-                        <div class="info-lines">
-                            <div class="line short"></div>
-                            <div class="line short"></div>
-                            <div class="line short"></div>
-                        </div>
-                    </div>
+                <section>
+                    <FieldSetCustom label="4. Phân tích nhân tướng">
+
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card">
-                    <div class="card-header"></div>
-                    <div class="placeholder-table column-rows"></div>
+                <section>
+                    <FieldSetCustom label="5. Phân tích chi tiết">
+
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card span-2">
-                    <div class="card-header"></div>
-                    <div class="flex-row-icons">
-                        <div class="icon-block"></div>
-                        <div class="icon-block"></div>
-                        <div class="icon-block"></div>
-                        <div class="icon-block"></div>
-                    </div>
+                <section class="span-2">
+                    <FieldSetCustom label="6. Hồ sơ tính cách">
+
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card span-2">
-                    <div class="card-header"></div>
-                    <div class="chart-layout">
-                        <div class="placeholder-table mini"></div>
-                        <div class="placeholder-chart line-graph"></div>
-                    </div>
+                <section class="span-2">
+                    <FieldSetCustom label="7. Vận trình cuộc đời">
+
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card">
-                    <div class="card-header"></div>
-                    <div class="hexagram-layout">
-                        <div class="placeholder-image hex-icon"></div>
-                        <div class="info-lines">
-                            <div class="line long"></div>
-                            <div class="line medium"></div>
-                        </div>
-                    </div>
+                <section>
+                    <FieldSetCustom label="8. Quẻ kinh dịch chủ đạo">
+
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card">
-                    <div class="card-header"></div>
-                    <div class="card-body-split">
-                        <div class="sub-block">
-                            <div class="line short"></div>
-                            <div class="line long"></div>
-                        </div>
-                        <div class="sub-block">
-                            <div class="line short"></div>
-                            <div class="line long"></div>
-                        </div>
-                    </div>
+                <section>
+                    <FieldSetCustom label="9. Cảnh báo và lời khuyên">
+
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card span-3">
-                    <div class="card-header"></div>
-                    <div class="flex-row-icons elements-row">
-                        <div class="icon-block circle"></div>
-                        <div class="icon-block circle"></div>
-                        <div class="icon-block circle"></div>
-                        <div class="icon-block square"></div>
-                        <div class="icon-block square"></div>
-                    </div>
+                <section class="span-3">
+                    <FieldSetCustom label="10. Gợi ý phong thuỷ">
+
+                    </FieldSetCustom>
                 </section>
 
-                <section class="card">
-                    <div class="card-header"></div>
-                    <div class="line medium"></div>
-                    <div class="line long"></div>
+                <section>
+                    <FieldSetCustom label="11. Lời kết">
+
+                    </FieldSetCustom>
                 </section>
 
             </main>
@@ -149,12 +154,6 @@ import FieldSetCustom from './FieldSetCustom.vue'
 
 <style scoped>
 /* --- RESET & BASE STYLES --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 * {
     font-family: Lora;
 }
@@ -241,12 +240,6 @@ import FieldSetCustom from './FieldSetCustom.vue'
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.decorative-illustration {
-    width: 100%;
-    height: 150px;
-    margin-top: auto;
 }
 
 /* --- CONTENT GRID SYSTEM --- */
@@ -359,12 +352,10 @@ import FieldSetCustom from './FieldSetCustom.vue'
 }
 
 .info-label {
-    font-size: 14px;
     color: rgba(255, 255, 255, 0.6);
 }
 
 .info-value {
-    font-size: 14px;
     color: #fff;
     font-weight: 500;
 }
