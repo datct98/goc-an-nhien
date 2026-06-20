@@ -133,8 +133,8 @@
 .hoTamSu {
   position: absolute;
   z-index: 9;
-  left: calc((50vw - 500px) / 2);
-  top: 67vh;
+  left: calc((50vw - 300px) / 2);
+  top: 68vh;
 }
 
 .bushes_1,

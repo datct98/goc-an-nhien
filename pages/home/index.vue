@@ -29,7 +29,7 @@
     </div>
 
     <div class="hoTamSu">
-      <Image src="/home/anim/hoTamSu/lake.png" alt="lake" :width="600" />
+      <ImgAnimation :images="hoTamSuAnim" :width="400" :interval="200" :delay="1000" />
     </div>
     <div class="tree_1">
       <Image src="/home/anim/hoTamSu/tree.png" alt="tree" :width="350" />
@@ -80,6 +80,28 @@ const huyenHocAnim = ref([
   '/home/anim/maThuat/image_8.jpg',
   '/home/anim/maThuat/image_9.jpg',
   '/home/anim/maThuat/image_10.jpg',
+]);
+
+const hoTamSuAnim = ref([
+  '/home/anim/hoTamSu/image_1.jpg',
+  '/home/anim/hoTamSu/image_2.jpg',
+  '/home/anim/hoTamSu/image_3.jpg',
+  '/home/anim/hoTamSu/image_4.jpg',
+  '/home/anim/hoTamSu/image_5.jpg',
+  '/home/anim/hoTamSu/image_6.jpg',
+  '/home/anim/hoTamSu/image_7.jpg',
+  '/home/anim/hoTamSu/image_8.jpg',
+  '/home/anim/hoTamSu/image_9.jpg',
+  '/home/anim/hoTamSu/image_10.jpg',
+  '/home/anim/hoTamSu/image_11.jpg',
+  '/home/anim/hoTamSu/image_12.jpg',
+  '/home/anim/hoTamSu/image_13.jpg',
+  '/home/anim/hoTamSu/image_14.jpg',
+  '/home/anim/hoTamSu/image_15.jpg',
+  '/home/anim/hoTamSu/image_16.jpg',
+  '/home/anim/hoTamSu/image_17.jpg',
+  '/home/anim/hoTamSu/image_18.jpg',
+  '/home/anim/hoTamSu/image_19.jpg',
 ]);
 
 

@@ -14,9 +14,18 @@
                 </div>
                 <div class="info-group">
                     <FieldSetCustom label="Thông tin cá nhân">
-                        <div class="">Họ và tên: Hoàng Anh</div>
-                        <div class="">Ngày sinh: 12/12/2000</div>
-                        <div class="">Giới tính: Nam</div>
+                        <div class="info-item">
+                            <span class="info-label">Họ và tên:</span>
+                            <span class="info-value">Hoàng Anh</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Ngày sinh:</span>
+                            <span class="info-value">04/10/2025</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Giới tính:</span>
+                            <span class="info-value">Nam</span>
+                        </div>
                     </FieldSetCustom>
                 </div>
                 <div class="placeholder-image decorative-illustration"></div>
@@ -341,6 +350,25 @@ import FieldSetCustom from './FieldSetCustom.vue'
 }
 
 /* --- RESPONSIVE BREAKPOINTS --- */
+.info-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.info-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.info-value {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+}
+
 @media (max-width: 1200px) {
     .content-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
