@@ -138,6 +138,8 @@
 
     <div class="wizard flex justify-center items-center">
       <div class="main-content">
+        <TuViFormVer2 />
+        <div class="p-4"></div>
         <TuViCard />
       </div>
     </div>
@@ -156,6 +158,7 @@ import vongBatQuaiImg from "~/assets/vongBatQuai.png";
 import { zodiacMapping } from "../data";
 import StarOverlay from "~/components/effects/StarOverlay.vue";
 import TuViCard from "~/components/huyen-hoc/TuViCard.vue";
+import TuViFormVer2 from "~/components/huyen-hoc/TuViFormVer2.vue";
 
 const router = useRouter();
 const { $common } = useNuxtApp();
@@ -338,6 +341,5 @@ const luanGiaiTuVi = async () => {
   background: none;
   width: 100%;
   height: fit-content;
-  border-radius: 15px;
 }
 </style>
