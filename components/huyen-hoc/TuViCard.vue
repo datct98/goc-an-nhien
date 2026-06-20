@@ -10,7 +10,7 @@
 
             <aside class="sidebar">
                 <div class="profile-pic">
-                    <Image src="/huyenHoc/avatar.png" width="250" />
+                    <Image src="/huyenHoc/men-line.png" width="250" />
                 </div>
                 <div class="info-group text-sm">
                     <FieldSetCustom label="Thông tin cá nhân">
@@ -764,7 +764,6 @@ import FieldSetCustom from './FieldSetCustom.vue'
 .main-layout {
     display: grid;
     grid-template-columns: 300px 1fr;
-    gap: 20px;
 }
 
 /* --- SIDEBAR STYLE --- */
