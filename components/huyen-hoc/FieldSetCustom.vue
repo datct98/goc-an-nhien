@@ -24,6 +24,9 @@ defineProps({
   background: transparent;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .premium-fieldset:hover {
@@ -47,5 +50,8 @@ defineProps({
 
 .fieldset-content {
   width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 </style>
