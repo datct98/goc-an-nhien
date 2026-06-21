@@ -8,7 +8,10 @@
         <main class="content-grid">
             <div>1</div>
             <div>2</div>
-            <div>3</div>
+            <div>
+                <p class="text-2xl text-center">Chọn ngày sinh</p>
+                <DateChooseComponent v-model="selectedDate" />
+            </div>
             <div>
                 <p class="text-2xl text-center">Chọn giờ sinh</p>
                 <TimeChooseComponent v-model="selectedTime" />
@@ -18,7 +21,12 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import TimeChooseComponent from './TimeChooseComponent.vue';
+import DateChooseComponent from './DateChooseComponent.vue';
+
+const selectedTime = ref('12:00:00');
+const selectedDate = ref('2000-01-01');
 
 </script>
 
