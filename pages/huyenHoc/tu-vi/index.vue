@@ -306,6 +306,7 @@ const luanGiaiTuVi = async () => {
 };
 </script>
 
+<style scoped src="../index.css"></style>
 <style scoped>
 .btn-back-huyenhoc {
   position: absolute;

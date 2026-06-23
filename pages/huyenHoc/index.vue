@@ -9,13 +9,13 @@
         <p class="title"><span>🔮 Huyền Học</span></p>
         <p class="huyenhoc-subtitle">Khám phá vận mệnh qua các bộ môn huyền học</p>
 
-        <div class="huyenhoc-grid">
-          <div v-for="item in disciplines" :key="item.id" class="huyenhoc-card"
+        <div class="huyenhoc-grid-mobile">
+          <div v-for="item in disciplines" :key="item.id" class="huyenhoc-card-mobile"
             :class="{ 'coming-soon': item.status !== 'done' }" @click="navigateTo(item)">
-            <span class="huyenhoc-card-icon">{{ item.icon }}</span>
-            <span class="huyenhoc-card-name">{{ item.name }}</span>
-            <span class="huyenhoc-card-desc">{{ item.description }}</span>
-            <span v-if="item.status !== 'done'" class="huyenhoc-card-badge">Sắp ra mắt</span>
+            <font-awesome-icon class="huyenhoc-card-mobile-icon" :icon="item.icon">{{ item.icon }}</font-awesome-icon>
+            <span class="huyenhoc-card-mobile-name">{{ item.name }}</span>
+            <span class="huyenhoc-card-mobile-desc">{{ item.description }}</span>
+            <span v-if="item.status !== 'done'" class="huyenhoc-card-mobile-badge">Sắp ra mắt</span>
           </div>
         </div>
       </div>
@@ -177,6 +177,71 @@ const navigateTo = (item) => {
 }
 
 .huyenhoc-card-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 0.55rem;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* FOR MOBILE ================================================> */
+
+.huyenhoc-grid-mobile {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.huyenhoc-card-mobile {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  padding: 22px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.huyenhoc-card-mobile:hover:not(.coming-soon) {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(212, 175, 55, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.huyenhoc-card-mobile.coming-soon {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.huyenhoc-card-mobile-icon {
+  font-size: 2.2rem;
+  margin-bottom: 4px;
+  color: white;
+}
+
+.huyenhoc-card-mobile-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e6ca77;
+}
+
+.huyenhoc-card-mobile-desc {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.huyenhoc-card-mobile-badge {
   position: absolute;
   top: 8px;
   right: 8px;
