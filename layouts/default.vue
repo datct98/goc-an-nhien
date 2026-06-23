@@ -46,8 +46,7 @@ const toggleMenu = () => {
   top: 1rem;
   left: 1rem;
   z-index: 100;
-  background: rgba(58, 38, 20, 0.7);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border: 1px solid white;
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
@@ -59,15 +58,14 @@ const toggleMenu = () => {
 }
 
 .goMo-menu-btn:hover {
-  background: rgba(58, 38, 20, 0.9);
-  border-color: rgba(212, 175, 55, 0.5);
+  background: #3b4a8e;
 }
 
 .goMo-menu-line {
   display: block;
   width: 20px;
   height: 2px;
-  background: #d4af37;
+  background: white;
   border-radius: 2px;
 }
 

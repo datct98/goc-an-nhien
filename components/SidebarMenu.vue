@@ -8,23 +8,38 @@
         <!-- Sidebar -->
         <Transition name="slide">
             <div v-if="isOpen" class="sidebar">
-                <div class="sidebar-header">
-                    <span class="sidebar-title">☸ Tính năng</span>
-                    <button class="close-btn" @click="close">✕</button>
+                <!-- Celestial Background -->
+                <div class="celestial-bg">
+                    <div class="moon"></div>
+                    <div v-for="star in stars" :key="star.id" class="star" :style="{
+                        top: star.top,
+                        left: star.left,
+                        width: star.size,
+                        height: star.size,
+                        opacity: star.opacity,
+                        animationDelay: star.delay
+                    }"></div>
                 </div>
-                <nav class="sidebar-nav">
-                    <a class="nav-item" v-for="item in menuTabList" @click="goTo(item.path, item.status)"
-                        :class="{ active: item.active }">
-                        <span class="nav-icon">{{ item.icon }}</span>
-                        <span class="nav-label">{{ item.name }}</span>
-                        <span v-if="item.status != 'done'" class="nav-badge">Sắp ra mắt</span>
-                    </a>
-                </nav>
-                <div class="sidebar-footer">
-                    <a class="nav-item logout" @click="handleLogout">
-                        <span class="nav-icon">🚪</span>
-                        <span class="nav-label">Đăng xuất</span>
-                    </a>
+
+                <div class="sidebar-content">
+                    <div class="sidebar-header">
+                        <span class="sidebar-title">☸ Tính năng</span>
+                        <button class="close-btn" @click="close">✕</button>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <a class="nav-item" v-for="item in menuTabList" @click="goTo(item.path, item.status)"
+                            :class="{ active: item.active }">
+                            <span class="nav-icon">{{ item.icon }}</span>
+                            <span class="nav-label">{{ item.name }}</span>
+                            <span v-if="item.status != 'done'" class="nav-badge">Sắp ra mắt</span>
+                        </a>
+                    </nav>
+                    <div class="sidebar-footer">
+                        <a class="nav-item logout" @click="handleLogout">
+                            <span class="nav-icon">🚪</span>
+                            <span class="nav-label">Đăng xuất</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </Transition>
@@ -50,6 +65,16 @@ const router = useRouter();
 const route = useRoute();
 let menuTabList = ref(menuList);
 const { $common } = useNuxtApp();
+
+// Celestial background animation data
+const stars = ref(Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    top: Math.random() * 100 + '%',
+    left: Math.random() * 100 + '%',
+    size: (Math.random() * 2 + 1) + 'px',
+    delay: (Math.random() * 5) + 's',
+    opacity: (Math.random() * 0.5 + 0.3)
+})));
 
 onMounted(() => {
 })
@@ -114,12 +139,63 @@ const handleLogout = () => {
     left: 0;
     width: 280px;
     height: 100vh;
-    background: linear-gradient(180deg, #2a1810 0%, #1a0f09 100%);
-    border-right: 1px solid rgba(212, 175, 55, 0.3);
+    background: linear-gradient(180deg, #111838 0%, #2d3b76 50%, #3b4a8e 100%);
+    border-right: 1px solid rgba(212, 175, 55, 0.2);
     z-index: 999;
     display: flex;
     flex-direction: column;
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.sidebar-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.celestial-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.moon {
+    position: absolute;
+    top: 35px;
+    right: 70px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    box-shadow: 8px 8px 0 2px rgba(255, 255, 255, 0.85);
+    transform: rotate(-25deg);
+    filter: blur(0.5px);
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 4px white;
+    animation: twinkle 4s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.2);
+    }
 }
 
 .slide-enter-active,
@@ -138,13 +214,13 @@ const handleLogout = () => {
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem 1.25rem;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-title {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #d4af37;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -188,13 +264,13 @@ const handleLogout = () => {
 }
 
 .nav-item:hover:not(.disabled) {
-    background: rgba(212, 175, 55, 0.1);
-    color: #d4af37;
+    background: rgba(102, 93, 170, 0.15);
+    color: white;
 }
 
 .nav-item.active {
-    background: rgba(212, 175, 55, 0.15);
-    color: #d4af37;
+    background: rgb(168 157 255 / 15%);
+    color: white;
     border-left: 3px solid #d4af37;
 }
 
@@ -226,8 +302,9 @@ const handleLogout = () => {
 
 /* Footer */
 .sidebar-footer {
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0.5rem 0;
+    margin-top: auto;
 }
 
 .nav-item.logout:hover {
