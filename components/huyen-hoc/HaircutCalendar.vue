@@ -103,7 +103,7 @@ const getStatusInfo = (status) => {
   padding: 15px;
   background: transparent;
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   border-radius: 12px;
   backdrop-filter: blur(5px);
@@ -191,7 +191,7 @@ const getStatusInfo = (status) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 .status-green {
@@ -225,11 +225,13 @@ const getStatusInfo = (status) => {
   }
 
   .day-number {
+    top: 0px;
+    left: 2px;
     font-size: 0.9rem;
   }
 
   .status-icon {
-    font-size: 1.5rem;
+    font-size: 0.9rem;
   }
 }
 </style>

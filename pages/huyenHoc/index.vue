@@ -1,11 +1,12 @@
 <template>
-  <div v-if="isMobileView" class="container-huyenhoc-mobile">
-    <div class="bg-filter">
-      <div class="huyenhoc-menu-page">
-        <button class="btn-back-home" @click="goHome">
-          <i class="pi pi-arrow-left"></i>
-        </button>
-
+  <div v-if="isMobileView" class="container-huyenhoc-mobile p-4">
+    <div class="huyenhoc-menu-page">
+      <div>
+        <div class="w-full flex justify-end">
+          <button class="btn-back-home" @click="goHome">
+            <font-awesome-icon icon="fa-solid fa-arrow-left"></font-awesome-icon>
+          </button>
+        </div>
         <p class="title"><span>🔮 Huyền Học</span></p>
         <p class="huyenhoc-subtitle">Khám phá vận mệnh qua các bộ môn huyền học</p>
 
@@ -113,9 +114,9 @@ const navigateTo = (item) => {
 <style scoped src="./index.css"></style>
 <style scoped>
 .btn-back-home {
-  background: rgba(212, 175, 55, 0.15);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  color: #d4af37;
+  background: rgba(83, 119, 219, 0.15);
+  border: 1px solid rgba(17, 31, 77, 0.3);
+  color: white;
   width: 36px;
   height: 36px;
   border-radius: 10px;

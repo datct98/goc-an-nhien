@@ -2,9 +2,12 @@
   <div v-if="isMobileView" class="container-huyenhoc-mobile">
     <div class="bg-filter">
       <div class="xem-chi-tay-page">
-        <button class="btn-back-huyenhoc" @click="goBack">
-          <i class="pi pi-arrow-left"></i>
-        </button>
+        <div class="w-full flex justify-end pt-4 pr-4">
+          <button class="btn-back-huyenhoc" @click="goBack">
+            <font-awesome-icon icon="fa-solid fa-arrow-left"></font-awesome-icon>
+          </button>
+        </div>
+
         <PalmistrySlide />
       </div>
     </div>
@@ -30,10 +33,18 @@ const goBack = () => router.push('/huyenHoc');
   overflow-y: auto;
   padding-bottom: 40px;
 }
+
 .btn-back-huyenhoc {
-  position: absolute; top: 16px; left: 16px; z-index: 10;
-  background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.3);
-  color: #d4af37; width: 36px; height: 36px; border-radius: 10px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 10;
+  background: rgba(83, 119, 219, 0.15);
+  border: 1px solid rgba(61, 94, 202, 0.3);
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
