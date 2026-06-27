@@ -1,14 +1,12 @@
 <template>
   <div class="tien-ich-page">
-    <!-- Lớp hiệu ứng (nằm dưới) -->
-    <StarOverlay />
-
+    <WoodGrain />
     <div class="tien-ich-header mt-10">
       <!-- <button class="tien-ich-back" @click="goBack">
                 <i class="pi pi-arrow-left"></i>
             </button> -->
       <h1 class="tien-ich-title text-center">
-        <font-awesome-icon icon="fa-solid fa-star" /> &nbsp;
+        <font-awesome-icon icon="fa-solid fa-screwdriver-wrench" /> &nbsp;
       </h1>
       <h1 class="tien-ich-title text-center">
         <span>Mật pháp</span>
@@ -32,7 +30,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import StarOverlay from "~/components/effects/StarOverlay.vue";
+import WoodGrain from "~/components/effects/WoodGrain.vue";
 
 const router = useRouter();
 
@@ -86,14 +84,13 @@ const navigateTo = (item) => {
   margin: 0 auto;
   padding: 24px 20px;
   position: relative;
-  /* Gradient nền tối sâu thẳm */
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  border-radius: 20px;
+  background: #3E2723;
   color: white;
 }
 
 .tien-ich-header {
   margin-bottom: 32px;
+  position: relative;
 }
 
 .tien-ich-back {

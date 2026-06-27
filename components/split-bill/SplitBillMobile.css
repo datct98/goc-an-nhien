@@ -18,10 +18,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     overscroll-behavior: none;
-    -webkit-overflow-scrolling: touch;
-    /* Gradient nền tối sâu thẳm */
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    border-radius: 20px;
+    background: #3E2723;
     color: white;
 }
 

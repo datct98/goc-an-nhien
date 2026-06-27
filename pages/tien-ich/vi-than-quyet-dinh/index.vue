@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { viThanQuyetDinh } from './data.js'
 import StarOverlay from '~/components/effects/StarOverlay.vue'
+import WoodGrain from '~/components/effects/WoodGrain.vue'
 
 const router = useRouter()
 const isLoading = ref(false)
@@ -30,13 +31,16 @@ const getDecision = () => {
 
 <template>
     <div class="tien-ich-page">
-        <StarOverlay />
         <!-- Nút quay lại -->
-        <button class="btn-back" @click="goBack">
-            <i class="pi pi-arrow-left"></i>
-        </button>
+        <div class="w-full flex justify-end">
+            <button class="btn-back" @click="goBack">
+                <font-awesome-icon icon="fa-solid fa-arrow-left"></font-awesome-icon>
+            </button>
+        </div>
 
         <div class="content-wrapper">
+            <WoodGrain />
+
             <!-- Tiêu đề -->
             <h1 class="title">Vị Thần Quyết Định</h1>
             <p class="subtitle">Hãy suy nghĩ thật kỹ về câu hỏi của bạn rồi bấm vào nút 'Nhận tín hiệu vũ trụ'</p>
@@ -76,19 +80,14 @@ const getDecision = () => {
     margin: 0 auto;
     padding: 24px 20px;
     position: relative;
-    /* Gradient nền tối sâu thẳm */
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    border-radius: 20px;
+    background: #3E2723;
     color: white;
 }
 
 .btn-back {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: rgba(212, 175, 55, 0.15);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    color: #d4af37;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid white;
+    color: white;
     width: 40px;
     height: 40px;
     border-radius: 12px;
@@ -98,11 +97,6 @@ const getDecision = () => {
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
-}
-
-.btn-back:hover {
-    background: rgba(212, 175, 55, 0.3);
-    transform: scale(1.05);
 }
 
 .content-wrapper {
@@ -116,6 +110,7 @@ const getDecision = () => {
 }
 
 .title {
+    position: relative;
     font-size: 2.5rem;
     font-weight: 700;
     color: white;
@@ -124,6 +119,7 @@ const getDecision = () => {
 }
 
 .subtitle {
+    position: relative;
     font-size: 1.1rem;
     color: #a0a0b0;
     margin-bottom: 40px;
@@ -163,12 +159,12 @@ const getDecision = () => {
 }
 
 .btn-action {
-    background: linear-gradient(135deg, #7a4ce0 0%, #e8abf3 50%, #67147e 100%);
+    position: relative;
     background-size: 200% auto;
     color: white;
+    border: 1px solid white;
     font-size: 1.1rem;
     font-weight: 700;
-    border: none;
     padding: 18px 45px;
     border-radius: 50px;
     cursor: pointer;

@@ -45,12 +45,12 @@ const props = defineProps({
 }
 
 .sb-step-dot.active {
-    background: #9637d4;
+    background: white;
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
 }
 
 .sb-step-dot.completed {
-    background: #9637d4;
+    background: white;
 }
 
 .sb-step-line {
