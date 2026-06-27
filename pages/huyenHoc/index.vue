@@ -75,6 +75,14 @@ const disciplines = ref([
     status: 'done',
   },
   {
+    id: 'xem-ngay-di-cat-toc',
+    icon: 'fa-solid fa-scissors',
+    name: 'Xem ngày đi cắt tóc',
+    description: 'Xem ngày lành tháng tốt đi cắt tóc',
+    path: '/huyenHoc/xem-ngay-di-cat-toc',
+    status: 'done',
+  },
+  {
     id: 'tarot',
     icon: 'fa-solid fa-hat-wizard',
     name: 'Xem Tarot',

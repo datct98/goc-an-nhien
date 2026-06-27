@@ -31,15 +31,18 @@ const props = defineProps({
 }
 
 .title {
+    color: white;
     font-size: 1.8rem;
     font-weight: 700;
-    margin: 0 0 6px 0;
-    letter-spacing: 0.5px;
+    margin: 0;
+    text-align: center;
 }
 
 .subtitle {
+    color: white;
     font-size: 0.9rem;
     margin: 0;
     font-style: italic;
+    text-align: center;
 }
 </style>

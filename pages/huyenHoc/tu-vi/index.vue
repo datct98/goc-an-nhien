@@ -134,7 +134,7 @@
     <!-- Lớp hiệu ứng (nằm dưới) -->
     <StarOverlay />
 
-    <DesktopTitle title="Tử vi" sub="Thấu hiểu bản thân qua dòng chảy của số mệnh" />
+    <DesktopTitle title="Xem tử vi" sub="Thấu hiểu bản thân qua dòng chảy của số mệnh" />
 
     <div class="wizard flex justify-center items-center">
       <div class="main-content">
