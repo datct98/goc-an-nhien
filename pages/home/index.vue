@@ -16,20 +16,20 @@
     </div>
 
     <div class="chuaGoMo" @click="router.push('/goMo')">
-      <ImgAnimation :images="gomoAnim" :width="500" :interval="300" :delay="500" />
+      <ImgAnimation :images="gomoAnim" :width="26" :interval="300" :delay="500" />
     </div>
 
     <div class="huyenHoc" @click="router.push('/huyenHoc')">
-      <ImgAnimation :images="huyenHocAnim" :width="200" :interval="300" :delay="2000" />
+      <ImgAnimation :images="huyenHocAnim" :width="10" :interval="300" :delay="2000" />
     </div>
 
 
     <div class="tienIch" @click="router.push('/tien-ich')">
-      <ImgAnimation :images="tienIchAnim" :width="350" :interval="300" :delay="1000" />
+      <ImgAnimation :images="tienIchAnim" :width="16" :interval="300" :delay="1000" />
     </div>
 
     <div class="hoTamSu">
-      <ImgAnimation :images="hoTamSuAnim" :width="400" :interval="200" :delay="1000" />
+      <ImgAnimation :images="hoTamSuAnim" :width="20" :interval="200" :delay="1000" />
     </div>
     <div class="tree_1">
       <Image src="/home/anim/hoTamSu/tree.png" alt="tree" :width="350" />
@@ -188,6 +188,8 @@ const mobileBackground = ref<string | null>(null)
 onMounted(() => {
   updateMobileBackground()
   if (import.meta.client) {
+    console.log('Viewport Width:', window.innerWidth, 'px');
+    console.log('Viewport Height:', window.innerHeight, 'px');
   }
 })
 

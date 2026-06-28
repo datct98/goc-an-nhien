@@ -22,7 +22,7 @@ const props = defineProps({
     // Thêm prop chỉnh chiều rộng
     width: {
         type: [String, Number],
-        default: '300px' // Bạn có thể truyền: 300, "300px", "100%"...
+        default: 5
     },
     // Thêm prop chỉnh cách hiển thị ảnh (cover, contain, fill...)
     objectFit: {
@@ -33,6 +33,11 @@ const props = defineProps({
     delay: {
         type: Number,
         default: 0
+    },
+    // Thêm prop className
+    className: {
+        type: String,
+        default: ''
     }
 })
 
@@ -41,7 +46,7 @@ let timer = null
 
 // Tính toán Style cho Container
 const containerStyle = computed(() => {
-    const w = typeof props.width === 'number' ? `${props.width}px` : props.width
+    const w = typeof props.width === 'number' ? `${props.width}vw` : props.width
     return {
         width: w,
         height: 'auto'

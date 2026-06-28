@@ -2,7 +2,7 @@
     <div class="wrapper">
         <h1>Demo Hiệu Ứng Chạy Ảnh Liên Tục</h1>
 
-        <ImgAnimation :images="myImages" :width="300" :height="300" :interval="200" />
+        <ImgAnimation :images="myImages" :width="3" :height="300" :interval="200" />
     </div>
 </template>
 
