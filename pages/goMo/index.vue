@@ -20,16 +20,16 @@
         - Mỗi lần tụng kinh sẽ được cộng điểm, giải nghiệp và xua tan đi ưu phiền
       </p>
     </div>
-    <Decor className="tuongPhat" src="tuong/duc_phat.png" width="300" :isEdit="isEdit" />
-    <Decor className="caynen left" src="decor/nen.png" width="50" :isEdit="isEdit" />
-    <Decor className="caynen right" src="decor/nen.png" width="50" :isEdit="isEdit" />
-    <Decor className="caiBan" src="decor/table.png" width="600" :isEdit="isEdit" />
-    <Decor className="caiMo" src="decor/cai_mo.png" width="100" :isEdit="isEdit" @click="goMo()" />
-    <Decor className="pillow" src="decor/goi.png" width="200" :isEdit="isEdit" />
-    <Decor className="bathuong" src="decor/bat_huong_2.png" width="80" :isEdit="isEdit" :isSmokeUp="isEdit" />
-    <Decor className="gayGoMo" ref="gayGoMoRef" src="decor/gay_go_mo.png" width="70" :isEdit="isEdit"
+    <Decor className="tuongPhat" src="tuong/duc_phat.png" :width="15.6" :isEdit="isEdit" />
+    <Decor className="caynen left" src="decor/nen.png" :width="2.5" :isEdit="isEdit" />
+    <Decor className="caynen right" src="decor/nen.png" :width="2.5" :isEdit="isEdit" />
+    <Decor className="caiBan" src="decor/table.png" :width="31.25" :isEdit="isEdit" />
+    <Decor className="caiMo" src="decor/cai_mo.png" :width="5.2" :isEdit="isEdit" @click="goMo()" />
+    <Decor className="pillow" src="decor/goi.png" :width="10.4" :isEdit="isEdit" />
+    <Decor className="bathuong" src="decor/bat_huong_2.png" :width="4.16" :isEdit="isEdit" :isSmokeUp="isEdit" />
+    <Decor className="gayGoMo" ref="gayGoMoRef" src="decor/gay_go_mo.png" :width="3.64" :isEdit="isEdit"
       :isShowImage="isShowGayGoMo" @click="camGayGoMo()" />
-    <Decor className="khayDungGay" ref="khayDungGayRef" src="decor/khay.png" width="120" :isEdit="isEdit"
+    <Decor className="khayDungGay" ref="khayDungGayRef" src="decor/khay.png" :width="6.24" :isEdit="isEdit"
       @click="camGayGoMo()" />
     <div class="banCongDuc">
       <Image src="ban_tho/ban_cong_duc.png" alt="ban_cong_duc" width="350" />

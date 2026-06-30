@@ -1,7 +1,7 @@
 <template>
-    <div v-if="!isEdit" :class="className">
+    <div v-if="!isEdit" :class="className" :style="containerStyle">
         <SmokeUp v-if="isSmokeUp" />
-        <Image v-if="isShowImage" :src="src" :alt="src" :width="width" />
+        <Image v-if="isShowImage" :src="src" :alt="src" style="width: 100%;" />
     </div>
     <div v-else class="edit" :class="className" @click="showPopup = true">
         <Image :src="src" :alt="src" :width="width" />
@@ -97,6 +97,15 @@ const handleConfirm = () => {
     // Logic for confirmation can be added here
     showPopup.value = false;
 };
+
+const containerStyle = computed(() => {
+    const w = typeof props.width === 'number' ? `${props.width}vw` : props.width
+    return {
+        width: w,
+        height: 'auto'
+    }
+})
+
 </script>
 
 <style scoped>
