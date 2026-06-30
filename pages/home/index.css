@@ -99,7 +99,7 @@
 .chuaGoMo {
   position: absolute;
   z-index: 9;
-  left: calc((100vw - 800px) / 2);
+  left: calc((60vw) / 2);
   top: 44vh;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -108,7 +108,7 @@
 .huyenHoc {
   position: absolute;
   z-index: 9;
-  left: calc((50vw - 500px) / 2);
+  left: calc((80vw) / 2);
   top: 25vh;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -117,7 +117,7 @@
 .tienIch {
   position: absolute;
   z-index: 9;
-  left: calc((155vw - 300px) / 2);
+  left: calc((139vw) / 2);
   top: 22vh;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -133,8 +133,8 @@
 .hoTamSu {
   position: absolute;
   z-index: 9;
-  left: calc((50vw - 300px) / 2);
-  top: 68vh;
+  left: calc((19vw) / 2);
+  top: 30vh;
 }
 
 .bushes_1,
@@ -142,17 +142,6 @@
   position: absolute;
   z-index: 10;
 }
-
-.tree_1 {
-  left: calc((100vw - 760px) / 2);
-  top: 70vh;
-}
-
-.bushes_1 {
-  left: 23vw;
-  top: 80vh;
-}
-
 
 @keyframes floatCloud {
   from {

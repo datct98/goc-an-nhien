@@ -16,7 +16,7 @@
     </div>
 
     <div class="chuaGoMo" @click="router.push('/goMo')">
-      <ImgAnimation :images="gomoAnim" :width="26" :interval="300" :delay="500" />
+      <ImgAnimation :images="gomoAnim" :width="24" :interval="300" :delay="500" />
     </div>
 
     <div class="huyenHoc" @click="router.push('/huyenHoc')">
@@ -29,14 +29,7 @@
     </div>
 
     <div class="hoTamSu">
-      <ImgAnimation :images="hoTamSuAnim" :width="20" :interval="200" :delay="1000" />
-    </div>
-    <div class="tree_1">
-      <Image src="/home/anim/hoTamSu/tree.png" alt="tree" :width="350" />
-    </div>
-
-    <div class="bushes_1">
-      <Image src="/home/anim/hoTamSu/bushes.png" alt="bushes" :width="210" />
+      <ImgAnimation :images="hoTamSuAnim" :width="18" :interval="200" :delay="1000" />
     </div>
 
     <div class="land-layer"></div>
