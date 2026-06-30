@@ -1,7 +1,10 @@
 <template>
     <div class="register-form">
+        <div class="w-full text-center mb-2">
+            <span class="text-4xl" style="color: #5d4037">Đăng ký</span>
+        </div>
         <div class="form-row">
-            <label class="form-label" id="label-fullname">Full Name</label>
+            <label class="form-label" id="label-fullname">Mật danh</label>
             <div class="form-input">
                 <input type="text" v-model="fullName" placeholder="Enter your full name" class="custom-input"
                     id="input-fullname" aria-labelledby="label-fullname" />

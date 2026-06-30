@@ -8,15 +8,19 @@
 }
 
 .login-board {
-    width: 400px;
-    min-height: 300px;
+    width: 700px;
+    height: 450px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 62%;
+    top: 35vh;
     left: 50%;
     transform: translate(-50%, 0%);
+    background-image: url(/register/scroll.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .google {
