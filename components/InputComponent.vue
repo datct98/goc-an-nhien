@@ -9,7 +9,7 @@
         </div>
         <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
         <div class="button-group">
-            <button class="btn-secondary">Đăng ký</button>
+            <button class="btn-secondary" @click="goToRegister">Đăng ký</button>
             <button class="btn-primary" @click="handleLogin" :disabled="isLoading">
                 {{ isLoading ? 'Đang đăng nhập...' : 'Đăng nhập' }}
             </button>
@@ -30,6 +30,10 @@ const { login, isLoading } = useAuth();
 const email = ref('');
 const password = ref('');
 const errorMessage = ref('');
+
+const goToRegister = () => {
+    router.push('/register');
+};
 
 const handleLogin = async () => {
     // Validate

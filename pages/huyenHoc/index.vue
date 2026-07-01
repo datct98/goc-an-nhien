@@ -88,8 +88,8 @@ const disciplines = ref([
     icon: 'fa-solid fa-hat-wizard',
     name: 'Xem Tarot',
     description: 'Bói bài Tarot',
-    path: '/huyenHoc/tarot',
-    status: 'process',
+    path: '/huyenHoc/xem-tarot',
+    status: 'done',
   },
   {
     id: 'cung-hoang-dao',

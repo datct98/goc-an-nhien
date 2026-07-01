@@ -48,8 +48,8 @@ export default defineNuxtPlugin({
       var data = null;
 
       var prefixUrl = "";
-      if(api === "default") prefixUrl = baseUrl;
-      else if(api === "benefit") prefixUrl = benefitUrl;
+      if (api === "default") prefixUrl = baseUrl;
+      else if (api === "benefit") prefixUrl = benefitUrl;
 
       if (!isBaseUrl) prefixUrl = loginUrl;
 

@@ -76,10 +76,7 @@ const handleRegister = async () => {
     try {
         const token = await authService.register(fullName.value, email.value, password.value);
         console.log('✅ Registration successful!', token);
-
-        // Optional: Store token or auto-login
-        // localStorage.setItem('jwt_token', token);
-
+        localStorage.setItem('jwt_token', token);
         router.push('/login');
     } catch (err) {
         console.error('❌ Registration failed:', err);
