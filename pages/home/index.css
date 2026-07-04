@@ -134,7 +134,7 @@
   position: absolute;
   z-index: 9;
   left: calc((19vw) / 2);
-  top: 30.5vh;
+  top: 30vh;
 }
 
 .bushes_1,
@@ -162,5 +162,11 @@
 
   50% {
     translate: 0 20px;
+  }
+}
+
+@media (max-width: 1900px) {
+  .hoTamSu {
+    top: 28vh;
   }
 }
