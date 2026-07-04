@@ -1,7 +1,14 @@
 <template>
     <div class="image-animation-container" :class="className" :style="containerStyle">
-        <Image v-if="images.length > 0" :src="images[activeIndex]" :alt="`Animation frame ${activeIndex}`"
-            :style="imageStyle" class="animation-frame" />
+        <!-- 
+            Sử dụng v-for và v-show để render tất cả các frame ảnh cùng một lúc.
+            Điều này giúp trình duyệt load và cache toàn bộ ảnh ngay lần đầu, 
+            tránh việc bắn request network liên tục mỗi khi đổi activeIndex.
+        -->
+        <template v-if="images.length > 0">
+            <Image v-for="(img, index) in images" :key="index" v-show="index === activeIndex" :src="img"
+                :alt="`Animation frame ${index}`" :style="imageStyle" class="animation-frame" />
+        </template>
         <div v-else class="empty-state">Không có ảnh</div>
     </div>
 </template>
@@ -19,22 +26,18 @@ const props = defineProps({
         type: Number,
         default: 100
     },
-    // Thêm prop chỉnh chiều rộng
     width: {
         type: [String, Number],
         default: 5
     },
-    // Thêm prop chỉnh cách hiển thị ảnh (cover, contain, fill...)
     objectFit: {
         type: String,
         default: 'cover'
     },
-    // Thêm prop delay khi quay lại index 0
     delay: {
         type: Number,
         default: 0
     },
-    // Thêm prop className
     className: {
         type: String,
         default: ''
@@ -42,6 +45,7 @@ const props = defineProps({
 })
 
 const activeIndex = ref(0)
+const isReady = ref(false)
 let timer = null
 
 // Tính toán Style cho Container
@@ -62,12 +66,34 @@ const imageStyle = computed(() => {
     }
 })
 
-const startAnimation = () => {
+// Hàm load trước toàn bộ ảnh
+const preloadImages = async () => {
+    if (props.images.length === 0) return;
+
+    isReady.value = false;
+    const promises = props.images.map(src => {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = resolve;
+            img.onerror = resolve; // Tiếp tục kể cả khi lỗi
+        });
+    });
+
+    await Promise.all(promises);
+    isReady.value = true;
+};
+
+const startAnimation = async () => {
     stopAnimation();
     if (props.images.length <= 1) return;
 
+    // Chờ cho đến khi tất cả ảnh đã được load (cache)
+    if (!isReady.value) {
+        await preloadImages();
+    }
+
     let lastTimestamp = performance.now();
-    let frameId = null;
 
     const run = (timestamp) => {
         const elapsed = timestamp - lastTimestamp;
@@ -78,18 +104,15 @@ const startAnimation = () => {
 
         if (elapsed >= currentWait) {
             activeIndex.value = (activeIndex.value + 1) % props.images.length;
-            lastTimestamp = timestamp; // Reset thời gian sau khi cập nhật frame
+            lastTimestamp = timestamp;
         }
 
-        // Yêu cầu frame tiếp theo
-        frameId = requestAnimationFrame(run);
+        timer = requestAnimationFrame(run);
     };
 
-    // Lưu frameId vào timer để stopAnimation có thể hủy
     timer = requestAnimationFrame(run);
 };
 
-// Cập nhật hàm stopAnimation để dùng cancelAnimationFrame thay vì clearTimeout
 const stopAnimation = () => {
     if (timer) {
         cancelAnimationFrame(timer);
@@ -97,39 +120,18 @@ const stopAnimation = () => {
     }
 };
 
-// const startAnimation = () => {
-//     stopAnimation()
-//     if (props.images.length <= 1) return
-
-//     const run = () => {
-//         const nextIndex = (activeIndex.value + 1) % props.images.length
-//         let wait = props.interval
-
-//         // Nếu quay lại index 0 và có delay thì cộng thêm vào wait
-//         if (nextIndex === 0 && props.delay > 0) {
-//             wait += props.delay
-//         }
-
-//         activeIndex.value = nextIndex
-//         timer = setTimeout(run, wait)
-//     }
-
-//     timer = setTimeout(run, props.interval)
-// }
-
-// const stopAnimation = () => {
-//     if (timer) {
-//         clearTimeout(timer)
-//         timer = null
-//     }
-// }
-
-onMounted(() => startAnimation())
-onUnmounted(() => stopAnimation())
-
-watch(() => props.images, () => {
-    activeIndex.value = 0
+onMounted(() => {
     startAnimation()
+})
+
+onUnmounted(() => {
+    stopAnimation()
+})
+
+watch(() => props.images, async () => {
+    activeIndex.value = 0
+    isReady.value = false
+    await startAnimation()
 }, { deep: true })
 </script>
 
