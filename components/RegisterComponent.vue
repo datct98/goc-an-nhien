@@ -94,7 +94,6 @@ const handleCancel = () => {
 <style scoped>
 * {
     font-family: DancingScript, cursive;
-    font-style: italic;
 }
 
 .register-form {
@@ -114,7 +113,7 @@ const handleCancel = () => {
 .form-label {
     flex: 0 0 30%;
     color: #5d4037;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     text-align: left;
     padding-right: 10px;
@@ -130,8 +129,7 @@ const handleCancel = () => {
     border: 2px solid #ccb593;
     border-radius: 50px;
     background-color: #fffaf0;
-    font-size: 15px;
-    font-style: italic;
+    font-size: 18px;
     color: #5d4037;
     outline: none;
     box-sizing: border-box;
@@ -150,7 +148,7 @@ const handleCancel = () => {
 
 .error-message {
     color: #c62828;
-    font-size: 13px;
+    font-size: 15px;
     text-align: center;
     margin-bottom: 10px;
     font-style: normal;
@@ -165,7 +163,7 @@ const handleCancel = () => {
 
 .btn-primary {
     padding: 8px 24px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #6b4b2a;
     background: linear-gradient(to bottom, #fff2cc, #f2d59b);
@@ -192,7 +190,7 @@ const handleCancel = () => {
 
 .btn-secondary {
     padding: 8px 18px;
-    font-size: 14px;
+    font-size: 16px;
     color: #5d4037;
     background: transparent;
     border: 1.5px solid #d7c0a3;

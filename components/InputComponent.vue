@@ -32,6 +32,7 @@ const password = ref('');
 const errorMessage = ref('');
 
 const goToRegister = () => {
+    console.log("goToRegister ---> ")
     router.push('/register');
 };
 
@@ -59,7 +60,6 @@ const handleLogin = async () => {
 <style scoped>
 * {
     font-family: DancingScript;
-    font-style: italic;
 }
 
 /* Style cho các ô Input */
@@ -73,8 +73,7 @@ const handleLogin = async () => {
     border: 2px solid #ccb593;
     border-radius: 50px;
     background-color: #fffaf0;
-    font-size: 16px;
-    font-style: italic;
+    font-size: 18px;
     color: #5d4037;
     outline: none;
     box-sizing: border-box;
@@ -94,7 +93,7 @@ const handleLogin = async () => {
 /* Error message */
 .error-message {
     color: #c62828;
-    font-size: 13px;
+    font-size: 15px;
     text-align: center;
     margin-bottom: 5px;
     font-style: normal;
@@ -110,7 +109,7 @@ const handleLogin = async () => {
 /* Nút Đăng nhập chính */
 .btn-primary {
     padding: 10px 26px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #6b4b2a;
 
@@ -153,7 +152,7 @@ const handleLogin = async () => {
     border: 1.5px solid #d7c0a3;
     border-radius: 20px;
     padding: 5px 15px;
-    font-size: 14px;
+    font-size: 18px;
     color: #5d4037;
     cursor: pointer;
 }

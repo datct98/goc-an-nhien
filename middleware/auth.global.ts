@@ -1,6 +1,11 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-    // Bỏ qua middleware cho trang login (tránh redirect loop)
-    if (to.path === '/login' || to.path === '/login/') {
+
+    const whiteList = [
+        '/login', '/login/', '/register', '/register/'
+    ]
+
+    // Bỏ qua middleware cho các trang trong whiteList (tránh redirect loop)
+    if (whiteList.includes(to.path)) {
         return
     }
 

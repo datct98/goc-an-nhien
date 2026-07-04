@@ -63,31 +63,66 @@ const imageStyle = computed(() => {
 })
 
 const startAnimation = () => {
-    stopAnimation()
-    if (props.images.length <= 1) return
+    stopAnimation();
+    if (props.images.length <= 1) return;
 
-    const run = () => {
-        const nextIndex = (activeIndex.value + 1) % props.images.length
-        let wait = props.interval
+    let lastTimestamp = performance.now();
+    let frameId = null;
 
-        // Nếu quay lại index 0 và có delay thì cộng thêm vào wait
-        if (nextIndex === 0 && props.delay > 0) {
-            wait += props.delay
+    const run = (timestamp) => {
+        const elapsed = timestamp - lastTimestamp;
+
+        // Xác định thời gian chờ mong muốn
+        const isLooping = (activeIndex.value + 1) % props.images.length === 0;
+        const currentWait = isLooping ? (props.interval + props.delay) : props.interval;
+
+        if (elapsed >= currentWait) {
+            activeIndex.value = (activeIndex.value + 1) % props.images.length;
+            lastTimestamp = timestamp; // Reset thời gian sau khi cập nhật frame
         }
 
-        activeIndex.value = nextIndex
-        timer = setTimeout(run, wait)
-    }
+        // Yêu cầu frame tiếp theo
+        frameId = requestAnimationFrame(run);
+    };
 
-    timer = setTimeout(run, props.interval)
-}
+    // Lưu frameId vào timer để stopAnimation có thể hủy
+    timer = requestAnimationFrame(run);
+};
 
+// Cập nhật hàm stopAnimation để dùng cancelAnimationFrame thay vì clearTimeout
 const stopAnimation = () => {
     if (timer) {
-        clearTimeout(timer)
-        timer = null
+        cancelAnimationFrame(timer);
+        timer = null;
     }
-}
+};
+
+// const startAnimation = () => {
+//     stopAnimation()
+//     if (props.images.length <= 1) return
+
+//     const run = () => {
+//         const nextIndex = (activeIndex.value + 1) % props.images.length
+//         let wait = props.interval
+
+//         // Nếu quay lại index 0 và có delay thì cộng thêm vào wait
+//         if (nextIndex === 0 && props.delay > 0) {
+//             wait += props.delay
+//         }
+
+//         activeIndex.value = nextIndex
+//         timer = setTimeout(run, wait)
+//     }
+
+//     timer = setTimeout(run, props.interval)
+// }
+
+// const stopAnimation = () => {
+//     if (timer) {
+//         clearTimeout(timer)
+//         timer = null
+//     }
+// }
 
 onMounted(() => startAnimation())
 onUnmounted(() => stopAnimation())
