@@ -1,7 +1,7 @@
 <template>
     <div class="register-form">
         <div class="w-full text-center mb-2">
-            <span class="text-4xl" style="color: #5d4037">Đăng ký</span>
+            <span class="text-4xl" style="color: rgb(249 233 228)">Đăng ký</span>
         </div>
         <div class="form-row">
             <label class="form-label" id="label-fullname">Mật danh</label>
@@ -112,7 +112,7 @@ const handleCancel = () => {
 
 .form-label {
     flex: 0 0 30%;
-    color: #5d4037;
+    color: rgb(249 233 228);
     font-size: 18px;
     font-weight: 600;
     text-align: left;
@@ -130,7 +130,7 @@ const handleCancel = () => {
     border-radius: 50px;
     background-color: #fffaf0;
     font-size: 18px;
-    color: #5d4037;
+    color: rgb(249 233 228);
     outline: none;
     box-sizing: border-box;
     transition: all 0.3s ease;
@@ -191,7 +191,7 @@ const handleCancel = () => {
 .btn-secondary {
     padding: 8px 18px;
     font-size: 16px;
-    color: #5d4037;
+    color: rgb(249 233 228);
     background: transparent;
     border: 1.5px solid #d7c0a3;
     border-radius: 20px;
@@ -201,6 +201,7 @@ const handleCancel = () => {
 
 .btn-secondary:hover {
     background-color: #f5ecd5;
+    color: rgb(95, 87, 84);
 }
 
 @media (max-width: 480px) {

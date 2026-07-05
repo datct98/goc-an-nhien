@@ -29,7 +29,7 @@
     </div>
 
     <div class="hoTamSu">
-      <ImgAnimation :images="hoTamSuAnim" :width="18" :interval="200" :delay="1000" />
+      <ImgAnimation :images="hoTamSuAnim" :width="18" :interval="200" :delay="0" />
     </div>
 
     <div class="land-layer"></div>

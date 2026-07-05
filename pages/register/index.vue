@@ -27,7 +27,8 @@ const REDIRECT_URI = window.location.origin + '/login/';
 const config = useRuntimeConfig()
 const GOOGLE_CLIENT_ID = config.public.googleClientId;
 
-const loginBackground = ref('/login/login_v2.png');
+const loginBackground = ref('/register/background.png');
+const loginBoard = ref('login-board');
 
 const updateBackground = () => {
     const now = new Date();
@@ -37,10 +38,12 @@ const updateBackground = () => {
         hour12: false,
     });
     const currentHour = parseInt(vnTime.format(now));
-    if (currentHour >= 6 && currentHour < 20) {
-        loginBackground.value = '/login/regis.png';
+    if (currentHour >= 6 && currentHour < 20 || true) {
+        loginBackground.value = '/register/background.png';
+        loginBoard.value = "login-board"
     } else {
-        loginBackground.value = '/login/regis_night.png';
+        loginBackground.value = '/register/background_night.png';
+        loginBoard.value = "login-board-night"
     }
 };
 
