@@ -49,7 +49,9 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { authService } from '~/services/authService';
+import { useAuth } from '~/composables/useAuth';
+
+const { register } = useAuth();
 
 const router = useRouter();
 
@@ -74,10 +76,9 @@ const handleRegister = async () => {
     errorMessage.value = '';
 
     try {
-        const token = await authService.register(fullName.value, email.value, password.value);
+        const token = await register(fullName.value, email.value, password.value);
         console.log('✅ Registration successful!', token);
-        localStorage.setItem('jwt_token', token);
-        router.push('/login');
+        router.push('/home');
     } catch (err) {
         console.error('❌ Registration failed:', err);
         errorMessage.value = err.response?.data?.message || 'Registration failed. Please try again.';
@@ -126,11 +127,8 @@ const handleCancel = () => {
 .custom-input {
     width: 100%;
     padding: 8px 20px;
-    border: 2px solid #ccb593;
     border-radius: 50px;
-    background-color: #fffaf0;
     font-size: 18px;
-    color: rgb(249 233 228);
     outline: none;
     box-sizing: border-box;
     transition: all 0.3s ease;
@@ -148,7 +146,8 @@ const handleCancel = () => {
 
 .error-message {
     color: #c62828;
-    font-size: 15px;
+    font-size: 18px;
+    font-weight: 500;
     text-align: center;
     margin-bottom: 10px;
     font-style: normal;

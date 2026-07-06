@@ -18,9 +18,13 @@ export const authService = {
      * @param {string} password 
      * @returns {Promise<string>} JWT token
      */
-    async login(email: string, password: string): Promise<string> {
+    async login(email: string, password: string): Promise<any> {
         const { data } = await authApi.post('/auth/login', { email, password });
-        return data.token;
+        return {
+            token: data.token,
+            fullName: data.fullName,
+            email: data.email
+        };
     },
 
     /**
@@ -30,14 +34,18 @@ export const authService = {
      * @param {string} password 
      * @returns {Promise<string>} JWT token
      */
-    async register(fullName: string, email: string, password: string): Promise<string> {
+    async register(fullName: string, email: string, password: string): Promise<any> {
         const { data } = await authApi.post('/auth/register', {
             fullName,
             email,
             password,
             role: 'CUSTOMER'
         });
-        return data.token;
+        return {
+            token: data.token,
+            fullName: fullName,
+            email: email
+        };
     },
 
     /**

@@ -43,13 +43,13 @@ export function useAuth() {
         try {
             isLoading.value = true;
             authError.value = null;
-
-            const jwt = await authService.login(email, password);
-            token.value = jwt;
-            localStorage.setItem('jwt_token', jwt);
-
+            const data = await authService.login(email, password);
+            token.value = data.token;
+            localStorage.setItem('jwt_token', data.token);
+            localStorage.setItem('fullName', data.fullName);
+            localStorage.setItem('email', data.email);
             return true;
-        } catch (error:any) {
+        } catch (error: any) {
             authError.value = error.response?.data?.message || 'Đăng nhập thất bại. Vui lòng kiểm tra email và mật khẩu.';
             throw error;
         } finally {
@@ -65,9 +65,11 @@ export function useAuth() {
             isLoading.value = true;
             authError.value = null;
 
-            const jwt = await authService.register(fullName, email, password);
-            token.value = jwt;
-            localStorage.setItem('jwt_token', jwt);
+            const data = await authService.register(fullName, email, password);
+            token.value = data.token;
+            localStorage.setItem('jwt_token', data.token);
+            localStorage.setItem('fullName', data.fullName);
+            localStorage.setItem('email', data.email);
 
             return true;
         } catch (error) {

@@ -34,6 +34,14 @@
 
     <div class="land-layer"></div>
   </div>
+
+  <div class="user-profile">
+    <Image src="/avatar.png" width="210">
+    </Image>
+    <div class="user-name-container">
+      <span class="user-name">{{ fullName }}</span>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -177,10 +185,12 @@ const router = useRouter()
 const { $common } = useNuxtApp()
 const { isMobileView } = useDevice()
 const mobileBackground = ref<string | null>(null)
+const fullName = ref('')
 
 onMounted(() => {
   updateMobileBackground()
   if (import.meta.client) {
+    fullName.value = localStorage.getItem('fullName') || 'Khách'
     console.log('Viewport Width:', window.innerWidth, 'px');
     console.log('Viewport Height:', window.innerHeight, 'px');
   }
