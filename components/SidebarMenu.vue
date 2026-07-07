@@ -23,20 +23,20 @@
 
                 <div class="sidebar-content">
                     <div class="sidebar-header">
-                        <span class="sidebar-title">☸ Tính năng</span>
+                        <span class="sidebar-title">Tính năng</span>
                         <button class="close-btn" @click="close">✕</button>
                     </div>
                     <nav class="sidebar-nav">
                         <a class="nav-item" v-for="item in menuTabList" @click="goTo(item.path, item.status)"
                             :class="{ active: item.active }">
-                            <span class="nav-icon">{{ item.icon }}</span>
+                            <i :class="[item.icon, 'nav-icon']"></i>
                             <span class="nav-label">{{ item.name }}</span>
                             <span v-if="item.status != 'done'" class="nav-badge">Sắp ra mắt</span>
                         </a>
                     </nav>
                     <div class="sidebar-footer">
                         <a class="nav-item logout" @click="handleLogout">
-                            <span class="nav-icon">🚪</span>
+                            <i class="pi pi-sign-out nav-icon"></i>
                             <span class="nav-label">Đăng xuất</span>
                         </a>
                     </div>

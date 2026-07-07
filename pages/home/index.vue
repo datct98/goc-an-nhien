@@ -34,14 +34,6 @@
 
     <div class="land-layer"></div>
   </div>
-
-  <div class="user-profile">
-    <Image src="/avatar.png" width="210">
-    </Image>
-    <div class="user-name-container">
-      <span class="user-name">{{ fullName }}</span>
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">

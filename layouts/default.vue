@@ -9,6 +9,15 @@
         <span class="goMo-menu-line"></span>
         <span class="goMo-menu-line"></span>
       </button>
+
+      <button class="goMo-profile-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M17 18v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3v1"></path>
+          <circle cx="12" cy="9" r="3"></circle>
+        </svg>
+      </button>
     </template>
 
     <template v-else>
@@ -57,8 +66,25 @@ const toggleMenu = () => {
   gap: 4px;
 }
 
-.goMo-menu-btn:hover {
+.goMo-menu-btn:hover,
+.goMo-profile-btn:hover {
   background: #3b4a8e;
+}
+
+.goMo-profile-btn {
+  position: fixed;
+  top: 4rem;
+  left: 1rem;
+  z-index: 100;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .goMo-menu-line {

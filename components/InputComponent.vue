@@ -11,7 +11,7 @@
         <div class="button-group">
             <button class="btn-secondary" @click="goToRegister">Đăng ký</button>
             <button class="btn-primary" @click="handleLogin" :disabled="isLoading">
-                {{ isLoading ? 'Đang đăng nhập...' : 'Đăng nhập' }}
+                Đăng nhập
             </button>
             <button class="btn-secondary">Quên pass</button>
         </div>

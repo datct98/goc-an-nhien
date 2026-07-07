@@ -1,6 +1,6 @@
 const data = {
     home: {
-        icon: "🏠",
+        icon: "pi pi-home",
         iconName: "home",
         image: "/home/icon/goMo.png",
         name: "Trang chủ",
@@ -8,7 +8,7 @@ const data = {
         status: "done",
     },
     goMo: {
-        icon: "🔔",
+        icon: "pi pi-bell",
         iconName: "bell",
         image: "/home/icon/goMo.png",
         name: "Gõ Mõ",
@@ -16,7 +16,7 @@ const data = {
         status: "done",
     },
     thapNhang: {
-        icon: "🕯️",
+        icon: "pi pi-sun",
         iconName: "star",
         image: "/home/icon/thapNhang.png",
         name: "Thắp Nhang",
@@ -24,7 +24,7 @@ const data = {
         status: "done",
     },
     phongDang: {
-        icon: "🏮",
+        icon: "pi pi-lightbulb",
         iconName: "lightbulb",
         image: "/home/icon/phongDang.png",
         name: "Phóng Đăng",
@@ -32,7 +32,7 @@ const data = {
         status: "process",
     },
     hoTamSu: {
-        icon: "🏺",
+        icon: "pi pi-comments",
         iconName: "trophy",
         image: "/home/icon/hoTamSu.png",
         name: "Hồ Tâm Sự",
@@ -40,7 +40,7 @@ const data = {
         status: "process",
     },
     huyenHoc: {
-        icon: "🔮",
+        icon: "pi pi-sparkles",
         iconName: "sparkles",
         image: "/home/icon/huyenHoc.png",
         name: "Huyền Học",
@@ -48,7 +48,7 @@ const data = {
         status: "done",
     },
     tuDo: {
-        con: "📦",
+        icon: "pi pi-box",
         iconName: "box",
         image: "/home/icon/tuDo.png",
         name: "Túi đồ",
@@ -56,7 +56,7 @@ const data = {
         status: "done",
     },
     shop: {
-        icon: "🏪",
+        icon: "pi pi-shopping-cart",
         iconName: "shop",
         image: "/home/icon/store.png",
         name: "Cửa hàng",
@@ -64,7 +64,7 @@ const data = {
         status: "done",
     },
     tienIch: {
-        icon: "🧰",
+        icon: "pi pi-wrench",
         iconName: "wrench",
         image: "/home/icon/tienIch.png",
         name: "Tiện ích",

@@ -97,7 +97,7 @@
 }
 
 .chuaGoMo {
-  position: absolute;
+  position: fixed;
   z-index: 9;
   left: calc((60vw) / 2);
   top: 44vh;
@@ -106,7 +106,7 @@
 }
 
 .huyenHoc {
-  position: absolute;
+  position: fixed;
   z-index: 9;
   left: calc((80vw) / 2);
   top: 25vh;
@@ -115,7 +115,7 @@
 }
 
 .tienIch {
-  position: absolute;
+  position: fixed;
   z-index: 9;
   left: calc((139vw) / 2);
   top: 22vh;
@@ -169,48 +169,4 @@
   .hoTamSu {
     top: 28vh;
   }
-}
-
-/* ========================================
-   USER PROFILE STYLING
-======================================== */
-.user-profile {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
-}
-
-.user-profile :deep(.p-image) {
-  pointer-events: auto;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-}
-
-.user-name-container {
-  width: 100%;
-  max-width: 200px;
-  position: absolute;
-  top: 90px;
-  right: 0px;
-  z-index: 101;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.user-name {
-  display: block;
-  max-width: 100%;
-  font-family: DancingScript;
-  color: #3b1d0c;
-  font-size: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: 600;
 }
