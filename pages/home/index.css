@@ -238,3 +238,23 @@
     top: 28vh;
   }
 }
+
+@media (max-width: 1600px) {
+  .chuaGoMo {
+    width: 550px;
+    height: 400px;
+  }
+  .huyenHoc {
+    width: 350px;
+    height: 350px;
+  }
+  .tienIch {
+    width: 450px;
+    height: 450px;
+  }
+  .main-land {
+    left: calc((70vw) / 2);
+    width: 500px;
+    height: 450px;
+  }
+}
