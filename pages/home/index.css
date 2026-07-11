@@ -28,8 +28,7 @@
   /* Fallback */
 }
 
-.sky-layer,
-.land-layer {
+.sky-layer {
   position: absolute;
   top: 0;
   left: 0;
@@ -40,6 +39,8 @@
   background-attachment: fixed;
 }
 
+.land-layer {}
+
 .sky-layer {
   background-image: url('/home/home_sky.png');
   background-position: top;
@@ -47,11 +48,14 @@
 }
 
 .land-layer {
-  background-image: url('/home/home_land.png');
+  position: relative;
   background-position: bottom;
-  z-index: 2;
-  pointer-events: none;
-  /* Let clicks pass through if needed, though hotspots will be here later */
+  z-index: 9;
+  width: 1280px;
+  height: 800px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* Clouds Animation */
@@ -96,22 +100,43 @@
   transform: scale(0.8);
 }
 
+
+
+
 .chuaGoMo {
+  width: 650px;
+  height: 500px;
   position: fixed;
   z-index: 9;
   left: calc((60vw) / 2);
   top: 44vh;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
+  background-image: url('/home/landLayer/landlayer_1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: floatingIsland 6s ease-in-out infinite;
 }
 
 .huyenHoc {
   position: fixed;
   z-index: 9;
-  left: calc((80vw) / 2);
+  left: calc((19vw) / 2);
   top: 25vh;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
+  width: 350px;
+  height: 350px;
+  background-image: url('/home/landLayer/landlayer_4.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatingIsland 7s ease-in-out infinite 0.5s;
 }
 
 .tienIch {
@@ -121,6 +146,15 @@
   top: 22vh;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
+  width: 500px;
+  height: 500px;
+  background-image: url('/home/landLayer/landlayer_2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  animation: floatingIsland 8s ease-in-out infinite 1s;
 }
 
 .chuaGoMo:hover,
@@ -131,10 +165,35 @@
 }
 
 .hoTamSu {
-  position: absolute;
+  position: fixed;
   z-index: 9;
-  left: calc((19vw) / 2);
-  top: 30vh;
+  left: calc((70vw) / 2);
+  top: 5vh;
+  width: 610px;
+  height: 554px;
+  background-image: url('/home/landLayer/landlayer_3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-top: 100px;
+}
+
+.main-land {
+  position: fixed;
+  left: calc((60vw) / 2);
+  top: 0vh;
+  width: 610px;
+  height: 554px;
+  background-image: url('/home/landLayer/landlayer_3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  z-index: 3;
+  animation: floatingIsland 9s ease-in-out infinite 1.5s;
 }
 
 .bushes_1,
@@ -162,6 +221,15 @@
 
   50% {
     translate: 0 20px;
+  }
+}
+
+@keyframes floatingIsland {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -15px;
   }
 }
 

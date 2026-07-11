@@ -50,7 +50,7 @@ let timer = null
 
 // Tính toán Style cho Container
 const containerStyle = computed(() => {
-    const w = typeof props.width === 'number' ? `${props.width}vw` : props.width
+    const w = typeof props.width === 'number' ? `${props.width}px` : props.width
     return {
         width: w,
         height: 'auto'

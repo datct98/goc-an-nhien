@@ -15,24 +15,27 @@
       <div class="cloud cloud-fast"></div>
     </div>
 
-    <div class="chuaGoMo" @click="router.push('/goMo')">
-      <ImgAnimation :images="gomoAnim" :width="24" :interval="300" :delay="500" />
+    <div class="land-layer">
+      <div class="chuaGoMo" @click="router.push('/goMo')">
+        <ImgAnimation :images="gomoAnim" :width="500" :interval="300" :delay="500" />
+      </div>
+
+      <div class="huyenHoc" @click="router.push('/huyenHoc')">
+        <ImgAnimation :images="huyenHocAnim" :width="200" :interval="300" :delay="2000" />
+      </div>
+
+
+      <div class="tienIch" @click="router.push('/tien-ich')">
+        <ImgAnimation :images="tienIchAnim" :width="300" :interval="300" :delay="1000" />
+      </div>
+
+      <div class="main-land">
+      </div>
+
+      <!-- <div class="hoTamSu">
+        <ImgAnimation :images="hoTamSuAnim" :width="300" :interval="200" :delay="0" />
+      </div> -->
     </div>
-
-    <div class="huyenHoc" @click="router.push('/huyenHoc')">
-      <ImgAnimation :images="huyenHocAnim" :width="10" :interval="300" :delay="2000" />
-    </div>
-
-
-    <div class="tienIch" @click="router.push('/tien-ich')">
-      <ImgAnimation :images="tienIchAnim" :width="16" :interval="300" :delay="1000" />
-    </div>
-
-    <div class="hoTamSu">
-      <ImgAnimation :images="hoTamSuAnim" :width="18" :interval="200" :delay="0" />
-    </div>
-
-    <div class="land-layer"></div>
   </div>
 </template>
 
