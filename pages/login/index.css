@@ -8,19 +8,63 @@
 }
 
 .login-board {
-    width: 350px;
-    height: 150px;
+    width: fit-content;
+    min-width: 600px;
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
-    top: 65vh;
+    top: 58vh;
     left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, -50%);
+    /* Spiritual Aesthetics - Parchment & Silk feel */
+    background: #72785954;
+    border-radius: 15px;
+    border: 1px solid rgb(238, 195, 170);
+    /* Sharper corners for a traditional placard look */
+    padding: 24px;
+    box-sizing: border-box;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation: fadeInBoard 1.2s ease-out;
 }
+
+.login-board-night {
+    width: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 58vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Spiritual Aesthetics - Parchment & Silk feel */
+    background: #59597854;
+    border-radius: 15px;
+    border: 1px solid rgb(170, 170, 238);
+    /* Sharper corners for a traditional placard look */
+    padding: 24px;
+    box-sizing: border-box;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation: fadeInBoard 1.2s ease-out;
+}
+
 
 .google {
     position: absolute;
     top: 30%;
     left: 30%;
+}
+
+@keyframes fadeInBoard {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="login-form">
         <div class="input-group">
             <input type="text" v-model="email" placeholder="Email" class="custom-input" @keyup.enter="handleLogin" />
         </div>
@@ -159,5 +159,12 @@ const handleLogin = async () => {
 
 .btn-secondary:hover {
     background-color: #f5ecd5;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    box-sizing: border-box;
 }
 </style>

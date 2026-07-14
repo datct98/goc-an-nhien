@@ -5,7 +5,10 @@
                 <Image src="/logo/gg.png" alt="google" width="50" />
             </Bubble>
         </div>
-        <div class="login-board">
+        <div :class="loginBoard">
+            <div class="w-full flex justify-center">
+                <Image src="/login/ducPhat.png" alt="ducPhat" width="300" />
+            </div>
             <InputComponent />
         </div>
     </div>
@@ -33,6 +36,7 @@ const config = useRuntimeConfig()
 const GOOGLE_CLIENT_ID = config.public.googleClientId;
 
 const loginBackground = ref('/login/login_v2.png');
+const loginBoard = ref('login-board');
 
 const updateBackground = () => {
     const now = new Date();
@@ -42,10 +46,12 @@ const updateBackground = () => {
         hour12: false,
     });
     const currentHour = parseInt(vnTime.format(now));
-    if (currentHour >= 6 && currentHour < 20) {
-        loginBackground.value = '/login/login_v2.png';
+    if (currentHour >= 6 && currentHour < 20 && false) {
+        loginBackground.value = '/register/background.png';
+        loginBoard.value = "login-board"
     } else {
-        loginBackground.value = '/login/login_v2_night.png';
+        loginBackground.value = '/register/background_night.png';
+        loginBoard.value = "login-board-night"
     }
 };
 
