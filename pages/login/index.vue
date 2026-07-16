@@ -1,6 +1,7 @@
 <template>
-    <div class="login-container" :style="{ backgroundImage: `url(${loginBackground})` }">
-        <div class="google">
+    <!-- :style="{ backgroundImage: `url(${loginBackground})` }" -->
+    <div class="login-container">
+        <!-- <div class="google">
             <Bubble @click="loginWithGoogle">
                 <Image src="/logo/gg.png" alt="google" width="50" />
             </Bubble>
@@ -10,6 +11,17 @@
                 <Image src="/login/ducPhat.png" alt="ducPhat" width="300" />
             </div>
             <InputComponent />
+        </div> -->
+        <div class="login-card ">
+            <Image src="/login/phatTu.png" alt="phatTu" width="150" />
+            <div class="text-center">
+                <p class="text-2xl font-bold">Góc An Nhiên</p>
+                <p class="text-sm">Chào mừng bạn đến với Góc An Nhiên</p>
+            </div>
+            <!-- Login board-->
+            <div>
+                <InputComponent />
+            </div>
         </div>
     </div>
 </template>
