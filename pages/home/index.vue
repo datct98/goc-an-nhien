@@ -6,7 +6,8 @@
 
   <!-- DESKTOP: SVG Polygon Hotspot Map -->
   <div v-else class="map-home">
-    <div class="sky-layer"></div>
+    <div v-if="isMorning" class="sky-layer-morning"></div>
+    <div v-else class="sky-layer"></div>
 
     <!-- Cloud layers for parallax effect -->
     <div class="clouds-container">
@@ -21,7 +22,8 @@
       </div>
 
       <div class="huyenHoc" @click="router.push('/huyenHoc')">
-        <ImgAnimation :images="huyenHocAnim" :width="200" :interval="300" :delay="2000" />
+        <ImgAnimation :images="isMorning ? huyenHocAnim : huyenHocAnimSleep" :width="200" :interval="300"
+          :delay="2000" />
       </div>
 
 
@@ -46,59 +48,11 @@ import backgroundImgMobile from '~/assets/PhatNgoiHoaSenMobile.png';
 import backgroundImgMobileNight from '~/assets/PhatNgoiHoaSenMobileNightRes.png';
 import SakuraEffect from '~/components/effects/SakuraEffect.vue';
 
-const gomoAnim = ref([
-  '/home/anim/gomo/image_1.jpg',
-  '/home/anim/gomo/image_2.jpg',
-  '/home/anim/gomo/image_3.jpg',
-  '/home/anim/gomo/image_4.jpg',
-]);
-
-
-const tienIchAnim = ref([
-  '/home/anim/tienIch/image_13.jpg',
-  '/home/anim/tienIch/image_14.jpg',
-  '/home/anim/tienIch/image_15.jpg',
-  '/home/anim/tienIch/image_16.jpg',
-  '/home/anim/tienIch/image_17.jpg',
-  '/home/anim/tienIch/image_18.jpg',
-  '/home/anim/tienIch/image_19.jpg',
-  '/home/anim/tienIch/image_20.jpg',
-]);
-
-const huyenHocAnim = ref([
-  '/home/anim/maThuat/image_1.jpg',
-  '/home/anim/maThuat/image_2.jpg',
-  '/home/anim/maThuat/image_3.jpg',
-  '/home/anim/maThuat/image_4.jpg',
-  '/home/anim/maThuat/image_5.jpg',
-  '/home/anim/maThuat/image_6.jpg',
-  '/home/anim/maThuat/image_7.jpg',
-  '/home/anim/maThuat/image_8.jpg',
-  '/home/anim/maThuat/image_9.jpg',
-  '/home/anim/maThuat/image_10.jpg',
-]);
-
-const hoTamSuAnim = ref([
-  '/home/anim/hoTamSu/image_1.jpg',
-  '/home/anim/hoTamSu/image_2.jpg',
-  '/home/anim/hoTamSu/image_3.jpg',
-  '/home/anim/hoTamSu/image_4.jpg',
-  '/home/anim/hoTamSu/image_5.jpg',
-  '/home/anim/hoTamSu/image_6.jpg',
-  '/home/anim/hoTamSu/image_7.jpg',
-  '/home/anim/hoTamSu/image_8.jpg',
-  '/home/anim/hoTamSu/image_9.jpg',
-  '/home/anim/hoTamSu/image_10.jpg',
-  '/home/anim/hoTamSu/image_11.jpg',
-  '/home/anim/hoTamSu/image_12.jpg',
-  '/home/anim/hoTamSu/image_13.jpg',
-  '/home/anim/hoTamSu/image_14.jpg',
-  '/home/anim/hoTamSu/image_15.jpg',
-  '/home/anim/hoTamSu/image_16.jpg',
-  '/home/anim/hoTamSu/image_17.jpg',
-  '/home/anim/hoTamSu/image_18.jpg',
-  '/home/anim/hoTamSu/image_19.jpg',
-]);
+const gomoAnim = ref(Array.from({ length: 4 }, (_, i) => `/home/anim/gomo/image_${i + 1}.jpg`));
+const tienIchAnim = ref(Array.from({ length: 8 }, (_, i) => `/home/anim/tienIch/image_${i + 13}.jpg`));
+const huyenHocAnim = ref(Array.from({ length: 10 }, (_, i) => `/home/anim/maThuat/image_${i + 1}.jpg`));
+const huyenHocAnimSleep = ref(Array.from({ length: 20 }, (_, i) => `/home/anim/maThuat/sleep/image_${i + 1}.png`));
+const hoTamSuAnim = ref(Array.from({ length: 19 }, (_, i) => `/home/anim/hoTamSu/image_${i + 1}.jpg`));
 
 
 interface MapLocation {
@@ -180,6 +134,7 @@ const router = useRouter()
 const { $common } = useNuxtApp()
 const { isMobileView } = useDevice()
 const mobileBackground = ref<string | null>(null)
+const isMorning = ref(false)
 const fullName = ref('')
 
 onMounted(() => {
@@ -201,8 +156,10 @@ const updateMobileBackground = () => {
   const currentHour = parseInt(vnTime.format(now))
   if (currentHour >= 6 && currentHour < 20) {
     mobileBackground.value = backgroundImgMobile
+    isMorning.value = true
   } else {
     mobileBackground.value = backgroundImgMobileNight
+    isMorning.value = false
   }
 }
 </script>

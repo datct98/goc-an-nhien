@@ -7,9 +7,13 @@
 
         <!-- Sidebar -->
         <Transition name="slide">
-            <div v-if="isOpen" class="sidebar">
+            <div v-if="isOpen" :class="isMorning ? 'sidebar-morning' : 'sidebar'">
+
                 <!-- Celestial Background -->
-                <div class="celestial-bg">
+                <div v-if="isMorning" class="celestial-bg">
+                    <div class="sun"></div>
+                </div>
+                <div v-else class="celestial-bg">
                     <div class="moon"></div>
                     <div v-for="star in stars" :key="star.id" class="star" :style="{
                         top: star.top,
@@ -65,6 +69,7 @@ const router = useRouter();
 const route = useRoute();
 let menuTabList = ref(menuList);
 const { $common } = useNuxtApp();
+const isMorning = ref(false)
 
 // Celestial background animation data
 const stars = ref(Array.from({ length: 30 }, (_, i) => ({
@@ -78,6 +83,21 @@ const stars = ref(Array.from({ length: 30 }, (_, i) => ({
 
 onMounted(() => {
 })
+
+const updateMobileBackground = () => {
+    const now = new Date()
+    const vnTime = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Ho_Chi_Minh',
+        hour: 'numeric',
+        hour12: false,
+    })
+    const currentHour = parseInt(vnTime.format(now))
+    if (currentHour >= 6 && currentHour < 20) {
+        isMorning.value = true
+    } else {
+        isMorning.value = false
+    }
+}
 
 // whenever route change
 watch(
@@ -148,6 +168,21 @@ const handleLogout = () => {
     overflow: hidden;
 }
 
+.sidebar-morning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(180deg, #D15937 0%, #DE652C 50%, #E97222 100%);
+    border-right: 1px solid rgba(212, 175, 55, 0.2);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
 .sidebar-content {
     position: relative;
     z-index: 2;
@@ -174,6 +209,33 @@ const handleLogout = () => {
     box-shadow: 8px 8px 0 2px rgba(255, 255, 255, 0.85);
     transform: rotate(-25deg);
     filter: blur(0.5px);
+}
+
+.sun {
+    position: absolute;
+    top: 30px;
+    right: 70px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fffdf0 20%, #ffd063 50%, #ff8c00 90%);
+    animation: sunPulse 8s infinite alternate ease-in-out;
+}
+
+@keyframes sunPulse {
+    0% {
+        transform: scale(0.92);
+        box-shadow: 0 0 30px 8px rgba(255, 208, 99, 0.5),
+            0 0 60px 20px rgba(255, 140, 0, 0.3),
+            0 0 100px 35px rgba(255, 80, 0, 0.15);
+    }
+
+    100% {
+        transform: scale(1.08);
+        box-shadow: 0 0 45px 15px rgba(255, 208, 99, 0.7),
+            0 0 85px 30px rgba(255, 140, 0, 0.5),
+            0 0 150px 60px rgba(255, 80, 0, 0.35);
+    }
 }
 
 .star {
