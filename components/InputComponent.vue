@@ -1,11 +1,20 @@
 <template>
-    <div>
+    <div class="login-form">
         <div class="input-group">
-            <input type="text" v-model="email" placeholder="Email" class="custom-input" @keyup.enter="handleLogin" />
+            <div class="input-wrapper">
+                <font-awesome-icon :icon="['fas', 'envelope']" class="input-icon-left" />
+                <input type="text" v-model="email" placeholder="Nhập email của bạn" class="custom-input"
+                    @keyup.enter="handleLogin" autocomplete="off" />
+            </div>
         </div>
         <div class="input-group">
-            <input type="password" v-model="password" placeholder="Mật khẩu" class="custom-input"
-                @keyup.enter="handleLogin" />
+            <div class="input-wrapper">
+                <font-awesome-icon :icon="['fas', 'lock']" class="input-icon-left" />
+                <input :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Nhập mật khẩu"
+                    class="custom-input has-right-icon" @keyup.enter="handleLogin" />
+                <font-awesome-icon :icon="['fas', showPassword ? 'eye-slash' : 'eye']" class="input-icon-right"
+                    @click="togglePasswordVisibility" />
+            </div>
         </div>
         <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
         <div class="button-group">
@@ -16,7 +25,6 @@
             <button class="btn-secondary">Quên pass</button>
         </div>
     </div>
-
 </template>
 
 <script setup>
@@ -30,6 +38,11 @@ const { login, isLoading } = useAuth();
 const email = ref('');
 const password = ref('');
 const errorMessage = ref('');
+const showPassword = ref(false);
+
+const togglePasswordVisibility = () => {
+    showPassword.value = !showPassword.value;
+};
 
 const goToRegister = () => {
     console.log("goToRegister ---> ")
@@ -58,36 +71,71 @@ const handleLogin = async () => {
 </script>
 
 <style scoped>
-* {
-    font-family: DancingScript;
-}
-
 /* Style cho các ô Input */
 .input-group {
-    margin-bottom: 5px;
+    margin-bottom: 12px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-icon-left {
+    position: absolute;
+    left: 20px;
+    color: #a1887f;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.input-icon-right {
+    position: absolute;
+    right: 20px;
+    color: #a1887f;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.input-icon-right:hover {
+    color: #5d4037;
+    transform: scale(1.15);
+}
+
+.input-icon-right:active {
+    transform: scale(0.9);
 }
 
 .custom-input {
     width: 100%;
-    padding: 5px 25px;
+    padding: 10px 20px 10px 48px;
     border: 2px solid #ccb593;
     border-radius: 50px;
-    background-color: #fffaf0;
-    font-size: 18px;
+    background-color: #fdfbf7;
+    /* Màu trắng sữa / be rất nhạt */
+    font-size: 16px;
     color: #5d4037;
     outline: none;
     box-sizing: border-box;
     transition: all 0.3s ease;
 }
 
+.custom-input.has-right-icon {
+    padding-right: 48px;
+}
+
 .custom-input::placeholder {
-    color: #8d6e63;
-    opacity: 0.8;
+    color: #a1887f;
+    opacity: 0.7;
 }
 
 .custom-input:focus {
-    border-color: #cbad8d;
-    box-shadow: 0 0 5px rgba(203, 173, 141, 0.5);
+    border-color: #bcaaa4;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(188, 170, 164, 0.4);
 }
 
 /* Error message */
@@ -122,7 +170,7 @@ const handleLogin = async () => {
 
     box-shadow:
         inset 0 2px 0 rgba(255, 255, 255, 0.8),
-        0 3px 6px rgba(0, 0, 0, 0.15);
+        0 3px 6px rgba(0, 0, 0, 0.1);
 
     cursor: pointer;
     transition: all 0.2s ease;
@@ -153,11 +201,20 @@ const handleLogin = async () => {
     border-radius: 20px;
     padding: 5px 15px;
     font-size: 18px;
+    font-weight: 500;
     color: #5d4037;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .btn-secondary:hover {
     background-color: #f5ecd5;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    box-sizing: border-box;
 }
 </style>

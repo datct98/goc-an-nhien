@@ -1,12 +1,27 @@
 <template>
-    <div class="login-container" :style="{ backgroundImage: `url(${loginBackground})` }">
-        <div class="google">
+    <!-- :style="{ backgroundImage: `url(${loginBackground})` }" -->
+    <div class="login-container">
+        <!-- <div class="google">
             <Bubble @click="loginWithGoogle">
                 <Image src="/logo/gg.png" alt="google" width="50" />
             </Bubble>
         </div>
-        <div class="login-board">
+        <div :class="loginBoard">
+            <div class="w-full flex justify-center">
+                <Image src="/login/ducPhat.png" alt="ducPhat" width="300" />
+            </div>
             <InputComponent />
+        </div> -->
+        <div class="login-card ">
+            <Image src="/login/phatTu.png" alt="phatTu" width="150" />
+            <div class="text-center">
+                <p class="text-2xl font-bold">Góc An Nhiên</p>
+                <p class="text-sm">Chào mừng bạn đến với Góc An Nhiên</p>
+            </div>
+            <!-- Login board-->
+            <div>
+                <InputComponent />
+            </div>
         </div>
     </div>
 </template>
@@ -33,6 +48,7 @@ const config = useRuntimeConfig()
 const GOOGLE_CLIENT_ID = config.public.googleClientId;
 
 const loginBackground = ref('/login/login_v2.png');
+const loginBoard = ref('login-board');
 
 const updateBackground = () => {
     const now = new Date();
@@ -42,10 +58,12 @@ const updateBackground = () => {
         hour12: false,
     });
     const currentHour = parseInt(vnTime.format(now));
-    if (currentHour >= 6 && currentHour < 20) {
-        loginBackground.value = '/login/login_v2.png';
+    if (currentHour >= 6 && currentHour < 20 && false) {
+        loginBackground.value = '/register/background.png';
+        loginBoard.value = "login-board"
     } else {
-        loginBackground.value = '/login/login_v2_night.png';
+        loginBackground.value = '/register/background_night.png';
+        loginBoard.value = "login-board-night"
     }
 };
 

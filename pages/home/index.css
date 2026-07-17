@@ -28,7 +28,8 @@
   /* Fallback */
 }
 
-.sky-layer {
+.sky-layer,
+.sky-layer-morning {
   position: absolute;
   top: 0;
   left: 0;
@@ -43,6 +44,12 @@
 
 .sky-layer {
   background-image: url('/home/home_sky.png');
+  background-position: top;
+  z-index: 0;
+}
+
+.sky-layer-morning {
+  background-image: url('/home/home_sky_morning.png');
   background-position: top;
   z-index: 0;
 }
@@ -225,9 +232,12 @@
 }
 
 @keyframes floatingIsland {
-  0%, 100% {
+
+  0%,
+  100% {
     translate: 0 0;
   }
+
   50% {
     translate: 0 -15px;
   }
@@ -244,14 +254,17 @@
     width: 550px;
     height: 400px;
   }
+
   .huyenHoc {
     width: 350px;
     height: 350px;
   }
+
   .tienIch {
     width: 450px;
     height: 450px;
   }
+
   .main-land {
     left: calc((70vw) / 2);
     width: 500px;

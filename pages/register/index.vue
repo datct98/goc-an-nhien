@@ -1,6 +1,9 @@
 <template>
     <div class="login-container" :style="{ backgroundImage: `url(${loginBackground})` }">
-        <div class="login-board">
+        <div :class="loginBoard">
+            <div class="w-full flex justify-center">
+                <Image src="/login/ducPhat.png" alt="ducPhat" width="300" />
+            </div>
             <RegisterComponent />
         </div>
     </div>
@@ -38,7 +41,7 @@ const updateBackground = () => {
         hour12: false,
     });
     const currentHour = parseInt(vnTime.format(now));
-    if (currentHour >= 6 && currentHour < 20 || true) {
+    if (currentHour >= 6 && currentHour < 20 && false) {
         loginBackground.value = '/register/background.png';
         loginBoard.value = "login-board"
     } else {
