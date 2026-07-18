@@ -82,6 +82,7 @@ const stars = ref(Array.from({ length: 30 }, (_, i) => ({
 })));
 
 onMounted(() => {
+    updateMobileBackground()
 })
 
 const updateMobileBackground = () => {
