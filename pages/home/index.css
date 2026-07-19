@@ -23,10 +23,15 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   background-color: #000;
-  /* Fallback */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
 
 .sky-layer,
 .sky-layer-morning {
@@ -40,15 +45,13 @@
   background-attachment: fixed;
 }
 
-.land-layer {}
-
-.sky-layer {
+.map-home.sky-layer {
   background-image: url('/home/home_sky.png');
   background-position: top;
   z-index: 0;
 }
 
-.sky-layer-morning {
+.map-home.sky-layer-morning {
   background-image: url('/home/home_sky_morning.png');
   background-position: top;
   z-index: 0;
@@ -56,13 +59,11 @@
 
 .land-layer {
   position: relative;
-  background-position: bottom;
+  display: block;
   z-index: 9;
-  width: 1280px;
-  height: 800px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  width: 1600px;
+  height: 1000px;
+  margin: auto;
 }
 
 /* Clouds Animation */
@@ -108,15 +109,14 @@
 }
 
 
-
-
 .chuaGoMo {
-  width: 650px;
-  height: 500px;
-  position: fixed;
+  width: 550px;
+  height: 450px;
+  position: absolute;
   z-index: 9;
-  left: calc((60vw) / 2);
-  top: 44vh;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
   background-image: url('/home/landLayer/landlayer_1.png');
@@ -126,13 +126,15 @@
   justify-content: center;
   align-items: center;
   animation: floatingIsland 6s ease-in-out infinite;
+  user-select: none;
 }
 
 .huyenHoc {
-  position: fixed;
+  position: absolute;
   z-index: 9;
-  left: calc((19vw) / 2);
-  top: 25vh;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
   width: 350px;
@@ -144,17 +146,19 @@
   align-items: center;
   justify-content: center;
   animation: floatingIsland 7s ease-in-out infinite 0.5s;
+  user-select: none;
 }
 
 .tienIch {
-  position: fixed;
+  position: absolute;
   z-index: 9;
-  left: calc((139vw) / 2);
-  top: 22vh;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
   background-image: url('/home/landLayer/landlayer_2.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -162,17 +166,29 @@
   align-items: center;
   padding-top: 40px;
   animation: floatingIsland 8s ease-in-out infinite 1s;
+  user-select: none;
+}
+
+.chuaGoMo:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.huyenHoc:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.tienIch:hover {
+  transform: translateX(-50%) scale(1.1);
 }
 
 .chuaGoMo:hover,
 .huyenHoc:hover,
 .tienIch:hover {
-  transform: scale(1.1);
   filter: drop-shadow(0 0 20px rgba(238, 232, 149, 0.6)) brightness(1.1);
 }
 
 .hoTamSu {
-  position: fixed;
+  position: relative;
   z-index: 9;
   left: calc((70vw) / 2);
   top: 5vh;
@@ -188,11 +204,12 @@
 }
 
 .main-land {
-  position: fixed;
-  left: calc((60vw) / 2);
-  top: 0vh;
-  width: 610px;
-  height: 554px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0px;
+  width: 550px;
+  height: 500px;
   background-image: url('/home/landLayer/landlayer_3.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -266,7 +283,7 @@
   }
 
   .main-land {
-    left: calc((70vw) / 2);
+    /* left: calc((70vw) / 2); */
     width: 500px;
     height: 450px;
   }
