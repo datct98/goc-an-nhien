@@ -1,13 +1,12 @@
 <template>
     <div class="wrapper">
-        <h1>Demo Hiệu Ứng Chạy Ảnh Liên Tục</h1>
-
-        <ImgAnimation :images="myImages" :width="3" :height="300" :interval="200" />
+        <TarotCard />
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import TarotCard from '~/components/tarot/TarotCard.vue'
 
 // Khai báo danh sách đường dẫn ảnh của bạn
 // Lưu ý: Nếu để trong thư mục public, bạn có thể viết đường dẫn trực tiếp từ "/"
@@ -23,5 +22,9 @@ const myImages = ref([
 .wrapper {
     padding: 20px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 </style>
