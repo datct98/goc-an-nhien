@@ -19,7 +19,7 @@
       <div class="main-land"></div>
 
       <div class="chuaGoMo" @click="router.push('/goMo')">
-        <ImgAnimation :images="gomoAnim" :width="400" :interval="300" :delay="500" />
+        <ImgAnimation :images="isMorning ? gomoAnim : gomoSleepAnim" :width="400" :interval="300" :delay="500" />
       </div>
 
 
@@ -48,6 +48,7 @@ import backgroundImgMobileNight from '~/assets/PhatNgoiHoaSenMobileNightRes.png'
 import SakuraEffect from '~/components/effects/SakuraEffect.vue';
 
 const gomoAnim = ref(Array.from({ length: 4 }, (_, i) => `/home/anim/gomo/image_${i + 1}.jpg`));
+const gomoSleepAnim = ref(Array.from({ length: 17 }, (_, i) => `/home/anim/gomo/sleep/image_${i + 1}.jpg`));
 const tienIchAnim = ref(Array.from({ length: 8 }, (_, i) => `/home/anim/tienIch/image_${i + 13}.jpg`));
 const huyenHocAnim = ref(Array.from({ length: 10 }, (_, i) => `/home/anim/maThuat/image_${i + 1}.jpg`));
 const huyenHocAnimSleep = ref(Array.from({ length: 20 }, (_, i) => `/home/anim/maThuat/sleep/image_${i + 1}.png`));
