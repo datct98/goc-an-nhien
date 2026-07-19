@@ -5,9 +5,7 @@
   </div>
 
   <!-- DESKTOP: SVG Polygon Hotspot Map -->
-  <div v-else class="map-home">
-    <div v-if="isMorning" class="sky-layer-morning"></div>
-    <div v-else class="sky-layer"></div>
+  <div v-else :class="['map-home', isMorning ? 'sky-layer-morning' : 'sky-layer']">
 
     <!-- Cloud layers for parallax effect -->
     <div class="clouds-container">
@@ -17,9 +15,13 @@
     </div>
 
     <div class="land-layer">
+
+      <div class="main-land"></div>
+
       <div class="chuaGoMo" @click="router.push('/goMo')">
-        <ImgAnimation :images="gomoAnim" :width="500" :interval="300" :delay="500" />
+        <ImgAnimation :images="gomoAnim" :width="400" :interval="300" :delay="500" />
       </div>
+
 
       <div class="huyenHoc" @click="router.push('/huyenHoc')">
         <ImgAnimation :images="isMorning ? huyenHocAnim : huyenHocAnimSleep" :width="200" :interval="300"
@@ -28,10 +30,7 @@
 
 
       <div class="tienIch" @click="router.push('/tien-ich')">
-        <ImgAnimation :images="tienIchAnim" :width="300" :interval="300" :delay="1000" />
-      </div>
-
-      <div class="main-land">
+        <ImgAnimation :images="tienIchAnim" :width="250" :interval="300" :delay="1000" />
       </div>
 
       <!-- <div class="hoTamSu">
