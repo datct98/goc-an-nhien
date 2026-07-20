@@ -8,7 +8,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'updateZodiac']);
 
 const year = ref(2000);
 const month = ref(1);
@@ -32,11 +32,13 @@ const updateModel = () => {
   const y = year.value;
   const m = String(month.value).padStart(2, '0');
   const d = String(day.value).padStart(2, '0');
+  const zSign = calculatedWesternZodiac.value;
   emit('update:modelValue', `${y}-${m}-${d}`);
+  emit('updateZodiac', zSign);
 };
 
 const chineseZodiacAnimals = [
-  'Tý', 'Sửu', 'Dần', 'Mão', 'Thìn', 'Tỵ', 
+  'Tý', 'Sửu', 'Dần', 'Mão', 'Thìn', 'Tỵ',
   'Ngọ', 'Mùi', 'Thân', 'Dậu', 'Tuất', 'Hợi'
 ];
 
@@ -63,13 +65,13 @@ const calculatedChineseZodiac = computed(() => {
 const calculatedWesternZodiac = computed(() => {
   const m = month.value;
   const d = day.value;
-  
+
   for (const sign of westernZodiacSigns) {
     if (sign.name === 'Ma Kết') {
       if ((m === 12 && d >= 22) || (m === 1 && d <= 19)) return sign.name;
     } else {
-      if ((m === sign.start.month && d >= sign.start.day) || 
-          (m === sign.end.month && d <= sign.end.day)) {
+      if ((m === sign.start.month && d >= sign.start.day) ||
+        (m === sign.end.month && d <= sign.end.day)) {
         return sign.name;
       }
     }
@@ -108,7 +110,7 @@ const validateDay = () => {
         <span class="label">Tháng:</span> <span class="value">{{ String(month).padStart(2, '0') }}</span>
         <span class="label">Năm:</span> <span class="value">{{ year }}</span>
       </div>
-      
+
       <div class="zodiac-info">
         <div class="zodiac-item">
           <span class="label">Con giáp:</span>
@@ -124,41 +126,19 @@ const validateDay = () => {
     <div class="sliders-section">
       <div class="slider-group">
         <label for="year-slider">Năm (1970 - 2026)</label>
-        <input 
-          id="year-slider"
-          type="range" 
-          v-model.number="year" 
-          min="1970" 
-          max="2026" 
-          step="1"
-          @input="handleYearChange"
-        />
+        <input id="year-slider" type="range" v-model.number="year" min="1970" max="2026" step="1"
+          @input="handleYearChange" />
       </div>
 
       <div class="slider-group">
         <label for="month-slider">Tháng (01 - 12)</label>
-        <input 
-          id="month-slider"
-          type="range" 
-          v-model.number="month" 
-          min="1" 
-          max="12" 
-          step="1"
-          @input="handleMonthChange"
-        />
+        <input id="month-slider" type="range" v-model.number="month" min="1" max="12" step="1"
+          @input="handleMonthChange" />
       </div>
 
       <div class="slider-group">
         <label for="day-slider">Ngày (01 - 31)</label>
-        <input 
-          id="day-slider"
-          type="range" 
-          v-model.number="day" 
-          min="1" 
-          :max="maxDays" 
-          step="1"
-          @input="updateModel"
-        />
+        <input id="day-slider" type="range" v-model.number="day" min="1" :max="maxDays" step="1" @input="updateModel" />
       </div>
     </div>
   </div>

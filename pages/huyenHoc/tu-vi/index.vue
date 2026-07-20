@@ -136,14 +136,78 @@
   <div v-else class="container-huyenHoc">
     <!-- Lớp hiệu ứng (nằm dưới) -->
     <StarOverlay />
-
     <DesktopTitle title="Xem tử vi" sub="Thấu hiểu bản thân qua dòng chảy của số mệnh" />
-
     <div class="wizard flex justify-center items-center">
       <div class="main-content">
-        <TuViFormVer2 />
+        <TuViFormVer2 :data="tuViData" @luanGiaiTuVi="getLuanGiaiTuViDesktopData" />
         <div class="p-4"></div>
-        <TuViCard />
+        <!-- <TuViCard /> -->
+        <div v-if="showLuanGiaiTuVi && resultData">
+          <TuViCardV2>
+            <template #luan-giai-tu-vi>
+              <LuanGiaiTuVi :data="resultData" />
+            </template>
+            <template #result>
+              <div class="result-header">
+                <div class="zodiac">
+                  <div>
+                    <Image :src="resultData.zodiacImage" alt="zodiac" />
+                  </div>
+                </div>
+                <div>
+                  <div class="small-title-result">{{ resultData.zodiac }} · {{ resultData.sign }}</div>
+                  <div class="small-title-result-sub">{{ resultData.lunarDate }}</div>
+                </div>
+              </div>
+              <div class="result-divider"></div>
+              <div>
+                <p class="summary-title">Lá số tử vi</p>
+                <LuanGiaiTuVi :data="resultData" />
+                <div class="result-divider"></div>
+              </div>
+              <div class="summary-container">
+                <p class="summary-title">Chân dung bản mệnh</p>
+                <Accordion>
+                  <AccordionPanel value="0">
+                    <AccordionHeader style="color: #e6ca77">Xem phân tích lá số tử vi</AccordionHeader>
+                    <AccordionContent>
+                      <p class="summary">
+                        <span class="summary-content" v-for="(item, index) in resultData.summary" :key="index">
+                          <span><b> 👉 {{ item.name }} : </b></span>
+                          <span>{{ item.description }}</span>
+                        </span>
+                      </p>
+                    </AccordionContent>
+                  </AccordionPanel>
+                </Accordion>
+              </div>
+              <div class="interpretation">
+                <p class="summary-title pt-5">Chi tiết</p>
+                <Accordion>
+                  <AccordionPanel value="0">
+                    <AccordionHeader style="color: #e6ca77">Luận giải chi tiết</AccordionHeader>
+                    <AccordionContent>
+                      <p class="summary">
+                        <span class="summary-content" v-html="formatContent(resultData.interpretation)"></span>
+                      </p>
+                    </AccordionContent>
+                  </AccordionPanel>
+                </Accordion>
+                <p class="summary-title pt-5">Lời khuyên</p>
+                <Accordion>
+                  <AccordionPanel value="0">
+                    <AccordionHeader style="color: #e6ca77">Xem lời khuyên</AccordionHeader>
+                    <AccordionContent>
+                      <p class="summary">
+                        <span class="summary-content">{{ resultData.advice }}</span>
+                      </p>
+                    </AccordionContent>
+                  </AccordionPanel>
+                </Accordion>
+              </div>
+            </template>
+          </TuViCardV2>
+        </div>
       </div>
     </div>
 
@@ -161,6 +225,7 @@ import vongBatQuaiImg from "~/assets/vongBatQuai.png";
 import { zodiacMapping } from "../data";
 import StarOverlay from "~/components/effects/StarOverlay.vue";
 import TuViCard from "~/components/huyen-hoc/TuViCard.vue";
+import TuViCardV2 from "~/components/huyen-hoc/TuViCardV2.vue";
 import TuViFormVer2 from "~/components/huyen-hoc/TuViFormVer2.vue";
 
 const router = useRouter();
@@ -184,7 +249,7 @@ const tuViData = ref({
   month: 10,
   year: 2000,
   gender: 1,
-  mode: 'tronDoi',
+  mode: 0,
   selectedTimeIndice: null,
   fixLeap: true
 })
@@ -235,6 +300,15 @@ const showLoadingAnimation = ref(false);
 const luanGiaiTuViDisable = ref(false);
 const loadingAnimationTimer = ref(null);
 
+
+const getLuanGiaiTuViDesktopData = (data) => {
+  console.log(data)
+  tuViData.value = data;
+  modeLuanGiai.value = data.mode;
+  console.log("tuViData : ", tuViData.value);
+  luanGiaiTuVi();
+}
+
 const luanGiaiTuVi = async () => {
 
   // if (!isFormValid.value) { $common.showWarning("Bạn chưa nhập đủ thông tin cần thiết"); return; }
@@ -246,11 +320,12 @@ const luanGiaiTuVi = async () => {
 
   try {
     console.log("modeLuanGiai : ", modeLuanGiai.value);
+    console.log("tuViData : ", tuViData.value);
     if (modeLuanGiai.value == 0) {
       const baseBody = {
         name: tuViData.value.username,
         birthDate: `${tuViData.value.year}-${tuViData.value.month}-${tuViData.value.day}`,
-        timeIndex: tuViData.value.selectedTimeIndice.index,
+        timeIndex: tuViData.value.selectedTimeIndice.index ? tuViData.value.selectedTimeIndice.index : tuViData.value.selectedTimeIndice,
         gender: tuViData.value.gender,
         fixLeap: true,
       };
