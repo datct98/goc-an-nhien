@@ -3,14 +3,14 @@
         <div class="input-group">
             <div class="input-wrapper">
                 <font-awesome-icon :icon="['fas', 'envelope']" class="input-icon-left" />
-                <input type="text" v-model="email" placeholder="Nhập email của bạn" class="custom-input"
+                <input name="email" type="text" v-model="email" placeholder="Nhập email của bạn" class="custom-input"
                     @keyup.enter="handleLogin" autocomplete="off" />
             </div>
         </div>
         <div class="input-group">
             <div class="input-wrapper">
                 <font-awesome-icon :icon="['fas', 'lock']" class="input-icon-left" />
-                <input :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Nhập mật khẩu"
+                <input name="password" :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Nhập mật khẩu"
                     class="custom-input has-right-icon" @keyup.enter="handleLogin" />
                 <font-awesome-icon :icon="['fas', showPassword ? 'eye-slash' : 'eye']" class="input-icon-right"
                     @click="togglePasswordVisibility" />
