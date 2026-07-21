@@ -7,7 +7,7 @@
           <div class="tu-vi-card-top">
             <div class="tu-vi-header">
               <span :class="`tiny-text-${mode}`">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch
-                }}</span>
+              }}</span>
               <span :class="`tiny-text-${mode}`">{{ data.palaces[n].decadal.range[0] }}</span>
             </div>
             <div class="cungChuc">
@@ -57,7 +57,7 @@
             <div class="tu-vi-card-top">
               <div class="tu-vi-header">
                 <span :class="`tiny-text-${mode}`">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch
-                  }}</span>
+                }}</span>
                 <span :class="`tiny-text-${mode}`">{{ data.palaces[n].decadal.range[0] }}</span>
               </div>
               <div class="cungChuc">
@@ -125,7 +125,7 @@
             <div class="tu-vi-card-top">
               <div class="tu-vi-header">
                 <span :class="`tiny-text-${mode}`">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch
-                  }}</span>
+                }}</span>
                 <span :class="`tiny-text-${mode}`">{{ data.palaces[n].decadal.range[0] }}</span>
               </div>
               <div class="cungChuc">
@@ -175,7 +175,7 @@
           <div class="tu-vi-card-top">
             <div class="tu-vi-header">
               <span :class="`tiny-text-${mode}`">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch
-                }}</span>
+              }}</span>
               <span :class="`tiny-text-${mode}`">{{ data.palaces[n].decadal.range[0] }}</span>
             </div>
             <div class="cungChuc">
@@ -274,7 +274,7 @@ const props = defineProps({
   },
   mode: {
     type: String,
-    default: "",
+    default: "defaut",
   }
 });
 </script>
@@ -297,7 +297,7 @@ const props = defineProps({
   flex-direction: column;
 }
 
-.tu-vi-card {
+.tu-vi-card-defaut {
   font-size: 10px;
   font-family: Lora;
   width: 100%;
@@ -388,7 +388,7 @@ const props = defineProps({
   font-weight: 600;
 }
 
-.tu-vi-main {
+.tu-vi-main-defaut {
   font-size: 12px;
   font-family: Lora;
   display: flex;
@@ -437,7 +437,7 @@ const props = defineProps({
   text-align: start;
 }
 
-.tiny-text {
+.tiny-text-defaut {
   font-size: 10px;
 }
 
@@ -445,7 +445,7 @@ const props = defineProps({
   font-size: 14px;
 }
 
-.adjective-text {
+.adjective-text-defaut {
   font-size: 8px;
   line-height: 1.2;
   opacity: 0.7;
