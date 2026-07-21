@@ -2,12 +2,13 @@
   <div class="luan-giai-tu-vi">
     <!-- First Row -->
     <div class="tu-vi-row">
-      <div v-for="n in [0, 1, 2, 3]" :key="n" class="tu-vi-card">
+      <div v-for="n in [0, 1, 2, 3]" :key="n" :class="`tu-vi-card-${mode}`">
         <div class="tu-vi-card-inner">
           <div class="tu-vi-card-top">
             <div class="tu-vi-header">
-              <span class="tiny-text">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch }}</span>
-              <span class="tiny-text">{{ data.palaces[n].decadal.range[0] }}</span>
+              <span :class="`tiny-text-${mode}`">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch
+                }}</span>
+              <span :class="`tiny-text-${mode}`">{{ data.palaces[n].decadal.range[0] }}</span>
             </div>
             <div class="cungChuc">
               <span>{{ data.palaces[n].name }}</span>
@@ -15,36 +16,25 @@
             <div class="tu-vi-body">
               <div class="tu-vi-content">
                 <div class="tu-vi-list">
-                  <p
-                    v-for="(star, i) in data.palaces[n].majorStars"
-                    :key="'major-' + i"
-                    class="majorStar"
-                    :style="`color: ${getColor(star)}`"
-                  >
+                  <p v-for="(star, i) in data.palaces[n].majorStars" :key="'major-' + i" class="majorStar"
+                    :style="`color: ${getColor(star)}`">
                     {{ star }}
                   </p>
                   <p class="star-separator">★</p>
-                  <p
-                    class="tiny-text"
-                    v-for="(star, i) in data.palaces[n].minorStars"
-                    :key="'minor-' + i"
-                  >
+                  <p :class="`tiny-text-${mode}`" v-for="(star, i) in data.palaces[n].minorStars" :key="'minor-' + i">
                     {{ star }}
                   </p>
-                  <p
-                    class="adjective-text"
-                    v-for="(star, i) in data.palaces[n].adjectiveStars"
-                    :key="'adj-' + i"
-                  >
+                  <p :class="`adjective-text-${mode}`" v-for="(star, i) in data.palaces[n].adjectiveStars"
+                    :key="'adj-' + i">
                     {{ star }}
                   </p>
-                  <p v-if="data.palaces[n].boshi12" class="adjective-text">
+                  <p v-if="data.palaces[n].boshi12" :class="`adjective-text-${mode}`">
                     {{ data.palaces[n].boshi12 }}
                   </p>
-                  <p v-if="data.palaces[n].thaiTue12" class="adjective-text">
+                  <p v-if="data.palaces[n].thaiTue12" :class="`adjective-text-${mode}`">
                     {{ data.palaces[n].thaiTue12 }}
                   </p>
-                  <p v-if="data.palaces[n].tuongQuan12" class="adjective-text">
+                  <p v-if="data.palaces[n].tuongQuan12" :class="`adjective-text-${mode}`">
                     {{ data.palaces[n].tuongQuan12 }}
                   </p>
                 </div>
@@ -62,12 +52,13 @@
     <!-- Second and Third row -->
     <div class="tu-vi-row">
       <div class="tu-vi-col" style="flex: 1">
-        <div v-for="n in [4, 5]" :key="n" class="tu-vi-card">
+        <div v-for="n in [4, 5]" :key="n" :class="`tu-vi-card-${mode}`">
           <div class="tu-vi-card-inner">
             <div class="tu-vi-card-top">
               <div class="tu-vi-header">
-                <span class="tiny-text">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch }}</span>
-                <span class="tiny-text">{{ data.palaces[n].decadal.range[0] }}</span>
+                <span :class="`tiny-text-${mode}`">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch
+                  }}</span>
+                <span :class="`tiny-text-${mode}`">{{ data.palaces[n].decadal.range[0] }}</span>
               </div>
               <div class="cungChuc">
                 <span>{{ data.palaces[n].name }}</span>
@@ -75,36 +66,25 @@
               <div class="tu-vi-body">
                 <div class="tu-vi-content">
                   <div class="tu-vi-list">
-                    <p
-                      v-for="(star, i) in data.palaces[n].majorStars"
-                      :key="'major-' + i"
-                      class="majorStar"
-                      :style="`color: ${getColor(star)}`"
-                    >
+                    <p v-for="(star, i) in data.palaces[n].majorStars" :key="'major-' + i" class="majorStar"
+                      :style="`color: ${getColor(star)}`">
                       {{ star }}
                     </p>
                     <p class="star-separator">★</p>
-                    <p
-                      class="tiny-text"
-                      v-for="(star, i) in data.palaces[n].minorStars"
-                      :key="'minor-' + i"
-                    >
+                    <p :class="`tiny-text-${mode}`" v-for="(star, i) in data.palaces[n].minorStars" :key="'minor-' + i">
                       {{ star }}
                     </p>
-                    <p
-                      class="adjective-text"
-                      v-for="(star, i) in data.palaces[n].adjectiveStars"
-                      :key="'adj-' + i"
-                    >
+                    <p :class="`adjective-text-${mode}`" v-for="(star, i) in data.palaces[n].adjectiveStars"
+                      :key="'adj-' + i">
                       {{ star }}
                     </p>
-                    <p v-if="data.palaces[n].boshi12" class="adjective-text">
+                    <p v-if="data.palaces[n].boshi12" :class="`adjective-text-${mode}`">
                       {{ data.palaces[n].boshi12 }}
                     </p>
-                    <p v-if="data.palaces[n].thaiTue12" class="adjective-text">
+                    <p v-if="data.palaces[n].thaiTue12" :class="`adjective-text-${mode}`">
                       {{ data.palaces[n].thaiTue12 }}
                     </p>
-                    <p v-if="data.palaces[n].tuongQuan12" class="adjective-text">
+                    <p v-if="data.palaces[n].tuongQuan12" :class="`adjective-text-${mode}`">
                       {{ data.palaces[n].tuongQuan12 }}
                     </p>
                   </div>
@@ -120,7 +100,7 @@
         </div>
       </div>
       <!-- Luan giai chinh -->
-      <div class="tu-vi-main" style="flex: 2">
+      <div :class="`tu-vi-main-${mode}`" style="flex: 2">
         <div class="tu-vi-main-title">Lá số tử vi</div>
         <div class="info-row">
           <span class="label">Họ tên:</span>
@@ -140,12 +120,13 @@
         </div>
       </div>
       <div class="tu-vi-col" style="flex: 1">
-        <div v-for="n in [6, 7]" :key="n" class="tu-vi-card">
+        <div v-for="n in [6, 7]" :key="n" :class="`tu-vi-card-${mode}`">
           <div class="tu-vi-card-inner">
             <div class="tu-vi-card-top">
               <div class="tu-vi-header">
-                <span class="tiny-text">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch }}</span>
-                <span class="tiny-text">{{ data.palaces[n].decadal.range[0] }}</span>
+                <span :class="`tiny-text-${mode}`">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch
+                  }}</span>
+                <span :class="`tiny-text-${mode}`">{{ data.palaces[n].decadal.range[0] }}</span>
               </div>
               <div class="cungChuc">
                 <span>{{ data.palaces[n].name }}</span>
@@ -153,36 +134,25 @@
               <div class="tu-vi-body">
                 <div class="tu-vi-content">
                   <div class="tu-vi-list">
-                    <p
-                      v-for="(star, i) in data.palaces[n].majorStars"
-                      :key="'major-' + i"
-                      class="majorStar"
-                      :style="`color: ${getColor(star)}`"
-                    >
+                    <p v-for="(star, i) in data.palaces[n].majorStars" :key="'major-' + i" class="majorStar"
+                      :style="`color: ${getColor(star)}`">
                       {{ star }}
                     </p>
                     <p class="star-separator">★</p>
-                    <p
-                      class="tiny-text"
-                      v-for="(star, i) in data.palaces[n].minorStars"
-                      :key="'minor-' + i"
-                    >
+                    <p :class="`tiny-text-${mode}`" v-for="(star, i) in data.palaces[n].minorStars" :key="'minor-' + i">
                       {{ star }}
                     </p>
-                    <p
-                      class="adjective-text"
-                      v-for="(star, i) in data.palaces[n].adjectiveStars"
-                      :key="'adj-' + i"
-                    >
+                    <p :class="`adjective-text-${mode}`" v-for="(star, i) in data.palaces[n].adjectiveStars"
+                      :key="'adj-' + i">
                       {{ star }}
                     </p>
-                    <p v-if="data.palaces[n].boshi12" class="adjective-text">
+                    <p v-if="data.palaces[n].boshi12" :class="`adjective-text-${mode}`">
                       {{ data.palaces[n].boshi12 }}
                     </p>
-                    <p v-if="data.palaces[n].thaiTue12" class="adjective-text">
+                    <p v-if="data.palaces[n].thaiTue12" :class="`adjective-text-${mode}`">
                       {{ data.palaces[n].thaiTue12 }}
                     </p>
-                    <p v-if="data.palaces[n].tuongQuan12" class="adjective-text">
+                    <p v-if="data.palaces[n].tuongQuan12" :class="`adjective-text-${mode}`">
                       {{ data.palaces[n].tuongQuan12 }}
                     </p>
                   </div>
@@ -200,12 +170,13 @@
     </div>
     <!-- Last Row -->
     <div class="tu-vi-row">
-      <div v-for="n in [8, 9, 10, 11]" :key="n" class="tu-vi-card">
+      <div v-for="n in [8, 9, 10, 11]" :key="n" :class="`tu-vi-card-${mode}`">
         <div class="tu-vi-card-inner">
           <div class="tu-vi-card-top">
             <div class="tu-vi-header">
-              <span class="tiny-text">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch }}</span>
-              <span class="tiny-text">{{ data.palaces[n].decadal.range[0] }}</span>
+              <span :class="`tiny-text-${mode}`">{{ data.palaces[n].heavenlyStem }} {{ data.palaces[n].earthlyBranch
+                }}</span>
+              <span :class="`tiny-text-${mode}`">{{ data.palaces[n].decadal.range[0] }}</span>
             </div>
             <div class="cungChuc">
               <span>{{ data.palaces[n].name }}</span>
@@ -213,36 +184,25 @@
             <div class="tu-vi-body">
               <div class="tu-vi-content">
                 <div class="tu-vi-list">
-                  <p
-                    v-for="(star, i) in data.palaces[n].majorStars"
-                    :key="'major-' + i"
-                    class="majorStar"
-                    :style="`color: ${getColor(star)}`"
-                  >
+                  <p v-for="(star, i) in data.palaces[n].majorStars" :key="'major-' + i" class="majorStar"
+                    :style="`color: ${getColor(star)}`">
                     {{ star }}
                   </p>
                   <p class="star-separator">★</p>
-                  <p
-                    class="tiny-text"
-                    v-for="(star, i) in data.palaces[n].minorStars"
-                    :key="'minor-' + i"
-                  >
+                  <p :class="`tiny-text-${mode}`" v-for="(star, i) in data.palaces[n].minorStars" :key="'minor-' + i">
                     {{ star }}
                   </p>
-                  <p
-                    class="adjective-text"
-                    v-for="(star, i) in data.palaces[n].adjectiveStars"
-                    :key="'adj-' + i"
-                  >
+                  <p :class="`adjective-text-${mode}`" v-for="(star, i) in data.palaces[n].adjectiveStars"
+                    :key="'adj-' + i">
                     {{ star }}
                   </p>
-                  <p v-if="data.palaces[n].boshi12" class="adjective-text">
+                  <p v-if="data.palaces[n].boshi12" :class="`adjective-text-${mode}`">
                     {{ data.palaces[n].boshi12 }}
                   </p>
-                  <p v-if="data.palaces[n].thaiTue12" class="adjective-text">
+                  <p v-if="data.palaces[n].thaiTue12" :class="`adjective-text-${mode}`">
                     {{ data.palaces[n].thaiTue12 }}
                   </p>
-                  <p v-if="data.palaces[n].tuongQuan12" class="adjective-text">
+                  <p v-if="data.palaces[n].tuongQuan12" :class="`adjective-text-${mode}`">
                     {{ data.palaces[n].tuongQuan12 }}
                   </p>
                 </div>
@@ -312,6 +272,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  mode: {
+    type: String,
+    default: "",
+  }
 });
 </script>
 
@@ -346,6 +310,16 @@ const props = defineProps({
   background-color: #bfb98d8c;
 }
 
+.tu-vi-card-white {
+  font-size: 14px;
+  font-family: Lora;
+  width: 100%;
+  padding: 5px;
+  height: 300px;
+  border-radius: 5px;
+  border: 1px solid white
+}
+
 .tu-vi-card-inner {
   display: flex;
   flex-direction: column;
@@ -361,12 +335,6 @@ const props = defineProps({
 .tu-vi-header {
   display: flex;
   justify-content: space-between;
-}
-
-.tu-vi-body {
-}
-
-.tu-vi-content {
 }
 
 .tu-vi-list {
@@ -435,6 +403,18 @@ const props = defineProps({
   padding-left: 5px;
 }
 
+.tu-vi-main-white {
+  font-size: 16px;
+  font-family: Lora;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  border-radius: 5px;
+  padding-left: 5px;
+  border: 1px solid white
+}
+
 .tu-vi-main-title {
   width: 100%;
   text-align: center;
@@ -461,8 +441,18 @@ const props = defineProps({
   font-size: 10px;
 }
 
+.tiny-text-white {
+  font-size: 14px;
+}
+
 .adjective-text {
   font-size: 8px;
+  line-height: 1.2;
+  opacity: 0.7;
+}
+
+.adjective-text-white {
+  font-size: 12px;
   line-height: 1.2;
   opacity: 0.7;
 }
@@ -475,5 +465,7 @@ const props = defineProps({
 
 .cungChuc {
   color: #eed2ff;
+  width: 100%;
+  text-align: center;
 }
 </style>

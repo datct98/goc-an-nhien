@@ -145,7 +145,7 @@
         <div v-if="showLuanGiaiTuVi && resultData">
           <TuViCardV2>
             <template #luan-giai-tu-vi>
-              <LuanGiaiTuVi :data="resultData" />
+              <LuanGiaiTuVi :data="resultData" mode="white" />
             </template>
             <template #result>
               <div class="result-header">
@@ -160,11 +160,6 @@
                 </div>
               </div>
               <div class="result-divider"></div>
-              <div>
-                <p class="summary-title">Lá số tử vi</p>
-                <LuanGiaiTuVi :data="resultData" />
-                <div class="result-divider"></div>
-              </div>
               <div class="summary-container">
                 <p class="summary-title">Chân dung bản mệnh</p>
                 <Accordion>
@@ -319,13 +314,11 @@ const luanGiaiTuVi = async () => {
   showLoadingAnimation.value = true;
 
   try {
-    console.log("modeLuanGiai : ", modeLuanGiai.value);
-    console.log("tuViData : ", tuViData.value);
     if (modeLuanGiai.value == 0) {
       const baseBody = {
         name: tuViData.value.username,
         birthDate: `${tuViData.value.year}-${tuViData.value.month}-${tuViData.value.day}`,
-        timeIndex: tuViData.value.selectedTimeIndice.index ? tuViData.value.selectedTimeIndice.index : tuViData.value.selectedTimeIndice,
+        timeIndex: tuViData.value.selectedTimeIndice.index,
         gender: tuViData.value.gender,
         fixLeap: true,
       };
