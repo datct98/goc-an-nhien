@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard-container">
+    <div class="dashboard-container" :class="{ 'disabled-form': isDisabled }">
         <header class="main-header">
             <div class="text-4xl">Nhập thông tin lá số tử vi</div>
             <div class="header-subtitle">NHÂN TƯỚNG &nbsp; • &nbsp; BÁT TỰ &nbsp; • &nbsp; KINH DỊCH &nbsp; • &nbsp;
@@ -8,23 +8,47 @@
         <main class="content-grid">
             <div>
                 <p class="text-2xl text-center py-4">Thông tin cá nhân</p>
-                <InputTuViForm v-model="userData" />
+                <InputTuViForm v-model="userData" :disabled="isDisabled" />
             </div>
             <div>
-                <p class="text-2xl text-center py-4">Nhận diện khuôn mặt</p>
-                <UploadFace v-model="faceImg" />
+                <p class="text-2xl text-center py-4">Loại luận giải</p>
+                <div class="mode-container">
+                    <button type="button" class="mode-btn" :class="{ active: selectedMode === 0 }"
+                        :disabled="isDisabled" @click="selectedMode = 0">
+                        Trọn đời
+                    </button>
+                    <button type="button" class="mode-btn" :class="{ active: selectedMode === 'yearly' }"
+                        :disabled="isDisabled" @click="selectedMode = 'yearly'">
+                        Lưu niên (xem theo năm)
+                    </button>
+                    <button type="button" class="mode-btn" :class="{ active: selectedMode === 'monthly' }"
+                        :disabled="isDisabled" @click="selectedMode = 'monthly'">
+                        Lưu nhật (xem theo tháng)
+                    </button>
+                </div>
+                <div v-if="selectedMode === 'yearly' || selectedMode === 'monthly'" class="mt-4 px-2">
+                    <label class="block text-sm text-gray-300 mb-1">Năm xem:</label>
+                    <input type="number" v-model="selectYear" :disabled="isDisabled" class="custom-input"
+                        placeholder="2026" />
+                </div>
+                <div v-if="selectedMode === 'monthly'" class="mt-2 px-2">
+                    <label class="block text-sm text-gray-300 mb-1">Tháng xem:</label>
+                    <input type="number" v-model="selectMonth" :disabled="isDisabled" min="1" max="12"
+                        class="custom-input" placeholder="1-12" />
+                </div>
             </div>
             <div>
                 <p class="text-2xl text-center py-4">Chọn ngày sinh</p>
-                <DateChooseComponent v-model="selectedDate" @updateZodiac="handleZodiacChange" />
+                <DateChooseComponent v-model="selectedDate" :disabled="isDisabled" @updateZodiac="handleZodiacChange" />
             </div>
             <div>
                 <p class="text-2xl text-center py-4">Chọn giờ sinh</p>
-                <TimeChooseComponent v-model="selectedTime" />
+                <TimeChooseComponent v-model="selectedTime" :disabled="isDisabled" />
             </div>
         </main>
-        <footer class="flex justify-end">
-            <button class="btn-submit" @click="luanGiaiTuViV2()">Luận giải tử vi</button>
+        <footer class="flex justify-end gap-3">
+            <button v-if="isDisabled" class="btn-reset" @click="resetForm()">Xem lại</button>
+            <button class="btn-submit" :disabled="isDisabled" @click="luanGiaiTuViV2()">Luận giải tử vi</button>
         </footer>
     </div>
 </template>
@@ -105,6 +129,10 @@ function isTimeInRange(time, range) {
 
 const selectedTime = ref('12:00:00');
 const selectedDate = ref('2000-01-01');
+const selectedMode = ref(0);
+const selectYear = ref(new Date().getFullYear());
+const selectMonth = ref(new Date().getMonth() + 1);
+const isDisabled = ref(false);
 const faceImg = ref(null);
 const userData = ref({
     name: '',
@@ -177,6 +205,8 @@ const luanGiaiTuViV2 = () => {
         }
     }
 
+    isDisabled.value = true;
+
     // ✅ All data passed validation — emit event
     emit('luanGiaiTuVi', {
         username,
@@ -185,9 +215,15 @@ const luanGiaiTuViV2 = () => {
         year: yearStr,   // Keeps string format "2000"
         gender,
         selectedTimeIndice,
-        mode: props.data.mode,
+        mode: selectedMode.value,
+        selectYear: selectYear.value,
+        selectMonth: selectMonth.value,
         sign: userData.value.sign
     });
+};
+
+const resetForm = () => {
+    isDisabled.value = false;
 };
 
 </script>
@@ -207,6 +243,18 @@ const luanGiaiTuViV2 = () => {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 20px;
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.disabled-form {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Enable pointer events on reset button inside disabled form */
+.disabled-form .btn-reset {
+    pointer-events: auto;
 }
 
 /* --- CONTENT GRID SYSTEM --- */
@@ -224,9 +272,64 @@ const luanGiaiTuViV2 = () => {
     gap: 10px;
 }
 
-.btn-submit {
+.mode-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 8px;
+}
+
+.mode-btn {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(237, 193, 253, 0.3);
+    color: #e5e7eb;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.mode-btn:hover:not(:disabled) {
+    background: rgba(237, 193, 253, 0.15);
+    border-color: #edc1fd;
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, #6d9ccd, #cb5194);
+    border-color: #ffffff;
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(203, 81, 148, 0.4);
+}
+
+.mode-btn:disabled,
+.custom-input:disabled,
+.btn-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.custom-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(237, 193, 253, 0.3);
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: #ffffff;
+    outline: none;
+}
+
+.custom-input:focus {
+    border-color: #edc1fd;
+}
+
+.btn-submit,
+.btn-reset {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid white;
     color: white;
     padding: 10px 24px;
     border-radius: 4px;
@@ -237,7 +340,16 @@ const luanGiaiTuViV2 = () => {
     font-weight: 500;
 }
 
-.btn-submit:hover {
+.btn-reset {
+    color: white;
+}
+
+.btn-reset:hover {
+    background: rgba(237, 193, 253, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-submit:hover:not(:disabled) {
     background: rgba(255, 255, 255, 0.1);
     border-color: white;
     transform: translateY(-2px);

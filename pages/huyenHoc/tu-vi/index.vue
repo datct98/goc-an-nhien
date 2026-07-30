@@ -284,9 +284,33 @@ const formatContent = (rawString) => {
     .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
     .replace(/^###\s+(.*)$/gm, '<h3>$1</h3>')
     .replace(/^---$/gm, '<hr>')
-    .replace(/\n/g, '<br>');
 }
 const tossCoin = () => { if (firstCoinRef.value) firstCoinRef.value.tossCoin(); };
+
+const smoothScrollTo = (targetPosition, duration = 1000) => {
+  const startPosition = window.pageYOffset || document.documentElement.scrollTop;
+  const distance = targetPosition - startPosition;
+  let startTime = null;
+
+  const animation = (currentTime) => {
+    if (!startTime) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+
+    // easeInOutCubic formula for smooth acceleration & deceleration
+    const ease = progress < 0.5
+      ? 4 * progress * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+    window.scrollTo(0, startPosition + distance * ease);
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  };
+
+  requestAnimationFrame(animation);
+};
 
 const error = ref(null);
 const resultData = ref(null);
@@ -296,12 +320,17 @@ const luanGiaiTuViDisable = ref(false);
 const loadingAnimationTimer = ref(null);
 
 
-const getLuanGiaiTuViDesktopData = (data) => {
+const getLuanGiaiTuViDesktopData = async (data) => {
   console.log(data)
   tuViData.value = data;
   modeLuanGiai.value = data.mode;
+  if (data.mode === 1) {
+    tuViDataYearly.value = { ...data, mode: 'yearly' };
+  } else if (data.mode === 2) {
+    tuViDataMonthLy.value = { ...data, mode: 'monthly' };
+  }
   console.log("tuViData : ", tuViData.value);
-  luanGiaiTuVi();
+  await luanGiaiTuVi();
 }
 
 const luanGiaiTuVi = async () => {
@@ -365,6 +394,9 @@ const luanGiaiTuVi = async () => {
         resultData.value.zodiacImage = getZodiacImage(`/assets/zodiac/${imageZodiacPath}.png`);
       }
     }
+
+    await nextTick();
+    smoothScrollTo(document.body.scrollHeight, 1000);
 
   } catch (err) {
     console.error("Horoscope API error:", err);
