@@ -1,75 +1,16 @@
 .login-container {
     width: 100vw;
     height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     background-color: #d2c1b8;
+    display: flex;
 }
 
-.login-board {
-    width: fit-content;
-    min-width: 600px;
+.login-card {
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
-    top: 58vh;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* Spiritual Aesthetics - Parchment & Silk feel */
-    background: #72785954;
-    border-radius: 15px;
-    border: 1px solid rgb(238, 195, 170);
-    /* Sharper corners for a traditional placard look */
-    padding: 24px;
-    box-sizing: border-box;
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    animation: fadeInBoard 1.2s ease-out;
-}
-
-.login-board-night {
-    width: fit-content;
-    min-width: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 58vh;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* Spiritual Aesthetics - Parchment & Silk feel */
-    background: #59597854;
-    border-radius: 15px;
-    border: 1px solid rgb(170, 170, 238);
-    /* Sharper corners for a traditional placard look */
-    padding: 24px;
-    box-sizing: border-box;
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    animation: fadeInBoard 1.2s ease-out;
-}
-
-@keyframes fadeInBoard {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -45%) scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-@media (max-width: 768px) {
-    .login-board {
-        width: 90%;
-        min-height: auto;
-        padding: 30px 20px;
-        top: 50vh;
-    }
 }
 
 .login-board:hover {
@@ -80,4 +21,16 @@
     position: absolute;
     top: 30%;
     left: 30%;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1.5px solid #d7c0a3;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #5d4037;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }

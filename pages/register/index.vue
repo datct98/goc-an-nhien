@@ -1,11 +1,14 @@
 <template>
-    <div class="login-container" :style="{ backgroundImage: `url(${loginBackground})` }">
-        <div :class="loginBoard">
-            <div class="w-full flex justify-center">
-                <Image src="/login/ducPhat.png" alt="ducPhat" width="300" />
+    <div class="login-container">
+        <div class="login-card ">
+            <Image src="/login/phatTu.png" alt="phatTu" width="150" />
+            <div class="text-center">
+                <p class="text-2xl font-bold">Góc An Nhiên</p>
+                <p class="text-sm">Chào mừng bạn đến với Góc An Nhiên</p>
             </div>
             <RegisterComponent />
         </div>
+
     </div>
 </template>
 

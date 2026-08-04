@@ -8,7 +8,7 @@
   </div>
 
   <!-- MOBILE layout -->
-  <GoMoMobile v-if="isReady && isMobileView" />
+  <!-- <GoMoMobile v-if="isReady && isMobileView" /> -->
 
   <!-- DESKTOP layout (original) -->
   <div v-else-if="isReady" class="container-goMo" id="container" ref="containerRef">

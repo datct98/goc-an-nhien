@@ -1,10 +1,6 @@
 <template>
     <div class="register-form">
-        <div class="w-full text-center mb-2">
-            <span class="text-4xl" style="color: rgb(249 233 228)">Đăng ký</span>
-        </div>
         <div class="form-row">
-            <label class="form-label" id="label-fullname">Mật danh</label>
             <div class="form-input">
                 <input type="text" v-model="fullName" placeholder="Enter your full name" class="custom-input"
                     id="input-fullname" aria-labelledby="label-fullname" />
@@ -12,7 +8,6 @@
         </div>
 
         <div class="form-row">
-            <label class="form-label" id="label-email">Email</label>
             <div class="form-input">
                 <input type="email" v-model="email" placeholder="Enter your email" class="custom-input" id="input-email"
                     aria-labelledby="label-email" />
@@ -20,7 +15,6 @@
         </div>
 
         <div class="form-row">
-            <label class="form-label" id="label-password">Password</label>
             <div class="form-input">
                 <input type="password" v-model="password" placeholder="Enter your password" class="custom-input"
                     id="input-password" aria-labelledby="label-password" />
@@ -28,7 +22,6 @@
         </div>
 
         <div class="form-row">
-            <label class="form-label" id="label-confirm-password">Confirm</label>
             <div class="form-input">
                 <input type="password" v-model="confirmPassword" placeholder="Confirm your password"
                     class="custom-input" id="input-confirm-password" aria-labelledby="label-confirm-password" />
@@ -93,10 +86,6 @@ const handleCancel = () => {
 </script>
 
 <style scoped>
-* {
-    font-family: DancingScript, cursive;
-}
-
 .register-form {
     width: 100%;
     max-width: 400px;
@@ -188,12 +177,13 @@ const handleCancel = () => {
 }
 
 .btn-secondary {
-    padding: 8px 18px;
-    font-size: 16px;
-    color: rgb(249 233 228);
     background: transparent;
     border: 1.5px solid #d7c0a3;
     border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #5d4037;
     cursor: pointer;
     transition: all 0.2s ease;
 }
