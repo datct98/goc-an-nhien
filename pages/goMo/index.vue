@@ -50,7 +50,7 @@
           <font-awesome-icon icon="fa-solid fa-heart" class="orb-icon" />
         </div>
 
-        <Decor className="tuongPhatChibi" src="tuong/tuongPhatChibi.png" :width="15" :isEdit="isEdit" />
+        <Decor className="tuongPhatChibi" src="/tuong/tuongPhatChibi.png" :width="15" :isEdit="isEdit" />
       </div>
 
       <!-- <div class="nhaSu">
@@ -59,7 +59,7 @@
 
       <!-- Chiếc mõ -->
       <div ref="caiMoRef" class="cai-mo-container">
-        <Decor className="caiMoDeThuong" src="decor/bogomo.png" :width="10" :isEdit="isEdit" @click="startGoMo" />
+        <Decor className="caiMoDeThuong" src="/decor/bogomo.png" :width="10" :isEdit="isEdit" @click="startGoMo" />
       </div>
 
       <!-- Particle Beams (Tia sáng hiệu ứng) -->
