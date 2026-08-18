@@ -176,7 +176,7 @@ const checkWidth = () => {
 };
 
 const isMobileView = computed(() => {
-  return windowWidth.value <= 768;
+  return windowWidth.value <= windowWidth.value;
 });
 
 onMounted(() => {
