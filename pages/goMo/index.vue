@@ -50,7 +50,7 @@
           <font-awesome-icon icon="fa-solid fa-heart" class="orb-icon" />
         </div>
 
-        <Decor className="tuongPhatChibi" src="/decor/tuongPhatChibi2.png" :width="15" :isEdit="isEdit" />
+        <Decor className="tuongPhatChibi" src="/tuong/tuongPhat.png" :width="15" :isEdit="isEdit" />
       </div>
 
       <!-- Chiếc mõ -->
