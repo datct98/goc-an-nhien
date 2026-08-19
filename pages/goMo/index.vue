@@ -53,10 +53,6 @@
         <Decor className="tuongPhatChibi" src="/decor/tuongPhatChibi2.png" :width="15" :isEdit="isEdit" />
       </div>
 
-      <!-- <div class="nhaSu">
-        <ImgAnimation :images="nhaSuAnim" :width="150" :interval="300" :delay="500" />
-      </div> -->
-
       <!-- Chiếc mõ -->
       <div ref="caiMoRef" class="cai-mo-container">
         <Decor className="caiMoDeThuong" src="/decor/bogomo.png" :width="10" :isEdit="isEdit" @click="startGoMo" />
@@ -126,8 +122,6 @@ const isReady = ref(true);
 const isEdit = ref(false);
 const isShowGayGoMo = ref(true);
 
-const nhaSuAnim = ref(Array.from({ length: 11 }, (_, i) => `/tuong/animate/image_${i + 1}.png`));
-
 const preloadImages = () => {
   const imagePaths = [
     "/mobile/room_bg.png",
@@ -169,15 +163,7 @@ const preloadImages = () => {
 };
 
 // ========== MOBILE DETECTION ==========
-const windowWidth = ref(800);
-
-const checkWidth = () => {
-  windowWidth.value = window.innerWidth;
-};
-
-const isMobileView = computed(() => {
-  return windowWidth.value <= windowWidth.value;
-});
+const { isMobileView } = useDevice();
 
 onMounted(() => {
   // Start preloading images
@@ -193,7 +179,6 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  window.removeEventListener("resize", checkWidth);
   window.removeEventListener("keydown", handleKeydown);
 });
 
