@@ -65,6 +65,7 @@ import memeTexts from '~/constants/memeTexts.json';
 import regularTexts from '~/constants/regularTexts.json';
 import SmokeUp from '~/components/effects/SmokeUp.vue';
 import CircleSymbol from './CircleSymbol.vue';
+import FloatingText from './effects/FloatingText.vue';
 
 const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo } = useGameStats();
 
