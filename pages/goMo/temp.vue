@@ -7,8 +7,29 @@
     </div>
   </div>
 
+  <!-- MOBILE layout -->
+  <!-- <GoMoMobile v-if="isReady && isMobileView" /> -->
+
   <!-- DESKTOP layout (original) -->
   <div v-else-if="isReady" class="container-goMo" id="container" ref="containerRef">
+    <!-- <div class="bang">
+      <p style="width: 280px; word-wrap: break-word; font-size: 14px; color: #73462d">
+        - Click vào cái <b>gậy</b> và nhấn vào <b>chiếc mõ</b> hoặc nhấn
+        <b>phím space</b> để tụng kinh <br />
+        - Mỗi lần tụng kinh sẽ được cộng điểm, giải nghiệp và xua tan đi ưu phiền
+      </p>
+    </div> -->
+    <!-- <Decor className="tuongPhat" src="tuong/duc_phat.png" :width="15.6" :isEdit="isEdit" />
+    <Decor className="caynen left" src="decor/nen.png" :width="2.5" :isEdit="isEdit" />
+    <Decor className="caynen right" src="decor/nen.png" :width="2.5" :isEdit="isEdit" />
+    <Decor className="caiBan" src="decor/table.png" :width="31.25" :isEdit="isEdit" /> -->
+    <!-- <Decor className="caiMo" src="decor/cai_mo.png" :width="5.2" :isEdit="isEdit" @click="goMo()" /> -->
+    <!-- <Decor className="pillow" src="decor/goi.png" :width="10.4" :isEdit="isEdit" /> -->
+    <!-- <Decor className="bathuong" src="decor/bat_huong_2.png" :width="4.16" :isEdit="isEdit" :isSmokeUp="isEdit" /> -->
+    <!-- <Decor className="gayGoMo" ref="gayGoMoRef" src="decor/gay_go_mo.png" :width="3.64" :isEdit="isEdit"
+      :isShowImage="isShowGayGoMo" @click="camGayGoMo()" />
+    <Decor className="khayDungGay" ref="khayDungGayRef" src="decor/khay.png" :width="6.24" :isEdit="isEdit"
+      @click="camGayGoMo()" /> -->
 
     <div class="m-auto flex flex-col items-center gap-4 relative">
       <!-- Container tượng phật & 3 quả cầu -->
@@ -42,7 +63,39 @@
         <div v-for="beam in lightBeams" :key="beam.id" class="light-beam" :style="beam.style"></div>
       </div>
     </div>
+
+
+    <!-- <div class="banCongDuc">
+      <Image src="ban_tho/ban_cong_duc.png" alt="ban_cong_duc" width="350" />
+      <div class="congDucText">
+        Công đức <br />
+        {{ stats.merit }}
+      </div>
+      <div class="tamTinhText">
+        Tâm tịnh <br />
+        {{ stats.peace }}
+      </div>
+      <div class="nghiepTieuText">
+        Nghiệp tiêu <br />
+        {{ stats.karma }}
+      </div>
+      <div class="soLanText">
+        Tổng số <br />
+        {{ stats.totalClicks }}
+      </div>
+    </div> -->
     <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
+
+    <!-- <div class="floating-texts-container">
+      <FloatingText v-for="text in floatingTexts" :key="text.id" :text="text.text" :x="text.x" :y="text.y"
+        :is-meme="text.isMeme" />
+    </div> -->
+
+    <!-- Edit Toggle Button -->
+    <!-- <button class="btn-toggle-edit" @click="isEdit = !isEdit">
+      <font-awesome-icon :icon="isEdit ? 'fa-solid fa-check' : 'fa-solid fa-pen-to-square'" />
+      {{ isEdit ? 'Xong' : 'Sửa' }}
+    </button> -->
   </div>
 </template>
 
@@ -51,7 +104,8 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 import memeTexts from "~/constants/memeTexts.json";
 import regularTexts from "~/constants/regularTexts.json";
 import bg from "../../assets/goMo/bg_night.png";
-import Decor from "~/components/go-mo/Decor.vue";
+import GoMoMobile from "~/components/GoMoMobile.vue";
+import Decor from "~/components/goMo/Decor.vue";
 
 const {
   stats,
@@ -110,6 +164,19 @@ const preloadImages = () => {
 
 // ========== MOBILE DETECTION ==========
 const { isMobileView } = useDevice();
+
+onMounted(() => {
+  // Start preloading images
+  // preloadImages();
+
+  // Set initial width immediately
+  // windowWidth.value = window.innerWidth;
+  // window.addEventListener("resize", checkWidth);
+  // Also listen for keydown only on desktop
+  // if (window.innerWidth > 768) {
+  //   window.addEventListener("keydown", handleKeydown);
+  // }
+});
 
 // ========== DESKTOP LOGIC ==========
 const sidebarOpen = ref(false);
@@ -193,6 +260,70 @@ const triggerLightBeam = () => {
       lightBeams.value.splice(idx, 1);
     }
   }, 600);
+};
+
+// const moRungDong = () => {
+//   createFloatingText();
+//   isTeng++;
+
+//   audioRef.value.currentTime = 0;
+//   audioRef.value.play();
+
+//   const object = document.getElementById("caiMo");
+//   object.classList.add("shake");
+//   setTimeout(() => {
+//     object.classList.remove("shake");
+//   }, 300);
+// };
+
+const createFloatingText = () => {
+  const isMeme = Math.random() < 0.05;
+  const textArray = isMeme ? memeTexts : regularTexts;
+  const textId = Math.floor(Math.random() * textArray.length);
+  const text = textArray[textId];
+
+  const x = window.innerWidth / 2;
+  const y = window.innerHeight / 2;
+
+  if (!isMeme) {
+    if (textId == 0) {
+      incrementMerit();
+    } else if (textId == 1) {
+      incrementPeace();
+    } else if (textId == 2) {
+      incrementKarma();
+    }
+  } else {
+    bigGo();
+  }
+
+  const newText = {
+    id: floatingTextId++,
+    text,
+    x,
+    y,
+    isMeme,
+  };
+
+  floatingTexts.value.push(newText);
+
+  setTimeout(() => {
+    const index = floatingTexts.value.findIndex((t) => t.id === newText.id);
+    if (index > -1) {
+      floatingTexts.value.splice(index, 1);
+    }
+  }, 1400);
+};
+
+const camGayGoMo = () => {
+  isCamGay = !isCamGay;
+  if (isCamGay) {
+    containerRef.value.classList.add("camGayGoMo");
+    isShowGayGoMo.value = false;
+  } else {
+    containerRef.value.classList.remove("camGayGoMo");
+    isShowGayGoMo.value = true;
+  }
 };
 </script>
 
