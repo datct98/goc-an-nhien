@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        
+
 
         <!-- STATS NUMBERS — positioned after label text in bg -->
         <!-- <div class="gm-stats-overlay">
@@ -85,7 +85,7 @@ const goMo = () => {
     if (isSpamming.value) return;
 
     const now = Date.now();
-    
+
     // Nếu khoảng cách giữa 2 lần gõ quá ngắn (dưới 300ms)
     if (now - lastClickTime.value < 300) {
         clickCount.value++;

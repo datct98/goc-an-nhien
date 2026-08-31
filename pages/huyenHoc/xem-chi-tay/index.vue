@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import PalmistrySlide from "~/components/PalmistrySlide.vue";
+import PalmistrySlide from "~/components/huyen-hoc/PalmistrySlide.vue";
 
 const router = useRouter();
 const { isMobileView } = useDevice();

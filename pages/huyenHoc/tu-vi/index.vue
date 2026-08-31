@@ -211,8 +211,8 @@
 </template>
 
 <script setup>
-import Coin from "~/components/Coin.vue";
-import LuanGiaiTuVi from "~/components/LuanGiaiTuVi.vue";
+import Coin from "~/components/huyen-hoc/Coin.vue";
+import LuanGiaiTuVi from "~/components/huyen-hoc/LuanGiaiTuVi.vue";
 import TuViForm from "~/components/huyen-hoc/TuViForm.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";

@@ -1,6 +1,5 @@
 <template>
     <div class="wrapper">
-        <div class="character"></div>
     </div>
 </template>
 

@@ -36,6 +36,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import Bubble from '~/components/effects/Bubble.vue';
 import { authService } from '~/services/authService';
+import InputComponent from '~/components/common/InputComponent.vue';
 
 const router = useRouter();
 const route = useRoute();
