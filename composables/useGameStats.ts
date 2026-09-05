@@ -1,6 +1,8 @@
 import { ref, computed, onMounted } from 'vue'
 import { meritService } from '~/services/meritService'
 
+const { showLoading, hideLoading } = useLoading()
+
 export function useGameStats() {
     const stats = ref({
         merit: 0,
@@ -10,7 +12,6 @@ export function useGameStats() {
         level: 1
     })
 
-    const isLoading = ref(false)
     const error = ref(null)
     const rateLimitMessage = ref(null)
 
@@ -37,7 +38,7 @@ export function useGameStats() {
 
         try {
             isSyncing = true
-            isLoading.value = true
+            showLoading();
 
             console.log('🔄 Fetching merit points from API /me...')
             const data = await meritService.getMe()
@@ -58,7 +59,7 @@ export function useGameStats() {
             console.error('❌ Failed to load from API, showing zeros:', err)
             // API fail → giữ nguyên giá trị 0 (không lấy từ localStorage)
         } finally {
-            isLoading.value = false
+            hideLoading()
             isSyncing = false
         }
     }
@@ -99,7 +100,7 @@ export function useGameStats() {
         stats.value.totalClicks++
         saveLocalStats()
 
-        console.log('🔔 Tapping wooden fish... (optimistic: MERIT)')
+        // console.log('🔔 Tapping wooden fish... (optimistic: MERIT)')
 
         // Gửi tap xuống BE (fire-and-forget)
         sendTapToBackend('MERIT')
@@ -114,7 +115,7 @@ export function useGameStats() {
         stats.value.totalClicks++
         saveLocalStats()
 
-        console.log('🧘 Tapping wooden fish... (optimistic: PEACE)')
+        // console.log('🧘 Tapping wooden fish... (optimistic: PEACE)')
 
         // Gửi tap xuống BE (fire-and-forget)
         sendTapToBackend('PEACE')
@@ -129,7 +130,7 @@ export function useGameStats() {
         stats.value.totalClicks++
         saveLocalStats()
 
-        console.log('✨ Tapping wooden fish... (optimistic: KARMA)')
+        // console.log('✨ Tapping wooden fish... (optimistic: KARMA)')
 
         // Gửi tap xuống BE (fire-and-forget)
         sendTapToBackend('KARMA')
@@ -174,18 +175,10 @@ export function useGameStats() {
         // Mỗi 100 điểm = 1 cấp
         const total = stats.value.merit + stats.value.peace + stats.value.karma
         return Math.floor(total / 100) + 1
-    })
-
-    // Initialize on mount — API là source of truth, localStorage chỉ là fallback
-    onMounted(() => {
-        // Gọi API /me để lấy thông tin merit (source of truth)
-        // Nếu API fail → fallback dùng localStorage
-        loadMeritPoints()
-    })
+    });
 
     return {
         stats,
-        isLoading,
         error,
         rateLimitMessage,
         incrementMerit,

@@ -139,11 +139,9 @@ const isMorning = ref(false)
 const fullName = ref('')
 
 onMounted(() => {
-  updateMobileBackground()
+  updateMobileBackground();
   if (import.meta.client) {
     fullName.value = localStorage.getItem('fullName') || 'Khách'
-    console.log('Viewport Width:', window.innerWidth, 'px');
-    console.log('Viewport Height:', window.innerHeight, 'px');
   }
 })
 

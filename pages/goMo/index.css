@@ -127,35 +127,6 @@
     z-index: 9999;
 }
 
-.congDucText,
-.tamTinhText,
-.nghiepTieuText,
-.soLanText {
-    font-family: MONOSPACE;
-    font-size: 18px;
-    font-weight: 900;
-    color: #923935;
-    text-align: center;
-}
-
-.congDucText {
-    position: absolute;
-    top: 32%;
-    left: 16%
-}
-
-.tamTinhText {
-    position: absolute;
-    top: 60%;
-    left: 16%
-}
-
-.nghiepTieuText {
-    position: absolute;
-    top: 32%;
-    right: 12%
-}
-
 .soLanText {
     position: absolute;
     top: 60%;
@@ -329,86 +300,127 @@
 
 /* Loading screen */
 .gm-loading {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, #1e0f06 0%, #3a2010 40%, #4a2e1b 100%);
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #1e0f06 0%, #3a2010 40%, #4a2e1b 100%);
 }
 
 .gm-loading-inner {
-  text-align: center;
+    text-align: center;
 }
 
 .gm-loading-lotus {
-  color: #d4a24e;
-  font-size: 48px;
-  animation: lotus-spin 2s ease-in-out infinite;
+    color: #d4a24e;
+    font-size: 48px;
+    animation: lotus-spin 2s ease-in-out infinite;
 }
 
 .gm-loading-text {
-  margin-top: 16px;
-  font-family: "Georgia", serif;
-  font-size: 16px;
-  color: #d4a24e;
-  letter-spacing: 1px;
-  animation: pulse-text 1.5s ease-in-out infinite;
+    margin-top: 16px;
+    font-family: "Georgia", serif;
+    font-size: 16px;
+    color: #d4a24e;
+    letter-spacing: 1px;
+    animation: pulse-text 1.5s ease-in-out infinite;
+}
+
+.gm-floats {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
 }
 
 @keyframes lotus-spin {
 
-  0%,
-  100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-  }
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
 
-  50% {
-    transform: scale(1.15) rotate(180deg);
-    opacity: 0.7;
-  }
+    50% {
+        transform: scale(1.15) rotate(180deg);
+        opacity: 0.7;
+    }
 }
 
 @keyframes pulse-text {
 
-  0%,
-  100% {
-    opacity: 1;
-  }
+    0%,
+    100% {
+        opacity: 1;
+    }
 
-  50% {
-    opacity: 0.5;
-  }
+    50% {
+        opacity: 0.5;
+    }
 }
 
 .btn-toggle-edit {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background-color: rgba(115, 70, 45, 0.8);
-  color: #fff;
-  border: 2px solid #d4a24e;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: rgba(115, 70, 45, 0.8);
+    color: #fff;
+    border: 2px solid #d4a24e;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn-toggle-edit:hover {
-  background-color: #73462d;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background-color: #73462d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .btn-toggle-edit:active {
-  transform: translateY(0);
+    transform: translateY(0);
+}
+
+
+.clickCount {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    z-index: 999;
+}
+
+.clickCount span {
+    margin: auto;
+    font-size: 24px;
+}
+
+/* Bảng trạng thái giải nghiệp  */
+.status-text {
+    margin: auto;
+    font-family: MONOSPACE;
+    font-size: 18px;
+    font-weight: 900;
+    color: #923935;
+    text-align: center;
+}
+
+.status-container {
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

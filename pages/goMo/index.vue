@@ -1,35 +1,33 @@
 <template>
-  <!-- LOADING SCREEN -->
-  <div v-if="!isReady" class="gm-loading">
-    <div class="gm-loading-inner">
-      <div class="gm-loading-lotus"><font-awesome-icon icon="fa-solid fa-gear" /></div>
-      <p class="gm-loading-text">Đang tải bàn thờ...</p>
-    </div>
-  </div>
-
   <!-- DESKTOP layout (original) -->
-  <div v-else-if="isReady" class="container-goMo" id="container" ref="containerRef">
+  <div class="container-goMo" id="container" ref="containerRef">
+
+    <!-- Clickcount -->
+    <div class="clickCount" v-if="clickCount > 0">
+      <span> X{{ clickCount }}</span>
+    </div>
 
     <div class="m-auto flex flex-col items-center gap-4 relative">
+      <!-- Status -->
+      <div class="status-container">
+        <div class="status-text">
+          Công đức : {{ stats.merit }}
+        </div>
+        <div class="status-text">
+          Tâm tịnh : {{ stats.peace }}
+        </div>
+        <div class="status-text">
+          Nghiệp tiêu : {{ stats.karma }}
+        </div>
+      </div>
       <!-- Container tượng phật & 3 quả cầu -->
       <div class="tuong-phat-wrapper relative" ref="tuongPhatWrapperRef">
-        <!-- Quả cầu bên trái: Ngôi sao -->
-        <div class="orb orb-left" ref="orbLeftRef">
-          <font-awesome-icon icon="fa-solid fa-star" class="orb-icon" />
-        </div>
-
-        <!-- Quả cầu trên đầu: Bông hoa -->
-        <div class="orb orb-top" ref="orbTopRef">
-          <font-awesome-icon icon="fa-solid fa-flora" v-if="hasFloraIcon" class="orb-icon" />
-          <font-awesome-icon icon="fa-solid fa-fan" v-else class="orb-icon" />
-        </div>
-
-        <!-- Quả cầu bên phải: Biểu tượng (Lót hoa Sen / Trái tim) -->
-        <div class="orb orb-right" ref="orbRightRef">
-          <font-awesome-icon icon="fa-solid fa-heart" class="orb-icon" />
-        </div>
-
         <Decor className="tuongPhatChibi" src="/tuong/tuongPhat.png" :width="15" :isEdit="isEdit" />
+      </div>
+
+      <div class="gm-floats">
+        <FloatingText v-for="text in floatingTexts" :key="text.id" :text="text.text" :x="text.x" :y="text.y"
+          :is-meme="text.isMeme" />
       </div>
 
       <!-- Chiếc mõ -->
@@ -52,6 +50,7 @@ import memeTexts from "~/constants/memeTexts.json";
 import regularTexts from "~/constants/regularTexts.json";
 import bg from "../../assets/goMo/bg_night.png";
 import Decor from "~/components/go-mo/Decor.vue";
+import FloatingText from "~/components/effects/FloatingText.vue";
 
 const {
   stats,
@@ -61,52 +60,13 @@ const {
   bigGo,
   level,
   rateLimitMessage,
+  loadMeritPoints,
 } = useGameStats();
 
 // ========== IMAGE PRELOADER ==========
 const isReady = ref(true);
 const isEdit = ref(false);
 const isShowGayGoMo = ref(true);
-
-const preloadImages = () => {
-  const imagePaths = [
-    "/mobile/room_bg.png",
-    "/tuong/duc_phat.png",
-    "/decor/nen.png",
-    "/decor/table.png",
-    "/decor/cai_mo.png",
-    "/decor/goi.png",
-    "/decor/bat_huong_2.png",
-    "/decor/gay_go_mo.png",
-    "/decor/khay.png",
-    "/ban_tho/ban_cong_duc.png",
-    bg,
-  ];
-
-  let loaded = 0;
-  const total = imagePaths.length;
-
-  const onLoad = () => {
-    loaded++;
-    if (loaded >= total) {
-      isReady.value = true;
-    }
-  };
-
-  imagePaths.forEach((src) => {
-    const img = new window.Image();
-    img.onload = onLoad;
-    img.onerror = onLoad; // Don't block on error
-    img.src = src;
-  });
-
-  // Fallback: show after 5s no matter what
-  setTimeout(() => {
-    if (!isReady.value) {
-      isReady.value = true;
-    }
-  }, 5000);
-};
 
 // ========== MOBILE DETECTION ==========
 const { isMobileView } = useDevice();
@@ -120,6 +80,7 @@ const khayDungGayRef = ref(null);
 const floatingTexts = ref([]);
 let floatingTextId = 0;
 let isTeng = 0;
+let fid = 0;
 
 // Orbs & Light Beams logic
 const caiMoRef = ref(null);
@@ -129,71 +90,71 @@ const orbRightRef = ref(null);
 const lightBeams = ref([]);
 let beamIdCounter = 0;
 
+const clickCount = ref(0);
+const lastClickTime = ref(0);
+const isSpamming = ref(false);
+let resetTimer = null; // Biến lưu trữ bộ đếm thời gian
+
+
+onMounted(() => {
+  loadMeritPoints();
+});
+
+
 const startGoMo = () => {
-  triggerLightBeam();
+  let check = clickCountFunc();
+  if (check) return;
+  createFloatingText();
   // moRungDong();
   audioRef.value.currentTime = 0;
   audioRef.value.play();
 };
 
-const triggerLightBeam = () => {
-  if (!caiMoRef.value) return;
+const createFloatingText = () => {
+  const isMeme = Math.random() < 0.05;
+  const arr = isMeme ? memeTexts : regularTexts;
+  const idx = Math.floor(Math.random() * arr.length);
+  const text = arr[idx];
+  const x = window.innerWidth / 2;
+  const y = window.innerHeight * 0.3;
 
-  const orbRefs = [orbLeftRef.value, orbTopRef.value, orbRightRef.value];
-  // Chọn ngẫu nhiên 1 trong 3 quả cầu
-  const randomIndex = Math.floor(Math.random() * orbRefs.length);
-  const targetOrb = orbRefs[randomIndex];
+  if (!isMeme) {
+    if (idx === 0) incrementMerit();
+    else if (idx === 1) incrementPeace();
+    else if (idx === 2) incrementKarma();
+  } else bigGo();
 
-  if (!targetOrb) return;
-
-  const moRect = caiMoRef.value.getBoundingClientRect();
-  const orbRect = targetOrb.getBoundingClientRect();
-
-  const startX = moRect.left + moRect.width / 2;
-  const startY = moRect.top + moRect.height / 2;
-  const endX = orbRect.left + orbRect.width / 2;
-  const endY = orbRect.top + orbRect.height / 2;
-
-  const deltaX = endX - startX;
-  const deltaY = endY - startY;
-
-  // Đổi ngẫu nhiên màu ánh sáng vàng / hồng tím / cam
-  const colors = [
-    "radial-gradient(circle, #fff7ad 0%, #ffd700 70%, rgba(255,215,0,0) 100%)",
-    "radial-gradient(circle, #ffffff 0%, #ff80bf 70%, rgba(255,128,191,0) 100%)",
-    "radial-gradient(circle, #ffffff 0%, #76efff 70%, rgba(118,239,255,0) 100%)"
-  ];
-  const color = colors[randomIndex];
-
-  const currentBeamId = ++beamIdCounter;
-  const beamStyle = {
-    position: "fixed",
-    left: `${startX}px`,
-    top: `${startY}px`,
-    "--dx": `${deltaX}px`,
-    "--dy": `${deltaY}px`,
-    background: color,
-    boxShadow: `0 0 15px 5px ${randomIndex === 0 ? '#ffd700' : randomIndex === 1 ? '#ff80bf' : '#76efff'}`,
-  };
-
-  lightBeams.value.push({ id: currentBeamId, style: beamStyle });
-
-  // Sau khi quả cầu nhận ánh sáng, kích hoạt hiệu ứng lóe sáng (pulse/hit)
+  const t = { id: fid++, text, x, y, isMeme };
+  floatingTexts.value.push(t);
   setTimeout(() => {
-    targetOrb.classList.add("orb-hit");
-    setTimeout(() => {
-      targetOrb.classList.remove("orb-hit");
-    }, 400);
-  }, 500);
-
-  // Xóa tia sáng sau khi hiệu ứng kết thúc (600ms)
-  setTimeout(() => {
-    const idx = lightBeams.value.findIndex((b) => b.id === currentBeamId);
-    if (idx > -1) {
-      lightBeams.value.splice(idx, 1);
-    }
-  }, 600);
+    const i = floatingTexts.value.findIndex(v => v.id === t.id);
+    if (i > -1) floatingTexts.value.splice(i, 1);
+  }, 1400);
 };
+
+const clickCountFunc = () => {
+  // Nếu đang hiện cảnh báo thì không cho gõ
+  if (isSpamming.value) return;
+  const now = Date.now();
+  clickCount.value++;
+  // Ngưỡng cảnh báo: ví dụ gõ liên tục quá 10 lần cực nhanh
+  if (clickCount.value > 10) {
+    showWarning();
+    return true; // Dừng không cho gõ tiếp
+  }
+  return false;
+}
+
+const showWarning = () => {
+  isSpamming.value = true;
+  if (resetTimer) clearTimeout(resetTimer); // Dừng luôn bộ reset khi đang phạt
+  // Tự động đóng cảnh báo sau 3 giây và reset bộ đếm
+  setTimeout(() => {
+    isSpamming.value = false;
+    clickCount.value = 0;
+  }, 3000);
+};
+
 </script>
 
 <style scoped src="./index.css"></style>
