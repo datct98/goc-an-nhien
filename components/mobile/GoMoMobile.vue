@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        
+
 
         <!-- STATS NUMBERS — positioned after label text in bg -->
         <!-- <div class="gm-stats-overlay">
@@ -65,6 +65,7 @@ import memeTexts from '~/constants/memeTexts.json';
 import regularTexts from '~/constants/regularTexts.json';
 import SmokeUp from '~/components/effects/SmokeUp.vue';
 import CircleSymbol from './CircleSymbol.vue';
+import FloatingText from './effects/FloatingText.vue';
 
 const { stats, incrementMerit, incrementPeace, incrementKarma, bigGo } = useGameStats();
 
@@ -84,7 +85,7 @@ const goMo = () => {
     if (isSpamming.value) return;
 
     const now = Date.now();
-    
+
     // Nếu khoảng cách giữa 2 lần gõ quá ngắn (dưới 300ms)
     if (now - lastClickTime.value < 300) {
         clickCount.value++;

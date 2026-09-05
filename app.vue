@@ -3,7 +3,8 @@
     <Toast />
     <DynamicDialog />
     <ConfirmDialog />
-    <NuxtLayout >
+    <NuxtLayout>
+      <GlobalLoading />
       <NuxtPage />
     </NuxtLayout>
   </div>

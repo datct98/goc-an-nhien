@@ -20,7 +20,7 @@ definePageMeta({
 
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import RegisterComponent from '~/components/RegisterComponent.vue';
+import RegisterComponent from '~/components/common/RegisterComponent.vue';
 import { authService } from '~/services/authService';
 
 const router = useRouter();

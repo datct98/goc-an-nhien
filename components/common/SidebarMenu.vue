@@ -52,7 +52,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { menuList } from './data/sideBar';
+import { menuList } from '../data/sideBar';
 import { useRoute } from 'vue-router'
 
 // Input -----------------------------------

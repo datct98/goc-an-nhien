@@ -10,8 +10,8 @@
         <div class="input-group">
             <div class="input-wrapper">
                 <font-awesome-icon :icon="['fas', 'lock']" class="input-icon-left" />
-                <input name="password" :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Nhập mật khẩu"
-                    class="custom-input has-right-icon" @keyup.enter="handleLogin" />
+                <input name="password" :type="showPassword ? 'text' : 'password'" v-model="password"
+                    placeholder="Nhập mật khẩu" class="custom-input has-right-icon" @keyup.enter="handleLogin" />
                 <font-awesome-icon :icon="['fas', showPassword ? 'eye-slash' : 'eye']" class="input-icon-right"
                     @click="togglePasswordVisibility" />
             </div>

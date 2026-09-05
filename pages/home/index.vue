@@ -46,6 +46,7 @@ import { useRouter } from 'vue-router';
 import backgroundImgMobile from '~/assets/PhatNgoiHoaSenMobile.png';
 import backgroundImgMobileNight from '~/assets/PhatNgoiHoaSenMobileNightRes.png';
 import SakuraEffect from '~/components/effects/SakuraEffect.vue';
+import ImgAnimation from '~/components/anim/ImgAnimation.vue';
 
 const gomoAnim = ref(Array.from({ length: 4 }, (_, i) => `/home/anim/gomo/image_${i + 1}.jpg`));
 const gomoSleepAnim = ref(Array.from({ length: 17 }, (_, i) => `/home/anim/gomo/sleep/image_${i + 1}.png`));
@@ -138,11 +139,9 @@ const isMorning = ref(false)
 const fullName = ref('')
 
 onMounted(() => {
-  updateMobileBackground()
+  updateMobileBackground();
   if (import.meta.client) {
     fullName.value = localStorage.getItem('fullName') || 'Khách'
-    console.log('Viewport Width:', window.innerWidth, 'px');
-    console.log('Viewport Height:', window.innerHeight, 'px');
   }
 })
 

@@ -1,6 +1,5 @@
 <template>
     <div class="wrapper">
-        <TarotCard />
     </div>
 </template>
 
@@ -26,5 +25,25 @@ const myImages = ref([
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.character {
+    width: 785px;
+    height: 1418px;
+
+    background-image: url('/public/anim/nhaSuAnimation.png');
+    background-repeat: no-repeat;
+
+    animation: idle 5s steps(4) infinite;
+}
+
+@keyframes idle {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -3137px 0;
+    }
 }
 </style>
