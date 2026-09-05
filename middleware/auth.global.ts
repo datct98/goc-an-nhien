@@ -1,24 +1,24 @@
 export default defineNuxtRouteMiddleware((to, from) => {
 
     // TODO tạm thời loại bỏ authen để phát triển
-    // const whiteList = [
-    //     '/login', '/login/', '/register', '/register/'
-    // ]
+    const whiteList = [
+        '/login', '/login/', '/register', '/register/'
+    ]
 
-    // Bỏ qua middleware cho các trang trong whiteList (tránh redirect loop)
-    // if (whiteList.includes(to.path)) {
-    //     return
-    // }
+    Bỏ qua middleware cho các trang trong whiteList(tránh redirect loop)
+    if (whiteList.includes(to.path)) {
+        return
+    }
 
-    // return true;
+    return true;
 
-    // Chỉ chạy ở client-side (localStorage không có trên server)
-    // if (import.meta.client) {
-    //     const token = localStorage.getItem('jwt_token')
+    Chỉ chạy ở client - side(localStorage không có trên server)
+    if (import.meta.client) {
+        const token = localStorage.getItem('jwt_token')
 
-    //     if (!token) {
-    //         console.warn('🔒 Chưa đăng nhập, chuyển hướng về /login')
-    //         return navigateTo('/login?isWarning=true')
-    //     }
-    // }
+        if (!token) {
+            console.warn('🔒 Chưa đăng nhập, chuyển hướng về /login')
+            return navigateTo('/login?isWarning=true')
+        }
+    }
 })
