@@ -30,6 +30,16 @@
           :is-meme="text.isMeme" />
       </div>
 
+      <div class="tray-container">
+        <Container className="caiKhay flex justify-center" backgroundUrl="/decor/offerTable.png" width="276px"
+          height="150px">
+          <div class="relative -top-2">
+            <Decor className="chuoi" src="/decor/doCung/chuoi.png" :width="30" :isEdit="false" />
+          </div>
+
+        </Container>
+      </div>
+
       <!-- Chiếc mõ -->
       <div ref="caiMoRef" class="cai-mo-container">
         <Decor className="caiMoDeThuong" src="/decor/bogomo.png" :width="10" :isEdit="isEdit" @click="startGoMo" />
@@ -50,6 +60,7 @@ import memeTexts from "~/constants/memeTexts.json";
 import regularTexts from "~/constants/regularTexts.json";
 import bg from "../../assets/goMo/bg_night.png";
 import Decor from "~/components/go-mo/Decor.vue";
+import Container from "~/components/go-mo/Container.vue";
 import FloatingText from "~/components/effects/FloatingText.vue";
 
 const {
