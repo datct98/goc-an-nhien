@@ -419,7 +419,7 @@
 }
 
 .status-container {
-    width: 600px;
+    width: fit-content;
     display: flex;
     flex-direction: row;
     gap: 10px;

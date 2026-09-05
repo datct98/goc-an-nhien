@@ -11,13 +11,13 @@
       <!-- Status -->
       <div class="status-container">
         <div class="status-text">
-          Công đức : {{ stats.merit }}
+          Công đức {{ stats.merit }}
         </div>
         <div class="status-text">
-          Tâm tịnh : {{ stats.peace }}
+          Tâm tịnh {{ stats.peace }}
         </div>
         <div class="status-text">
-          Nghiệp tiêu : {{ stats.karma }}
+          Nghiệp tiêu {{ stats.karma }}
         </div>
       </div>
       <!-- Container tượng phật & 3 quả cầu -->
