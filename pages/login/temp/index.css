@@ -1,0 +1,20 @@
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #d2c1b8;
+    display: flex;
+}
+
+.login-card {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.google {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+}
