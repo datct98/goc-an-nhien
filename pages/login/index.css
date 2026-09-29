@@ -3,5 +3,25 @@
     height: 100vh;
     background-color: #d2c1b8;
     display: flex;
+    justify-content: center;
+    background-image: url('/webp/background.webp');
+    background-size: cover;
+    background-position: center;
+    transform: scaleX(-1);
+}
+
+.main-object {
+    transform: scaleX(-1);
+    margin: auto;
+}
+
+.labelText {
+    font-family: Lora;
+    font-weight: 800;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+      text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
 }
 

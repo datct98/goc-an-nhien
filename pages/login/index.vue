@@ -1,6 +1,9 @@
 <template>
     <div class="login-container">
-        
+        <div class="main-object">
+            <Image class="main-object" src="/webp/nhasucuoico.webp" alt="main"/>
+            <p class="labelText">Góc An Nhiên</p>
+        </div>
     </div>
 </template>
 
