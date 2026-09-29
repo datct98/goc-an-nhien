@@ -29,6 +29,7 @@
     "nuxt": "^3.12.3",
     "nuxt-primevue": "^3.0.0",
     "nuxt3-leaflet": "^1.0.13",
+    "page-mascot": "^0.1.0",
     "pinia": "^2.2.2",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.0-rc.2",

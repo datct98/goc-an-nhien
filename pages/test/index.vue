@@ -1,11 +1,16 @@
 <template>
     <div class="wrapper">
+
+        <!-- <SpriteAnimation src="/sprites/spriteSheetLogin.png" :frame-width="260" :frame-height="250" :frames="12" :fps="12" /> -->
+        <SpriteAnimation src="/sprites/spriteSheet2.png" :frame-width="350" :frame-height="346" :frames="6" :fps="3" />
+
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import TarotCard from '~/components/tarot/TarotCard.vue'
+import SpriteAnimation from '~/components/anim/SpriteAnimation.vue'
 
 // Khai báo danh sách đường dẫn ảnh của bạn
 // Lưu ý: Nếu để trong thư mục public, bạn có thể viết đường dẫn trực tiếp từ "/"
@@ -25,6 +30,7 @@ const myImages = ref([
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url('/public/bg/bgLogin.png');
 }
 
 .character {
