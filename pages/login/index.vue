@@ -1,9 +1,16 @@
 <template>
     <div class="login-container">
-        <div class="main-object">
-            <Image class="main-object" src="/webp/nhasucuoico.webp" alt="main"/>
+        <ParallaxScrolling :image-src="[
+            '/anim/bg2/part_1.png',
+            '/anim/bg2/part_2.png',
+            '/anim/bg2/part_3.png',
+        ]" :speed="50" :horizon="0">
+            <div class="main-object">
+                <Image src="/webp/nhasucuoico.webp" alt="main" />
+            </div>
             <p class="labelText">Góc An Nhiên</p>
-        </div>
+        </ParallaxScrolling>
+
     </div>
 </template>
 
@@ -15,10 +22,7 @@ definePageMeta({
 
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import Bubble from '~/components/effects/Bubble.vue';
-import { authService } from '~/services/authService';
-import InputComponent from '~/components/common/InputComponent.vue';
-import ImgAnimation from '~/components/anim/ImgAnimation.vue';
+import ParallaxScrolling from '~/components/anim/ParallaxScrolling.vue';
 
 const router = useRouter();
 const route = useRoute();

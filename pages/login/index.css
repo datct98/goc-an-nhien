@@ -4,15 +4,18 @@
     background-color: #d2c1b8;
     display: flex;
     justify-content: center;
-    background-image: url('/webp/background.webp');
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background-image: url('/webp/background.webp');
     background-size: cover;
     background-position: center;
-    transform: scaleX(-1);
+    transform: scaleX(-1); */
 }
 
 .main-object {
     transform: scaleX(-1);
-    margin: auto;
+    margin: 0;
 }
 
 .labelText {
@@ -22,6 +25,5 @@
     text-transform: uppercase;
     color: white;
     text-align: center;
-      text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
 }
-
