@@ -7,14 +7,11 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    /* background-image: url('/webp/background.webp');
-    background-size: cover;
-    background-position: center;
-    transform: scaleX(-1); */
 }
 
 .main-object {
-    transform: scaleX(-1);
+    /* transform: scaleX(-1); */
+    transform: scale(1.2);
     margin: 0;
 }
 

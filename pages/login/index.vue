@@ -4,13 +4,13 @@
             '/anim/bg2/part_1.png',
             '/anim/bg2/part_2.png',
             '/anim/bg2/part_3.png',
-        ]" :speed="50" :horizon="0">
+        ]" :speed="50" :horizon="1">
+            <p class="labelText">Góc An Nhiên</p>
             <div class="main-object">
                 <Image src="/webp/nhasucuoico.webp" alt="main" />
             </div>
-            <p class="labelText">Góc An Nhiên</p>
+            <p class="labelText">Bắt đầu</p>
         </ParallaxScrolling>
-
     </div>
 </template>
 

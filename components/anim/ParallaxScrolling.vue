@@ -95,10 +95,6 @@ const IMAGE_OVERLAP = 2
  * 3 2 1
  */
 const orderedImages = computed(() => {
-    if (props.horizon === 1) {
-        return [...props.imageSrc].reverse()
-    }
-
     return [...props.imageSrc]
 })
 
