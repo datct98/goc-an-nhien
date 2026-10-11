@@ -7,3 +7,32 @@
   background-repeat: no-repeat;
   overflow: scroll;
 }
+
+.island {
+  position: absolute;
+  z-index: 1;
+  filter: drop-shadow(0 12px 20px rgba(7, 15, 37, 0.28));
+  pointer-events: none;
+}
+
+.island img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.island--one {
+  top: 20%;
+  left: 2%;
+}
+
+.island--two {
+  top: 45%;
+  right: 1%;
+}
+
+.island--three {
+  top: 72%;
+  left: 2%;
+}

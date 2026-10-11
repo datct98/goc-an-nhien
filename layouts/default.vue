@@ -19,13 +19,15 @@
         </svg>
       </button>
     </template>
-
     <template v-else>
-      <button class="toggleButton" @click="toggleMenu()">
+      <div class="status-bar">
+        <Image src="/layout/statusbar.png" />
+      </div>
+      <!-- <button class="toggleButton" @click="toggleMenu()">
         <i class="pi pi-bars"></i>
-      </button>
+      </button> -->
       <div class="footer" :class="{ 'closed': mobileSidebarOpen }">
-        <NavMenuMobile @close="toggleMenu" />
+        <!-- <NavMenuMobile @close="toggleMenu" /> -->
       </div>
     </template>
 
@@ -151,5 +153,14 @@ const toggleMenu = () => {
 
 .footer.closed {
   transform: translateX(-100%);
+}
+
+.status-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  z-index: 1000;
 }
 </style>

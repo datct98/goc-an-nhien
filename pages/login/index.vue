@@ -40,11 +40,32 @@ const route = useRoute();
 const { $common } = useNuxtApp();
 
 const audioRef = ref(null);
+const isNavigatingHome = ref(false);
 
-const handleMoClick = () => {
+const handleMoClick = async () => {
+    if (isNavigatingHome.value) return;
+    isNavigatingHome.value = true;
+
     // $common.showSuccess('Mõ đã vang lên!');
-    audioRef.value.currentTime = 0;
-    audioRef.value.play();
+    const audio = audioRef.value;
+
+    if (!audio) {
+        return router.push('/home');
+    }
+
+    audio.currentTime = 0;
+    const goHome = () => {
+        router.push('/home');
+    };
+
+    audio.addEventListener('ended', goHome, { once: true });
+
+    try {
+        await audio.play();
+    } catch {
+        audio.removeEventListener('ended', goHome);
+        goHome();
+    }
 };
 
 const REDIRECT_URI = window.location.origin + '/login/';
