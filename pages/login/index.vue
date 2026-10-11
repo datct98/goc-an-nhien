@@ -6,10 +6,11 @@
             '/anim/bg2/part_3.png',
         ]" :speed="50" :horizon="1">
             <p class="labelText">Góc An Nhiên</p>
+            <div style="width: 100%; height: 100px;"></div>
             <div class="main-object">
                 <Image src="/webp/nhasucuoico.webp" alt="main" />
             </div>
-            <p class="labelText">Bắt đầu</p>
+            
             <div style="width: 100%; height: 100px;"></div>
         </ParallaxScrolling>
     </div>
