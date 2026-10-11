@@ -1,9 +1,6 @@
 <template>
     <div class="wrapper">
-
-        <!-- <SpriteAnimation src="/sprites/spriteSheetLogin.png" :frame-width="260" :frame-height="250" :frames="12" :fps="12" /> -->
-        <SpriteAnimation src="/sprites/spriteSheet2.png" :frame-width="350" :frame-height="346" :frames="6" :fps="3" />
-
+        <GlobalLoading />
     </div>
 </template>
 
@@ -11,6 +8,11 @@
 import { ref } from 'vue'
 import TarotCard from '~/components/tarot/TarotCard.vue'
 import SpriteAnimation from '~/components/anim/SpriteAnimation.vue'
+import GlobalLoading from '~/components/global/GlobalLoading.vue'
+
+const { isLoading, showLoading, hideLoading } = useLoading();
+
+showLoading();
 
 // Khai báo danh sách đường dẫn ảnh của bạn
 // Lưu ý: Nếu để trong thư mục public, bạn có thể viết đường dẫn trực tiếp từ "/"
@@ -29,8 +31,6 @@ const myImages = ref([
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-image: url('/public/bg/bgLogin.png');
 }
 
 .character {
