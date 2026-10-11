@@ -10,6 +10,7 @@
                 <Image src="/webp/nhasucuoico.webp" alt="main" />
             </div>
             <p class="labelText">Bắt đầu</p>
+            <div style="width: 100%; height: 100px;"></div>
         </ParallaxScrolling>
     </div>
 </template>
