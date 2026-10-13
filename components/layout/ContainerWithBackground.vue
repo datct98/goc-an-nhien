@@ -15,12 +15,17 @@ const props = defineProps({
   backgroundSize: {
     type: String,
     default: 'cover'
+  },
+  offsetTop: {
+    type: Number,
+    default: 0
   }
 })
 
 const backgroundStyle = computed(() => ({
   backgroundImage: `url("${props.src}")`,
-  backgroundSize: props.backgroundSize
+  backgroundSize: props.backgroundSize,
+  backgroundPosition: `center calc(50% + ${props.offsetTop}px)`
 }))
 </script>
 
