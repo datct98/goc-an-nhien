@@ -1,5 +1,6 @@
 <template>
-  <main class="home-page" aria-label="Quần đảo Góc An Nhiên">
+  <ContainerWithBackground src="/home/bg1.png" aria-label="Quần đảo Góc An Nhiên"
+  >
     <Floating class="island island--one" :duration="6.5" :distance="12">
       <Image src="/home/landLayer/island1.png" alt="Đảo chùa và chú tiểu" draggable="false" width="200" />
     </Floating>
@@ -11,11 +12,12 @@
     <Floating class="island island--three" :duration="8" :delay="1.2" :distance="14">
       <Image src="/home/landLayer/island3.png" alt="Đảo ngôi nhà bên thác nước" draggable="false" width="200" />
     </Floating>
-  </main>
+  </ContainerWithBackground>
 </template>
 
 <script setup>
 import Floating from '~/components/effects/Floating.vue'
+import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue'
 </script>
 
 <style scoped src="./index.css"></style>
