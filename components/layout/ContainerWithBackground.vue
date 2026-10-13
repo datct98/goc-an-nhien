@@ -11,11 +11,16 @@ const props = defineProps({
   src: {
     type: String,
     required: true
+  },
+  backgroundSize: {
+    type: String,
+    default: 'cover'
   }
 })
 
 const backgroundStyle = computed(() => ({
-  backgroundImage: `url("${props.src}")`
+  backgroundImage: `url("${props.src}")`,
+  backgroundSize: props.backgroundSize
 }))
 </script>
 
@@ -26,5 +31,6 @@ const backgroundStyle = computed(() => ({
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #391B13;
 }
 </style>
