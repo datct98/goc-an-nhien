@@ -1,5 +1,5 @@
 <template>
-  <main class="container-with-background" :style="backgroundStyle">
+  <main :class="['container-with-background', props.customClass]" :style="backgroundStyle">
     <slot />
   </main>
 </template>
@@ -19,8 +19,14 @@ const props = defineProps({
   offsetTop: {
     type: Number,
     default: 0
+  },
+  customClass: {
+    type: [String, Array, Object],
+    default: ''
   }
-})
+});
+
+console.log('ContainerWithBackground props:', props);
 
 const backgroundStyle = computed(() => ({
   backgroundImage: `url("${props.src}")`,
