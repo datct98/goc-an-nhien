@@ -1,19 +1,47 @@
 <template>
     <Transition name="fade">
-        <div v-if="isLoading" class="loading-overlay">
-            <div class="spinner"></div>
-            <p>Đang tải dữ liệu...</p>
+        <div v-if="isLoading">
+            <ContainerWithBackground src="/layout/loading.webp" aria-label="Quần đảo Góc An Nhiên"
+                background-size="cover" :offset-top="0">
+                <div class="mainLoading">
+                    <Image src="/layout/loadingNhaSu.png" width="200" />
+                    <ProgressBar :percent="progress" />
+                </div>
+            </ContainerWithBackground>
         </div>
     </Transition>
 </template>
 
 <script setup>
-const { isLoading } = useLoading()
+import { ref, onMounted, onUnmounted } from 'vue'
+import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
+import ProgressBar from './ProgressBar.vue';
 
-console.log("isLoading : ", isLoading.value);
+definePageMeta({
+    layout: "loading"
+})
+const { isLoading, progress } = useLoading();
+
+onMounted(() => {
+    startProgress()
+})
+
+// Dọn dẹp khi component bị unmount
+onUnmounted(() => {
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+    }
+})
+
 </script>
 
 <style scoped>
+.mainLoading {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+}
+
 .loading-overlay {
     position: fixed;
     inset: 0;
