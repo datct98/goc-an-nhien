@@ -3,6 +3,10 @@
         <div v-if="isLoading">
             <ContainerWithBackground src="/layout/loading.webp" aria-label="Quần đảo Góc An Nhiên"
                 background-size="cover" :offset-top="0">
+                <div class="mainLoading">
+                    <Image src="/layout/loadingNhaSu.png" width="200" />
+                    <ProgressBar />
+                </div>
             </ContainerWithBackground>
         </div>
     </Transition>
@@ -15,12 +19,19 @@ definePageMeta({
 })
 
 const { isLoading } = useLoading()
-import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue'
+import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
+import ProgressBar from './ProgressBar.vue';
 
 console.log("isLoading : ", isLoading.value);
 </script>
 
 <style scoped>
+.mainLoading {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+}
+
 .loading-overlay {
     position: fixed;
     inset: 0;
