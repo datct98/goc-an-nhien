@@ -1,14 +1,21 @@
 <template>
     <Transition name="fade">
-        <div v-if="isLoading" class="loading-overlay">
-            <div class="spinner"></div>
-            <p>Đang tải dữ liệu...</p>
+        <div v-if="isLoading">
+            <ContainerWithBackground src="/layout/loading.webp" aria-label="Quần đảo Góc An Nhiên"
+                background-size="cover" :offset-top="0">
+            </ContainerWithBackground>
         </div>
     </Transition>
 </template>
 
 <script setup>
+
+definePageMeta({
+    layout: "loading"
+})
+
 const { isLoading } = useLoading()
+import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue'
 
 console.log("isLoading : ", isLoading.value);
 </script>

@@ -20,7 +20,7 @@
       </button>
     </template>
     <template v-else>
-      <div class="status-bar">
+      <div class="status-bar" v-if="!isLoading">
         <Image src="/layout/statusbar.png" />
       </div>
       <!-- <button class="toggleButton" @click="toggleMenu()">
@@ -40,6 +40,7 @@
 import SidebarMenu from '~/components/common/SidebarMenu.vue';
 import NavMenuMobile from '~/components/common/NavMenuMobile.vue';
 const { isMobileView } = useDevice();
+const { isLoading, showLoading, hideLoading } = useLoading();
 
 const sidebarOpen = ref(false);
 const mobileSidebarOpen = ref(true);
