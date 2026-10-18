@@ -5,7 +5,7 @@
                 background-size="cover" :offset-top="0">
                 <div class="mainLoading">
                     <Image src="/layout/loadingNhaSu.png" width="200" />
-                    <ProgressBar />
+                    <ProgressBar :percent="progress" />
                 </div>
             </ContainerWithBackground>
         </div>
@@ -13,16 +13,26 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
+import ProgressBar from './ProgressBar.vue';
 
 definePageMeta({
     layout: "loading"
 })
+const { isLoading, progress } = useLoading();
 
-const { isLoading } = useLoading()
-import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
-import ProgressBar from './ProgressBar.vue';
+onMounted(() => {
+    startProgress()
+})
 
-console.log("isLoading : ", isLoading.value);
+// Dọn dẹp khi component bị unmount
+onUnmounted(() => {
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+    }
+})
+
 </script>
 
 <style scoped>
