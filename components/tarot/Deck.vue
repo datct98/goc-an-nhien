@@ -4,22 +4,28 @@
     :class="[`deck--${status}`, { 'deck--empty': cardCount === 0 }]"
     :aria-label="`Bộ bài tarot gồm ${cardCount} lá, trạng thái ${status}`"
   >
-    <div v-if="status === 'lay'" class="deck__spread">
+    <div class="deck__stack" :style="{ '--stack-size': visibleStackCount }">
       <TarotCard
-        v-for="index in laidCount"
-        :key="`laid-${index}`"
-        class="deck__card deck__card--laid"
-        :style="{ '--card-order': index - 1 }"
+        v-for="index in visibleStackCount"
+        :key="`stack-${index}`"
+        class="deck__card deck__card--stacked"
+        :style="{
+          '--card-order': index - 1,
+          '--shuffle-out-x': index % 2 ? '-10px' : '10px',
+          '--shuffle-in-x': index % 2 ? '10px' : '-10px',
+          '--shuffle-angle': index % 2 ? '-1.5deg' : '1.5deg',
+          '--shuffle-angle-reverse': index % 2 ? '1.5deg' : '-1.5deg'
+        }"
         :is-card-set="true"
         :can-card-flip="false"
       />
     </div>
 
-    <div v-else class="deck__stack" :style="{ '--stack-size': visibleStackCount }">
+    <div v-if="status === 'lay'" class="deck__spread">
       <TarotCard
-        v-for="index in visibleStackCount"
-        :key="`stack-${index}`"
-        class="deck__card deck__card--stacked"
+        v-for="index in laidCount"
+        :key="`laid-${index}`"
+        class="deck__card deck__card--laid"
         :style="{ '--card-order': index - 1 }"
         :is-card-set="true"
         :can-card-flip="false"
@@ -64,6 +70,12 @@ const visibleStackCount = computed(() => Math.min(cardCount.value, 8))
   min-width: 0;
 }
 
+.deck--lay {
+  display: grid;
+  grid-template-rows: auto auto;
+  row-gap: clamp(18px, 4vw, 36px);
+}
+
 .deck__stack {
   position: relative;
   width: var(--card-width);
@@ -85,8 +97,8 @@ const visibleStackCount = computed(() => Math.min(cardCount.value, 8))
 }
 
 .deck--shuffle .deck__card--stacked {
-  animation: shuffle 420ms ease-in-out infinite alternate;
-  animation-delay: calc(var(--card-order) * -45ms);
+  animation: shuffle 1.15s cubic-bezier(.45, 0, .55, 1) infinite;
+  animation-delay: calc(var(--card-order) * -55ms);
 }
 
 .deck__spread {
@@ -101,8 +113,8 @@ const visibleStackCount = computed(() => Math.min(cardCount.value, 8))
   width: min(100%, 150px);
   height: auto;
   aspect-ratio: 3 / 5;
-  animation: deal-in 420ms cubic-bezier(.2, .75, .3, 1) both;
-  animation-delay: calc(var(--card-order) * 70ms);
+  animation: deal-in 650ms cubic-bezier(.2, .75, .3, 1) both;
+  animation-delay: calc(var(--card-order) * 110ms);
 }
 
 .deck--empty .deck__stack {
@@ -110,12 +122,28 @@ const visibleStackCount = computed(() => Math.min(cardCount.value, 8))
 }
 
 @keyframes shuffle {
-  from { transform: translate(calc(var(--card-order) * 1.5px - 7px), calc(var(--card-order) * -1.5px)) rotate(-4deg); }
-  to { transform: translate(calc(var(--card-order) * 1.5px + 7px), calc(var(--card-order) * -1.5px)) rotate(4deg); }
+  0%, 12% {
+    transform: translate(calc(var(--card-order) * 1.5px), calc(var(--card-order) * -1.5px));
+  }
+  28%, 42% {
+    transform: translate(
+      calc(var(--card-order) * 1.5px + var(--shuffle-out-x)),
+      calc(var(--card-order) * -1.5px - 10px)
+    ) rotate(var(--shuffle-angle));
+  }
+  60%, 76% {
+    transform: translate(
+      calc(var(--card-order) * 1.5px + var(--shuffle-in-x)),
+      calc(var(--card-order) * -1.5px + 10px)
+    ) rotate(var(--shuffle-angle-reverse));
+  }
+  100% {
+    transform: translate(calc(var(--card-order) * 1.5px), calc(var(--card-order) * -1.5px));
+  }
 }
 
 @keyframes deal-in {
-  from { opacity: 0; transform: translateY(-18px) rotate(-4deg); }
+  from { opacity: 0; transform: translateY(calc(-100% - 36px)) rotate(-4deg); }
   to { opacity: 1; transform: translateY(0) rotate(0); }
 }
 
