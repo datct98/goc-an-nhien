@@ -23,7 +23,7 @@ definePageMeta({
 const { isLoading, progress } = useLoading();
 
 onMounted(() => {
-    startProgress()
+    // startProgress()
 })
 
 // Dọn dẹp khi component bị unmount

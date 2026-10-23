@@ -1,6 +1,13 @@
 <template>
     <div class="wrapper">
-        <GlobalLoading />
+        <div class="row w-full justify-center gap-4 mt-4">
+            <Deck :num="78" :status="status" />
+        </div>
+        <div class="row w-full flex flex-row justify-center gap-4 mt-4">
+            <div @click="updateStatus('idle')">Update Status Idle</div>
+            <div @click="updateStatus('shuffle')">Update Status Shuffle</div>
+            <div @click="updateStatus('lay')">Update Status lay</div>
+        </div>
     </div>
 </template>
 
@@ -8,11 +15,18 @@
 import { ref } from 'vue'
 import TarotCard from '~/components/tarot/TarotCard.vue'
 import SpriteAnimation from '~/components/anim/SpriteAnimation.vue'
-import GlobalLoading from '~/components/global/GlobalLoading.vue'
+import Deck from '~/components/tarot/Deck.vue';
 
 const { isLoading, showLoading, hideLoading } = useLoading();
 
-showLoading();
+// showLoading();
+hideLoading();
+
+const status = ref('idle');
+const updateStatus = (newStatus) => {
+    status.value = newStatus;
+    console.log('Status updated to:', newStatus);
+}
 
 // Khai báo danh sách đường dẫn ảnh của bạn
 // Lưu ý: Nếu để trong thư mục public, bạn có thể viết đường dẫn trực tiếp từ "/"
@@ -31,6 +45,7 @@ const myImages = ref([
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .character {
