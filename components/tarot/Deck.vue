@@ -23,12 +23,15 @@
 
     <div v-if="status === 'lay'" class="deck__spread">
       <TarotCard
-        v-for="index in laidCount"
-        :key="`laid-${index}`"
+        v-for="(card, index) in laidCards"
+        :key="card.id ?? `laid-${index}`"
         class="deck__card deck__card--laid"
-        :style="{ '--card-order': index - 1 }"
+        :style="{ '--card-order': index }"
+        :head="card.head"
+        :img-src="card.imgSrc"
+        :footer="card.footer"
         :is-card-set="true"
-        :can-card-flip="false"
+        :can-card-flip="true"
       />
     </div>
   </div>
@@ -39,10 +42,9 @@ import { computed } from 'vue'
 import TarotCard from './TarotCard.vue'
 
 const props = defineProps({
-  num: {
-    type: Number,
-    default: 78,
-    validator: (value) => Number.isInteger(value) && value >= 0
+  list: {
+    type: Array,
+    default: () => []
   },
   status: {
     type: String,
@@ -56,16 +58,20 @@ const props = defineProps({
   }
 })
 
-const cardCount = computed(() => Math.max(0, Math.floor(props.num)))
-const laidCount = computed(() => Math.min(cardCount.value, Math.max(0, Math.floor(props.numLay))))
+const cardCount = computed(() => props.list.length)
+const laidCards = computed(() =>
+  props.list.slice(0, Math.min(cardCount.value, Math.max(0, Math.floor(props.numLay))))
+)
 
-// A few offset layers communicate the full deck without rendering every card.
-const visibleStackCount = computed(() => Math.min(cardCount.value, 8))
+// A few offset layers communicate the remaining deck without rendering every card.
+const remainingCardCount = computed(() =>
+  props.status === 'lay' ? cardCount.value - laidCards.value.length : cardCount.value
+)
+const visibleStackCount = computed(() => Math.min(remainingCardCount.value, 8))
 </script>
 
 <style scoped>
 .deck {
-  --card-width: clamp(76px, 15vw, 150px);
   width: 100%;
   min-width: 0;
 }
@@ -78,7 +84,7 @@ const visibleStackCount = computed(() => Math.min(cardCount.value, 8))
 
 .deck__stack {
   position: relative;
-  width: var(--card-width);
+  width: 25vw;
   aspect-ratio: 3 / 5;
   margin: 12px auto 0;
 }
