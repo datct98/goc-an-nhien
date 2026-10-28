@@ -1,12 +1,20 @@
 <template>
     <div class="wrapper">
-        <div class="row w-full justify-center gap-4 mt-4">
+        <!-- <div class="row w-full justify-center gap-4 mt-4">
             <Deck :list="tarotCards" :status="status" :num-lay="5" />
         </div>
         <div class="row w-full flex flex-row justify-center gap-4 mt-4">
             <div @click="updateStatus('idle')">Update Status Idle</div>
             <div @click="updateStatus('shuffle')">Update Status Shuffle</div>
             <div @click="updateStatus('lay')">Update Status lay</div>
+        </div> -->
+        <!-- <DateMonthYearPicker /> -->
+        <BatQuai :status="status" />
+        <div class="row w-full flex flex-row justify-center gap-4 mt-4 text-white">
+            <div @click="updateStatus('idle')">Update Status Idle</div>
+            <div @click="updateStatus('shuffle')">Update Status Shuffle</div>
+            <div @click="updateStatus('lay')">Update Status lay</div>
+            <div @click="updateStatus('spin')">Update Status Spin</div>
         </div>
     </div>
 </template>
@@ -16,6 +24,12 @@ import { ref } from 'vue'
 import TarotCard from '~/components/tarot/TarotCard.vue'
 import SpriteAnimation from '~/components/anim/SpriteAnimation.vue'
 import Deck from '~/components/tarot/Deck.vue';
+import DateMonthYearPicker from '~/components/huyen-hoc/DateMonthYearPicker.vue';
+import BatQuai from '~/components/huyen-hoc/BatQuai.vue';
+
+definePageMeta({
+    layout: "login_layout"
+})
 
 const { isLoading, showLoading, hideLoading } = useLoading();
 

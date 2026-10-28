@@ -23,12 +23,12 @@ const visibleNumbers = computed(() => {
     const nums = []
 
     // if (current - 2 >= props.min) nums.push(current - 2)
-    if (current - 1 >= props.min) nums.push(current - 1)
+    if (current - 1 >= props.min) nums.push(current + 1)
 
     // Luôn luôn có số hiện tại
     nums.push(current)
 
-    if (current + 1 <= props.max) nums.push(current + 1)
+    if (current + 1 <= props.max) nums.push(current - 1)
     // if (current + 2 <= props.max) nums.push(current + 2)
 
     return nums
@@ -104,7 +104,7 @@ const onMove = (e) => {
 
     // Độ nhạy: di chuyển 25px sẽ đổi 1 số (vuốt mượt và đầm tay hơn)
     const sensitivity = 25
-    const newVal = Math.round(lastScrollY + (diffY / sensitivity))
+    const newVal = Math.round(lastScrollY - (diffY / sensitivity))
 
     if (newVal !== props.modelValue) {
         updateValue(newVal)
@@ -131,12 +131,11 @@ const onWheel = (e) => {
         <!-- Ổ quay 3D -->
         <div class="picker-wheel" :style="{
             transform: `rotateX(${rotationAngle}deg)`,
-            transition: isDragging ? 'none' : 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+            transition: isDragging ? 'none' : 'transform 0.1s cubic-bezier(0.16, 1, 0.3, 1)'
         }">
             <div v-for="num in visibleNumbers" :key="num" class="picker-item"
-                :class="{ 'is-active': num === modelValue }" :style="{
-                    transform: `rotateX(${num * ROTATE_DEGREE}deg) translateZ(70px)`,
-                }">
+                :class="{ 'is-active': num === modelValue }"
+                :style="{ transform: `rotateX(${num * ROTATE_DEGREE}deg)${num === modelValue ? '' : ' translateZ(80px)'}` }">
                 {{ num }}
             </div>
         </div>

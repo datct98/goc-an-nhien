@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
-import NumberPicker from './NumberPicker.vue'
+import NumberPicker from '../common/NumberPicker.vue'
 
 const props = defineProps({
     modelValue: {
