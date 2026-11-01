@@ -1,0 +1,8 @@
+.gomo {
+    width: 100%;
+    position: absolute;
+    bottom: 20%;
+    display: flex;
+    justify-content: center;
+
+}

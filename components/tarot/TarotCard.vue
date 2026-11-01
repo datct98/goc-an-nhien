@@ -3,13 +3,13 @@
         <div class="card-inner">
             <div class="front-card">
                 <div class="num">
-                    III
+                    {{ props.head }}
                 </div>
                 <div>
-                    Image...
+                    <Image :src="props.imgSrc" alt="Tarot Card Image" />
                 </div>
                 <div class="name">
-                    Empress
+                    {{ props.footer }}
                 </div>
             </div>
             <div class="back-card">
@@ -17,6 +17,51 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const props = defineProps({
+    head: {
+        type: String,
+        default: 'III'
+    },
+    imgSrc: {
+        type: String,
+        default: ''
+    },
+    footer: {
+        type: String,
+        default: 'Empress'
+    },
+    // Define props for the TarotCard component
+    isCardSet: {
+        type: Boolean,
+        default: true
+    },
+    canCardFlip: {
+        type: Boolean,
+        default: false
+    },
+});
+
+const isSet = ref(true);
+const canFlip = ref(false);
+
+onMounted(() => {
+    isSet.value = props.isCardSet;
+    canFlip.value = props.canCardFlip;
+    console.log("isSet : ", isSet.value);
+    console.log("canFlip : ", canFlip.value);
+})
+
+
+const toggleCard = () => {
+    if (canFlip.value) {
+        isSet.value = !isSet.value
+    }
+}
+</script>
 
 <style scoped>
 .card {
@@ -70,36 +115,3 @@
     background-size: cover;
 }
 </style>
-
-<script setup>
-import { ref } from 'vue'
-
-const props = defineProps({
-    isCardSet: {
-        type: Boolean,
-        default: true
-    },
-    canCardFlip: {
-        type: Boolean,
-        default: false
-    }
-});
-
-const isSet = ref(true);
-const canFlip = ref(false);
-
-onMounted(() => {
-    isSet.value = props.isCardSet;
-    canFlip.value = props.canCardFlip;
-    console.log("isSet : ", isSet.value);
-    console.log("canFlip : ", canFlip.value);
-})
-
-
-const toggleCard = () => {
-    if (canFlip.value) {
-        isSet.value = !isSet.value
-    }
-}
-
-</script>
