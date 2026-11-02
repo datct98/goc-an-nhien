@@ -9,13 +9,13 @@
             <div @click="updateStatus('lay')">Update Status lay</div>
         </div> -->
         <!-- <DateMonthYearPicker /> -->
-        <BatQuai :status="status" />
+        <!-- <BatQuai :status="status" />
         <div class="row w-full flex flex-row justify-center gap-4 mt-4 text-white">
             <div @click="updateStatus('idle')">Update Status Idle</div>
             <div @click="updateStatus('shuffle')">Update Status Shuffle</div>
             <div @click="updateStatus('lay')">Update Status lay</div>
             <div @click="updateStatus('spin')">Update Status Spin</div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -34,7 +34,7 @@ definePageMeta({
 const { isLoading, showLoading, hideLoading } = useLoading();
 
 // showLoading();
-hideLoading();
+showLoading();
 
 const status = ref('idle');
 const updateStatus = (newStatus) => {

@@ -4,7 +4,11 @@
     <div class="gomo">
       <TalkMessage y="20" :message="message" :visible="showMessage" :time-disappear="timeToLeave" />
       <ToggleImage @click="goMo()" width="200" :src="src" :time="timeToLeave" />
+      <p style="color: white; position: absolute; bottom: -20px;">
+        {{ isClick ? 'Thí chủ chờ một chút' : 'Sẵn sàng tụng kinh' }}
+      </p>
       <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
+      <audio ref="audioTalk"></audio>
     </div>
   </ContainerWithBackground>
 </template>
@@ -20,11 +24,17 @@ const src = ref([
   '/gomo/down.png'
 ]);
 
+const currentAudioPlay = ref(0);
+const audioTalks = [
+  'no_bad_talk_075.wav',
+  'no_bad_talk_sep.wav',
+  'team_good.wav'
+]
+const currentAudio = ref('no_bad_talk_075.wav');
 const messages = [
-  'Không được nói xấu sếp',
   'Không được nói xấu đồng nghiệp',
+  'Không được nói xấu sếp',
   'Đồng nghiệp lúc nào cũng tuyệt vời',
-  'Sếp là bố là mẹ '
 ];
 const mCount = ref(0);
 const message = ref('Không được nói xấu sếp');
@@ -32,16 +42,21 @@ const showMessage = ref(false);
 let messageTimeout;
 const timeToLeave = ref(3000);
 const audioRef = ref(null);
+const audioTalk = ref(null);
+const volumeLevel = ref(0.5);
 const isClick = ref(false);
+audioTalk.value.volumeLevel = 0.5;
+
 
 watch(showMessage, (isVisible) => {
   clearTimeout(messageTimeout);
   if (isVisible) {
-    if (mCount.value % 4 == 0) mCount.value = 0;
+    if (mCount.value % (messages.length) == 0) mCount.value = 0;
     message.value = messages[mCount.value];
     messageTimeout = setTimeout(() => {
       showMessage.value = false;
       mCount.value += 1;
+      isClick.value = false;
     }, timeToLeave.value);
   }
 });
@@ -53,12 +68,35 @@ const goMo = () => {
     // phat ra tieng dong
     audioRef.value.currentTime = 0;
     audioRef.value.play();
+    // phat ra am thanh audioTalk
+    changeTrack(currentAudio.value);
+    currentAudioPlay.value += 1;
+    if (currentAudioPlay.value >= audioTalks.length) currentAudioPlay.value = 0;
+    currentAudio.value = audioTalks[currentAudioPlay.value];
     isClick.value = true;
   } else {
     message.value = "Xin thí chủ đừng vội vàng, hãy hít thở thật sâu";
-    isClick.value = false;
+    // isClick.value = false;
   }
 }
+
+const changeTrack = async (newSrc) => {
+  console.log("newSrc : ", newSrc);
+
+  if (audioTalk.value) {
+    audioTalk.value.pause();
+    audioTalk.value.removeAttribute('src'); // Gỡ src sạch sẽ
+    audioTalk.value.load();
+  }
+
+  try {
+    audioTalk.value.src = `/audio/${newSrc}`;
+    audioTalk.value.currentTime = 0;
+    await audioTalk.value.play();
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 </script>
 

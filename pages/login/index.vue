@@ -1,26 +1,13 @@
 <template>
-    <div class="login-container">
-        <ParallaxScrolling :image-src="[
-            '/anim/bg2/part_1.png',
-            '/anim/bg2/part_2.png',
-            '/anim/bg2/part_3.png',
-        ]" :speed="50" :horizon="1">
+    <ContainerWithBackground src="/layout/loading.webp" aria-label="Quần đảo Góc An Nhiên" background-size="cover"
+        :offset-top="0">
+        <div class="w-full pt-16">
             <p class="labelText">Góc An Nhiên</p>
-            <div style="width: 100%; height: 50px;"></div>
-            <div class="main-object">
-                <Image src="/webp/nhasucuoico.webp" alt="main" />
-            </div>
-            <div style="width: 100%; height: 50px;"></div>
-            <Bounce
-                image-src="/decor/mo/mo1.png"
-                sub-text="Gõ mõ để sang thế giới bí ẩn"
-                :width="150"
-                @click="handleMoClick"
-            />
-            <div style="width: 100%; height: 100px;"></div>
-            <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
-        </ParallaxScrolling>
-    </div>
+        </div>
+        <div class="mainLoading">
+            <Image src="/layout/loadingNhaSu.png" width="200" />
+        </div>
+    </ContainerWithBackground>
 </template>
 
 <script setup>
@@ -33,6 +20,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import ParallaxScrolling from '~/components/anim/ParallaxScrolling.vue';
 import Bounce from '~/components/effects/Bounce.vue';
+import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
 
 const router = useRouter();
 const route = useRoute();
