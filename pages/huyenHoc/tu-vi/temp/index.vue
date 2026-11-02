@@ -217,7 +217,7 @@ import TuViForm from "~/components/huyen-hoc/TuViForm.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import vongBatQuaiImg from "~/assets/vongBatQuai.png";
-import { zodiacMapping } from "../data";
+import { zodiacMapping } from "./data";
 import StarOverlay from "~/components/effects/StarOverlay.vue";
 import TuViCard from "~/components/huyen-hoc/TuViCard.vue";
 import TuViCardV2 from "~/components/huyen-hoc/TuViCardV2.vue";
