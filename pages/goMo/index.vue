@@ -4,6 +4,9 @@
     <div class="gomo">
       <TalkMessage y="20" :message="message" :visible="showMessage" :time-disappear="timeToLeave" />
       <ToggleImage @click="goMo()" width="200" :src="src" :time="timeToLeave" />
+      <p style="color: white; position: absolute; bottom: -20px;">
+        {{ isClick ? 'Thí chủ chờ một chút' : 'Sẵn sàng tụng kinh' }}
+      </p>
       <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
     </div>
   </ContainerWithBackground>
@@ -42,6 +45,7 @@ watch(showMessage, (isVisible) => {
     messageTimeout = setTimeout(() => {
       showMessage.value = false;
       mCount.value += 1;
+      isClick.value = false;
     }, timeToLeave.value);
   }
 });
@@ -56,7 +60,7 @@ const goMo = () => {
     isClick.value = true;
   } else {
     message.value = "Xin thí chủ đừng vội vàng, hãy hít thở thật sâu";
-    isClick.value = false;
+    // isClick.value = false;
   }
 }
 

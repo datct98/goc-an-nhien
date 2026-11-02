@@ -73,6 +73,7 @@ onUnmounted(() => clearTimeout(timeoutId))
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
     color: #33271f;
     font-size: 14px;
+    font-family: Lora;
     line-height: 1.4;
     overflow-wrap: anywhere;
     transform: translate(-50%, -100%);

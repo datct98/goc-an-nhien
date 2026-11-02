@@ -33,3 +33,9 @@
     color: white;
     text-align: center;
 }
+
+.mainLoading {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+}
