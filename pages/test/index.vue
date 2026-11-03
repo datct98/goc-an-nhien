@@ -16,6 +16,11 @@
             <div @click="updateStatus('lay')">Update Status lay</div>
             <div @click="updateStatus('spin')">Update Status Spin</div>
         </div> -->
+        <TextToSpeech :is-show="true" :message="message" v-model:is-start="isStart"
+            @error="error => console.error('TextToSpeech error:', error)" />
+        <button class="speech-button" type="button" @click="playMessage">
+            Phát thử giọng nói
+        </button>
     </div>
 </template>
 
@@ -26,6 +31,7 @@ import SpriteAnimation from '~/components/anim/SpriteAnimation.vue'
 import Deck from '~/components/tarot/Deck.vue';
 import DateMonthYearPicker from '~/components/huyen-hoc/DateMonthYearPicker.vue';
 import BatQuai from '~/components/huyen-hoc/BatQuai.vue';
+import TextToSpeech from '~/components/common/TextToSpeech.vue';
 
 definePageMeta({
     layout: "login_layout"
@@ -34,9 +40,14 @@ definePageMeta({
 const { isLoading, showLoading, hideLoading } = useLoading();
 
 // showLoading();
-showLoading();
+hideLoading();
 
 const status = ref('idle');
+const message = ref('Xin chào, đây là thử nghiệm chuyển văn bản thành giọng nói.');
+const isStart = ref(false);
+const playMessage = () => {
+    isStart.value = true;
+}
 const updateStatus = (newStatus) => {
     status.value = newStatus;
     console.log('Status updated to:', newStatus);
@@ -73,6 +84,16 @@ const myImages = ref([
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.speech-button {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 8px;
+    background: #7c3aed;
+    color: white;
+    cursor: pointer;
 }
 
 .character {

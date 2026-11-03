@@ -8,7 +8,8 @@
         {{ isClick ? 'Thí chủ chờ một chút' : 'Sẵn sàng tụng kinh' }}
       </p>
       <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
-      <audio ref="audioTalk"></audio>
+      <!-- <audio ref="audioTalk"></audio> -->
+      <TextToSpeech :is-show="false" :message="message" :is-start="isStart" />
     </div>
   </ContainerWithBackground>
 </template>
@@ -17,6 +18,7 @@
 import ToggleImage from '~/components/common/ToggleImage.vue';
 import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
 import TalkMessage from '~/components/common/TalkMessage.vue';
+import TextToSpeech from '~/components/common/TextToSpeech.vue';
 import { watch } from 'vue';
 
 const src = ref([
@@ -45,8 +47,11 @@ const audioRef = ref(null);
 const audioTalk = ref(null);
 const volumeLevel = ref(0.5);
 const isClick = ref(false);
-audioTalk.value.volumeLevel = 0.5;
+const isStart = ref(false);
 
+const playMessage = () => {
+  isStart.value = true;
+}
 
 watch(showMessage, (isVisible) => {
   clearTimeout(messageTimeout);
@@ -69,10 +74,7 @@ const goMo = () => {
     audioRef.value.currentTime = 0;
     audioRef.value.play();
     // phat ra am thanh audioTalk
-    changeTrack(currentAudio.value);
-    currentAudioPlay.value += 1;
-    if (currentAudioPlay.value >= audioTalks.length) currentAudioPlay.value = 0;
-    currentAudio.value = audioTalks[currentAudioPlay.value];
+    playMessage();
     isClick.value = true;
   } else {
     message.value = "Xin thí chủ đừng vội vàng, hãy hít thở thật sâu";
