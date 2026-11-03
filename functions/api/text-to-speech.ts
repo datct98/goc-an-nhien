@@ -21,6 +21,20 @@ export async function onRequestPost({ request, env }: PagesFunctionContext) {
     )
   }
 
+  try {
+    if (new URL(upstreamUrl).origin === new URL(request.url).origin) {
+      return Response.json(
+        { message: 'TTS_API_URL must point to the Node.js backend, not this Cloudflare Pages site.' },
+        { status: 503, headers: { 'Cache-Control': 'no-store' } }
+      )
+    }
+  } catch {
+    return Response.json(
+      { message: 'TTS_API_URL must be a valid absolute URL to the Node.js backend.' },
+      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+    )
+  }
+
   let body: { message?: unknown }
   try {
     body = await request.json()
