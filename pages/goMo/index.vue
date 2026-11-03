@@ -5,7 +5,7 @@
       <TalkMessage y="20" :message="message" :visible="showMessage" :time-disappear="timeToLeave" />
       <ToggleImage @click="goMo()" width="200" :src="src" :time="timeToLeave" />
       <p style="color: white; position: absolute; bottom: -20px;">
-        {{ isClick ? 'Thí chủ chờ một chút' : 'Sẵn sàng tụng kinh' }}
+        {{ isClick ? 'Thí chủ chờ một chút' : 'Sẵn sàng tụng kinh nào' }}
       </p>
       <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
       <!-- <audio ref="audioTalk"></audio> -->
