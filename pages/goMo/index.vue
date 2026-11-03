@@ -9,7 +9,7 @@
       </p>
       <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
       <!-- <audio ref="audioTalk"></audio> -->
-      <TextToSpeech :is-show="true" :message="message" :is-start="isStart" />
+      <TextToSpeech :is-show="false" :message="message" :is-start="isStart" />
     </div>
   </ContainerWithBackground>
 </template>
