@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
   nitro: {
-    preset: 'static'
+    preset: 'node-server'
   },
   modules: [
     '@primevue/nuxt-module',
