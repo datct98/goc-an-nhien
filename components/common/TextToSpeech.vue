@@ -54,10 +54,13 @@ async function playMessage(message) {
   if (!message.trim()) return
 
   try {
-    const response = await fetch('/api/text-to-speech', {
+    const response = await fetch('https://goc-an-nhien-backend.onrender.com/api/tts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({
+        text: message,
+        voice: "vi-VN-HoaiMyNeural"
+      }),
       signal: requestController.signal
     })
 
