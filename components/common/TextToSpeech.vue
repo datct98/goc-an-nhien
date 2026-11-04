@@ -50,7 +50,7 @@ async function playMessage(message) {
   }
 
   // The message may be populated asynchronously after the component mounts.
-  // Keep isStart enabled until there is actual text to synthesize.
+  // Keep isStart enabled until there is actual text to synthesize. rebuild
   if (!message.trim()) return
 
   try {
