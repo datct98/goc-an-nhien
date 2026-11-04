@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build --preset static",
+    "build": "nuxt build",
     "build:pages": "nuxt build --preset static",
     "build:node": "nuxt build --preset node-server",
     "start:node": "node .output/server/index.mjs",
@@ -29,7 +29,6 @@
     "gsap": "^3.14.2",
     "js-cookie": "^3.0.5",
     "marked": "^18.0.2",
-    "msedge-tts": "^2.1.1",
     "nuxt": "^3.12.3",
     "nuxt-primevue": "^3.0.0",
     "nuxt3-leaflet": "^1.0.13",
@@ -52,6 +51,7 @@
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4",
     "tiktok-live-connector": "2.5.0",
+    "unenv": "^1.10.0",
     "ws": "8.18.0"
   }
 }

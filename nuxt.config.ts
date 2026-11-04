@@ -23,8 +23,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
   nitro: {
-    preset: 'cloudflare-pages',
-    node: true
+    preset: 'static',
   },
   modules: [
     '@primevue/nuxt-module',
