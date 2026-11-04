@@ -21,6 +21,7 @@
 <script setup>
 import { ref } from 'vue'
 
+// define props for the TarotCard component
 const props = defineProps({
     head: {
         type: String,
