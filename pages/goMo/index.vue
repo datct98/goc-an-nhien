@@ -8,7 +8,9 @@
         {{ isClick ? 'Thí chủ chờ một chút' : 'Sẵn sàng tụng kinh nào' }}
       </p>
       <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
-      <TextToSpeech :is-show="true" :message="message" :is-start="isStart" />
+      <TextToSpeech :is-show="true" :message="message" :is-start="isStart">
+
+      </TextToSpeech>
     </div>
   </ContainerWithBackground>
 </template>

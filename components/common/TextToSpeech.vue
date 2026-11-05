@@ -1,6 +1,17 @@
 <template>
   <div v-if="isShow" class="text-to-speech" :class="{ 'is-open': isListOpen }">
     <div class="text-to-speech__list" role="region" aria-label="Danh sách" :aria-hidden="!isListOpen">
+      <div class="text-to-speech__inputs">
+        <input
+          v-for="(_, index) in listItems"
+          :key="index"
+          v-model="listItems[index]"
+          type="text"
+          maxlength="30"
+          :aria-label="`Mục ${index + 1}`"
+          autocomplete="off"
+        >
+      </div>
       <slot />
     </div>
 
@@ -32,6 +43,7 @@ const props = defineProps({
 const emit = defineEmits(['update:isStart', 'played', 'error'])
 
 const isListOpen = ref(false)
+const listItems = ref(Array.from({ length: 6 }, () => ''))
 
 let audio
 let requestController
@@ -141,6 +153,35 @@ onBeforeUnmount(stopPlayback)
   transform: translate(-100%, -50%);
   transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
+}
+
+.text-to-speech__inputs {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  bottom: 9%;
+  left: 21%;
+  display: grid;
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+}
+
+.text-to-speech__inputs input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  color: #553d2e;
+  font-family: 'Lora', serif;
+  font-size: 16px;
+}
+
+.text-to-speech__inputs input:focus {
+  outline: none;
 }
 
 .is-open .text-to-speech__list {
