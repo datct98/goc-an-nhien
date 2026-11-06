@@ -2,15 +2,8 @@
   <div v-if="isShow" class="text-to-speech" :class="{ 'is-open': isListOpen }">
     <div class="text-to-speech__list" role="region" aria-label="Danh sách" :aria-hidden="!isListOpen">
       <div class="text-to-speech__inputs">
-        <input
-          v-for="(_, index) in listItems"
-          :key="index"
-          v-model="listItems[index]"
-          type="text"
-          maxlength="30"
-          :aria-label="`Mục ${index + 1}`"
-          autocomplete="off"
-        >
+        <input v-for="(_, index) in listItems" :key="index" v-model="listItems[index]" type="text" maxlength="30"
+          :aria-label="`Mục ${index + 1}`" autocomplete="off">
       </div>
       <slot />
     </div>
@@ -149,7 +142,7 @@ onBeforeUnmount(stopPlayback)
   max-height: 82vh;
   aspect-ratio: 1077 / 1450;
   flex-direction: column;
-  background: url('/gomo/list.png') center / 100% 100% no-repeat;
+  background: url('/gomo/blankList.png') center / 100% 100% no-repeat;
   transform: translate(-100%, -50%);
   transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
