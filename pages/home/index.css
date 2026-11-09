@@ -7,7 +7,9 @@
     drop-shadow(0 0 7px rgba(255, 226, 145, 0.72))
     drop-shadow(0 0 20px rgba(255, 183, 66, 0.48))
     drop-shadow(0 12px 20px rgba(7, 15, 37, 0.28));
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .island img {
