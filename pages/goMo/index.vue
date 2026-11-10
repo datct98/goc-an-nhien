@@ -8,8 +8,7 @@
         {{ isClick ? 'Thí chủ chờ một chút' : 'Sẵn sàng tụng kinh nào' }}
       </p>
       <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
-      <TextToSpeech :is-show="true" :message="message" :is-start="isStart">
-
+      <TextToSpeech :is-show="true" :message="message" :is-start="isStart" @update:messages="updateMessages">
       </TextToSpeech>
     </div>
   </ContainerWithBackground>
@@ -20,18 +19,19 @@ import ToggleImage from '~/components/common/ToggleImage.vue';
 import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
 import TalkMessage from '~/components/common/TalkMessage.vue';
 import TextToSpeech from '~/components/common/TextToSpeech.vue';
-import { watch } from 'vue';
+import { onMounted, watch } from 'vue';
 
 const src = ref([
   '/gomo/up.png',
   '/gomo/down.png'
 ]);
 // default mesage
-const messages = [
+const defaultMessages = [
   'Không được nói xấu đồng nghiệp',
   'Không được nói xấu sếp',
   'Đồng nghiệp lúc nào cũng tuyệt vời',
 ];
+const messages = ref([...defaultMessages]);
 const mCount = ref(0);
 const message = ref('Không được nói xấu sếp');
 const showMessage = ref(false);
@@ -41,6 +41,22 @@ const audioRef = ref(null);
 const isClick = ref(false);
 const isStart = ref(false);
 
+onMounted(() => {
+  try {
+    const savedMessages = JSON.parse(localStorage.getItem('talkMessages'));
+    if (Array.isArray(savedMessages)) {
+      messages.value = savedMessages.filter(message => typeof message === 'string').slice(0, 6);
+    }
+  } catch (error) {
+    console.error('Không thể đọc talkMessages từ localStorage:', error);
+  }
+});
+
+const updateMessages = (newMessages) => {
+  messages.value = newMessages;
+  mCount.value = 0;
+};
+
 const playMessage = () => {
   isStart.value = true;
 }
@@ -48,8 +64,9 @@ const playMessage = () => {
 watch(showMessage, (isVisible) => {
   clearTimeout(messageTimeout);
   if (isVisible) {
-    if (mCount.value % (messages.length) == 0) mCount.value = 0;
-    message.value = messages[mCount.value];
+    if (!messages.value.length) return;
+    if (mCount.value >= messages.value.length) mCount.value = 0;
+    message.value = messages.value[mCount.value];
     messageTimeout = setTimeout(() => {
       showMessage.value = false;
       mCount.value += 1;
