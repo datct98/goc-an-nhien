@@ -21,7 +21,7 @@
     </template>
     <template v-else>
       <div class="status-bar" v-if="!isLoading">
-        <Image src="/layout/statusbar.png" />
+        <Image src="/layout/statusbar2.png" />
       </div>
       <!-- <button class="toggleButton" @click="toggleMenu()">
         <i class="pi pi-bars"></i>
