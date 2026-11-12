@@ -4,6 +4,9 @@
     <div class="gomo">
       <TalkMessage y="20" :message="message" :visible="showMessage" :time-disappear="timeToLeave" />
       <ToggleImage @click="goMo()" width="200" :src="src" :time="timeToLeave" />
+      <img v-for="leaf in leaves" :key="leaf.id" class="gomo-leaf" src="/layout/small_leaf.png" alt="tesst"
+        aria-hidden="true"
+        :style="{ left: `${leaf.x}%`, top: `${leaf.y}px`, '--leaf-drift': `${leaf.drift}px`, '--leaf-rotation': `${leaf.rotation}deg` }" />
       <p style="color: white; position: absolute; bottom: -20px;">
         {{ isClick ? 'Thí chủ chờ một chút' : 'Sẵn sàng tụng kinh nào' }}
       </p>
@@ -19,7 +22,7 @@ import ToggleImage from '~/components/common/ToggleImage.vue';
 import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
 import TalkMessage from '~/components/common/TalkMessage.vue';
 import TextToSpeech from '~/components/common/TextToSpeech.vue';
-import { onMounted, watch } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 
 const src = ref([
   '/gomo/up.png',
@@ -40,6 +43,28 @@ const timeToLeave = ref(3000);
 const audioRef = ref(null);
 const isClick = ref(false);
 const isStart = ref(false);
+const leaves = ref([]);
+let leafId = 0;
+const leafTimeouts = new Set();
+
+const createLeaf = async () => {
+  const id = ++leafId;
+  leaves.value.push({
+    id,
+    x: 50 + (Math.random() - 0.5) * 12,
+    y: 20 + Math.random() * 50,
+    drift: (Math.random() + 0.5) * 90,
+    rotation: (Math.random() - 0.5) * 90,
+  });
+  console.log("leaves : ", leaves);
+  const timeout = setTimeout(() => {
+    leaves.value = leaves.value.filter((leaf) => leaf.id !== id);
+    leafTimeouts.delete(timeout);
+  }, 10000);
+  leafTimeouts.add(timeout);
+};
+
+onUnmounted(() => leafTimeouts.forEach(clearTimeout));
 
 onMounted(() => {
   try {
@@ -75,9 +100,10 @@ watch(showMessage, (isVisible) => {
   }
 });
 
-const goMo = () => {
+const goMo = async () => {
   console.log("Go mo");
   if (!isClick.value) {
+    await createLeaf();
     showMessage.value = true;
     // phat ra tieng dong
     audioRef.value.currentTime = 0;

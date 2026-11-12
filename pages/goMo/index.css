@@ -4,5 +4,35 @@
     bottom: 20%;
     display: flex;
     justify-content: center;
+}
 
+.gomo-leaf {
+    position: absolute;
+    z-index: 99;
+    width: 26px;
+    height: auto;
+    pointer-events: none;
+    transform-origin: center;
+    animation: gomo-leaf-float 2.2s ease-out forwards;
+}
+
+@keyframes gomo-leaf-float {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 12px) rotate(var(--leaf-rotation)) scale(0.65);
+    }
+
+    12% {
+        opacity: 0.95;
+    }
+
+    75% {
+        opacity: 0.85;
+    }
+
+    100% {
+        opacity: 0;
+        /* .status-bar is fixed to the top of the viewport; travel most of the viewport height to reach it. */
+        transform: translate(calc(-50% + var(--leaf-drift)), -60vh) rotate(calc(var(--leaf-rotation) + 160deg)) scale(1.5);
+    }
 }
