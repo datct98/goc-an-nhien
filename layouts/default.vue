@@ -20,9 +20,10 @@
       </button>
     </template>
     <template v-else>
-      <div class="status-bar" v-if="!isLoading">
+      <!-- <div class="status-bar" v-if="!isLoading">
         <Image src="/layout/statusbar2.png" />
-      </div>
+      </div> -->
+      <StatusBar />
       <!-- <button class="toggleButton" @click="toggleMenu()">
         <i class="pi pi-bars"></i>
       </button> -->
@@ -38,6 +39,7 @@
 
 <script setup>
 import SidebarMenu from '~/components/common/SidebarMenu.vue';
+import StatusBar from '~/components/layout/StatusBar.vue';
 import NavMenuMobile from '~/components/common/NavMenuMobile.vue';
 const { isMobileView } = useDevice();
 const { isLoading, showLoading, hideLoading } = useLoading();
