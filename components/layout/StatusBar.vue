@@ -45,7 +45,7 @@ const { leafPoint } = useScore()
     font-size: 16px;
     font-weight: 600;
     text-shadow: 0 2px 4px #41220c;
-    padding-bottom: 6px;
+    padding-bottom: 2px;
     font-family: fangsong;
 }
 
