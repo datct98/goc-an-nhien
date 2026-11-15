@@ -23,6 +23,7 @@ import ContainerWithBackground from '~/components/layout/ContainerWithBackground
 import TalkMessage from '~/components/common/TalkMessage.vue';
 import TextToSpeech from '~/components/common/TextToSpeech.vue';
 import { onMounted, onUnmounted, ref, watch } from 'vue';
+const { increaseLeafPoint } = useScore()
 
 const src = ref([
   '/gomo/up.png',
@@ -103,6 +104,7 @@ watch(showMessage, (isVisible) => {
 const goMo = async () => {
   console.log("Go mo");
   if (!isClick.value) {
+    increaseLeafPoint()
     await createLeaf();
     showMessage.value = true;
     // phat ra tieng dong
