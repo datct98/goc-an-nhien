@@ -5,7 +5,10 @@
             <div class="redbox" style="width:20%">
                 <Avatar />
             </div> <!-- avatar -->
-            <div class="redbox" style="width:35%"></div> <!-- info -->
+            <div class="redbox info" style="width:35%">
+                <div class="name">{{ name }}</div>
+                <div class="level">Level {{ level }}</div>
+            </div> <!-- info -->
             <div class="redbox points" style="width:25%">{{ leafPoint }}</div> <!-- point -->
         </div>
     </nav>
@@ -14,6 +17,7 @@
 <script setup>
 import Avatar from './Avatar.vue'
 const { leafPoint } = useScore()
+const { name, level } = useInfo()
 </script>
 
 <style scoped>
@@ -45,8 +49,28 @@ const { leafPoint } = useScore()
     font-size: 16px;
     font-weight: 600;
     text-shadow: 0 2px 4px #41220c;
-    padding-bottom: 2px;
+    padding-bottom: 0px;
     font-family: fangsong;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    font-family: system-ui;
+    line-height: 1;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #401F0C;
+}
+
+.level {
+    font-size: 12px;
+    color: #401F0C;
 }
 
 .bluebox {
