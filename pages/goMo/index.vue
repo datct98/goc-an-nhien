@@ -24,6 +24,7 @@ import TalkMessage from '~/components/common/TalkMessage.vue';
 import TextToSpeech from '~/components/common/TextToSpeech.vue';
 import { onMounted, onUnmounted, ref, watch } from 'vue';
 const { increaseLeafPoint } = useScore()
+const { increaseExperience } = useInfo()
 
 const src = ref([
   '/gomo/up.png',
@@ -105,6 +106,7 @@ const goMo = async () => {
   console.log("Go mo");
   if (!isClick.value) {
     increaseLeafPoint()
+    increaseExperience()
     await createLeaf();
     showMessage.value = true;
     // phat ra tieng dong

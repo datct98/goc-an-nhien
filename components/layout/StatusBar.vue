@@ -7,7 +7,13 @@
             </div> <!-- avatar -->
             <div class="redbox info" style="width:35%">
                 <div class="name">{{ name }}</div>
-                <div class="level">Level {{ level }}</div>
+                <div class="experience-row">
+                    <span class="level">Lv.{{ level }}</span>
+                    <div class="experience-bar" role="progressbar" :aria-valuenow="current" :aria-valuemin="0"
+                        :aria-valuemax="target" :aria-label="`Kinh nghiệm cấp ${level}`">
+                        <div class="experience-fill" :style="{ width: `${Math.min((current / target) * 100, 100)}%` }"></div>
+                    </div>
+                </div>
             </div> <!-- info -->
             <div class="redbox points" style="width:25%">{{ leafPoint }}</div> <!-- point -->
         </div>
@@ -17,7 +23,7 @@
 <script setup>
 import Avatar from './Avatar.vue'
 const { leafPoint } = useScore()
-const { name, level } = useInfo()
+const { name, level, current, target } = useInfo()
 </script>
 
 <style scoped>
@@ -68,9 +74,35 @@ const { name, level } = useInfo()
     color: #401F0C;
 }
 
+.experience-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .level {
-    font-size: 12px;
-    color: #401F0C;
+    font-size: 13px;
+    font-weight: 600;
+    text-shadow: 0 1px 2px #41220c;
+    color: #41220c;
+    min-width: 10px;
+}
+
+.experience-bar {
+    width: 90px;
+    height: 10px;
+    overflow: hidden;
+    border: 1px solid #5a2b10;
+    border-radius: 5px;
+    background: #6b3518;
+    box-shadow: inset 0 1px 2px #3c1d0e;
+}
+
+.experience-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #d69a32, #ffe18a);
+    transition: width 180ms ease;
 }
 
 .bluebox {
