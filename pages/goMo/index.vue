@@ -2,8 +2,8 @@
   <ContainerWithBackground src="/home/bg2_2.webp" aria-label="Quần đảo Góc An Nhiên" background-size="contain"
     :offset-top="0">
     <div class="gomo">
-      <TalkMessage y="20" :message="message" :visible="showMessage" :time-disappear="timeToLeave" />
-      <ToggleImage @click="goMo()" width="200" :src="src" :time="timeToLeave" />
+      <TalkMessage v-if="isGiaiNghiepMode" y="20" :message="message" :visible="showMessage" :time-disappear="timeToLeave" />
+      <ToggleImage @click="goMo()" width="200" :src="src" :time="isGiaiNghiepMode ? timeToLeave : 500" />
       <img v-for="leaf in leaves" :key="leaf.id" class="gomo-leaf" src="/layout/small_leaf.png" alt="tesst"
         aria-hidden="true"
         :style="{ left: `${leaf.x}%`, top: `${leaf.y}px`, '--leaf-drift': `${leaf.drift}px`, '--leaf-rotation': `${leaf.rotation}deg` }" />
@@ -14,7 +14,7 @@
       <TextToSpeech :is-show="true" :message="message" :is-start="isStart" @update:messages="updateMessages"
         @toggle="onTextToSpeechToggle">
       </TextToSpeech>
-      <ConfigGoMo :is-show="true" :show-button="showButton" />
+      <ConfigGoMo :is-show="true" :show-button="showButton"></ConfigGoMo>
     </div>
   </ContainerWithBackground>
 </template>
@@ -28,6 +28,7 @@ import ConfigGoMo from '~/components/common/ConfigGoMo.vue';
 import { onMounted, onUnmounted, ref, watch } from 'vue';
 const { increaseLeafPoint } = useScore()
 const { increaseExperience } = useInfo()
+const { isGiaiNghiepMode } = useConfig()
 const showButton = ref(true)
 
 const onTextToSpeechToggle = (isOpen) => {
@@ -49,7 +50,7 @@ const mCount = ref(0);
 const message = ref('Không được nói xấu sếp');
 const showMessage = ref(false);
 let messageTimeout;
-const timeToLeave = ref(3000);
+const timeToLeave = ref(2000);
 const audioRef = ref(null);
 const isClick = ref(false);
 const isStart = ref(false);
@@ -102,11 +103,17 @@ watch(showMessage, (isVisible) => {
     if (!messages.value.length) return;
     if (mCount.value >= messages.value.length) mCount.value = 0;
     message.value = messages.value[mCount.value];
-    messageTimeout = setTimeout(() => {
-      showMessage.value = false;
-      mCount.value += 1;
-      isClick.value = false;
-    }, timeToLeave.value);
+    if (isGiaiNghiepMode.value) {
+      messageTimeout = setTimeout(() => {
+        showMessage.value = false;
+        mCount.value += 1;
+        isClick.value = false;
+      }, timeToLeave.value);
+    } else {
+        showMessage.value = false;
+        mCount.value += 1;
+        isClick.value = false;
+    }
   }
 });
 
@@ -117,11 +124,14 @@ const goMo = async () => {
     increaseExperience()
     await createLeaf();
     showMessage.value = true;
-    // phat ra tieng dong
-    audioRef.value.currentTime = 0;
-    audioRef.value.play();
     // phat ra am thanh audioTalk
-    playMessage();
+    if (isGiaiNghiepMode.value) {
+      console.log("isGiaiNghiepMode.value : ", isGiaiNghiepMode.value);
+      // phat ra tieng dong
+      audioRef.value.currentTime = 0;
+      audioRef.value.play();
+      playMessage();
+    }
     isClick.value = true;
   } else {
     message.value = "Xin thí chủ đừng vội vàng, hãy hít thở thật sâu";

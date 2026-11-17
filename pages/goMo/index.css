@@ -16,6 +16,32 @@
     animation: gomo-leaf-float 2.2s ease-out forwards;
 }
 
+.gomo-config__setting {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 24px;
+}
+
+.gomo-config__icon {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.gomo-config__disabled-slash {
+    position: absolute;
+    top: 50%;
+    left: -8%;
+    width: 116%;
+    height: 5px;
+    border-radius: 3px;
+    background: #dc2525;
+    box-shadow: 0 1px 2px #fff3;
+    transform: rotate(-45deg);
+    transform-origin: center;
+}
+
 @keyframes gomo-leaf-float {
     0% {
         opacity: 1;
