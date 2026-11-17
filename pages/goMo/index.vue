@@ -124,12 +124,12 @@ const goMo = async () => {
     increaseExperience()
     await createLeaf();
     showMessage.value = true;
+    // phat ra tieng dong
+    audioRef.value.currentTime = 0;
+    audioRef.value.play();
     // phat ra am thanh audioTalk
     if (isGiaiNghiepMode.value) {
       console.log("isGiaiNghiepMode.value : ", isGiaiNghiepMode.value);
-      // phat ra tieng dong
-      audioRef.value.currentTime = 0;
-      audioRef.value.play();
       playMessage();
     }
     isClick.value = true;
