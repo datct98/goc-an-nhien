@@ -11,8 +11,10 @@
         {{ isClick ? 'Thí chủ chờ một chút' : 'Sẵn sàng tụng kinh nào' }}
       </p>
       <audio ref="audioRef" src="/audio/goMo.m4a"></audio>
-      <TextToSpeech :is-show="true" :message="message" :is-start="isStart" @update:messages="updateMessages">
+      <TextToSpeech :is-show="true" :message="message" :is-start="isStart" @update:messages="updateMessages"
+        @toggle="onTextToSpeechToggle">
       </TextToSpeech>
+      <ConfigGoMo :is-show="true" :show-button="showButton" />
     </div>
   </ContainerWithBackground>
 </template>
@@ -22,9 +24,15 @@ import ToggleImage from '~/components/common/ToggleImage.vue';
 import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
 import TalkMessage from '~/components/common/TalkMessage.vue';
 import TextToSpeech from '~/components/common/TextToSpeech.vue';
+import ConfigGoMo from '~/components/common/ConfigGoMo.vue';
 import { onMounted, onUnmounted, ref, watch } from 'vue';
 const { increaseLeafPoint } = useScore()
 const { increaseExperience } = useInfo()
+const showButton = ref(true)
+
+const onTextToSpeechToggle = (isOpen) => {
+  showButton.value = !isOpen
+}
 
 const src = ref([
   '/gomo/up.png',

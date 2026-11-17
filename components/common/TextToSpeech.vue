@@ -9,7 +9,7 @@
       <slot />
     </div>
 
-    <button class="text-to-speech__toggle" type="button" :aria-expanded="isListOpen" aria-label="Mở hoặc đóng danh sách"
+    <button v-if="showButton" class="text-to-speech__toggle" type="button" :aria-expanded="isListOpen" aria-label="Mở hoặc đóng danh sách"
       @click="toggleList">
       <img src="/gomo/chervonRight.png" alt="" draggable="false">
     </button>
@@ -31,10 +31,14 @@ const props = defineProps({
   isStart: {
     type: Boolean,
     default: true
+  },
+  showButton: {
+    type: Boolean,
+    default: true
   }
 })
 
-const emit = defineEmits(['update:isStart', 'update:messages', 'played', 'error'])
+const emit = defineEmits(['update:isStart', 'update:messages', 'played', 'error', 'toggle'])
 
 const isListOpen = ref(false)
 const listItems = ref(Array.from({ length: 6 }, () => ''))
@@ -59,18 +63,30 @@ onMounted(() => {
   }
 })
 
+function closeList() {
+  if (!isListOpen.value) return
+
+  const messages = listItems.value.map(message => message.trim()).filter(Boolean)
+  listItems.value = [...messages, ...Array.from({ length: 6 - messages.length }, () => '')]
+  localStorage.setItem('talkMessages', JSON.stringify(messages))
+  emit('update:messages', messages)
+  isListOpen.value = false
+  emit('toggle', false)
+}
+
 function toggleList() {
   if (isListOpen.value) {
-    const messages = listItems.value.map(message => message.trim()).filter(Boolean)
-    listItems.value = [...messages, ...Array.from({ length: 6 - messages.length }, () => '')]
-    localStorage.setItem('talkMessages', JSON.stringify(messages))
-    emit('update:messages', messages)
-    isListOpen.value = false
+    closeList()
     return
   }
 
   isListOpen.value = true
+  emit('toggle', true)
 }
+
+watch(() => props.showButton, (showButton) => {
+  if (!showButton) closeList()
+})
 
 let audio
 let requestController
