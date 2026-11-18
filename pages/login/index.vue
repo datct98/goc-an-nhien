@@ -1,12 +1,6 @@
 <template>
-    <ContainerWithBackground src="/layout/loading.webp" aria-label="Quần đảo Góc An Nhiên" background-size="cover"
+    <ContainerWithBackground src="/login/lg.png" aria-label="Quần đảo Góc An Nhiên" background-size="cover"
         :offset-top="0">
-        <div class="w-full pt-16">
-            <p class="labelText">Góc An Nhiên</p>
-        </div>
-        <div class="mainLoading">
-            <Image src="/layout/loadingNhaSu.png" width="200" />
-        </div>
     </ContainerWithBackground>
 </template>
 
