@@ -28,6 +28,7 @@
     border-radius: 0 70% 70% 70%;
     opacity: 0.8;
     animation: fall linear infinite;
+    z-index: 99;
 }
 
 /* Random vị trí – tốc độ – kích thước */
