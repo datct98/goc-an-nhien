@@ -1,36 +1,189 @@
-.login-container {
-    width: 100vw;
-    height: 100vh;
-    background-color: #d2c1b8;
-    display: flex;
+:global(html),
+:global(body),
+:global(#__nuxt) {
+    min-height: 100%;
+    margin: 0;
 }
 
-.login-card {
-    margin: auto;
+:global(.register-scene) {
+    min-height: 100svh;
+    overflow: hidden;
+}
+
+.register-screen {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+    font-family: Lora;
+}
+
+.register-composition {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    width: min(90vw, 70vh, 600px);
+    aspect-ratio: 1076 / 1500;
+    transform: translateX(-50%);
+}
+
+.register-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/login/formlogin.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    user-select: none;
+}
+
+.register-form {
+    position: relative;
+    top: 34%;
+    left: 15%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 3%;
+    width: 70%;
+    height: 58%;
+    box-sizing: border-box;
+    padding: 15px;
+    color: #512d18;
 }
 
-.login-board:hover {
-    transform: translate(-50%, -51%) scale(1.005);
+.register-icon-field {
+    position: relative;
+    display: block;
+    flex: 0 0 13%;
+    min-height: 34px;
 }
 
-.google {
-    position: absolute;
-    top: 30%;
-    left: 30%;
+.register-icon-field :deep(.p-inputicon) {
+    color: rgba(87, 53, 31, 0.78);
 }
 
-.btn-secondary {
+.register-form :deep(.register-input) {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 40px;
+    border: 1.5px solid rgba(133, 77, 27, 0.55);
+    border-radius: 12px;
+    outline: none;
+    color: #57351f;
     background: transparent;
-    border: 1.5px solid #d7c0a3;
-    border-radius: 20px;
-    padding: 5px 15px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #5d4037;
+    box-shadow: inset 0 1px 3px rgba(108, 62, 24, 0.08);
+}
+
+.register-form :deep(.register-input::placeholder) {
+    color: rgba(87, 65, 49, 0.78);
+    opacity: 1;
+}
+
+.register-form :deep(.register-input:hover),
+.register-form :deep(.register-input:focus),
+.register-form :deep(.register-input:focus-visible) {
+    border-color: #a5511c;
+    box-shadow: 0 0 0 3px rgba(255, 186, 67, 0.28);
+    background: transparent;
+}
+
+.register-form :deep(.register-input:-webkit-autofill),
+.register-form :deep(.register-input:-webkit-autofill:hover),
+.register-form :deep(.register-input:-webkit-autofill:focus),
+.register-form :deep(.register-input:-webkit-autofill:active) {
+    -webkit-text-fill-color: #57351f;
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    background-color: transparent !important;
+    transition: background-color 999999s ease-out 0s;
+}
+
+.register-password-input,
+.register-password-input :deep(.p-password-input) {
+    width: 100%;
+    height: 100%;
+}
+
+.register-actions {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    min-height: 0;
+}
+
+.register-error {
+    width: 100%;
+    margin: 0;
+    color: #9b1c13;
+    font-size: 12px;
+    text-align: center;
+}
+
+.register-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.register-submit,
+.register-cancel {
+    position: relative;
+    min-width: 0;
+    height: 38px;
+    border-radius: 999px;
     cursor: pointer;
-    transition: all 0.2s ease;
+}
+
+.register-submit {
+    width: 58%;
+    border: 2px solid #ffd45a;
+    color: #fff5dc;
+    background: linear-gradient(180deg, #b4211a 0%, #7c0f18 100%);
+    box-shadow: inset 0 1px 3px rgba(255, 238, 154, 0.8), 0 3px 8px rgba(111, 38, 12, 0.22);
+    text-shadow: 0 1px 2px rgba(69, 16, 8, 0.5);
+}
+
+.register-submit:hover:not(:disabled) {
+    background: linear-gradient(180deg, #c42e20 0%, #8b1219 100%);
+}
+
+.register-submit:disabled {
+    opacity: 0.72;
+    cursor: wait;
+}
+
+.register-cancel {
+    width: 42%;
+    padding: 0 5px;
+    border: 1.5px solid rgba(133, 77, 27, 0.55);
+    color: #713b22;
+    background: rgba(255, 242, 204, 0.45);
+    font-size: 12px;
+}
+
+.register-monk {
+    position: absolute;
+    z-index: 1;
+    left: -5%;
+    bottom: 14%;
+    width: 45%;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (min-width: 600px) {
+    .register-composition {
+        width: min(76vw, 74vh, 480px);
+    }
+
+    .register-form {
+        font-size: 18px;
+    }
 }
