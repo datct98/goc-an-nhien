@@ -1,5 +1,5 @@
 <template>
-    <ContainerWithBackground src="/login/lg.png" aria-label="Quần đảo Góc An Nhiên" background-size="cover"
+    <ContainerWithBackground :src="ASSETS.background.authentication" aria-label="Quần đảo Góc An Nhiên" background-size="cover"
         :offset-top="0" custom-class="register-scene">
         <SakuraEffect />
         <main class="register-screen" aria-label="Đăng ký Góc An Nhiên">
@@ -56,6 +56,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
+import { ASSETS } from '~/config/assets';
 import InputPassword from 'primevue/password';
 import SakuraEffect from '~/components/effects/SakuraEffect.vue';
 import { useAuth } from '~/composables/useAuth';

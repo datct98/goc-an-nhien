@@ -1,11 +1,12 @@
 <template>
-  <ContainerWithBackground customClass="huyenHoc" src="/home/bg3.png" aria-label="Xem tử vi" background-size="cover">
+  <ContainerWithBackground customClass="huyenHoc" :src="ASSETS.background.spiritualLearning" aria-label="Xem tử vi" background-size="cover">
     <BatQuai :status="status" :width="200" />
   </ContainerWithBackground>
 </template>
 
 <script setup>
 import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
+import { ASSETS } from '~/config/assets';
 import BatQuai from '~/components/huyen-hoc/BatQuai.vue';
 
 const status = ref('idle');

@@ -1,5 +1,5 @@
 <template>
-  <ContainerWithBackground src="/home/bg2_2.webp" aria-label="Quần đảo Góc An Nhiên" background-size="contain"
+  <ContainerWithBackground :src="ASSETS.background.goMo" aria-label="Quần đảo Góc An Nhiên" background-size="contain"
     :offset-top="0">
     <div class="gomo">
       <TalkMessage v-if="isGiaiNghiepMode" y="20" :message="message" :visible="showMessage" :time-disappear="timeToLeave" />
@@ -22,6 +22,7 @@
 <script setup>
 import ToggleImage from '~/components/common/ToggleImage.vue';
 import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue';
+import { ASSETS } from '~/config/assets';
 import TalkMessage from '~/components/common/TalkMessage.vue';
 import TextToSpeech from '~/components/common/TextToSpeech.vue';
 import ConfigGoMo from '~/components/common/ConfigGoMo.vue';

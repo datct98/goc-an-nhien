@@ -1,5 +1,5 @@
 <template>
-  <ContainerWithBackground src="/home/bg1.png" aria-label="Quần đảo Góc An Nhiên"
+  <ContainerWithBackground :src="ASSETS.background.home" aria-label="Quần đảo Góc An Nhiên"
   >
     <NuxtLink to="/goMo" class="island island--one" aria-label="Đến Góc Mơ">
       <Floating :duration="6.5" :distance="12">
@@ -22,6 +22,7 @@
 <script setup>
 import Floating from '~/components/effects/Floating.vue'
 import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue'
+import { ASSETS } from '~/config/assets'
 </script>
 
 <style scoped src="./index.css"></style>

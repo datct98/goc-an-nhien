@@ -1,5 +1,5 @@
 <template>
-  <ContainerWithBackground customClass="huyenHoc" src="/home/bg3.png" aria-label="Quần đảo Góc An Nhiên" background-size="cover"  >
+  <ContainerWithBackground customClass="huyenHoc" :src="ASSETS.background.spiritualLearning" aria-label="Quần đảo Góc An Nhiên" background-size="cover"  >
     <div class="xemTuVi">
       <Image src="/huyenHoc/batQuai.png" width="300" />
     </div>
@@ -14,6 +14,7 @@
 
 <script setup>
 import ContainerWithBackground from '~/components/layout/ContainerWithBackground.vue'
+import { ASSETS } from '~/config/assets'
 </script>
 
 <style scoped src="./index.css"></style>
