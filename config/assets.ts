@@ -6,5 +6,10 @@ export const ASSETS = {
     spiritualLearning: '/home/bg3.png',
     authentication: '/login/lg.png',
     // authentication: '/login/christmas/lg.png'
+    confession: '/phongthutoi/bg.png',
+  },
+  confession: {
+    box: '/phongthutoi/box.png',
+    paper: '/phongthutoi/paper.png',
   },
 } as const
